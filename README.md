@@ -1,4 +1,9 @@
-arguedas
+Yanapiri
 ========
 
-sistema de información educativa para unidades educativas
+es un producto software de gestion academica de unidades educativas, 
+
+Desarrollo
+==========
+
+Symofony 2
