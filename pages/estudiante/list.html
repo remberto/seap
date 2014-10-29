@@ -1,0 +1,35 @@
+<div ng-controller="estudiantesController">
+<h3><i class="fa fa-angle-right"></i>Filiaci&oacute;n de Estudiantes</h3>
+<button type="button" class="btn btn-primary" ng-click="addEstudiante()">Nuevo Estudiante</button>
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Nro.</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Nombres</th>
+      <th>Carnet de Identidad</th>
+      <th>Codigo Rude</th>
+      <th>Genero</th>
+      <th>Fecha Nacimiento</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="estudiante in estudiantes">
+      <td>{{ $index + 1 }}</td>
+      <td>{{ estudiante.paterno }}</td>
+      <td>{{ estudiante.materno }}</td>
+      <td>{{ estudiante.nombres }}</td>
+      <td>{{ estudiante.carnet }}</td>
+      <td>{{ estudiante.codigo_rude }}</td>
+      <td>{{ estudiante.genero }}</td>
+      <td>{{ estudiante.fecha_nacimiento }}</td>
+      <td>
+        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+        <button class="btn btn-danger btn-xs" ng-click="deleteEstudiante(estudiante.id)"><i class="fa fa-trash-o "></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

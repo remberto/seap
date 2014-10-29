@@ -1,9 +1,6 @@
-Yanapiri
-========
+#Sistema Educativo 
 
-es un producto software de gestion academica de unidades educativas, 
+Desarrollado por 
+	     Remberto Quispe Gutierrez rembertoy2k3@gmail.com
+	     Rolando Fernandez Mamani rolysoft@gmail.com
 
-Desarrollo
-==========
-
-Symofony 2

@@ -1,0 +1,25 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+App::uses('AppController', 'Controller');
+/**
+ */
+class EstudiantesController extends AppController{
+    var $name = 'Estudiantes';//inicializacion de variables
+    public $components = array('RequestHandler');
+    public $uses = array('Estudiante');
+    //funcion de inicio
+    public function listar() {
+        $estudiantes = $this->Estudiante->find('all', array('order'=>array('Estudiante.paterno','Estudiante.materno','Estudiante.nombre')));
+        $this->set(array(
+            'estudiantes' => $estudiantes,
+            '_serialize' => array('estudiantes')
+        ));       
+    }
+        
+
+}
+?>

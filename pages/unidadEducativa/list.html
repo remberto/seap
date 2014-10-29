@@ -1,0 +1,25 @@
+<div ng-controller="unidadesEducativasController">
+<h3><i class="fa fa-angle-right"></i>Unidades Educativas</h3>
+<button type="button" class="btn btn-primary" ng-click="addCurso()">Nueva Unidad Educativa</button>
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Nro.</th>
+      <th>Codigo</th>
+      <th>Unidad Educativa</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="unidad_educativa in unidades_educativas">
+      <td>{{ $index + 1 }}</td>
+      <td>{{ unidad_educativa.codigo_ue }}</td>
+      <td>{{ unidad_educativa.descripcion }}</td>
+      <td>
+        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+        <button class="btn btn-danger btn-xs" ng-click="deleteUnidadEducativa(unidad_educativa.id)"><i class="fa fa-trash-o "></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

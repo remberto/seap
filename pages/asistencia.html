@@ -1,0 +1,30 @@
+<script type="text/javascript" src="/app/webroot/js/app/estudiantesController.js"></script>
+<div ng-app="cuadernoApp" ng-controller="estudiantesController">
+<div class="container">
+<h3>Control de Asistencia</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nro.</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Nombres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in estudiantes">
+      <td>{{ $index + 1 }}</td>
+      <td>{{ x.Estudiante.paterno }}</td>
+      <td>{{ x.Estudiante.materno }}</td>
+      <td>{{ x.Estudiante.nombre }}</td>
+      <td>
+        <button class="btn" ng-click="editUser(user.id)">
+			<span class="glyphicon glyphicon-pencil"></span>  Editar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

@@ -1,0 +1,24 @@
+var usuariosController = angular.module('usuariosControllers',[]);
+
+usuariosController.controller('usuariosController', ['$scope','UsuariosFactory','UsuarioFactory','$location', function($scope, EstudiantesFactory, EstudianteFactory, $location) {
+    $scope.estudiantes = null;
+
+    $scope.addEstudiante = function(){
+       $location.path('/addEstudiante');
+    };
+
+    $scope.deleteEstudiante = function(estudianteId){
+       EstudianteFactory.delete({id: estudianteId});
+       EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
+    };
+    
+    EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
+}]);
+
+usuariosController.controller('usuarioController', ['$scope','UsuariosFactory','$location', function($scope, UsuariosFactory, $location) {
+
+    $scope.newEstudiante = function(){
+        EstudiantesFactory.create($scope.estudiante);
+        $location.path('/filiacion');
+    };
+}]);
