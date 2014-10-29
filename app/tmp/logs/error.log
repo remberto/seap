@@ -1729,3 +1729,138 @@ Stack Trace:
 #0 D:\desarrollo\bienaventuranza\www\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 D:\desarrollo\bienaventuranza\www\index.php(41): require('D:\\desarrollo\\b...')
 #2 {main}
+2014-10-29 03:26:59 Error: [MissingControllerException] Controller class CursosController could not be found.
+Exception Attributes: array (
+  'class' => 'CursosController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-10-29 03:37:52 Error: [MissingControllerException] Controller class CursosController could not be found.
+Exception Attributes: array (
+  'class' => 'CursosController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-10-29 04:10:03 Error: [MissingControllerException] Controller class CursosController could not be found.
+Exception Attributes: array (
+  'class' => 'CursosController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-10-29 04:12:57 Error: [MissingControllerException] Controller class CursosController could not be found.
+Exception Attributes: array (
+  'class' => 'CursosController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-10-29 12:31:17 Error: Fatal Error (4): syntax error, unexpected '}', expecting ')' in [D:\desarrollo\bienaventuranza\seap\app\Model\Grado.php, line 26]
+2014-10-29 12:31:17 Error: [FatalErrorException] syntax error, unexpected '}', expecting ')'
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 26)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 26, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\\desarrollo\\b...', 26, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-10-29 12:32:42 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: Nivel.descripcion
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Curso"....', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Curso"....', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Curso"....', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Curso"....', false)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2947): DboSource->read(Object(Curso), Array)
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2919): Model->_readDataSource('all', Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\CursosController.php(21): Model->find('all', Array)
+#7 [internal function]: CursosController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(CursosController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-10-29 12:35:24 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: Grado.Nivel.descripcion
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Curso"....', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Curso"....', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Curso"....', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Curso"....', false)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2947): DboSource->read(Object(Curso), Array)
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2919): Model->_readDataSource('all', Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\CursosController.php(21): Model->find('all', Array)
+#7 [internal function]: CursosController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(CursosController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-10-29 12:38:42 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such table: Curso
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT Curso.id...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT Curso.id...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT Curso.id...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT Curso.id...')
+#4 [internal function]: DboSource->query('SELECT Curso.id...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\CursosController.php(16): Model->query('SELECT Curso.id...')
+#7 [internal function]: CursosController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(CursosController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-10-29 12:38:55 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: Curso.id
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT Curso.id...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT Curso.id...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT Curso.id...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT Curso.id...')
+#4 [internal function]: DboSource->query('SELECT Curso.id...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\CursosController.php(16): Model->query('SELECT Curso.id...')
+#7 [internal function]: CursosController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(CursosController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-10-29 12:44:12 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: gestiones.descripcion
+Request URL: /index.php/index.php/cursos.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT cursos.i...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT cursos.i...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT cursos.i...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT cursos.i...')
+#4 [internal function]: DboSource->query('SELECT cursos.i...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\CursosController.php(22): Model->query('SELECT cursos.i...')
+#7 [internal function]: CursosController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(CursosController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}

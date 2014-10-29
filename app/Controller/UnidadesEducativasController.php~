@@ -7,40 +7,51 @@
 App::uses('AppController', 'Controller');
 /**
  */
-class UnidadesEducativasController extends AppController{
-    var $name = 'UnidadesEducativas';//inicializacion de variables
+class UnidadeseducativasController extends AppController{
+    var $name = 'Unidadeseducativas';//inicializacion de variables
     public $components = array('RequestHandler');
     public $uses = array('UnidadEducativa');
-    //funcion de inicio
-
-    /*public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->allow('index','delete');
-    }*/
 
     public function index() {
-        if(isset($this->request->query['nivel_id'])):
-            $datas = $this->Grado->find('all',array('conditions'=>array('Grado.nivel_id'=>$this->request->query['nivel_id'])));     
-        else:
-            $datas = $this->Grado->find('all');     
-        endif;    
-//   $datas = $this->Nivel->find('all',array('fields'=>array('Nivel.id as value', 'Nivel.descripcion as name')));
-        //$estudiantes = $datas;
-        $grados = array();
+        $datas = $this->UnidadEducativa->find('all');
+        $unidades_educativas = array();
         foreach($datas as $data):
-            $grado = array();
+            $unidad_educativa = array();
             foreach ($data as $key => $val):                
                 foreach ($val as $key => $value):
-                    $grado[$key] = $value;
+                    $unidad_educativa[$key] = $value;
                 endforeach;                
             endforeach;
-            array_push($grados, $grado);
+            array_push($unidades_educativas, $unidad_educativa);
         endforeach;
         $this->set(array(
-            'grados' => $grados,
-            '_serialize' => array('grados')
+            'unidades_educativas' => $unidades_educativas,
+            '_serialize' => array('unidades_educativas')
         ));       
-    }        
+    }
+
+    public function add(){
+        $datasource = $this->UnidadEducativa->getDataSource();
+        $datasource->useNestedTransactions = TRUE;
+        $datasource->begin();
+        try{
+            $this->UnidadEducativa->create();
+            $this->request->data['UnidadEducativa']['codigo_ue'] = $this->request->data['codigo_ue'];
+            $this->request->data['UnidadEducativa']['descripcion'] = $this->request->data['descripcion'];
+            $this->UnidadEducativa->save($this->request->data);
+            $datasource->commit();
+            $message = 'Guardado';
+        }catch(Exception $e) {
+            $datasource->rollback();
+            $message = 'Error al Guardar los datos';
+        }
+       
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+        ));
+    }
+        
 
 }
 ?>

@@ -7,7 +7,7 @@
       <div class="form-panel">
 	 <form novalidate="novalidate" class="form-horizontal style-form">
            <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Nivel:</label>
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Nivel : </label>
              <div class="col-sm-10">
 	        <select id="Nivel" ng-change="selectNivel(nivel.id)" ng-model="nivel" ng-options="value as value.descripcion for (key, value) in niveles" class="form-control">
 		  <option>Seleccione</option>
@@ -15,7 +15,7 @@
              </div>
            </div>
            <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputMaterno">Apellido Materno:</label>
+             <label class="col-sm-2 col-sm-2 control-label" for="inputMaterno">Grado : </label>
              <div class="col-sm-10">
 	        <select id="Grado" ng-model="grado" ng-options="value as value.descripcion for (key, value) in grados" class="form-control">
 		  <option>Seleccione</option>
@@ -23,7 +23,7 @@
              </div>
            </div>
            <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputNombres">Nombres:</label>
+             <label class="col-sm-2 col-sm-2 control-label" for="inputNombres">Nomb:</label>
              <div class="col-sm-10">
                 <input type="text" id="inputNombres" class="form-control" ng-model="usuario.nombres"/>
              </div>

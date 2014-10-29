@@ -61,6 +61,7 @@ cuadernoAppServices.factory('GestionesFactory', function ($resource) {
 
 
 // Unidades Educativas
+
 cuadernoAppServices.factory('UnidadesEducativasFactory', function ($resource) {
     return $resource('/index.php/unidadeseducativas.json', {}, {
         query: { method: 'GET', isArray: false},
@@ -106,6 +107,19 @@ cuadernoAppServices.factory('GradosFactory', function ($resource) {
     })
 });
 
+// Paralelos
+cuadernoAppServices.factory('ParalelosFactory', function ($resource) {
+    return $resource('/index.php/paralelos.json', {}, {
+        query: { method: 'GET', isArray: false},
+    })
+});
+
+// Turnos
+cuadernoAppServices.factory('TurnosFactory', function ($resource) {
+    return $resource('/index.php/turnos.json', {}, {
+        query: { method: 'GET', isArray: false},
+    })
+});
 
 
 /*cuadernoApp.service('dataService', function($resource) {

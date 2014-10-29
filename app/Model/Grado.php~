@@ -6,15 +6,15 @@
  */
 
 /**
- * Estudiantes
- * Tabla estudiantes
+ * Grado
+ * Tabla Grado
  *
- * @author Remberto Quispe Gutierrez <rquispe@odespro.com>
+ * @author Remberto Quispe Gutierrez <rembertoy2k3@gmail.com>
  * @see AppModel
  */
-class Nivel extends AppModel {
-	public $name = 'Nivel';        
-        public $useTable = 'niveles';
+class Grado extends AppModel {
+	public $name = 'Grado';        
+        public $useTable = 'grados';
         public $primaryKey = 'id';
 }
 

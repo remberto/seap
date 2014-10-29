@@ -23,15 +23,22 @@ cursosController.controller('cursoController', ['$scope','CursosFactory','$locat
     };
 }]);
 
-cursosController.controller('nivelesController', ['$scope','NivelesFactory','$location', function($scope, NivelesFactory, $location) {
+cursosController.controller('nivelesController', ['$scope',
+						  'NivelesFactory',
+						  'GradosFactory',
+						  '$location', 
+						  function($scope, 
+							   NivelesFactory, 
+							   GradosFactory,
+							   $location) {
     $scope.niveles = null;
+    $scope.grados = null;						     
     $scope.nivel = {name:'', id:0};
     
-    $scope.selectNivel = function(){
-	
+    $scope.selectNivel = function(id){
+	GradosFactory.query({nivel_id: id}, function(data){ $scope.grados = data.grados });
     };
  
     NivelesFactory.query(function(data){$scope.niveles = data.niveles;});
-
     
 }]);

@@ -5,6 +5,8 @@
   <thead>
     <tr>
       <th>Nro.</th>
+      <th>Gestion</th>
+      <th>Unidad Educativa</th>
       <th>Nivel</th>
       <th>Grado</th>
       <th>Paralelo</th>
@@ -15,6 +17,8 @@
   <tbody>
     <tr ng-repeat="curso in cursos">
       <td>{{ $index + 1 }}</td>
+      <td>{{ curso.gestion }}</td>
+      <td>{{ curso.unidad_educativa }}</td>
       <td>{{ curso.nivel }}</td>
       <td>{{ curso.grado }}</td>
       <td>{{ curso.paralelo }}</td>

@@ -1,2 +1,2 @@
-1414545185
+1414583758
 a:6:{s:2:"id";a:5:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:36;s:3:"key";s:7:"primary";}s:7:"paterno";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:50;}s:7:"materno";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:50;}s:7:"nombres";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:50;}s:16:"fecha_nacimiento";a:4:{s:4:"type";s:4:"date";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:6:"genero";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:2;}}

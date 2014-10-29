@@ -7,10 +7,10 @@
 App::uses('AppController', 'Controller');
 /**
  */
-class NivelesController extends AppController{
-    var $name = 'Niveles';//inicializacion de variables
+class GradosController extends AppController{
+    var $name = 'Grados';//inicializacion de variables
     public $components = array('RequestHandler');
-    public $uses = array('Nivel');
+    public $uses = array('Nivel','Grado');
     //funcion de inicio
 
     /*public function beforeFilter() {
@@ -19,22 +19,26 @@ class NivelesController extends AppController{
     }*/
 
     public function index() {
-        $datas = $this->Nivel->find('all');     
+        if(isset($this->request->query['nivel_id'])):
+            $datas = $this->Grado->find('all',array('conditions'=>array('Grado.nivel_id'=>$this->request->query['nivel_id'])));     
+        else:
+            $datas = $this->Grado->find('all');     
+        endif;    
 //   $datas = $this->Nivel->find('all',array('fields'=>array('Nivel.id as value', 'Nivel.descripcion as name')));
         //$estudiantes = $datas;
-        $niveles = array();
+        $grados = array();
         foreach($datas as $data):
-            $nivel = array();
+            $grado = array();
             foreach ($data as $key => $val):                
                 foreach ($val as $key => $value):
-                    $nivel[$key] = $value;
+                    $grado[$key] = $value;
                 endforeach;                
             endforeach;
-            array_push($niveles, $nivel);
+            array_push($grados, $grado);
         endforeach;
         $this->set(array(
-            'niveles' => $niveles,
-            '_serialize' => array('niveles')
+            'grados' => $grados,
+            '_serialize' => array('grados')
         ));       
     }        
 

@@ -16,6 +16,14 @@ class Grado extends AppModel {
 	public $name = 'Grado';        
         public $useTable = 'grados';
         public $primaryKey = 'id';
+
+    public $belongsTo = array(
+        'Nivel' => array(
+            'className'=>'Nivel',
+            'type'=>'INNER',
+            'foreignKey' => 'nivel_id',
+        ),
+    );
 }
 
 ?>

@@ -1,0 +1,15 @@
+<?php
+/**
+ * Curso
+ * Tabla cursos
+ *
+ * @author Remberto Quispe Gutierrez <rembertoy2k3@gmail.com>
+ * @see AppModel
+ */
+class Curso extends AppModel {
+	public $name = 'Curso';        
+    public $useTable = 'cursos';
+    public $primaryKey = 'id';
+}
+
+?>

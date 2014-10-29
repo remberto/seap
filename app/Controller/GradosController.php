@@ -20,7 +20,8 @@ class GradosController extends AppController{
 
     public function index() {
         if(isset($this->request->query['nivel_id'])):
-            $datas = $this->Grado->find('all',array('conditions'=>array('Grado.nivel_id'=>$this->request->query['nivel_id'])));     
+            $datas = $this->Grado->find('all',array('fields'=>array('Grado.id as id','Grado.descripcion as descripcion'),
+                                                    'conditions'=>array('Grado.nivel_id'=>$this->request->query['nivel_id'])));     
         else:
             $datas = $this->Grado->find('all');     
         endif;    

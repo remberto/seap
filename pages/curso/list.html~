@@ -1,27 +1,27 @@
-<div ng-controller="usuariosController">
-<h3><i class="fa fa-angle-right"></i>Usuarios</h3>
-<button type="button" class="btn btn-primary" ng-click="addUsuario()">Nuevo Usuario</button>
+<div ng-controller="cursosController">
+<h3><i class="fa fa-angle-right"></i>Cursos</h3>
+<button type="button" class="btn btn-primary" ng-click="addCurso()">Nuevo Curso</button>
 <table class="table table-bordered table-striped table-condensed">
   <thead>
     <tr>
       <th>Nro.</th>
-      <th>Username</th>
-      <th>Apellido Paterno</th>
-      <th>Apellido Materno</th>
-      <th>Nombres</th>      
+      <th>Nivel</th>
+      <th>Grado</th>
+      <th>Paralelo</th>
+      <th>Turno</th>      
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="usuario in usuarios">
+    <tr ng-repeat="curso in cursos">
       <td>{{ $index + 1 }}</td>
-      <td>{{ usuario.username }}</td>
-      <td>{{ usuario.paterno }}</td>
-      <td>{{ usuario.materno }}</td>
-      <td>{{ usuario.nombres }}</td>
+      <td>{{ curso.nivel }}</td>
+      <td>{{ curso.grado }}</td>
+      <td>{{ curso.paralelo }}</td>
+      <td>{{ curso.turno }}</td>
       <td>
         <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-        <button class="btn btn-danger btn-xs" ng-click="deleteUsuario(usuario.id)"><i class="fa fa-trash-o "></i></button>
+        <button class="btn btn-danger btn-xs" ng-click="deleteCurso(curso.id)"><i class="fa fa-trash-o "></i></button>
       </td>
     </tr>
   </tbody>

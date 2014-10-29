@@ -50,6 +50,16 @@ cuadernoAppServices.factory('UsuarioFactory', function ($resource) {
     })
 });
 
+// Gestiones
+
+cuadernoAppServices.factory('GestionesFactory', function ($resource) {
+    return $resource('/index.php/gestiones.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })
+});
+
+
 // Unidades Educativas
 cuadernoAppServices.factory('UnidadesEducativasFactory', function ($resource) {
     return $resource('/index.php/unidadeseducativas.json', {}, {

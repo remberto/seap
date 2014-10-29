@@ -36,7 +36,7 @@ class UnidadeseducativasController extends AppController{
         $datasource->begin();
         try{
             $this->UnidadEducativa->create();
-            $this->request->data['UnidadEducativa']['codigo_ue'] = $this->request->data['codigo_ue'];
+            $this->request->data['UnidadEducativa']['id'] = $this->request->data['id'];
             $this->request->data['UnidadEducativa']['descripcion'] = $this->request->data['descripcion'];
             $this->UnidadEducativa->save($this->request->data);
             $datasource->commit();
