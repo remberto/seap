@@ -1,0 +1,73 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Nuevo Docente
+</h3>
+<div class="row mt" ng-controller="docentesController">
+    <div class="col-lg-12">
+      <div class="form-panel">
+   <form novalidate="novalidate" class="form-horizontal style-form">
+           <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Apellido Paterno:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.paterno"/>
+             </div>
+           </div>
+           <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Apellido Materno:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.materno"/>
+             </div>
+           </div>
+           <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Nombres:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.nombres"/>
+             </div>
+           </div>
+           <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">C&eacute;dula de Identidad:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.carnet"/>
+             </div>
+           </div>
+           <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Categoria:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.categoria"/>
+             </div>
+           </div>
+           <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Genero:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.genero"/>
+             </div>
+           </div>
+
+     <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Fecha Nacimiento:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.fecha_nacimiento"/>
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Domicilio:</label>
+             <div class="col-sm-10">
+                <input type="text" id="inputPaterno" class="form-control" ng-model="docente.domicilio"/>
+             </div>
+           </div>
+
+           <div class="form-group">
+            <div class="col-sm-12">
+              <!-- user-detail.html: -->
+                <a ng-click="cancel()" class="btn btn-small">Cancelar</a>
+                <a ng-click="updateUser()" class="btn btn-small btn-primary">update Docente</a>
+
+              <!-- user-creation.html: -->
+                <a ng-click="newDocente()" class="btn btn-small btn-primary">Guardar</a>
+            </div>
+           </div>
+   </form>
+       </div>
+    </div>
+</div>

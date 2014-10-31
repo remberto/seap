@@ -3,6 +3,7 @@ var cuadernoApp = angular.module('cuadernoApp', ['ui.bootstrap',
                                                  'cuadernoAppServices',
 						 'unidadEducativaControllers',
                                                  'estudiantesControllers',
+                                                 'docentesControllers',
 						 'usuariosControllers',
 						 'cursosControllers']);
 
@@ -121,6 +122,21 @@ cuadernoAppServices.factory('TurnosFactory', function ($resource) {
     })
 });
 
+// Docentes
+cuadernoAppServices.factory('DocentesFactory', function ($resource) {
+    return $resource('/index.php/docentes.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })
+});
+
+/*cuadernoAppServices.factory('DocenteFactory', function ($resource) {
+    return $resource('/index.php/docentes/:id.json', {}, {
+        //show: { method: 'GET' },
+        update: { method: 'PUT', params: {id: '@id'} },
+        delete: { method: 'GET', params: {id: '@id'} }
+    })
+});*/
 
 /*cuadernoApp.service('dataService', function($resource) {
 delete $resource.defaults.headers.common['X-Requested-With'];
@@ -192,13 +208,21 @@ cuadernoApp.config(function($routeProvider) {
                 controller  : 'cursoController'
             })     
 	    .when('/unidadeseducativas', {
-		templateUrl : 'unidadEducativa/list.html',
-		controller  : 'unidadesEducativasController'
-	    })
+		      templateUrl : 'unidadEducativa/list.html',
+		      controller  : 'unidadesEducativasController'
+	        })
 	    .when('/addUnidadEducativa', {
-		templateUrl : 'unidadEducativa/add.html',
-		controller  : 'unidadEducativaController'
-	    });
+		      templateUrl : 'unidadEducativa/add.html',
+		      controller  : 'unidadEducativaController'
+	        });
+        .when('/docentes', {
+                templateUrl : 'docente/list.html',
+                controller  : 'docentesController'
+        })
+        .when('/addDocente', {
+                templateUrl : 'docente/add.html',
+                controller  : 'docentesController'
+        })
 	});
 
 cuadernoApp.controller('mainController', function($scope) {

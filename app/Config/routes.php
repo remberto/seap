@@ -49,6 +49,7 @@
     Router::mapResources('cursos');
     Router::mapResources('niveles');
     Router::mapResources('unidadeseducativas');
+    Router::mapResources('docentes');
 	Router::parseExtensions();
 /**
  * Load all plugin routes. See the CakePlugin documentation on
