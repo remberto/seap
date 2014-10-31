@@ -19,6 +19,7 @@ docentesController.controller('docentesController', ['$scope','DocentesFactory',
     	$location.path('/docentes');
         } catch(err)
         {
+	    console.log(err);
         	alert(err);
         }
     };

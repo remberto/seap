@@ -214,7 +214,7 @@ cuadernoApp.config(function($routeProvider) {
 	    .when('/addUnidadEducativa', {
 		      templateUrl : 'unidadEducativa/add.html',
 		      controller  : 'unidadEducativaController'
-	        });
+	        })
         .when('/docentes', {
                 templateUrl : 'docente/list.html',
                 controller  : 'docentesController'

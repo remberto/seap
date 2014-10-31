@@ -72,7 +72,7 @@ class DocentesController extends AppController{
             $message = 'Guardado';
         }catch(Exception $e) {
             $datasource->rollback();
-            $message = 'Error al Guardar los datos';
+            $message = 'Error al Guardar los datos '.$e->getMessage();
         }
         
         $this->set(array(
