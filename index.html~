@@ -1,57 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="es" ng-app="cuadernoApp">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="author" content="">
+    
 
-    <title>Cuaderno Pedag&oacute;gico</title>
+    <title>Cuaderno Pedagogico</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" />
+    <link href="/app/webroot/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/app/webroot/css/dialogs.min.css" rel="stylesheet">
     <!--external css-->
-    <link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="/app/webroot/assets/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="/app/webroot/assets/lineicons/style.css">    
     
+    <link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        
     <!-- Custom styles for this template -->
+    
     <link href="/app/webroot/assets/css/style.css" rel="stylesheet">
     <link href="/app/webroot/assets/css/style-responsive.css" rel="stylesheet">
-
-    <script src="/app/webroot/assets/js/chart-master/Chart.js"></script>
+    
     <script type="text/javascript" src="/app/webroot/js/angular/angular.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/ui-bootstrap-tpls-0.11.2.js"></script>   
     <script type="text/javascript" src="/app/webroot/js/angular/angular-route.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/angular-resource.js"></script>
-   
+    <script type="text/javascript" src="/app/webroot/js/dialogs/dialogs.min.js"></script>
 
     <script type="text/javascript" src="/app/webroot/js/app/cuadernoApp.js"></script>
+
     <script type="text/javascript" src="/app/webroot/js/app/unidadEducativaController.js"></script>    
     <script type="text/javascript" src="/app/webroot/js/app/usuariosController.js"></script>    
     <script type="text/javascript" src="/app/webroot/js/app/cursosController.js"></script>
-    <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>    
+    <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/app/estudiantesController.js"></script>    
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
-  <body ng-controller="mainController">
 
-  <section id="container" >
+  <body>
+
+    <section id="container" >
       <!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
       <!--header start-->
       <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Men&uacute; de Navegaci&oacute;n"></div>
-              </div>
+        <div class="sidebar-toggle-box">
+          <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Men&uacute; de Navegaci&oacute;n"></div>
+        </div>
             <!--logo start-->
             <a href="index.html" class="logo"><b>Cuaderno Pedag&oacute;gico</b></a>
             <!--logo end-->
@@ -396,7 +394,6 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
-  
-
+    
   </body>
 </html>

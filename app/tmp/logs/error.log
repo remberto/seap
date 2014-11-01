@@ -1864,3 +1864,303 @@ Stack Trace:
 #11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
 #13 {main}
+2014-11-01 23:07:12 Error: [MissingControllerException] Controller class Estudiantes.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Estudiantes.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/estudiantes.json+
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-11-01 23:07:17 Error: [UnauthorizedException] Unauthorized
+Request URL: /index.php/index.php/estudiantes.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Component\AuthComponent.php(348): BasicAuthenticate->unauthenticated(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Component\AuthComponent.php(304): AuthComponent->_unauthenticated(Object(EstudiantesController))
+#2 [internal function]: AuthComponent->startup(Object(EstudiantesController))
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Utility\ObjectCollection.php(128): call_user_func_array(Array, Array)
+#4 [internal function]: ObjectCollection->trigger(Object(CakeEvent))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Event\CakeEventManager.php(242): call_user_func(Array, Object(CakeEvent))
+#6 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(675): CakeEventManager->dispatch(Object(CakeEvent))
+#7 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(187): Controller->startupProcess()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#9 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#11 {main}
+2014-11-01 23:07:17 Error: [UnauthorizedException] Unauthorized
+Request URL: /index.php/index.php/estudiantes.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Component\AuthComponent.php(348): BasicAuthenticate->unauthenticated(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Component\AuthComponent.php(304): AuthComponent->_unauthenticated(Object(EstudiantesController))
+#2 [internal function]: AuthComponent->startup(Object(EstudiantesController))
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Utility\ObjectCollection.php(128): call_user_func_array(Array, Array)
+#4 [internal function]: ObjectCollection->trigger(Object(CakeEvent))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Event\CakeEventManager.php(242): call_user_func(Array, Object(CakeEvent))
+#6 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(675): CakeEventManager->dispatch(Object(CakeEvent))
+#7 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(187): Controller->startupProcess()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#9 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#11 {main}
+2014-11-01 23:10:22 Error: [MissingActionException] Action EstudiantesController::54444800-3ce4-4ef9-8d2c-cdacafb6fe0b() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '54444800-3ce4-4ef9-8d2c-cdacafb6fe0b',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:11:47 Error: Fatal Error (4): syntax error, unexpected ')' in [D:\desarrollo\bienaventuranza\seap\app\Controller\EstudiantesController.php, line 51]
+2014-11-01 23:11:47 Error: [FatalErrorException] syntax error, unexpected ')'
+Request URL: /index.php/estudiantes/index.php/estudiantes/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 51)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 51, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\\desarrollo\\b...', 51, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-01 23:12:03 Error: [MissingActionException] Action EstudiantesController::54444800-3ce4-4ef9-8d2c-cdacafb6fe0b() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '54444800-3ce4-4ef9-8d2c-cdacafb6fe0b',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:12:39 Error: [MissingActionException] Action EstudiantesController::54444800-3ce4-4ef9-8d2c-cdacafb6fe0b() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '54444800-3ce4-4ef9-8d2c-cdacafb6fe0b',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:12:59 Error: [MissingControllerException] Controller class Estudiantes.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Estudiantes.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/estudiantes.json/index.php/estudiantes.json/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-11-01 23:13:14 Error: [MissingActionException] Action EstudiantesController::1() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '1',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:14:05 Error: [MissingActionException] Action EstudiantesController::1() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '1',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:14:22 Error: [MissingControllerException] Controller class Estudiantes1Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Estudiantes1Controller',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/estudiantes1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-11-01 23:15:29 Error: [MissingControllerException] Controller class Estudiantes1Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Estudiantes1Controller',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/estudiantes1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-11-01 23:15:34 Error: [MissingActionException] Action EstudiantesController::1() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '1',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:15:40 Error: [MissingViewException] View file "D:\desarrollo\bienaventuranza\seap\app\View\Estudiantes\index.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'D:\\desarrollo\\bienaventuranza\\seap\\app\\View\\Estudiantes\\index.ctp',
+)
+Request URL: /index.php/index.php/estudiantes?1_json=
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#4 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#6 {main}
+2014-11-01 23:15:48 Error: [MissingActionException] Action EstudiantesController::1() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '1',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:16:02 Error: [MissingControllerException] Controller class Estudiantes.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Estudiantes.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/estudiantes.json/index.php/estudiantes.json/1
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-11-01 23:17:03 Error: [MissingControllerException] Controller class ViewController could not be found.
+Exception Attributes: array (
+  'class' => 'ViewController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/view/estudiantes/index.php/view/estudiantes/1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-11-01 23:17:10 Error: [MissingActionException] Action EstudiantesController::1() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '1',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:17:56 Error: [MissingActionException] Action EstudiantesController::1() could not be found.
+Exception Attributes: array (
+  'controller' => 'EstudiantesController',
+  'action' => '1',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-11-01 23:25:30 Error: Fatal Error (4): syntax error, unexpected ';', expecting ':' in [D:\desarrollo\bienaventuranza\seap\app\Controller\EstudiantesController.php, line 45]
+2014-11-01 23:25:30 Error: [FatalErrorException] syntax error, unexpected ';', expecting ':'
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json?accion=view
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 45)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 45, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\\desarrollo\\b...', 45, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-01 23:25:55 Error: Fatal Error (64): Cannot redeclare EstudiantesController::view() in [D:\desarrollo\bienaventuranza\seap\app\Controller\EstudiantesController.php, line 57]
+2014-11-01 23:25:55 Error: [FatalErrorException] Cannot redeclare EstudiantesController::view()
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json?accion=view
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', 'D:\\desarrollo\\b...', 57)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', 'D:\\desarrollo\\b...', 57, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', 'D:\\desarrollo\\b...', 57, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-01 23:26:36 Error: [UnauthorizedException] Unauthorized
+Request URL: /index.php/estudiantes/index.php/estudiantes/1.json?accion=view
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Component\AuthComponent.php(348): BasicAuthenticate->unauthenticated(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Component\AuthComponent.php(304): AuthComponent->_unauthenticated(Object(EstudiantesController))
+#2 [internal function]: AuthComponent->startup(Object(EstudiantesController))
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Utility\ObjectCollection.php(128): call_user_func_array(Array, Array)
+#4 [internal function]: ObjectCollection->trigger(Object(CakeEvent))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Event\CakeEventManager.php(242): call_user_func(Array, Object(CakeEvent))
+#6 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(675): CakeEventManager->dispatch(Object(CakeEvent))
+#7 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(187): Controller->startupProcess()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#9 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#11 {main}
+2014-11-01 23:45:42 Error: [MissingViewException] View file "D:\desarrollo\bienaventuranza\seap\app\View\Estudiantes\json\accion.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'D:\\desarrollo\\bienaventuranza\\seap\\app\\View\\Estudiantes\\json\\accion.ctp',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\View\JsonView.php(107): View->_getViewFileName(NULL)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(954): JsonView->render(NULL, NULL)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#4 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#6 {main}
+2014-11-01 23:45:59 Error: [MissingViewException] View file "D:\desarrollo\bienaventuranza\seap\app\View\Estudiantes\json\accion.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'D:\\desarrollo\\bienaventuranza\\seap\\app\\View\\Estudiantes\\json\\accion.ctp',
+)
+Request URL: /index.php/estudiantes/index.php/estudiantes/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b.json?action=view
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\View\JsonView.php(107): View->_getViewFileName(NULL)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(954): JsonView->render(NULL, NULL)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#4 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#6 {main}
+2014-11-01 23:47:14 Error: [PDOException] SQLSTATE[HY000]: General error: 1 ambiguous column name: id
+Request URL: /index.php/estudiantes/index.php/estudiantes/54444800-3ce4-4ef9-8d2c-cdacafb6fe0b.json?accion=view
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Estudia...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Estudia...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Estudia...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Estudia...', false)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2947): DboSource->read(Object(Estudiante), Array)
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2919): Model->_readDataSource('first', Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\EstudiantesController.php(58): Model->find('first', Array)
+#7 D:\desarrollo\bienaventuranza\seap\app\Controller\EstudiantesController.php(44): EstudiantesController->view('54444800-3ce4-4...')
+#8 [internal function]: EstudiantesController->accion('54444800-3ce4-4...')
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(EstudiantesController), Array)
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(EstudiantesController), Object(CakeRequest))
+#12 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#14 {main}

@@ -26,7 +26,7 @@
       <td>{{ estudiante.genero }}</td>
       <td>{{ estudiante.fecha_nacimiento }}</td>
       <td>
-        <button class="btn btn-primary btn-xs" ng-click="viewEstudiante(estudiante.id)"><i class="fa fa-pencil"></i></button>
+        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
         <button class="btn btn-danger btn-xs" ng-click="deleteEstudiante(estudiante.id)"><i class="fa fa-trash-o "></i></button>
       </td>
     </tr>

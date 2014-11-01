@@ -39,8 +39,33 @@ class EstudiantesController extends AppController{
         ));       
     }
 
-    public function view($id){
-        $estudiante = $this->Estudiante->findById($id);
+    public function accion($id){
+        if($this->request->query['accion']=='view'):
+            $this->view($id);
+        elseif($this->request->query['accion']=='delete'):
+            $this->delete($id);
+        endif;
+//        print_r($id);
+/*        die();
+        $estudiante = $this->Estudiante->find('first', array('conditions'=>array('id'=>$id)));
+        $this->set(array(
+            'estudiante' => $estudiante,
+            '_serialize' => array('estudiante')
+            ));*/
+    }
+
+    public function view($id){       
+        $data = $this->Estudiante->findById($id);
+        // $estudiantes = array();
+        //foreach($datas as $data):
+            $estudiante = array();
+            foreach ($data as $key => $val):                
+                foreach ($val as $key => $value):
+                    $estudiante[$key] = $value;
+                endforeach;                
+            endforeach;
+            //array_push($estudiantes, $estudiante);
+            //endforeach;
         $this->set(array(
             'estudiante' => $estudiante,
             '_serialize' => array('estudiante')
@@ -78,7 +103,7 @@ class EstudiantesController extends AppController{
         $httpSocket = new HttpSocket();
         $response = $httpSocket->post($link, $data );*/
 
-        $this->set(array(
+          $this->set(array(
             'message' => $message,
             '_serialize' => array('message')
         ));

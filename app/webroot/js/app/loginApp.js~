@@ -1,0 +1,1 @@
+var cuadernoApp = angular.module('cuadernoApp', []);
