@@ -13,41 +13,16 @@ class UsersController extends AppController {
     public $uses = array('Persona','User');
         
     
-    public function beforeFilter(){
+/*    public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->allow('add','login');
-    }
-    
-    public function login() {
-        if ($this->Session->read('Auth.User')) {
-            $this->set(array(
-                'message' => array(
-                    'text' => __('You are logged in!'),
-                    'type' => 'error'
-                ),
-                '_serialize' => array('message')
-            ));
-        }
+        }*/
 
-        if ($this->request->is('get')) {
-            if ($this->Auth->login()) {
-                // return $this->redirect($this->Auth->redirect());
-                $this->set(array(
-                    'user' => $this->Session->read('Auth.User'),
-                    '_serialize' => array('user')
-                ));
-            } else {
-                $this->set(array(
-                    'message' => array(
-                        'text' => __('Invalid username or password, try again'),
-                        'type' => 'error'
-                    ),
-                    '_serialize' => array('message')
-                ));
-                $this->response->statusCode(401);
-            }
-        }
-    }
+    public function login(){
+    
+	}
+
+    
 
     public function logout() {
         if ($this->Auth->logout()) {
@@ -60,6 +35,41 @@ class UsersController extends AppController {
             ));
         }
     }
+
+    public function in(){
+		if($this->request->is('post')){
+			$request = $this->request->data;
+		}else{
+			$request = $this->request->query; 
+		}
+		
+		$options = array(
+			'conditions' => array(
+								'User.username' 		=> $request['username'],
+								'User.password'		=> $this->Auth->password($request['password'])
+						)
+		);
+		
+		$user = $this->User->find('first',$options);	
+		
+		if($user == true){
+			if($this->Auth->login($user)){
+                $return['username'] = $user['User']['username'];
+                $return['id'] = $user['User']['id'];
+				$return['login'] = true;
+			}else{
+				$return['login'] = false;
+			}	
+		}else{
+			$return['login'] = false;
+		}
+		$this->set(array(
+            'return' => $return,
+            '_serialize' => array('return')
+        ));
+		$this->render('returnjson','ajax');
+	}
+
 
     /**
      * index method
@@ -144,13 +154,12 @@ class UsersController extends AppController {
 
         // The owner of a post can edit and delete it
         if (in_array($this->action, array('edit', 'delete'))) {
-            $postId = $this->request->params['pass'][0];
+            $postId = (int) $this->request->params['pass'][0];
             if ($this->Post->isOwnedBy($postId, $user['id'])) {
                 return true;
             }
         }
         return parent::isAuthorized($user);
     }
-
 }
 

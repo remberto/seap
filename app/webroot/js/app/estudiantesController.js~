@@ -1,25 +1,29 @@
-//var cuadernoApp = angular.module('cuadernoApp', []);
+var estudianteController = angular.module('estudiantesControllers',[]);
 
-cuadernoApp.service('dataService', function($http) {
-delete $http.defaults.headers.common['X-Requested-With'];
-this.getData = function(callbackFunc) {
-    $http({
-        method: 'GET',
-        url: 'http://127.0.0.1:54007/index.php/estudiantes/listar.json',
-        //params: 'limit=10, sort_by=created:desc',
-        //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
-     }).success(function(data){
-        // With the data succesfully returned, call our callback
-        callbackFunc(data);
-    }).error(function(){
-        alert("error");
-    });
- }
-});
-
-cuadernoApp.controller('estudiantesController', function($scope, dataService) {
+estudianteController.controller('estudiantesController', ['$scope','EstudiantesFactory','EstudianteFactory','$location', function($scope, EstudiantesFactory, EstudianteFactory, $location) {
     $scope.estudiantes = null;
-    dataService.getData(function(dataResponse) {
-        $scope.estudiantes = dataResponse.estudiantes;
-    });
-});
+
+    $scope.addEstudiante = function(){
+	   $location.path('/addEstudiante');
+    };
+
+    $scope.deleteEstudiante = function(estudianteId){
+	   EstudianteFactory.delete({id: estudianteId});
+	   EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
+    };
+
+    $scope.viewEstudiante = function(estudianteId){
+	   EstudianteFactory.view({id: estudianteId}, function(data){console.log(data)});
+	   //EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
+    };
+    
+    EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
+}]);
+
+estudianteController.controller('estudianteController', ['$scope','EstudiantesFactory','$location', function($scope, EstudiantesFactory, $location) {
+
+    $scope.newEstudiante = function(){
+        EstudiantesFactory.create($scope.estudiante);
+        $location.path('/filiacion');
+    };
+}]);

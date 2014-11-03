@@ -32,19 +32,15 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    public $components = array('Auth','Session','RequestHandler');
+    public $components = array('Auth','Session');
 
     function beforeFilter() {
         //$this->Auth->sessionKey = false;
         $this->Auth->authorize = array('Controller');
-        $this->Auth->authenticate = array(
-            'all' => array(
-                //'scope' => array('User.is_active' => 1)
-            ),
-            'Basic'
-        );
+        //$this->Auth->authenticate = array('Basic');
+        
 
-        $this->Auth->allow('index','accion','add','delete');
+        $this->Auth->allow('in');
 	}
 
     public function isAuthorized($user) {

@@ -24,10 +24,6 @@ class Estudiante extends AppModel {
             'dependent' => true
 		),
 	);
-    
-    public function isOwnedBy($id, $user) {
-        return $this->field('id', array('id' => $id, 'user_id' => $user)) !== false;
-    }
 }
 
 ?>

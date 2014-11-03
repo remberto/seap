@@ -44,7 +44,7 @@ class AppController extends Controller {
             'Basic'
         );
 
-        $this->Auth->allow('index','view','add','delete');
+        $this->Auth->allow('index','accion','add','delete');
 	}
 
     public function isAuthorized($user) {

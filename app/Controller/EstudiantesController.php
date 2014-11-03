@@ -14,10 +14,10 @@ class EstudiantesController extends AppController{
     public $uses = array('Persona','Estudiante');
     //funcion de inicio
 
-    /*public function beforeFilter() {
+    public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('index','delete');
-    }*/
+        $this->Auth->allow('index','view');
+    }
 
     public function index() {
         //atas = $this->Estudiante->query('SELECT estudiantes.id, estudiantes.carnet, personas.paterno FROM estudiantes INNER JOIN personas ON estudiantes.id = personas.id');
@@ -88,7 +88,9 @@ class EstudiantesController extends AppController{
             $this->Estudiante->create();
             $this->request->data['Estudiante']['id'] = $this->Persona->getLastInsertID();
             $this->request->data['Estudiante']['carnet'] = $this->request->data['carnet'];
-            $this->request->data['Estudiante']['codigo_rude'] = $this->request->data['codigo_rude'];            
+            $this->request->data['Estudiante']['codigo_rude'] = $this->request->data['codigo_rude'];
+            $this->request->data['Estudiante']['user_id'] = $this->request->data['user_id'];
+            $this->request->data['Estudiante']['fecha_registro'] = date('Y-m-d');
             $this->Estudiante->save($this->request->data);
             $datasource->commit();
             $message = 'Guardado';
@@ -121,6 +123,23 @@ class EstudiantesController extends AppController{
             '_serialize' => array('message')
            ));
     }        
+
+    public function isAuthorized($user) {
+        // All registered users can add posts
+        if ($this->action === 'add') {
+            return true;
+        }
+
+        // The owner of a post can edit and delete it
+        if (in_array($this->action, array('edit', 'delete'))) {
+            $estudianteId = (int) $this->request->params['pass'][0];
+            if ($this->Estdudiante->isOwnedBy($estudianteId, $user['id'])) {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
+    }
 
 }
 ?>

@@ -26,6 +26,8 @@
     <script type="text/javascript" src="/app/webroot/js/angular/ui-bootstrap-tpls-0.11.2.js"></script>   
     <script type="text/javascript" src="/app/webroot/js/angular/angular-route.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/angular-resource.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/angular/angular-sanitize.min.js"></script>
+
     <script type="text/javascript" src="/app/webroot/js/dialogs/dialogs.min.js"></script>
 
     <script type="text/javascript" src="/app/webroot/js/app/cuadernoApp.js"></script>
@@ -35,6 +37,15 @@
     <script type="text/javascript" src="/app/webroot/js/app/cursosController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/estudiantesController.js"></script>    
+    <style type="text/css">
+      body { padding: 20px; }
+      .my-class .modal-body {
+      background-color: #eee;
+      }
+      .my-class .modal-footer {
+      margin-top: 0;
+      }
+    </style>
 
   </head>
 
@@ -211,7 +222,7 @@
               <ul class="sidebar-menu" id="nav-accordion">
               
               	  <p class="centered"><a href="profile.html"><img src="/app/webroot/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Marcel Newman</h5>
+              	  <h5 class="centered">{{ name }}</h5>
               	  	
                   <li class="mt">
                       <a class="active" href="#">

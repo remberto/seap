@@ -6,7 +6,7 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'loginControllers',
     'unidadEducativaControllers',
     'estudiantesControllers',
-    'docentesControllers',
+    //'docentesControllers',
     'usuariosControllers',
     'cursosControllers',
 ]);
@@ -103,7 +103,7 @@ cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {
 cuadernoAppServices.factory('EstudianteFactory', function ($resource) {
     return $resource('/index.php/estudiantes/:id.json?accion=:action', {}, {
         //show: { method: 'GET' },
-        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        //view: { method: 'GET', params: {id: '@id', action: 'view'} },
         delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
     })
 });
@@ -158,36 +158,11 @@ cuadernoAppServices.factory("sesionesControl", function(){
 });
 
 //factoria para loguear y desloguear usuarios en angularjs
-cuadernoAppServices.factory("authUsers", function($http, $location, sesionesControl){
-    var cacheSession = function(username){
-        sesionesControl.set("userLogin", true);
-        sesionesControl.set("username", username);
-    }
-    var unCacheSession = function(){
-        sesionesControl.unset("userLogin");
-        sesionesControl.unset("username");
-    }
- 
-    return {
-        //retornamos la función login de la factoria authUsers para loguearnos correctamente
-        login : function(user){
-	    if(user.name == 'aaa'){
-		cacheSession(user.name);
-		return true;
-	    }else{
-		unCacheSession();
-		return false;
-	    }            
-        },
-        //función para cerrar la sesión del usuario
-        logout : function(){
-        },
-        //función que comprueba si la sesión userLogin almacenada en sesionStorage existe
-        isLoggedIn : function(){
-            return sesionesControl.get("userLogin");
-        }
-    }
-})
+cuadernoAppServices.factory("authUsers", function($resource){
+    return $resource('/index.php/login/:username/:password', {}, {
+        login: { method: 'POST',  params: {username: '@username', password: '@password'},  isArray: false},
+    })
+});
 
 
 // Unidades Educativas
@@ -266,7 +241,16 @@ var loginController = angular.module('loginControllers',[]);
 
 loginController.controller('loginController',['$scope', '$modalInstance', '$location', 'sesionesControl', 'authUsers',function($scope, $modalInstance, $location, sesionesControl, authUsers){
    //-- Variables --//
-
+    var cacheSession = function(username, userid){
+        sesionesControl.set("userLogin", true);
+        sesionesControl.set("username", username);
+	sesionesControl.set("user_id", userid);
+    }
+    var unCacheSession = function(){
+        sesionesControl.unset("userLogin");
+        sesionesControl.unset("username");
+	sesionesControl.unset("user_id");
+    }
     $scope.user = {name : ''};
 
     //-- Methods --//
@@ -276,14 +260,19 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
     }; // end cancel
     
     $scope.save = function(){
-	if(authUsers.login($scope.user)){ 
-	    $modalInstance.close($scope.user.name);           
-	    $scope.name = $scope.user.name;
-        }else{
-	    
-	};
-	
-	//$modalInstance.close($scope.user.name);
+	authUsers.login({username: $scope.user.username, password: $scope.user.password},
+			function(data){
+			    if(data.login){
+				$scope.user.name = data.username;
+				cacheSession(data.username, data.id);
+				$modalInstance.close($scope.user.username);           
+			    }
+			    else{
+				unCacheSession();
+				console.log('no ingresa');
+			    }
+			}
+		       );
     }; // end save
 		
     $scope.hitEnter = function(evt){
@@ -293,17 +282,19 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
 }]);
 
 
-cuadernoApp.run(['$rootScope','$location','dialogs','$templateCache', function($rootScope, $location, dialogs, $templateCache){
+cuadernoApp.run(['$rootScope','$location','dialogs','sesionesControl', function($rootScope, $location, dialogs, sesionesControl){
 //    $templateCache.put('/dialogs/custom.html','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> User\'s Name</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="course">Name:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.name" ng-keyup="hitEnter($event)" required><span class="help-block">Enter your full name, first &amp; last.</span></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div>');
     
     //var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'lg',keyboard: true,backdrop: false,windowClass: 'my-class'});
-    var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
-    dlg.result.then(function(name){
-	console.log(name);
-    },function(){
-	$location.path('/');
-	//if(angular.equals($scope.name,''))
-	//    console.log('error');
+    if(!sesionesControl.get('userLogin')){
+	var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
+	dlg.result.then(function(name){
+	    console.log(name);
+	},function(){
+	    $location.path('/');
+	    //if(angular.equals($scope.name,''))
+	    //    console.log('error');
 	    //$scope.name = 'You did not enter in your name!';
-    });
+	});
+    }
 }]);

@@ -27,7 +27,7 @@
            <div class="form-group">
              <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">C&eacute;dula de Identidad:</label>
              <div class="col-sm-10">
-                <input type="text" id="inputPaterno" class="form-control" ng-model="estudiante.carnet" />
+                <input type="text" id="inputPaterno" class="form-control" ng-model="estudiante.carnet"/>
              </div>
            </div>
            <div class="form-group">

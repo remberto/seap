@@ -20,9 +20,10 @@ estudianteController.controller('estudiantesController', ['$scope','EstudiantesF
     EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
 }]);
 
-estudianteController.controller('estudianteController', ['$scope','EstudiantesFactory','$location', function($scope, EstudiantesFactory, $location) {
+estudianteController.controller('estudianteController', ['$scope','EstudiantesFactory','sesionesControl','$location', function($scope, EstudiantesFactory, sesionesControl, $location) {
 
     $scope.newEstudiante = function(){
+	$scope.estudiante.user_id = sesionesControl.get('user_id');
         EstudiantesFactory.create($scope.estudiante);
         $location.path('/filiacion');
     };

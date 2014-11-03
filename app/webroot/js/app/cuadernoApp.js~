@@ -1,16 +1,93 @@
-var cuadernoApp = angular.module('cuadernoApp', ['ui.bootstrap',
-						 'ngRoute',
-                                                 'cuadernoAppServices',
-						 'unidadEducativaControllers',
-                                                 'estudiantesControllers',
-                                                 'docentesControllers',
-						 'usuariosControllers',
-						 'cursosControllers']);
+var cuadernoApp = angular.module('cuadernoApp', [
+    'ui.bootstrap',
+    'dialogs.main',
+    'ngRoute',
+    'cuadernoAppServices',
+    'loginControllers',
+    'unidadEducativaControllers',
+    'estudiantesControllers',
+    'docentesControllers',
+    'usuariosControllers',
+    'cursosControllers',
+]);
+
+cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,dialogsProvider) {
+    dialogsProvider.useBackdrop('static');
+    dialogsProvider.useEscClose(false);
+    dialogsProvider.useCopy(false);
+    dialogsProvider.setSize('sm');
+
+    $routeProvider
+    // route for the home page
+	.when('/', {
+	    templateUrl : 'pages/main.html',
+	    //controller  : 'mainController'
+	})
+        .when('/home', {
+            templateUrl : 'pages/home.html',
+            //controller  : 'homeController'
+        })
+
+    // route for the about page
+    /*			.when('/about', {
+			templateUrl : 'pages/about.html',
+			controller  : 'aboutController'
+			})
+    */
+    // route for the contact page
+    /*			.when('/contact', {
+			templateUrl : 'pages/contact.html',
+			controller  : 'contactController'
+			}) 
+    */ 
+    // route for the contact page
+    
+    // Nuevo Estudiante
+        .when('/usuarios', {
+	    templateUrl : 'pages/usuario/list.html',
+	    controller  : 'usuariosController'
+	})
+	.when('/addUsuario', {
+	    templateUrl : 'pages/usuario/add.html',
+	    controller  : 'usuarioController'
+	})
+        .when('/filiacion', {
+            templateUrl : 'pages/estudiante/list.html',
+            controller  : 'estudiantesController'
+        })
+	.when('/addEstudiante', {
+            templateUrl : 'pages/estudiante/add.html',
+            controller  : 'estudianteController'
+        })
+	.when('/cursos', {
+            templateUrl : 'pages/curso/list.html',
+            controller  : 'cursosController'
+        })
+	.when('/addCurso', {
+            templateUrl : 'pages/curso/add.html',
+            controller  : 'cursoController'
+        })     
+	.when('/unidadeseducativas', {
+	    templateUrl : 'pages/unidadEducativa/list.html',
+	    controller  : 'unidadesEducativasController'
+	})
+	.when('/addUnidadEducativa', {
+	    templateUrl : 'pages/unidadEducativa/add.html',
+	    controller  : 'unidadEducativaController'
+	})
+        .when('/docentes', {
+            templateUrl : 'pages/docente/list.html',
+            controller  : 'docentesController'
+        })
+        .when('/addDocente', {
+            templateUrl : 'pages/docente/add.html',
+            controller  : 'docentesController'
+        })
+}]);
+
+// Factory conneccion
 
 var cuadernoAppServices = angular.module('cuadernoAppServices', ['ngResource']);
-var estudiantesController = angular.module('estudiantesControllers',[]);
-
-
 
 cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {
     return $resource('/index.php/estudiantes.json', {}, {
@@ -24,10 +101,10 @@ cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {
 });
 
 cuadernoAppServices.factory('EstudianteFactory', function ($resource) {
-    return $resource('/index.php/estudiantes/:id.json', {}, {
+    return $resource('/index.php/estudiantes/:id.json?accion=:action', {}, {
         //show: { method: 'GET' },
-        update: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'GET', params: {id: '@id'} }
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
     })
 });
 
@@ -60,6 +137,58 @@ cuadernoAppServices.factory('GestionesFactory', function ($resource) {
     })
 });
 
+// Sessiones
+
+//factoria para guardar y eliminar sesiones con sessionStorage
+cuadernoAppServices.factory("sesionesControl", function(){
+    return {
+        //obtenemos una sesión //getter
+        get : function(key) {
+            return sessionStorage.getItem(key)
+        },
+        //creamos una sesión //setter
+        set : function(key, val) {
+            return sessionStorage.setItem(key, val)
+        },
+        //limpiamos una sesión
+        unset : function(key) {
+            return sessionStorage.removeItem(key)
+        }
+    }
+});
+
+//factoria para loguear y desloguear usuarios en angularjs
+cuadernoAppServices.factory("authUsers", function($http, $location, sesionesControl){
+    var cacheSession = function(username){
+        sesionesControl.set("userLogin", true);
+        sesionesControl.set("username", username);
+    }
+    var unCacheSession = function(){
+        sesionesControl.unset("userLogin");
+        sesionesControl.unset("username");
+    }
+ 
+    return {
+        //retornamos la función login de la factoria authUsers para loguearnos correctamente
+        login : function(user){
+	    if(user.name == 'aaa'){
+		cacheSession(user.name);
+		return true;
+	    }else{
+		unCacheSession();
+		return false;
+	    }            
+        },
+        //función para cerrar la sesión del usuario
+        logout : function(){
+        },
+        //función que comprueba si la sesión userLogin almacenada en sesionStorage existe
+        isLoggedIn : function(){
+            return sesionesControl.get("userLogin");
+        }
+    }
+})
+
 
 // Unidades Educativas
 
@@ -82,7 +211,7 @@ cuadernoAppServices.factory('CursosFactory', function ($resource) {
     return $resource('/index.php/cursos.json', {}, {
         query: { method: 'GET', isArray: false},
         create: { method: 'POST' }
-    })
+    });
 });
 
 cuadernoAppServices.factory('CursoFactory', function ($resource) {
@@ -130,125 +259,51 @@ cuadernoAppServices.factory('DocentesFactory', function ($resource) {
     })
 });
 
-/*cuadernoAppServices.factory('DocenteFactory', function ($resource) {
-    return $resource('/index.php/docentes/:id.json', {}, {
-        //show: { method: 'GET' },
-        update: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'GET', params: {id: '@id'} }
-    })
-});*/
 
-/*cuadernoApp.service('dataService', function($resource) {
-delete $resource.defaults.headers.common['X-Requested-With'];
-this.getData = function(callbackFunc) {
-    $http({
-        method: 'GET',
-        url: 'http://127.0.0.1:54007/index.php/estudiantes/listar.json',
-        //params: 'limit=10, sort_by=created:desc',
-        //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
-     }).success(function(data){
-        // With the data succesfully returned, call our callback
-        callbackFunc(data);
-    }).error(function(){
-        alert("error");
-    });
- }
-});*/
+// login
 
-cuadernoApp.config(function($routeProvider) {
-		$routeProvider
+var loginController = angular.module('loginControllers',[]);
 
-			// route for the home page
-			.when('/', {
-				templateUrl : 'main.html',
-				controller  : 'mainController'
-			})
-            .when('/home', {
-                templateUrl : 'pages/index.html',
-                controller  : 'homeController'
-            })
+loginController.controller('loginController',['$scope', '$modalInstance', '$location', 'sesionesControl', 'authUsers',function($scope, $modalInstance, $location, sesionesControl, authUsers){
+   //-- Variables --//
 
-			// route for the about page
-/*			.when('/about', {
-				templateUrl : 'pages/about.html',
-				controller  : 'aboutController'
-			})
-*/
-			// route for the contact page
-/*			.when('/contact', {
-				templateUrl : 'pages/contact.html',
-				controller  : 'contactController'
-			}) 
-*/ 
-                        // route for the contact page
-	    
-                        // Nuevo Estudiante
-            .when('/usuarios', {
-		templateUrl : 'usuario/list.html',
-		controller  : 'usuariosController'
-	    })
-	    .when('/addUsuario', {
-		templateUrl : 'usuario/add.html',
-		controller  : 'usuarioController'
-	    })
-            .when('/filiacion', {
-                templateUrl : 'estudiante/list.html',
-                controller  : 'estudiantesController'
-            })
-	    .when('/addEstudiante', {
-                templateUrl : 'estudiante/add.html',
-                controller  : 'estudianteController'
-            })
-	    .when('/cursos', {
-                templateUrl : 'curso/list.html',
-                controller  : 'cursosController'
-            })
-	    .when('/addCurso', {
-                templateUrl : 'curso/add.html',
-                controller  : 'cursoController'
-            })     
-	    .when('/unidadeseducativas', {
-		      templateUrl : 'unidadEducativa/list.html',
-		      controller  : 'unidadesEducativasController'
-	        })
-	    .when('/addUnidadEducativa', {
-		      templateUrl : 'unidadEducativa/add.html',
-		      controller  : 'unidadEducativaController'
-	        })
-        .when('/docentes', {
-                templateUrl : 'docente/list.html',
-                controller  : 'docentesController'
-        })
-        .when('/addDocente', {
-                templateUrl : 'docente/add.html',
-                controller  : 'docentesController'
-        })
-	});
+    $scope.user = {name : ''};
 
-cuadernoApp.controller('mainController', function($scope) {
-	// create a message to display in our view
-	$scope.message = 'Everyone come and see how good I look!';
-});
-
-estudiantesController.controller('estudiantesController', ['$scope','EstudiantesFactory','EstudianteFactory','$location', function($scope, EstudiantesFactory, EstudianteFactory, $location) {
-    $scope.estudiantes = null;
-
-    $scope.addEstudiante = function(){
-	   $location.path('/addEstudiante');
-    };
-
-    $scope.deleteEstudiante = function(estudianteId){
-	   EstudianteFactory.delete({id: estudianteId});
-	   EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
-    };
+    //-- Methods --//
+		
+    $scope.cancel = function(){
+	$modalInstance.dismiss('Canceled');
+    }; // end cancel
     
-    EstudiantesFactory.query(function(data){$scope.estudiantes = data.estudiantes;});
+    $scope.save = function(){
+	if(authUsers.login($scope.user)){ 
+	    $modalInstance.close($scope.user.name);           
+	    $scope.name = $scope.user.name;
+        }else{
+	    
+	};
+	
+	//$modalInstance.close($scope.user.name);
+    }; // end save
+		
+    $scope.hitEnter = function(evt){
+	if(angular.equals(evt.keyCode,13) && !(angular.equals($scope.user.name,null) || angular.equals($scope.user.name,'')))
+	    $scope.save();
+    };   
 }]);
 
-estudiantesController.controller('estudianteController', ['$scope','EstudiantesFactory','$location', function($scope, EstudiantesFactory, $location) {
 
-    $scope.newEstudiante = function(){
-        EstudiantesFactory.create($scope.estudiante);
-        $location.path('/filiacion');
-    };
+cuadernoApp.run(['$rootScope','$location','dialogs','$templateCache', function($rootScope, $location, dialogs, $templateCache){
+//    $templateCache.put('/dialogs/custom.html','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> User\'s Name</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="course">Name:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.name" ng-keyup="hitEnter($event)" required><span class="help-block">Enter your full name, first &amp; last.</span></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div>');
+    
+    //var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'lg',keyboard: true,backdrop: false,windowClass: 'my-class'});
+    var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
+    dlg.result.then(function(name){
+	console.log(name);
+    },function(){
+	$location.path('/');
+	//if(angular.equals($scope.name,''))
+	//    console.log('error');
+	    //$scope.name = 'You did not enter in your name!';
+    });
 }]);
