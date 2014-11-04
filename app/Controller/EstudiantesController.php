@@ -55,6 +55,7 @@ class EstudiantesController extends AppController{
     }
 
     public function view($id){       
+        $result = array();
         $data = $this->Estudiante->findById($id);
         // $estudiantes = array();
         //foreach($datas as $data):
@@ -69,7 +70,7 @@ class EstudiantesController extends AppController{
         $this->set(array(
             'estudiante' => $estudiante,
             '_serialize' => array('estudiante')
-        ));
+            ));
     }
 
 
@@ -131,9 +132,14 @@ class EstudiantesController extends AppController{
         }
 
         // The owner of a post can edit and delete it
-        if (in_array($this->action, array('edit', 'delete'))) {
-            $estudianteId = (int) $this->request->params['pass'][0];
-            if ($this->Estdudiante->isOwnedBy($estudianteId, $user['id'])) {
+        if (($this->action === 'accion') && isset($this->request->query['accion']) && in_array($this->request->query['accion'] , array('view','delete'))) {
+            $estudianteId = $this->request->params['pass'][0];            
+            if ($this->Estudiante->isOwnedBy($estudianteId, $user['User']['id'])) {
+                return true;
+            }
+        }
+        if (in_array($this->action, array('edit'))) {
+            if ($this->Estudiante->isOwnedBy($estudianteId, $user['User']['id'])) {
                 return true;
             }
         }

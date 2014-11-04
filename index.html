@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es" ng-app="cuadernoApp">
   <head>
@@ -24,9 +23,10 @@
     
     <script type="text/javascript" src="/app/webroot/js/angular/angular.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/ui-bootstrap-tpls-0.11.2.js"></script>   
-    <script type="text/javascript" src="/app/webroot/js/angular/angular-route.js"></script>
-    <script type="text/javascript" src="/app/webroot/js/angular/angular-resource.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/angular/angular-resource.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/angular/angular-file-upload.min.js"></script>
 
     <script type="text/javascript" src="/app/webroot/js/dialogs/dialogs.min.js"></script>
 
@@ -37,6 +37,7 @@
     <script type="text/javascript" src="/app/webroot/js/app/cursosController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/estudiantesController.js"></script>    
+    <script type="text/javascript" src="/app/webroot/js/app/uploadController.js"></script>    
     <style type="text/css">
       body { padding: 20px; }
       .my-class .modal-body {
@@ -65,9 +66,10 @@
             <a href="index.html" class="logo"><b>Cuaderno Pedag&oacute;gico</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
-                <!--  notification start -->
+              <!--
+                <!--  notification start -
                 <ul class="nav top-menu">
-                    <!-- settings start -->
+                    <!-- settings start -
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                             <i class="fa fa-tasks"></i>
@@ -135,8 +137,8 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- settings end -->
-                    <!-- inbox dropdown start-->
+                    <!-- settings end -
+                    <!-- inbox dropdown start-
                     <li id="header_inbox_bar" class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                             <i class="fa fa-envelope-o"></i>
@@ -200,9 +202,10 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- inbox dropdown end -->
+                    <!-- inbox dropdown end -
                 </ul>
-                <!--  notification end -->
+                <!--  notification end -
+                -->
             </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
@@ -217,12 +220,12 @@
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
+          <div id="sidebar"  class="nav-collapse " ng-controller="initController">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
               	  <p class="centered"><a href="profile.html"><img src="/app/webroot/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">{{ user.username }}</h5>
+              	  <h5 class="centered">{{ username }}</h5>
               	  	
                   <li class="mt">
                       <a class="active" href="#">
@@ -238,8 +241,10 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="#filiacion">Filiacion</a></li>
+                          <!--
                           <li><a  href="buttons.html">Buttons</a></li>
                           <li><a  href="panels.html">Panels</a></li>
+                          -->
                       </ul>
                   </li>
 
@@ -250,8 +255,10 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="#cursos">cursos</a></li>
+                          <!--
                           <li><a  href="gallery.html">Gallery</a></li>
                           <li><a  href="todo_list.html">Todo List</a></li>
+                        -->
                       </ul>
                   </li>
 
@@ -262,10 +269,13 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="#docentes">Docentes</a></li>
+                          <!--
                           <li><a  href="login.html">Login</a></li>
                           <li><a  href="lock_screen.html">Lock Screen</a></li>
+                        -->
                       </ul>
                   </li>
+                  <!--
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-tasks"></i>
@@ -275,6 +285,7 @@
                           <li><a  href="form_component.html">Form Components</a></li>
                       </ul>
                   </li>
+                
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-th"></i>
@@ -285,6 +296,7 @@
                           <li><a  href="responsive_table.html">Responsive Table</a></li>
                       </ul>
                   </li>
+                -->
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class=" fa fa-bar-chart-o"></i>
@@ -292,8 +304,8 @@
                       </a>
                       <ul class="sub">
                         <li><a  href="#usuarios">Usuarios</a></li>
-			                  <li><a  href="#unidadeseducativas">Unidades Educativas</a></li>
-                        <li><a  href="chartjs.html">Chartjs</a></li>
+			<li><a  href="#unidadeseducativas">Unidades Educativas</a></li>
+                        <li><a  href="#upload">Subir Archivo</a></li>
                       </ul>		      
                   </li>
 

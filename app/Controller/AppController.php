@@ -36,6 +36,9 @@ class AppController extends Controller {
 
     function beforeFilter() {
         //$this->Auth->sessionKey = false;
+        $this->Auth->loginAction = 'entrar';
+        $this->Auth->loginRedirect = 'cuenta';
+        $this->Auth->logoutRedirect = '';
         $this->Auth->authorize = array('Controller');
         //$this->Auth->authenticate = array('Basic');
         
@@ -44,7 +47,7 @@ class AppController extends Controller {
 	}
 
     public function isAuthorized($user) {
-        if (isset($user['role']) && ($user['role'] == 'admin')) {
+        if (isset($user['User']['role']) && ($user['User']['role'] == 'admin')) {
             return true;
         }
         return false;

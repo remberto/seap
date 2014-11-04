@@ -19,9 +19,9 @@ class EstudiantesController extends AppController{
         $this->Auth->allow('index','delete');
     }*/
 
-    public function index() {
-        //atas = $this->Estudiante->query('SELECT estudiantes.id, estudiantes.carnet, personas.paterno FROM estudiantes INNER JOIN personas ON estudiantes.id = personas.id');
-        $datas = $this->Estudiante->find('all',array('order'=>array('Datos.paterno','Datos.materno','Datos.nombres')));
+    public function index() {        
+        datas = $this->Estudiante->query('SELECT estudiantes.id, estudiantes.carnet, personas.paterno FROM estudiantes INNER JOIN personas ON estudiantes.id = personas.id');
+        $datas = $this->Estudiante->find('all');
         $estudiantes = array();
         foreach($datas as $data):
             $estudiante = array();
@@ -36,7 +36,7 @@ class EstudiantesController extends AppController{
         $this->set(array(
             'estudiantes' => $estudiantes,
             '_serialize' => array('estudiantes')
-        ));       
+        ));   
     }
 
     public function accion($id){
@@ -81,7 +81,7 @@ class EstudiantesController extends AppController{
             $this->Persona->create();
             $this->request->data['Persona']['paterno'] = $this->request->data['paterno'];
             $this->request->data['Persona']['materno'] = $this->request->data['materno'];
-            $this->request->data['Persona']['nombres'] = $this->request->data['nombres'];
+            $this->request->data['Persona']['nombre'] = $this->request->data['nombre'];
             $this->request->data['Persona']['fecha_nacimiento'] = $this->request->data['fecha_nacimiento'];
             $this->request->data['Persona']['genero'] = $this->request->data['genero'];
             $this->Persona->save($this->request->data);
