@@ -53,9 +53,25 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    templateUrl : 'pages/usuario/add.html',
 	    controller  : 'usuarioController'
 	})
-        .when('/filiacion', {
-            templateUrl : 'pages/estudiante/list.html',
-            controller  : 'estudiantesController'
+    // Planificacion
+    // 2.1 PLanificacion Anual
+    .when('/planificacion_anual', {
+            templateUrl : 'pages/planificacionAnual/index.html',
+            //controller  : 'estudiantesController'
+        })
+    .when('/planificacion_bimestral', {
+            templateUrl : 'pages/planificacionBimestral/index.html',
+            //controller  : 'estudiantesController'
+        })
+    .when('/planificacion_clases', {
+            templateUrl : 'pages/planificacionClases/index.html',
+            //controller  : 'estudiantesController'
+        })
+    // filiacion
+    // 3.1 Filiacion
+    .when('/filiacion', {
+            templateUrl : 'pages/filiacion/index.html',
+            //controller  : 'estudiantesController'
         })
 	.when('/addEstudiante', {
             templateUrl : 'pages/estudiante/add.html',

@@ -24,6 +24,14 @@ class User extends AppModel {
             'dependent' => true
 	    ),
 	);
+
+    public $belongsTo = array(
+        'Rol' => array(
+            'className'=>'Rol',
+            'type'=>'INNER',
+            'foreignKey' => 'rol_id',
+        ),
+    );
         
         public function beforeSave($options = array()) {         
             if (isset($this->data[$this->alias]['password'])) {

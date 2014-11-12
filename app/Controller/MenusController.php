@@ -1,16 +1,15 @@
 <?php
 
 /**
- * Description of UsuariosController
+ * Description of MenusController
  *
  * @author remberto
  */
 
-
-class UsersController extends AppController {
-    var $name = 'Users';//inicializacion de variables
+class MenusController extends AppController {
+    var $name = 'Menus';//inicializacion de variables
     public $components = array('RequestHandler');
-    public $uses = array('Persona','User');
+    public $uses = array('Menu');
         
     
     public function beforeFilter(){
@@ -18,57 +17,7 @@ class UsersController extends AppController {
         $this->Auth->allow('index');
         }
 
-    public function login(){
-    
-	}
-
-    
-
-    public function logout() {
-        if ($this->Auth->logout()) {
-            $this->set(array(
-                'message' => array(
-                    'text' => __('Logout successfully'),
-                    'type' => 'info'
-                ),
-                '_serialize' => array('message')
-            ));
-        }
-    }
-
-    public function in(){
-		if($this->request->is('post')){
-			$request = $this->request->data;
-		}else{
-			$request = $this->request->query; 
-		}
-		
-		$options = array(
-			'conditions' => array(
-								'User.username' 		=> $request['username'],
-								'User.password'		=> $this->Auth->password($request['password'])
-						)
-		);
-		
-		$user = $this->User->find('first',$options);	
-		
-		if($user == true){
-			if($this->Auth->login($user)){
-                $return['username'] = $user['User']['username'];
-                $return['id'] = $user['User']['id'];
-				$return['login'] = true;
-			}else{
-				$return['login'] = false;
-			}	
-		}else{
-			$return['login'] = false;
-		}
-		$this->set(array(
-            'return' => $return,
-            '_serialize' => array('return')
-        ));
-		$this->render('returnjson','ajax');
-	}
+        
 
 
     /**
@@ -78,22 +27,22 @@ class UsersController extends AppController {
      */
     public function index() {
         //$datas = $this->User->find('all',array('order'=>array('Perfil.paterno','Perfil.materno','Perfil.nombres')));
-        $datas = $this->User->find('all',array('order'=>array('Perfil.paterno','Perfil.materno','Perfil.nombres'),
-                                               'recursive' => 0));
-        $usuarios = array();
+        $datas = $this->Menu->find('all',array('conditions'=>array('Menu.rol_id' => $this->request->query['rol_id']),
+                                               'recursive'=>-1));        
+        $menus = array();
         foreach($datas as $data):
-            $usuario = array();
+            $menu = array();
             foreach ($data as $key => $val):                
-                foreach ($val as $key => $value):
-                    $usuario[$key] = $value;
+                foreach ($val as $key => $value):                  
+                    $menu[$key] = $value;
                 endforeach;                
             endforeach;
-            array_push($usuarios, $usuario);
+            array_push($menus, $menu);
         endforeach;
         //$estudiantes = $datas;
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'menus' => $menus,
+            '_serialize' => array('menus')
         ));
     }
 
