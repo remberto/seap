@@ -8,6 +8,10 @@ class CursosController extends AppController{
     public $components = array('RequestHandler');
     public $uses = array('Curso');
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('index');
+    }
 
     public function index() {
 		if(isset($this->request->query['ue_id']) && isset($this->request->query['gestion_id'])):

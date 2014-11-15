@@ -11,6 +11,11 @@ cursosController.controller('cursosController', ['$scope','CursosFactory','Curso
        CursoFactory.delete({id: cursoId});
        CursosFactory.query(function(data){$scope.cursos = data.cursos;});
     };
+
+    $scope.mtdAsistencia = function(id)
+    {        
+        $location.path('/registroAsistencia/'+id);
+    }
     
     CursosFactory.query(function(data){$scope.cursos = data.cursos;});
 }]);

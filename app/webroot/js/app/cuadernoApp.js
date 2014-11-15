@@ -5,8 +5,10 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'ngRoute',
     'cuadernoAppServices',
     'loginControllers',
+    'menuControllers',
     'unidadEducativaControllers',
     'estudiantesControllers',
+    'asistenciaControllers',
     //'docentesControllers',
     'usuariosControllers',
     'cursosControllers',
@@ -54,6 +56,10 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    controller  : 'usuarioController'
 	})
     // Planificacion
+    .when('/menuPlanificacion', {
+            templateUrl : 'pages/planificacion/index.html',
+            //controller  : 'estudiantesController'
+        })
     // 2.1 PLanificacion Anual
     .when('/planificacion_anual', {
             templateUrl : 'pages/planificacionAnual/index.html',
@@ -72,6 +78,16 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     .when('/filiacion', {
             templateUrl : 'pages/filiacion/index.html',
             //controller  : 'estudiantesController'
+        })
+    // Asistencia
+    // 4.1 Filiacion
+    .when('/asistencia', {
+            templateUrl : 'pages/Asistencia/listCursos.html',
+            //controller  : 'estudiantesController'
+        })
+    .when('/registroAsistencia/:id', {
+            templateUrl : 'pages/Asistencia/registroAsistencia.html',
+            controller  : 'asistenciaController'
         })
 	.when('/addEstudiante', {
             templateUrl : 'pages/estudiante/add.html',
@@ -324,6 +340,20 @@ loginController.controller('initController',['$scope','sesionesControl','dialogs
     }
 }]);
 
+var menuController = angular.module('menuControllers',[]);
+
+menuController.controller('menuController',['$scope', '$location', function($scope, $location){
+    $scope.selectMenu = function(menuId){
+        if(menuId == 1){
+            $location.path('/menuPlanificacion');
+        }else if(menuId == 2){
+            $location.path('/menuHorario');
+        }else if(menuId == 4){
+            $location.path('/asistencia');
+        }
+
+    }
+}]);
 
 
 cuadernoApp.run(['$rootScope','$location','dialogs','sesionesControl', function($rootScope, $location, dialogs, sesionesControl){

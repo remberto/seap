@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="author" content="">
+    <meta name="keyword" content="">
 
     <title>Cuaderno Pedag&oacute;gico</title>
 
@@ -22,6 +22,8 @@
     <link href="/app/webroot/assets/css/style-responsive.css" rel="stylesheet">
 
     <script src="/app/webroot/assets/js/chart-master/Chart.js"></script>
+
+    
     <script type="text/javascript" src="/app/webroot/js/angular/angular.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/ui-bootstrap-tpls-0.11.2.js"></script>   
     <script type="text/javascript" src="/app/webroot/js/angular/angular-route.js"></script>
@@ -33,7 +35,8 @@
     <script type="text/javascript" src="/app/webroot/js/app/unidadEducativaController.js"></script>    
     <script type="text/javascript" src="/app/webroot/js/app/usuariosController.js"></script>    
     <script type="text/javascript" src="/app/webroot/js/app/cursosController.js"></script>
-    <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>    
+    <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/app/asistenciaController.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -197,9 +200,9 @@
                 <!--  notification end -->
             </div>
             <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
+              <ul class="nav pull-right top-menu">
                     <li><a class="logout" href="../index.html">Salir</a></li>
-            	</ul>
+              </ul>
             </div>
         </header>
       <!--header end-->
@@ -213,9 +216,9 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="/app/webroot/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Marcel Newman</h5>
-              	  	
+                  <p class="centered"><a href="profile.html"><img src="/app/webroot/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                  <h5 class="centered">Marcel Newman</h5>
+                    
                   <li class="mt">
                       <a class="active" href="#">
                           <i class="fa fa-dashboard"></i>
@@ -284,9 +287,9 @@
                       </a>
                       <ul class="sub">
                         <li><a  href="#usuarios">Usuarios</a></li>
-			                  <li><a  href="#unidadeseducativas">Unidades Educativas</a></li>
+                        <li><a  href="#unidadeseducativas">Unidades Educativas</a></li>
                         <li><a  href="chartjs.html">Chartjs</a></li>
-                      </ul>		      
+                      </ul>         
                   </li>
 
               </ul>
@@ -338,10 +341,10 @@
 
     <!--script for this page-->
     <script src="/app/webroot/assets/js/sparkline-chart.js"></script>    
-	<script src="/app/webroot/assets/js/zabuto_calendar.js"></script>	
-	
+  <script src="/app/webroot/assets/js/zabuto_calendar.js"></script> 
+  
   <!--
-	<script type="text/javascript">
+  <script type="text/javascript">
         $(document).ready(function () {
         var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
@@ -360,10 +363,10 @@
 
         return false;
         });
-	</script>
+  </script>
 -->
-	
-	<script type="application/javascript">
+  
+  <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();

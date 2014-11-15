@@ -12,7 +12,11 @@ class UploadController extends AppController {
     public $components = array('RequestHandler');
     public $uses = array('Tabla','UnidadEducativa','Persona','Estudiante','Docente','Curso');
         
-    
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('index');
+    }
+
     /**
      * index method
      *
@@ -98,7 +102,7 @@ class UploadController extends AppController {
                             endif;
                         }
                         $build = true;                      
-                    endif;                  */
+                    endif;*/                  
                     $nro_tabla = $fields[0];
                 else:
                     $error = 'error archivo';

@@ -36,7 +36,8 @@
     <script type="text/javascript" src="/app/webroot/js/app/usuariosController.js"></script>    
     <script type="text/javascript" src="/app/webroot/js/app/cursosController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>
-    <script type="text/javascript" src="/app/webroot/js/app/estudiantesController.js"></script>    
+    <script type="text/javascript" src="/app/webroot/js/app/estudiantesController.js"></script> 
+    <script type="text/javascript" src="/app/webroot/js/app/asistenciaController.js"></script>   
     <script type="text/javascript" src="/app/webroot/js/app/uploadController.js"></script>    
     <style type="text/css">
       body { padding: 20px; }
@@ -208,9 +209,9 @@
                 -->
             </div>
             <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
+              <ul class="nav pull-right top-menu">
                     <li><a class="logout" href="../index.html">Salir</a></li>
-            	</ul>
+              </ul>
             </div>
         </header>
       <!--header end-->
@@ -224,9 +225,9 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="/app/webroot/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">{{ username }}</h5>
-              	  	
+                  <p class="centered"><a href="profile.html"><img src="/app/webroot/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                  <h5 class="centered">{{ username }}</h5>
+                    
                   <li class="mt">
                       <a class="active" href="#">
                           <i class="fa fa-dashboard"></i>
@@ -298,9 +299,9 @@
                       </a>
                       <ul class="sub">
                         <li><a  href="#usuarios">Usuarios</a></li>
-			                   <li><a  href="#unidadeseducativas">Unidades Educativas</a></li>
+                         <li><a  href="#unidadeseducativas">Unidades Educativas</a></li>
                        <li><a  href="#upload">Subir Archivo</a></li>
-                      </ul>		      
+                      </ul>         
                   </li>
 
               </ul>
@@ -352,10 +353,10 @@
 
     <!--script for this page-->
     <script src="/app/webroot/assets/js/sparkline-chart.js"></script>    
-	<script src="/app/webroot/assets/js/zabuto_calendar.js"></script>	
-	
+  <script src="/app/webroot/assets/js/zabuto_calendar.js"></script> 
+  
   <!--
-	<script type="text/javascript">
+  <script type="text/javascript">
         $(document).ready(function () {
         var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
@@ -374,10 +375,10 @@
 
         return false;
         });
-	</script>
+  </script>
 -->
-	
-	<script type="application/javascript">
+  
+  <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
