@@ -76,14 +76,14 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // filiacion
     // 3.1 Filiacion
     .when('/filiacion', {
-            templateUrl : 'pages/filiacion/index.html',
+            templateUrl : 'pages/filiacion/listCursos.html',
             //controller  : 'estudiantesController'
         })
     // Asistencia
     // 4.1 Filiacion
     .when('/asistencia', {
             templateUrl : 'pages/Asistencia/listCursos.html',
-            //controller  : 'estudiantesController'
+            controller  : 'cursosDocenteController'
         })
     .when('/registroAsistencia/:id', {
             templateUrl : 'pages/Asistencia/registroAsistencia.html',
@@ -227,6 +227,13 @@ cuadernoAppServices.factory('CursosFactory', function ($resource) {
     });
 });
 
+// Busqueda de Cursos segun estudiantes
+cuadernoAppServices.factory('CursosDocenteFactory', function ($resource) {
+    return $resource('/index.php/cursos.json?docente_id=:docente_id&gestion_id=:gestion_id', {}, {
+        query: { method: 'GET', params:{docente_id: '@docente_id', gestion_id: '@gestion_id'}, isArray: false}        
+    });
+});
+
 cuadernoAppServices.factory('CursoFactory', function ($resource) {
     return $resource('/index.php/cursos/:id.json', {}, {
         //show: { method: 'GET' },
@@ -282,14 +289,14 @@ var loginController = angular.module('loginControllers',[]);
 loginController.controller('loginController',['$scope', '$modalInstance', '$location', 'sesionesControl', 'authUsers',function($scope, $modalInstance, $location, sesionesControl, authUsers){
    //-- Variables --//
     var cacheSession = function(username, userid){
-        sesionesControl.set("userLogin", true);
-        sesionesControl.set("username", username);
-	sesionesControl.set("user_id", userid);
+       sesionesControl.set("userLogin", true);
+       sesionesControl.set("username", username);
+       sesionesControl.set("user_id", userid);
     }
     var unCacheSession = function(){
-        sesionesControl.unset("userLogin");
-        sesionesControl.unset("username");
-	sesionesControl.unset("user_id");
+       sesionesControl.unset("userLogin");
+       sesionesControl.unset("username");
+	   sesionesControl.unset("user_id");
     }
     $scope.user = {name : ''};
 
@@ -348,6 +355,8 @@ menuController.controller('menuController',['$scope', '$location', function($sco
             $location.path('/menuPlanificacion');
         }else if(menuId == 2){
             $location.path('/menuHorario');
+        }else if(menuId == 3){
+            $location.path('/filiacion');        
         }else if(menuId == 4){
             $location.path('/asistencia');
         }

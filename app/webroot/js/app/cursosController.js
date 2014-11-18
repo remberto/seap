@@ -11,14 +11,21 @@ cursosController.controller('cursosController', ['$scope','CursosFactory','Curso
        CursoFactory.delete({id: cursoId});
        CursosFactory.query(function(data){$scope.cursos = data.cursos;});
     };
-
-    $scope.mtdAsistencia = function(id)
-    {        
-        $location.path('/registroAsistencia/'+id);
-    }
     
     CursosFactory.query(function(data){$scope.cursos = data.cursos;});
 }]);
+
+
+// Controlador de 
+cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteFactory','sesionesControl','$location', function($scope, CursosDocenteFactory, sesionesControl, $location) {
+    $scope.cursos = null;
+
+    CursosDocenteFactory.query({docente_id: sesionesControl.get('user_id'), gestion_id: '2014'},function(data){$scope.cursos = data.cursos;});
+    $scope.mtdAsistencia = function(id){
+        $location.path('/registroAsistencia/'+id);
+    }
+}]);
+
 
 cursosController.controller('cursoController', ['$scope','GestionesFactory','UnidadesEducativasFactory','NivelesFactory','GradosFactory','ParalelosFactory','TurnosFactory','CursosFactory','$location', function($scope, GestionesFactory, UnidadesEducativasFactory, NivelesFactory, GradosFactory, ParalelosFactory, TurnosFactory, CursosFactory, $location) {
     $scope.niveles = null;

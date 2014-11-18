@@ -26,7 +26,28 @@ class CursosController extends AppController{
 			INNER JOIN paralelos ON cursos.paralelo_id = paralelos.id
 			INNER JOIN turnos ON cursos.turno_id = turnos.id
 			AND cursos.gestion_id = '.$this->request->query['gestion_id'].' AND cursos.unidad_educativa_id ='.$this->request->query['ue_id']);
-			
+        elseif (isset($this->request->query['docente_id']) && isset($this->request->query['gestion_id'])):            
+			//Selecciona los cursos de acuerdo a docente
+            /*$this->request->query['gestion_id'];
+            ;*/
+            $query = 'SELECT cursos.id as id,       
+            niveles.descripcion as nivel, grados.descripcion as grado, turnos.descripcion as turno, paralelos.descripcion as paralelo
+            FROM asignados
+            INNER JOIN cursos ON asignados.curso_id = cursos.id
+            INNER JOIN gestiones ON cursos.gestion_id = gestiones.id
+            INNER JOIN unidades_educativas ON cursos.unidad_educativa_id = unidades_educativas.id
+            INNER JOIN grados ON cursos.grado_id = grados.id
+            INNER JOIN niveles ON grados.nivel_id = niveles.id
+            INNER JOIN paralelos ON cursos.paralelo_id = paralelos.id
+            INNER JOIN turnos ON cursos.turno_id = turnos.id
+            WHERE gestiones.id = :gestion_id 
+            AND asignados.docente_id = \':docente_id\'
+            GROUP BY cursos.id,       
+            niveles.descripcion, grados.descripcion, turnos.descripcion, paralelos.descripcion
+            ORDER BY niveles.descripcion, grados.descripcion, turnos.descripcion, paralelos.descripcion';
+            $query = str_replace(':gestion_id', $this->request->query['gestion_id'], $query);
+            $query = str_replace(':docente_id', $this->request->query['docente_id'], $query);
+            $datas = $this->Curso->query($query);
         else:
 			$datas = $this->Curso->query('SELECT cursos.id as id, cursos.gestion_id as gestion_id, gestiones.gestion as gestion,
 			cursos.unidad_educativa_id as unidad_educativa_id, unidades_educativas.descripcion as unidad_educativa,
