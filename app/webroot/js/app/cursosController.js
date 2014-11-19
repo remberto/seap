@@ -10,8 +10,7 @@ cursosController.controller('cursosController', ['$scope','CursosFactory','Curso
     $scope.deleteCurso = function(cursoId){
        CursoFactory.delete({id: cursoId});
        CursosFactory.query(function(data){$scope.cursos = data.cursos;});
-    };
-    
+    };    
     CursosFactory.query(function(data){$scope.cursos = data.cursos;});
 }]);
 
@@ -21,8 +20,38 @@ cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteF
     $scope.cursos = null;
 
     CursosDocenteFactory.query({docente_id: sesionesControl.get('user_id'), gestion_id: '2014'},function(data){$scope.cursos = data.cursos;});
+
+    // Asistencia
+    // Lista las Asignaturas del Curso
     $scope.mtdAsistencia = function(id){
-        $location.path('/registroAsistencia/'+id);
+        $location.path('/asistenciaAsignatura/'+id);
+    }
+
+    // Filiacion
+    // Lista los Estudiantes inscritos en el Curso
+    $scope.mtdFiliacion = function(id){        
+        $location.path('/filiacionEstudiantes/'+id);
+    }
+
+    // Filiacion
+    // Lista los Estudiantes inscritos en el Curso
+    $scope.mtdEvaluacion = function(id){        
+        $location.path('/evaluacionAsignatura/'+id);
+    }
+
+}]);
+
+
+cursosController.controller('cursosDocenteAsignaturaController', ['$scope','$routeParams','CursosDocenteAsignaturaFactory','sesionesControl','$location', function($scope, $routeParams, CursosDocenteAsignaturaFactory, sesionesControl, $location) {
+    $scope.cursos = null;    
+    CursosDocenteAsignaturaFactory.query({curso_id: $routeParams.id, docente_id: sesionesControl.get('user_id')},function(data){$scope.asignados = data.asignados;});
+    $scope.mtdAsistencia = function(asignado_id, curso_id){
+        $location.path('/registroAsistencia/'+asignado_id+'/'+curso_id);
+    }
+
+    //evaluacion
+    $scope.mtdEvaluacion = function(asignado_id, curso_id){
+        $location.path('/registroEvaluacion/'+asignado_id+'/'+curso_id);
     }
 }]);
 

@@ -8,7 +8,9 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'menuControllers',
     'unidadEducativaControllers',
     'estudiantesControllers',
+    'filiacionControllers',
     'asistenciaControllers',
+    'evaluacionControllers',
     //'docentesControllers',
     'usuariosControllers',
     'cursosControllers',
@@ -63,7 +65,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // 2.1 PLanificacion Anual
     .when('/planificacion_anual', {
             templateUrl : 'pages/planificacionAnual/index.html',
-            //controller  : 'estudiantesController'
+            //controller  : 'cursosDocenteController'
         })
     .when('/planificacion_bimestral', {
             templateUrl : 'pages/planificacionBimestral/index.html',
@@ -77,18 +79,43 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // 3.1 Filiacion
     .when('/filiacion', {
             templateUrl : 'pages/filiacion/listCursos.html',
-            //controller  : 'estudiantesController'
+            controller  : 'cursosDocenteController'
         })
+    .when('/filiacionEstudiantes/:curso_id', {
+            templateUrl : 'pages/filiacion/listEstudiantes.html',
+            controller  : 'filiacionController'
+        })
+
     // Asistencia
     // 4.1 Filiacion
     .when('/asistencia', {
-            templateUrl : 'pages/Asistencia/listCursos.html',
+            templateUrl : 'pages/asistencia/listCursos.html',
             controller  : 'cursosDocenteController'
         })
-    .when('/registroAsistencia/:id', {
+    .when('/asistenciaAsignatura/:id', {
+            templateUrl : 'pages/asistencia/listAsignatura.html',
+            controller  : 'cursosDocenteAsignaturaController'
+        })
+    .when('/registroAsistencia/:asignado_id/:curso_id', {
             templateUrl : 'pages/Asistencia/registroAsistencia.html',
             controller  : 'asistenciaController'
         })
+
+    // Evaluacion
+    
+    .when('/evaluacion', {
+            templateUrl : 'pages/evaluacion/listCursos.html',
+            controller  : 'cursosDocenteController'
+        })
+    .when('/evaluacionAsignatura/:id', {
+            templateUrl : 'pages/evaluacion/listAsignatura.html',
+            controller  : 'cursosDocenteAsignaturaController'
+        })
+    .when('/registroEvaluacion/:asignado_id/:curso_id', {
+            templateUrl : 'pages/evaluacion/registroEvaluacion.html',
+            controller  : 'evaluacionController'
+        })
+
 	.when('/addEstudiante', {
             templateUrl : 'pages/estudiante/add.html',
             controller  : 'estudianteController'
@@ -227,12 +254,29 @@ cuadernoAppServices.factory('CursosFactory', function ($resource) {
     });
 });
 
-// Busqueda de Cursos segun estudiantes
+// Busqueda de Cursos 
 cuadernoAppServices.factory('CursosDocenteFactory', function ($resource) {
     return $resource('/index.php/cursos.json?docente_id=:docente_id&gestion_id=:gestion_id', {}, {
         query: { method: 'GET', params:{docente_id: '@docente_id', gestion_id: '@gestion_id'}, isArray: false}        
     });
 });
+
+
+cuadernoAppServices.factory('CursosDocenteAsignaturaFactory', function ($resource) {
+    return $resource('/index.php/asignados.json?curso_id=:curso_id&docente_id=:docente_id', {}, {
+        query: { method: 'GET', params:{curso_id: '@curso_id', docente_id: '@docente_id'}, isArray: false}        
+    });
+});
+
+
+// InscripcionFactory
+// Devuelve las inscripciones realizadas en un Curso
+cuadernoAppServices.factory('InscripcionFactory', function ($resource) {
+    return $resource('/index.php/inscripciones.json?curso_id=:curso_id', {}, {
+        query: { method: 'GET', params:{curso_id: '@curso_id'}, isArray: false}        
+    });
+});
+
 
 cuadernoAppServices.factory('CursoFactory', function ($resource) {
     return $resource('/index.php/cursos/:id.json', {}, {
@@ -359,6 +403,9 @@ menuController.controller('menuController',['$scope', '$location', function($sco
             $location.path('/filiacion');        
         }else if(menuId == 4){
             $location.path('/asistencia');
+        }
+        else if(menuId == 5){
+            $location.path('/evaluacion');
         }
 
     }

@@ -9,18 +9,31 @@ class AsignadosController extends AppController{
     public $components = array('RequestHandler');
     public $uses = array('Asignado');
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('index');
+    }
+
     public function index() {
 	
-		if(isset($this->request->query['docente_id'])):
+		if(isset($this->request->query['docente_id']) && isset($this->request->query['curso_id'])):
 			//Retorna los cursos asignado al docente elegido
-			$datas = $this->Asignado->query('SELECT asignados.id, grados.descripcion as grado, paralelos.descripcion as paralelo, asignaturas.descripcion as asignatura 
+            $query = 'SELECT asignados.id, 
+            asignados.curso_id as curso_id,
+            grados.descripcion as grado, 
+            paralelos.descripcion as paralelo, 
+            asignaturas.descripcion as asignatura 
             FROM asignados
             INNER JOIN cursos ON asignados.curso_id = cursos.id
             INNER JOIN asignaturas ON asignados.asignatura_id = asignaturas.id
-			INNER JOIN grados ON cursos.grado_id = grados.id
-			INNER JOIN paralelos ON cursos.paralelo_id = paralelos.id
-			INNER JOIN docentes ON asignados.docente_id = docentes.id
-			WHERE asignados.docente_id ='.$this->request->query['docente_id']);
+            INNER JOIN grados ON cursos.grado_id = grados.id
+            INNER JOIN paralelos ON cursos.paralelo_id = paralelos.id
+            INNER JOIN docentes ON asignados.docente_id = docentes.id
+            WHERE asignados.docente_id = \':docente_id\'
+            AND asignados.curso_id = \':curso_id\'';
+            $query = str_replace(':curso_id', $this->request->query['curso_id'], $query);
+            $query = str_replace(':docente_id', $this->request->query['docente_id'], $query);            
+			$datas = $this->Asignado->query($query);
 		endif;
         //pr($datas);
         
