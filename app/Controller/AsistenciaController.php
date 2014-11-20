@@ -54,23 +54,38 @@ class AsistenciaController extends AppController{
         $idFecha = intval($datas[0][0]['id']);
 
         #region Verificar si ya se registro la asistencia
-        $this->Asistencia->find('all', array('conditions' => array('Asistencia.asignado_id' => $this->request->data['asignado_id'],
+        $verifica = $this->Asistencia->find('first', array('conditions' => array('Asistencia.asignado_id' => $this->request->data['asignado_id'],
                                                                             'Asistencia.inscripcion_id' => $this->request->data['inscripcion_id'],
                                                                             'Asistencia.calendario_id' => $idFecha)));
+
+        //$verifica = $this->Asistencia->findOneBy('first', array('conditions' => array('Asistencia.asignado_id' => $this->request->data['asignado_id'],
+        //                                                                    'Asistencia.inscripcion_id' => $this->request->data['inscripcion_id'],
+        //                                                                    'Asistencia.calendario_id' => $idFecha)));
         #endregion
-        
+
         try {
             
-            $this->Asistencia->create();
-         
-            $_asistencia = array();
-            $_asistencia['asignado_id'] = $this->request->data['asignado_id'];
-            $_asistencia['inscripcion_id'] = $this->request->data['inscripcion_id'];
-            $_asistencia['calendario_id'] = $idFecha;
-            $_asistencia['estado_asistencia_id'] = $this->request->data['estado_asistencia'];
+            if(count($verifica)>0)
+            { 
+                // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado
+                $this->Asistencia->updateAll(array('Asistencia.estado_asistencia_id' => $this->request->data['estado_asistencia']),
+                                    array('Asistencia.asignado_id' => $this->request->data['asignado_id'],
+                                          'Asistencia.inscripcion_id' => $this->request->data['inscripcion_id'],
+                                          'Asistencia.calendario_id' => $idFecha));                
+            }
+            else
+            {        
+                $this->Asistencia->create();
+             
+                $_asistencia = array();
+                $_asistencia['asignado_id'] = $this->request->data['asignado_id'];
+                $_asistencia['inscripcion_id'] = $this->request->data['inscripcion_id'];
+                $_asistencia['calendario_id'] = $idFecha;
+                $_asistencia['estado_asistencia_id'] = $this->request->data['estado_asistencia'];
             
-			$this->Asistencia->save($_asistencia);
-        
+			    $this->Asistencia->save($_asistencia);                
+            }        
+            
             $datasource->commit();
             $message = 'Guardado';
 
