@@ -324,6 +324,13 @@ cuadernoAppServices.factory('DocentesFactory', function ($resource) {
 });
 
 
+// Asistencia
+cuadernoAppServices.factory('AsistenciaFactory', function ($resource) {
+    return $resource('/index.php/asistencia.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })
+});
 
 
 // login

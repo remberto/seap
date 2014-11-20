@@ -1,12 +1,14 @@
 var asistenciaController = angular.module('asistenciaControllers',[]);
 
-asistenciaController.controller('asistenciaController', ['$scope','$routeParams','InscripcionFactory','$location', function($scope, $routeParams, InscripcionFactory, $location) {
+asistenciaController.controller('asistenciaController', ['$scope','$routeParams','sesionesControl','EstudiantesFactory','InscripcionFactory', 'AsistenciaFactory', '$location', function($scope, $routeParams, sesionesControl, EstudiantesFactory, InscripcionFactory, AsistenciaFactory, $location) {
     $scope.estudiantes = null;
     $scope.asistencia = {fecha: '2014-11-15'};
 
     $scope.today = function() {
         $scope.asistencia.fecha = new Date();
     };
+
+    $scope.asignado_id = $routeParams.asignado_id;
     
     $scope.today();
 
@@ -38,5 +40,17 @@ asistenciaController.controller('asistenciaController', ['$scope','$routeParams'
     $scope.format = 'yyyy-MM-dd';
 
     InscripcionFactory.query({curso_id: $routeParams.curso_id}, function(data){$scope.estudiantes = data.inscripciones;});
+
+    //Registra Asistencia del Inscrito
+    $scope.mtdRegistraAsistencia = function(id, asiste)
+    {   
+        $scope.asistencia.asignado_id = $scope.asignado_id;
+        $scope.asistencia.inscripcion_id = id;
+        $scope.asistencia.calendario_fecha = $scope.asistencia.fecha;
+        $scope.asistencia.estado_asistencia = asiste;
+        //$scope.asistencia.docente_id = sesionesControl.get('user_id');   
+        
+        AsistenciaFactory.create($scope.asistencia);
+    };
 
 }]);
