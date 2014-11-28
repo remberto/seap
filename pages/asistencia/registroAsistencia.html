@@ -1,32 +1,32 @@
 <h3><i class="fa fa-angle-right"></i>Registro de Asistencia</h3>
 <div class="row mt" ng-controller="asistenciaController">
-  <div class="form-group">
-    <label class="col-sm-2 col-sm-2 control-label" for="inputFecha">Fecha</label>
-    <div class="col-sm-6">
-    <p class="input-group">
-    <input type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" min-date="1999-01-01" max-date="'2025-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="asistencia.fecha"/>
+	<div class="form-group">
+		<label class="col-sm-2 col-sm-2 control-label" for="inputFecha">Fecha</label>
+		<div class="col-sm-6">
+			<p class="input-group">
+				<input type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" min-date="1999-01-01" max-date="'2025-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="asistencia.fecha"/>
 
-    <span class="input-group-btn">
-    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-    </span>
-    </p>
-   <!-- <input type="text" id="inputPaterno" class="form-control" ng-model="estudiante.fecha_nacimiento"/>-->
-    </div>
-  </div>
-  <br /><br />
-  <div class="col-lg-12">
-    <input type="hidden" ng-model="asignado_id" value="{{asignado_id}}">    
-    <div class="row panel" ng-repeat="estudiante in estudiantes">
-      <!-- TWITTER PANEL -->
-      <div class="col-lg-8">
-        {{ $index + 1 }}.- {{ estudiante.paterno }} {{ estudiante.materno }}, <strong>{{ estudiante.nombres }}</strong>
-      </div>
-      <div class="col-lg-4 radio ">
-        <label title="Asiste" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 1)" value="1">A</label>
-        <label title="Atraso" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 2)" value="2">T</label>
-        <label title="Falta" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 3)" value="3">F</label>
-        <label title="Falta con licencia" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 4)" value="4">L</label>
-      </div>      
-    </div>     
-  </div><!-- /END ROW OF PANELS --> 
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+			<!-- <input type="text" id="inputPaterno" class="form-control" ng-model="estudiante.fecha_nacimiento"/>-->
+		</div>
+	</div>
+	<br /><br />
+	<div class="col-lg-12">
+		<input type="hidden" ng-model="asignado_id" value="{{asignado_id}}">
+		<div class="row panel" ng-repeat="estudiante in estudiantes">
+			<!-- TWITTER PANEL -->
+			<div class="col-lg-8">
+				{{ $index + 1 }}.- {{ estudiante.paterno }} {{ estudiante.materno }}, <strong>{{ estudiante.nombres }}</strong>
+			</div>
+			<div class="col-lg-4 radio ">
+				<label title="Asiste" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 1)" value="1">A</label>
+				<label title="Atraso" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 2)" value="2">T</label>
+				<label title="Falta" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 3)" value="3">F</label>
+				<label title="Falta con licencia" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 4)" value="4">L</label>
+			</div>
+		</div>
+	</div><!-- /END ROW OF PANELS -->
 </div>
