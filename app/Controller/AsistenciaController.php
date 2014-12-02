@@ -7,7 +7,7 @@ class AsistenciaController extends AppController{
 
 	var $name = 'Asistencia';//inicializacion de variables
     public $components = array('RequestHandler');
-    public $uses = array('Asistencia', 'Calendario');
+    public $uses = array('Asistencia', 'Calendario', 'Inscrito', 'Asignado');
 
     public function beforeFilter(){
         parent::beforeFilter();
@@ -55,7 +55,7 @@ class AsistenciaController extends AppController{
         $idFecha = intval($datas[0][0]['id']);
 
         #region Verificar si ya se registro la asistencia
-        $verifica = $this->Asistencia->find('first', array('conditions' => array('Asistencia.asignado_id' => $this->request->data['asignado_id'],
+        $verifica = $this->Asistencia->find('all', array('conditions' => array('Asistencia.asignado_id' => $this->request->data['asignado_id'],
                                                                             'Asistencia.inscripcion_id' => $this->request->data['inscripcion_id'],
                                                                             'Asistencia.calendario_id' => $idFecha)));
         #endregion

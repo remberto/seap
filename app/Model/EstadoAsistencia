@@ -1,0 +1,15 @@
+<?php
+/**
+ * EstadoAsistencia
+ * Tabla estados_asistencias
+ *
+ * @author Rolando Fernandez <rolysoft@gmail.com>
+ * @see AppModel
+ */
+class EstadoAsistencia extends AppModel {
+	public $name = 'EstadoAsistencia';
+	public $useTable = 'estados_asistencias';
+	public $primaryKey = 'id';
+
+}
+?>
