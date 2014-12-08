@@ -8,6 +8,7 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'menuControllers',
     'unidadEducativaControllers',
     'estudiantesControllers',
+    'planificacionControllers',
     'filiacionControllers',
     'asistenciaControllers',
     'evaluacionControllers',
@@ -63,9 +64,9 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
             templateUrl : 'pages/planificacion/index.html',
             //controller  : 'estudiantesController'
         })
-	.when('/listPlanificacion/',{
+	.when('/listPlanificacion/:id',{
 	    templateUrl : 'pages/planificacion/list.html',
-	    controller : 'planifiacionController.html'
+	    controller : 'planificacionController'
 	})
     // 2.1 PLanificacion Anual
     .when('/planificacion_anual', {

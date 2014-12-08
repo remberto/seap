@@ -23,8 +23,8 @@ cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteF
 
     // Planificacion
     // Lista de Planificacion
-    $scope.mtdPlanilicacion = function(id){
-	$location.path('/listPlanificacion/');
+    $scope.mtdPlanificacion = function(id){
+	$location.path('/listPlanificacion/'+id);
     }
 
     // Asistencia
