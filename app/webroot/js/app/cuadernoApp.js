@@ -57,11 +57,16 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    templateUrl : 'pages/usuario/add.html',
 	    controller  : 'usuarioController'
 	})
+
     // Planificacion
     .when('/menuPlanificacion', {
             templateUrl : 'pages/planificacion/index.html',
             //controller  : 'estudiantesController'
         })
+	.when('/listPlanificacion/',{
+	    templateUrl : 'pages/planificacion/list.html',
+	    controller : 'planifiacionController.html'
+	})
     // 2.1 PLanificacion Anual
     .when('/planificacion_anual', {
             templateUrl : 'pages/planificacionAnual/index.html',

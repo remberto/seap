@@ -15,11 +15,17 @@ cursosController.controller('cursosController', ['$scope','CursosFactory','Curso
 }]);
 
 
-// Controlador de 
+// Controlador Principal de Cursos 
 cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteFactory','sesionesControl','$location', function($scope, CursosDocenteFactory, sesionesControl, $location) {
     $scope.cursos = null;
 
     CursosDocenteFactory.query({docente_id: sesionesControl.get('user_id'), gestion_id: '2014'},function(data){$scope.cursos = data.cursos;});
+
+    // Planificacion
+    // Lista de Planificacion
+    $scope.mtdPlanilicacion = function(id){
+	$location.path('/listPlanificacion/');
+    }
 
     // Asistencia
     // Lista las Asignaturas del Curso
@@ -33,11 +39,13 @@ cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteF
         $location.path('/filiacionEstudiantes/'+id);
     }
 
-    // Filiacion
+    // Evaluacion
     // Lista los Estudiantes inscritos en el Curso
     $scope.mtdEvaluacion = function(id){        
         $location.path('/evaluacionAsignatura/'+id);
     }
+
+    // Reportes
 
 }]);
 
