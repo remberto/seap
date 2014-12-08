@@ -5,6 +5,7 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 	$scope.periodos = null;
 	$scope.dimenciones = null;
 	$scope.actividades = null;
+	$scope.objetivos = null;
 
 	ActividadEvaluacionFactory.query({}, function(data){ $scope.actividades = data.actividades;});
 	
@@ -13,5 +14,6 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 	DimensionFactory.query({}, function(data){$scope.dimensiones = data.dimensiones;});
 
 	InscripcionFactory.query({curso_id: $routeParams.curso_id}, function(data){$scope.estudiantes = data.inscripciones;});
+
 
 }]);
