@@ -337,6 +337,30 @@ cuadernoAppServices.factory('AsistenciaFactory', function ($resource) {
     })
 });
 
+// PeriodoFactory
+// Devuelve los Bimestres (Periodos)
+cuadernoAppServices.factory('PeriodoFactory', function ($resource) {
+    return $resource('/index.php/periodos.json', {}, {
+        query: { method: 'GET', params:{}, isArray: false}
+    });
+});
+
+// DimensionFactory
+// Devuelve las Dimenciones
+cuadernoAppServices.factory('DimensionFactory', function ($resource) {
+    return $resource('/index.php/dimensiones.json', {}, {
+        query: { method: 'GET', params:{}, isArray: false}
+    });
+});
+
+// ActividadEvaluacion
+// Devuelve las Actividades de Evaluacion
+cuadernoAppServices.factory('ActividadEvaluacionFactory', function ($resource) {
+    return $resource('/index.php/actividadevaluaciones.json', {}, {
+        query: { method: 'GET', params:{}, isArray: false}
+    });
+});
+
 
 // login
 
