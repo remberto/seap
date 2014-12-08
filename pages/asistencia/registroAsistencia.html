@@ -16,17 +16,50 @@
 	<br /><br />
 	<div class="col-lg-12">
 		<input type="hidden" ng-model="asignado_id" value="{{asignado_id}}">
-		<div class="row panel" ng-repeat="estudiante in estudiantes">
-			<!-- TWITTER PANEL -->
-			<div class="col-lg-8">
-				{{ $index + 1 }}.- {{ estudiante.paterno }} {{ estudiante.materno }}, <strong>{{ estudiante.nombres }}</strong>
-			</div>
-			<div class="col-lg-4 radio ">
-				<label title="Asiste" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 1)" value="1">A</label>
-				<label title="Atraso" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 2)" value="2">T</label>
-				<label title="Falta" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 3)" value="3">F</label>
-				<label title="Falta con licencia" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 4)" value="4">L</label>
-			</div>
-		</div>
+		<table style="border:1px solid black; width:100%">
+			<thead style="background-color:#000; color: #FFF">
+				<tr>
+					<th rowspan="3" style="text-align:center; border:1px solid white; width:5%; ">Nro.</th>
+					<th rowspan="3" style="text-align:center; border:1px solid white; width:30%;">Apellidos y Nombres</th>
+					<th colspan="8" style="text-align:center; border:1px solid white; width:30%;">MES</th>
+					<th rowspan="2" colspan="4" style="text-align:center; border:1px solid white; width:35%;">ASISTENCIA</th>
+				</tr>
+				<tr>
+					<th colspan="8" style="text-align:center; border:1px solid white;">Noviembre</th>
+				</tr>
+				<tr>
+					<th style="text-align:center; border:1px solid white;">&nbsp;2</th>
+					<th style="text-align:center; border:1px solid white;">&nbsp;7</th>
+					<th style="text-align:center; border:1px solid white;">12</th>
+					<th style="text-align:center; border:1px solid white;">17</th>
+					<th style="text-align:center; border:1px solid white;">20</th>
+					<th style="text-align:center; border:1px solid white;">21</th>
+					<th style="text-align:center; border:1px solid white;">27</th>
+					<th style="text-align:center; border:1px solid white;">29</th>
+					<th style="text-align:center; border:1px solid white;">Asiste</th>
+					<th style="text-align:center; border:1px solid white;">Atraso</th>
+					<th style="text-align:center; border:1px solid white;">Falta</th>
+					<th style="text-align:center; border:1px solid white;">Licencia</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="estudiante in estudiantes">
+					<td style="text-align:center; border:1px solid black;">{{ $index + 1 }}.- </td>
+					<td style="text-align:left; border:1px solid black;">{{ estudiante.paterno }} {{ estudiante.materno }}, <strong>{{ estudiante.nombres }}</strong></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"></td>
+					<td style="text-align:center; border:1px solid black;"><label title="Asiste" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 1)" value="1">A</label></td>
+					<td style="text-align:center; border:1px solid black;"><label title="Atraso" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 2)" value="2">T</label></td>
+					<td style="text-align:center; border:1px solid black;"><label title="Falta" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 3)" value="3">F</label></td>
+					<td style="text-align:center; border:1px solid black;"><label title="Falta con licencia" class="col-lg-4"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 4)" value="4">L</label></td>
+				</tr>
+			</tbody>
+		</table>
 	</div><!-- /END ROW OF PANELS -->
 </div>

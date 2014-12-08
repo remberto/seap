@@ -2164,3 +2164,449 @@ Stack Trace:
 #12 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #13 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
 #14 {main}
+2014-11-05 15:42:09 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 07:57:45 Error: [MissingActionException] Action CursosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'CursosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/cursos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:46 Error: [MissingActionException] Action CursosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'CursosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/cursos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:46 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 07:57:46 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action GestionesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'GestionesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/gestiones/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(GestionesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action GestionesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'GestionesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/gestiones/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(GestionesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action ParalelosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'ParalelosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/paralelos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ParalelosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action NivelesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'NivelesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/niveles/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(NivelesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action TurnosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'TurnosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/turnos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(TurnosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action ParalelosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'ParalelosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/paralelos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ParalelosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action NivelesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'NivelesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/niveles/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(NivelesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 07:57:47 Error: [MissingActionException] Action TurnosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'TurnosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/turnos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(TurnosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:11 Error: [MissingActionException] Action CursosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'CursosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/cursos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:11 Error: [MissingActionException] Action CursosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'CursosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/cursos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(CursosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:12 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action NivelesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'NivelesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/niveles/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(NivelesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action GestionesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'GestionesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/gestiones/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(GestionesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action TurnosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'TurnosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/turnos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(TurnosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:13 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action ParalelosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'ParalelosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/paralelos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ParalelosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action GestionesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'GestionesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/gestiones/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(GestionesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action TurnosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'TurnosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/turnos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(TurnosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action NivelesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'NivelesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/niveles/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(NivelesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:13 Error: [MissingActionException] Action ParalelosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'ParalelosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/paralelos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ParalelosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 08:01:41 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action NivelesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'NivelesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/niveles/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(NivelesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action GestionesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'GestionesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/gestiones/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(GestionesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action TurnosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'TurnosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/turnos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(TurnosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action NivelesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'NivelesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/niveles/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(NivelesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action GestionesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'GestionesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/gestiones/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(GestionesController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action ParalelosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'ParalelosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/paralelos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ParalelosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action TurnosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'TurnosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/turnos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(TurnosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:01:41 Error: [MissingActionException] Action ParalelosController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'ParalelosController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/paralelos/entrar
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 /home/remberto/Proyectos/seap/lib/Cake/Routing/Dispatcher.php(165): Dispatcher->_invoke(Object(ParalelosController), Object(CakeRequest))
+#2 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#4 {main}
+2014-11-07 08:16:04 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 08:16:04 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 08:16:30 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}
+2014-11-07 08:16:31 Error: [MissingControllerException] Controller class UnidadeseducativasController could not be found.
+Exception Attributes: array (
+  'class' => 'UnidadeseducativasController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/unidadeseducativas.json
+Stack Trace:
+#0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
+#2 {main}

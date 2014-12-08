@@ -8,26 +8,27 @@
       <th>Apellido Paterno</th>
       <th>Apellido Materno</th>
       <th>Nombres</th>
-      <th>Carnet de Identidad</th>
       <th>Categoria</th>
       <th>Genero</th>
       <th>Fecha Nacimiento</th>
+      <th title="Asignar Cursos a Docente" align="center">Asignar</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="estudiante in estudiantes">
+    <tr ng-repeat="docente in docentes">
       <td>{{ $index + 1 }}</td>
       <td>{{ docente.paterno }}</td>
       <td>{{ docente.materno }}</td>
       <td>{{ docente.nombres }}</td>
-      <td>{{ docente.carnet }}</td>
       <td>{{ docente.categoria }}</td>
       <td>{{ docente.genero }}</td>
       <td>{{ docente.fecha_nacimiento }}</td>
+      <td align="center">
+        <button class="btn btn-primary btn-xs" title="Asignar Cursos y Asignaturas" ng-click="addAsignado(docente.id)"><i class="fa fa-tasks"></i></button></td>
       <td>
         <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-        <button class="btn btn-danger btn-xs" ng-click="deleteEstudiante(estudiante.id)"><i class="fa fa-trash-o "></i></button>
+        <button class="btn btn-danger btn-xs" ng-click="deleteEstudiante(docente.id)"><i class="fa fa-trash-o "></i></button>
       </td>
     </tr>
   </tbody>

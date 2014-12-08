@@ -97,7 +97,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
             controller  : 'cursosDocenteAsignaturaController'
         })
     .when('/registroAsistencia/:asignado_id/:curso_id', {
-            templateUrl : 'pages/Asistencia/registroAsistencia.html',
+            templateUrl : 'pages/asistencia/registroAsistencia.html',
             controller  : 'asistenciaController'
         })
 
