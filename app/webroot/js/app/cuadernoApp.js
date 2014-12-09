@@ -62,25 +62,26 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // Planificacion
     .when('/menuPlanificacion', {
             templateUrl : 'pages/planificacion/index.html',
-            //controller  : 'estudiantesController'
+            controller  : 'planificacionController'
         })
 	.when('/listPlanificacion/:id',{
 	    templateUrl : 'pages/planificacion/list.html',
 	    controller : 'planificacionController'
 	})
     // 2.1 PLanificacion Anual
-    .when('/planificacion_anual', {
+    .when('/planificacionAnual/:curso_id', {
             templateUrl : 'pages/planificacionAnual/index.html',
-            //controller  : 'cursosDocenteController'
+            controller  : 'planificacionAnualController'
         })
-    .when('/planificacion_bimestral', {
+    .when('/planificacionBimestral/:curso_id', {
             templateUrl : 'pages/planificacionBimestral/index.html',
-            //controller  : 'estudiantesController'
+            controller  : 'planificacionBimestralController'
         })
-    .when('/planificacion_clases', {
+    .when('/planificacionClases/:curso_id', {
             templateUrl : 'pages/planificacionClases/index.html',
-            //controller  : 'estudiantesController'
+            controller  : 'planificacionClasesController'
         })
+
     // filiacion
     // 3.1 Filiacion
     .when('/filiacion', {
@@ -159,6 +160,30 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 // Factory conneccion
 
 var cuadernoAppServices = angular.module('cuadernoAppServices', ['ngResource']);
+
+// Clasificadores para Campos
+// Consulta a Parametros
+cuadernoAppServices.factory('ClasificadorFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id'}, isArray: false},        
+    })
+});
+
+// Encabezado
+cuadernoAppServices.factory('EncabezadoFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&curso_id=:curso_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', curso_id: '@curso_id'}, isArray: false},        
+    })
+});
+
+// Areas de acuerdo a campo
+cuadernoAppServices.factory('ClasificadorAreasFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&campo_id=:campo_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', campo_id: '@campo_id'}, isArray: false},        
+    })
+});
+
+//
 
 cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {
     return $resource('/index.php/estudiantes.json', {}, {

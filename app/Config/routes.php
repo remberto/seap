@@ -43,6 +43,7 @@
 		 array('action' => 'update', 'method' => 'POST', 'id' => true)
 		 ));
 
+	Router::mapResources('consultas');
 	Router::mapResources('estudiantes');
 	Router::mapResources('users');
     Router::mapResources('gestiones');
