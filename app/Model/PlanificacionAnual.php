@@ -8,7 +8,7 @@
  */
 class PlanificacionAnual extends AppModel {
 	public $name = 'PlanificacionAnual';
-    public $useTable = 'planficacion_anual';
+    public $useTable = 'planificacion_anual';
     public $primaryKey = 'id';
 
     //Belongs

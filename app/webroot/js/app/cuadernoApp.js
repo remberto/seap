@@ -183,7 +183,19 @@ cuadernoAppServices.factory('ClasificadorAreasFactory', function ($resource) {
     })
 });
 
-//
+// Planificacion
+
+cuadernoAppServices.factory('PlanificacionAnualFactory', function ($resource) {
+    return $resource('/index.php/planificacion_anual.json', {}, {
+        create: { method: 'POST' }
+    })
+}); 
+
+cuadernoAppServices.factory('PlanificacionAnualDetalleFactory', function ($resource) {
+    return $resource('/index.php/planificacion_anual_detalle.json', {}, {
+        create: { method: 'POST' }
+    })
+});
 
 cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {
     return $resource('/index.php/estudiantes.json', {}, {

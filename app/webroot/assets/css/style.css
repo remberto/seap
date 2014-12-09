@@ -2281,5 +2281,10 @@ label {
     background-color: #000000;
     color: #FFFFFF;
     text-align: center;
+    font-size: 16px;    
+}
+
+.body_table {
+    border: 1px solid;
 }
 

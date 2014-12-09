@@ -20,12 +20,12 @@
         <div class="col-xs-12 col-md-4">{{ encabezado.grado}}</div>
         
     </div>
-    <div class="row ml">
+    <div class="row ml">        
         <div class="col-xs-12 col-md-2">Objetivo Holistico Anual</div>
-        <div class="col-xs-12 col-md-8">
-          <textarea class="col-xs-12 col-md-12" rows="4" cols="6"></textarea>
+        <div class="col-xs-12 col-md-8"><textarea class="col-xs-12 col-md-12" rows="4" cols="6" style="color:#000000;" ng-model="objetivo_holistico_anual" html-text>{{ encabezado.objetivo_holistico_anual }}</textarea></div>
+        <div class="col-xs-12 col-md-2" style="text-align: center;" >
+          <button type="button" class="btn btn-xs btn-theme" ng-click="mtdGuardar(encabezado.planificacion_id,  encabezado.curso_id)">Guardar</button>
         </div>
-        <div class="col-xs-12 col-md-2" style="text-align: center;" ><button type="button" class="btn btn-xs btn-theme">Guardar</button></div>
     </div>
     <div class="row mt">
         <div class="col-xs-12 col-md-3 header_table">Campo</div>
@@ -38,15 +38,23 @@
             <select id="campos" class="form-control" ng-change="mtdSelectAreas(campo.id)" ng-model="campo" ng-options="value as value.descripcion for (key, value) in campos"></select>
         </div>
         <div class="col-xs-12 col-md-3">
-            <select id="areas" class="form-control" ng-change="" ng-model="planificacion.areas" ng-options="value as value.descripcion for (key, value) in areas"></select>
+            <select id="areas" class="form-control" ng-model="area" ng-options="value as value.descripcion for (key, value) in areas"></select>
         </div>
         <div class="col-xs-12 col-md-4">
-          <select id="campos" class="form-control" ng-change="" ng-model="planificacion.periodo" ng-options="value as value.descripcion for (key, value) in periodos"></select>
-          <textarea class="col-xs-12 col-md-12" rows="4" cols="6"></textarea>
+          <select id="campos" class="form-control" ng-model="periodo" ng-options="value as value.descripcion for (key, value) in periodos"></select>
+          <textarea class="col-xs-12 col-md-12" ng-model="contenido" rows="4" cols="6"></textarea>
         </div>
         <div class="col-xs-12 col-md-2" style="text-align: center;">
-          <button type="button" class="btn btn-theme">Adicionar</button>
+          <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(encabezado.planificacion_id, area.id, periodo.id)">Adicionar</button>
         </div>
+    </div>
+    <div>
+      <div class="row mt">
+          <div class="col-xs-12 col-md-3 body_table"></div>
+          <div class="col-xs-12 col-md-3 body_table"></div>
+          <div class="col-xs-12 col-md-4 body_table"></div>
+          <div class="col-xs-12 col-md-2 body_table"></div>
+      </div>
     </div>
   </div>
 </div>

@@ -6,17 +6,17 @@
  * @author RFM
  * @see AppModel
  */
-class PlanficacionAnualDetalle extends AppModel {
-	public $name = 'PlanficacionAnualDetalle';
-    public $useTable = 'planficacion_anual_detalle';
+class PlanificacionAnualDetalle extends AppModel {
+	public $name = 'PlanificacionAnualDetalle';
+    public $useTable = 'planificacion_anual_detalle';
     public $primaryKey = 'id';
 
     //Belongs
     public $belongsTo = array(
-        'Asignatura' => array(
-            'className'=>'Asignatura',
+        'Area' => array(
+            'className'=>'Area',
             'type'=>'INNER',
-            'foreignKey' => 'asignatura_id',
+            'foreignKey' => 'area_id',
         ),
         'Periodo' => array(
             'className'=>'Periodo',
