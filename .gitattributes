@@ -1,0 +1,24 @@
+# Git Files
+
+.gitignore export-ignore
+.gitattributes export-ignore
+ 
+
+# Directories
+
+doc/Capturas export-ignore
+doc/Seguimiento export-ignore
+doc export-ignore
+sql export-ignore
+ 
+# General text files
+
+*.sql~ export-ignore
+*.php~ export-ignore
+*.js~ export-ignore
+*.html~ export-ignore
+
+*README.txt export-ignore
+*LICENSE.txt export-ignore
+COPYRIGHT.txt export-ignore
+CHANGELOG.txt export-ignore

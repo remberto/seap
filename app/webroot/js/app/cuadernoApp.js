@@ -183,6 +183,13 @@ cuadernoAppServices.factory('ClasificadorAreasFactory', function ($resource) {
     })
 });
 
+// Planificacion Detalle Anual
+cuadernoAppServices.factory('ClasificadorPlanificacionFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&planificacion_id=:planificacion_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', planificacion_id: '@planificacion_id'}, isArray: false},        
+    })
+});
+
 // Planificacion
 
 cuadernoAppServices.factory('PlanificacionAnualFactory', function ($resource) {
@@ -197,6 +204,16 @@ cuadernoAppServices.factory('PlanificacionAnualDetalleFactory', function ($resou
     })
 });
 
+
+cuadernoAppServices.factory('PlanificacionAnualDetallesFactory', function ($resource) {
+    return $resource('/index.php/planificacion_anual_detalle/:id.json?accion=:action', {}, {
+        //show: { method: 'GET' },
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+});
+
+// Estudiantes
 cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {
     return $resource('/index.php/estudiantes.json', {}, {
         query: { method: 'GET', isArray: false},

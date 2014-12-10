@@ -48,13 +48,20 @@
           <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(encabezado.planificacion_id, area.id, periodo.id)">Adicionar</button>
         </div>
     </div>
-    <div>
-      <div class="row mt">
-          <div class="col-xs-12 col-md-3 body_table"></div>
-          <div class="col-xs-12 col-md-3 body_table"></div>
-          <div class="col-xs-12 col-md-4 body_table"></div>
-          <div class="col-xs-12 col-md-2 body_table"></div>
+    <div ng-repeat="planificacion_detalle in planificacion_detalles">
+      <div class="row">
+          <div class="col-xs-12 col-md-3 body_table">{{ planificacion_detalle.campo }}</div>
+          <div class="col-xs-12 col-md-3 body_table">{{ planificacion_detalle.area }}</div>
+          <div class="col-xs-12 col-md-4 body_table"><b>{{ planificacion_detalle.periodo }}</b> <br/> {{ planificacion_detalle.contenido }}</div>
+          <div class="col-xs-12 col-md-2 body_table" style="text-align:center;">
+            <button type="button" class="btn btn-danger btn-xs" ng-click="mtdDeletePlanificacion(planificacion_detalle.id)">
+              <i class="fa fa-trash-o"></i>
+            </button>
+          </div>
       </div>
-    </div>
+    </div>    
+    <div class="row">
+          <div class="col-xs-12 col-md-12 footer_table"></div>          
+    </div>    
   </div>
 </div>

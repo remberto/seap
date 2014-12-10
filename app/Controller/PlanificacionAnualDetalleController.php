@@ -12,6 +12,8 @@ class PlanificacionAnualDetalleController extends AppController{
     public function beforeFilter(){
         parent::beforeFilter();        
         $this->Auth->allow('add');
+        $this->Auth->allow('accion');
+        $this->Auth->allow('delete');
 
     }
     
@@ -58,6 +60,27 @@ class PlanificacionAnualDetalleController extends AppController{
             'message' => $message,
             '_serialize' => array('message')
         ));
+    }
+
+    public function accion($id){
+        if($this->request->query['accion']=='view'):
+            $this->view($id);
+        elseif($this->request->query['accion']=='delete'):
+            $this->delete($id);
+        endif;
+    }
+
+    public function delete($id){
+        //header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        if($this->PlanificacionAnualDetalle->delete($id)):
+          $message = 'Eliminado';
+        else:
+          $message = 'Error';
+        endif;
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+           ));
     }
 }
 ?>
