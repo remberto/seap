@@ -2650,3 +2650,446 @@ Stack Trace:
 #0 /home/remberto/Proyectos/seap/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 /home/remberto/Proyectos/seap/index.php(41): require('/home/remberto/...')
 #2 {main}
+2014-12-09 11:17:16 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/index.php/consultas.json/
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:17:16 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/app/webroot/css/index.php/consultas.json/app/webroot/css/cake.generic.css
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:17:16 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/app/webroot/img/index.php/consultas.json/app/webroot/img/cake.power.gif
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:17:16 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/app/webroot/index.php/consultas.json/app/webroot/favicon.ico
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:17:51 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/index.php/consultas.json/
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:17:51 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/app/webroot/css/index.php/consultas.json/app/webroot/css/cake.generic.css
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:17:51 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/app/webroot/img/index.php/consultas.json/app/webroot/img/cake.power.gif
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:17:51 Error: [MissingControllerException] Controller class Consultas.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Consultas.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/consultas.json/app/webroot/index.php/consultas.json/app/webroot/favicon.ico
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 11:18:03 Error: [MissingViewException] View file "D:\desarrollo\bienaventuranza\seap\app\View\Consultars\index.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'D:\\desarrollo\\bienaventuranza\\seap\\app\\View\\Consultars\\index.ctp',
+)
+Request URL: /index.php/consultas/index.php/consultas/
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\View\View.php(468): View->_getViewFileName(NULL)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#4 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#6 {main}
+2014-12-09 11:18:04 Error: [MissingActionException] Action ConsultarsController::app() could not be found.
+Exception Attributes: array (
+  'controller' => 'ConsultarsController',
+  'action' => 'app',
+)
+Request URL: /index.php/consultas/app/webroot/img/index.php/consultas/app/webroot/img/cake.power.gif
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:18:04 Error: [MissingActionException] Action ConsultarsController::app() could not be found.
+Exception Attributes: array (
+  'controller' => 'ConsultarsController',
+  'action' => 'app',
+)
+Request URL: /index.php/consultas/app/webroot/css/index.php/consultas/app/webroot/css/cake.generic.css
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:18:04 Error: [MissingActionException] Action ConsultarsController::app() could not be found.
+Exception Attributes: array (
+  'controller' => 'ConsultarsController',
+  'action' => 'app',
+)
+Request URL: /index.php/consultas/app/webroot/index.php/consultas/app/webroot/favicon.ico
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:18:27 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: Query.id
+Request URL: /index.php/index.php/consultas.json?query_id=1
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Consult...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Consult...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Consult...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(1106): DboSource->fetchAll('SELECT "Consult...', false)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2947): DboSource->read(Object(Consulta), Array)
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2919): Model->_readDataSource('first', Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(32): Model->find('first', Array)
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-09 11:18:27 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /index.php/app/webroot/css/index.php/app/webroot/css/cake.generic.css
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:18:27 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /index.php/app/webroot/img/index.php/app/webroot/img/cake.power.gif
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:18:28 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /index.php/app/webroot/index.php/app/webroot/favicon.ico
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:30:36 Error: [PDOException] SQLSTATE[HY000]: General error: 1 no such column: Parametros.qry_query_id
+Request URL: /index.php/index.php/consultas.json?query_id=1
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT "Paramet...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT "Paramet...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT "Paramet...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(1418): DboSource->fetchAll('SELECT "Paramet...', false)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(1254): DboSource->_fetchHasMany(Object(Consulta), 'SELECT "Paramet...', Array)
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(1137): DboSource->queryAssociation(Object(Consulta), Object(ConsultaParametro), 'hasMany', 'Parametros', Array, Array, true, Array, 0, Array)
+#6 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2947): DboSource->read(Object(Consulta), Array)
+#7 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(2919): Model->_readDataSource('first', Array)
+#8 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(32): Model->find('first', Array)
+#9 [internal function]: ConsultasController->index()
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#11 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#12 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#13 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#15 {main}
+2014-12-09 11:30:36 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /index.php/app/webroot/img/index.php/app/webroot/img/cake.power.gif
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:30:36 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /index.php/app/webroot/css/index.php/app/webroot/css/cake.generic.css
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 11:30:36 Error: [MissingActionException] Action AppController::webroot() could not be found.
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'webroot',
+)
+Request URL: /index.php/app/webroot/index.php/app/webroot/favicon.ico
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(AppController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 19:56:37 Error: [MissingControllerException] Controller class PlanificacionController could not be found.
+Exception Attributes: array (
+  'class' => 'PlanificacionController',
+  'plugin' => NULL,
+)
+Request URL: /index.php/index.php/planificacion.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#2 {main}
+2014-12-09 19:58:25 Error: [MissingTableException] Table planficacion_anual for model PlanificacionAnual was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planficacion_anual',
+  'class' => 'PlanificacionAnual',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planficacion_an...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionController.php(21): Model->getDataSource()
+#2 [internal function]: PlanificacionController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-09 22:42:49 Error: [MissingActionException] Action PlanificacionAnualDetalleController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionAnualDetalleController',
+  'action' => 'index',
+)
+Request URL: /index.php/index.php/planificacionAnualDetalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 22:44:15 Error: [MissingActionException] Action PlanificacionAnualDetalleController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionAnualDetalleController',
+  'action' => 'index',
+)
+Request URL: /index.php/index.php/planificacionAnualDetalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 22:47:13 Error: [MissingActionException] Action PlanificacionAnualDetalleController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionAnualDetalleController',
+  'action' => 'index',
+)
+Request URL: /index.php/index.php/planificacionAnualDetalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 22:48:15 Error: [MissingActionException] Action PlanificacionAnualController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionAnualController',
+  'action' => 'index',
+)
+Request URL: /index.php/index.php/planificacionAnual.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 22:48:50 Error: [MissingActionException] Action PlanificacionAnualController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionAnualController',
+  'action' => 'index',
+)
+Request URL: /index.php/index.php/planificacionanual.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-09 22:49:39 Error: [MissingTableException] Table planificacion_anual_detalles for model PlanificacionAnualDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_anual_detalles',
+  'class' => 'PlanificacionAnualDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_anual_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_a...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionAnualDetalleController.php(20): Model->getDataSource()
+#2 [internal function]: PlanificacionAnualDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionAnualDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-09 22:50:57 Error: [MissingTableException] Table planificacion_anual_detalles for model PlanificacionAnualDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_anual_detalles',
+  'class' => 'PlanificacionAnualDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_anual_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_a...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionAnualDetalleController.php(20): Model->getDataSource()
+#2 [internal function]: PlanificacionAnualDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionAnualDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-09 22:51:43 Error: [MissingTableException] Table planificacion_anual_detalles for model PlanificacionAnualDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_anual_detalles',
+  'class' => 'PlanificacionAnualDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_anual_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_a...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionAnualDetalleController.php(20): Model->getDataSource()
+#2 [internal function]: PlanificacionAnualDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionAnualDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-09 22:52:36 Error: [MissingTableException] Table planificacion_anual_detalles for model PlanificacionAnualDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_anual_detalles',
+  'class' => 'PlanificacionAnualDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_anual_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_a...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionAnualDetalleController.php(20): Model->getDataSource()
+#2 [internal function]: PlanificacionAnualDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionAnualDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-09 22:52:53 Error: [MissingTableException] Table planificacion_anual_detalles for model PlanificacionAnualDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_anual_detalles',
+  'class' => 'PlanificacionAnualDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_anual_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_a...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionAnualDetalleController.php(20): Model->getDataSource()
+#2 [internal function]: PlanificacionAnualDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionAnualDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-09 22:53:12 Error: [MissingTableException] Table planificacion_anual_detalles for model PlanificacionAnualDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_anual_detalles',
+  'class' => 'PlanificacionAnualDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_anual_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_a...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionAnualDetalleController.php(20): Model->getDataSource()
+#2 [internal function]: PlanificacionAnualDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionAnualDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-09 22:53:53 Error: [MissingTableException] Table planificacion_anual_detalles for model PlanificacionAnualDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_anual_detalles',
+  'class' => 'PlanificacionAnualDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_anual_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_a...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionAnualDetalleController.php(20): Model->getDataSource()
+#2 [internal function]: PlanificacionAnualDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionAnualDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionAnualDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}

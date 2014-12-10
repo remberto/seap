@@ -40,6 +40,7 @@ planificacionController.controller('planificacionAnualController', ['$scope','$r
     // Periodos
     ClasificadorFactory.query({query_id:2}, function(data){ $scope.periodos = data.datos; });
     // Detalles
+    
 
     // Metodos
     $scope.mtdGuardar = function(planificacion_id, curso_id){
