@@ -190,6 +190,21 @@ cuadernoAppServices.factory('ClasificadorPlanificacionFactory', function ($resou
     })
 });
 
+// Planificacion Bimiestral
+cuadernoAppServices.factory('ClasificadorPlanificacionBimestralFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&periodo_id=:periodo_id&planificacion_id=:planificacion_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', periodo_id: '@periodo_id', planificacion_id: '@planificacion_id'}, isArray: false},        
+    })
+});
+
+// Recupera el contenido de la planificacion detalle anual
+
+cuadernoAppServices.factory('ContenidoPlanificacionAnualFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&area_id=:area_id&periodo_id=:periodo_id&planificacion_id=:planificacion_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', area_id: '@area_id', periodo_id: '@periodo_id', planificacion_id: '@planificacion_id'}, isArray: false},        
+    })
+});
+
 // Planificacion
 
 cuadernoAppServices.factory('PlanificacionAnualFactory', function ($resource) {
@@ -204,7 +219,6 @@ cuadernoAppServices.factory('PlanificacionAnualDetalleFactory', function ($resou
     })
 });
 
-
 cuadernoAppServices.factory('PlanificacionAnualDetallesFactory', function ($resource) {
     return $resource('/index.php/planificacion_anual_detalle/:id.json?accion=:action', {}, {
         //show: { method: 'GET' },
@@ -212,6 +226,21 @@ cuadernoAppServices.factory('PlanificacionAnualDetallesFactory', function ($reso
         delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
     })
 });
+
+
+// Planificacion Bimiestral
+cuadernoAppServices.factory('PlanificacionBimestralFactory', function ($resource) {
+    return $resource('/index.php/planificacion_bimestral.json', {}, {
+        create: { method: 'POST' }
+    })
+}); 
+ 
+// Planificacion Bimiestral Detalle
+cuadernoAppServices.factory('PlanificacionBimestralDetalleFactory', function ($resource) {
+    return $resource('/index.php/planificacion_bimestral_detalle.json', {}, {
+        create: { method: 'POST' }
+    })
+}); 
 
 // Estudiantes
 cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {

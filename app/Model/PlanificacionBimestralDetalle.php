@@ -15,12 +15,12 @@ class PlanificacionBimestralDetalle extends AppModel {
 
     //Belongs
     public $belongsTo = array(
-        'Asignatura' => array(
-            'className'=>'Asignatura',
+        'Area' => array(
+            'className'=>'Area',
             'type'=>'INNER',
-            'foreignKey' => 'asignatura_id',
+            'foreignKey' => 'area_id',
         ),
-        'PlanficacionAnualDetalle' => array(
+        'PlanificacionAnualDetalle' => array(
             'className'=>'PlanficacionAnualDetalle',
             'type'=>'INNER',
             'foreignKey' => 'planificacion_anual_detalle_id',

@@ -46,6 +46,8 @@
 	Router::mapResources('consultas');
 	Router::mapResources('planificacionAnual');
 	Router::mapResources('planificacionAnualDetalle');
+	Router::mapResources('planificacionBimestral');
+	Router::mapResources('planificacionBimestralDetalle');
 	Router::mapResources('estudiantes');
 	Router::mapResources('users');
     Router::mapResources('gestiones');
