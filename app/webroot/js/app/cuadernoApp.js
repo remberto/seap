@@ -220,6 +220,20 @@ cuadernoAppServices.factory('ContenidoPlanificacionAnualFactory', function ($res
     })
 });
 
+
+// Planificacion Clases - Lista de Planificacion de Clases
+cuadernoAppServices.factory('ClasificadorPlanificacionClasesFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&asignado_id=:asignado_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', asignado_id: '@asignado_id'}, isArray: false},        
+    })
+});
+
+cuadernoAppServices.factory('ClasificadorPlanificacionNroClaseFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&nro_clase=:nro_clase&periodo_id=:periodo_id&asignado_id=:asignado_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', nro_clase: '@nro_clase', periodo_id: '@periodo_id', asignado_id: '@asignado_id'}, isArray: false},        
+    })
+});
+
 // Planificacion
 
 cuadernoAppServices.factory('PlanificacionAnualFactory', function ($resource) {
@@ -263,6 +277,13 @@ cuadernoAppServices.factory('PlanificacionClaseFactory', function ($resource) {
         create: { method: 'POST' }
     })
 }); 
+
+// Planificacion Clase
+cuadernoAppServices.factory('PlanificacionClaseDetalleFactory', function ($resource) {
+    return $resource('/index.php/planificacion_clases_detalle.json', {}, {
+        create: { method: 'POST' }
+    })
+});
 
 // Planificacion Bimiestral Detalle Vista y eliminar
 cuadernoAppServices.factory('PlanificacionBimestralDetallesFactory', function ($resource) {

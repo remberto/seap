@@ -1,19 +1,47 @@
 <div class="row mt" ng-controller="cursosDocenteAsignaturaController">
   <h3><i class="fa fa-angle-right"></i>Plan de Desarrollo de Clases</h3>
-  <button type="button" class="btn btn-primary" ng-click="addPlan(curso_id, asignado_id)">Nuevo Plan de Clases</button>
-  <div class="col-lg-12">    
-    <div class="row" ng-repeat="asignado in asignados">
-      <!-- TWITTER PANEL -->
-      <div class="col-lg-12 col-md-12 col-sm-4 mb" ng-click="mtdPlanificacionClases(asignado.id, asignado.curso_id)">
-        <div class="planificacion pn centered">
-          <i class="fa fa-desktop"></i>         
-          <div class="info">
-            <div class="row">
-              <h3 class="centered">Campo: {{asignado.campo}} <br/> Area: {{asignado.area}} <br/> {{ asignado.asignatura }}</h3>              
-            </div>
-          </div>
-        </div>
+  <button type="button" class="btn btn-primary" ng-click="mtdAddPlanificacionClases(curso_id, asignado_id)">Nuevo Plan de Clases</button>
+  <div class="col-lg-12">
+    <div class="row mt">
+      <div class="col-lg-1 col-md-1 col-sm-1 header_table">
+        Nro
       </div>     
+      <div class="col-lg-3 col-md-3 col-sm-2 header_table">
+        Periodo
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-4 header_table">
+        Tematica Orientadora
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-1 header_table">
+        De
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-1 header_table">
+        A
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-1 header_table">
+        &nbsp;
+      </div>
+    </div>    
+    <div class="row" ng-repeat="clase in clases">
+      <!-- TWITTER PANEL -->
+      <div class="col-lg-1 col-md-1 col-sm-1 body_table">
+        {{ clase.nro_clase }}
+      </div>     
+      <div class="col-lg-3 col-md-3 col-sm-2 body_table">
+        {{ clase.periodo }}
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-4 body_table">
+        {{ clase.tematica_orientadora }}
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-1 body_table">
+        {{ clase.calendario_de }}
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-1 body_table">
+        {{ clase.calendario_a }}
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-1 body_table">
+        
+      </div>
     </div><!-- /END ROW OF PANELS --> 
   </div>
 </div>
