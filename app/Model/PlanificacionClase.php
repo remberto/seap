@@ -25,10 +25,10 @@ class PlanificacionClase extends AppModel {
             'type'=>'INNER',
             'foreignKey' => 'calendario_de_id',
         ),
-        'PlanificacionBimestralDetalle' => array(
-            'className'=>'PlanificacionBimestralDetalle',
+        'PlanificacionBimestral' => array(
+            'className'=>'PlanificacionBimestral',
             'type'=>'INNER',
-            'foreignKey' => 'planificacion_bimiestral_detalle_id',
+            'foreignKey' => 'planificacion_bimiestral_id',
         ),
     );
 }

@@ -1,0 +1,19 @@
+<div class="row mt" ng-controller="cursosDocenteAsignaturaController">
+  <h3><i class="fa fa-angle-right"></i>Plan de Desarrollo de Clases</h3>
+  <button type="button" class="btn btn-primary" ng-click="addPlan(curso_id, asignado_id)">Nuevo Plan de Clases</button>
+  <div class="col-lg-12">    
+    <div class="row" ng-repeat="asignado in asignados">
+      <!-- TWITTER PANEL -->
+      <div class="col-lg-12 col-md-12 col-sm-4 mb" ng-click="mtdPlanificacionClases(asignado.id, asignado.curso_id)">
+        <div class="planificacion pn centered">
+          <i class="fa fa-desktop"></i>         
+          <div class="info">
+            <div class="row">
+              <h3 class="centered">Campo: {{asignado.campo}} <br/> Area: {{asignado.area}} <br/> {{ asignado.asignatura }}</h3>              
+            </div>
+          </div>
+        </div>
+      </div>     
+    </div><!-- /END ROW OF PANELS --> 
+  </div>
+</div>

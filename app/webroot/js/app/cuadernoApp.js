@@ -77,9 +77,17 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
             templateUrl : 'pages/planificacionBimestral/index.html',
             controller  : 'planificacionBimestralController'
         })
-    .when('/planificacionClases/:curso_id', {
-            templateUrl : 'pages/planificacionClases/index.html',
+    .when('/planificacionClases/:id', {
+            templateUrl : 'pages/planificacionClases/listAsignatura.html',
+            controller  : 'cursosDocenteAsignaturaController'
+        })
+    .when('/planificacionClasesAsignatura/:asignado_id/:curso_id', {
+            templateUrl : 'pages/planificacionClases/listClases.html',
             controller  : 'planificacionClasesController'
+        })
+    .when('/newPlanificacionClases/:asignado_id/:curso_id', {
+            templateUrl : 'pages/planificacionClases/add.html',
+            controller  : 'addplanificacionClasesController'
         })
 
     // filiacion
@@ -176,6 +184,13 @@ cuadernoAppServices.factory('EncabezadoFactory', function ($resource) {
     })
 });
 
+// Encabezado de Planificacion de Clases
+cuadernoAppServices.factory('EncabezadoClasesFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&curso_id=:curso_id&asignado_id=:asignado_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', curso_id: '@curso_id', asignado_id: '@asignado_id'}, isArray: false},        
+    })
+});
+
 // Areas de acuerdo a campo
 cuadernoAppServices.factory('ClasificadorAreasFactory', function ($resource) {
     return $resource('/index.php/consultas.json?query_id=:query_id&campo_id=:campo_id', {}, {
@@ -239,6 +254,22 @@ cuadernoAppServices.factory('PlanificacionBimestralFactory', function ($resource
 cuadernoAppServices.factory('PlanificacionBimestralDetalleFactory', function ($resource) {
     return $resource('/index.php/planificacion_bimestral_detalle.json', {}, {
         create: { method: 'POST' }
+    })
+}); 
+
+// Planificacion Clase
+cuadernoAppServices.factory('PlanificacionClaseFactory', function ($resource) {
+    return $resource('/index.php/planificacion_clases.json', {}, {
+        create: { method: 'POST' }
+    })
+}); 
+
+// Planificacion Bimiestral Detalle Vista y eliminar
+cuadernoAppServices.factory('PlanificacionBimestralDetallesFactory', function ($resource) {
+    return $resource('/index.php/planificacion_bimestral_detalle/:id.json?accion=:action', {}, {
+        //show: { method: 'GET' },
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
     })
 }); 
 

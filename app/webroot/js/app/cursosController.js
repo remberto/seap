@@ -51,8 +51,17 @@ cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteF
 
 
 cursosController.controller('cursosDocenteAsignaturaController', ['$scope','$routeParams','CursosDocenteAsignaturaFactory','sesionesControl','$location', function($scope, $routeParams, CursosDocenteAsignaturaFactory, sesionesControl, $location) {
-    $scope.cursos = null;    
-    CursosDocenteAsignaturaFactory.query({curso_id: $routeParams.id, docente_id: sesionesControl.get('user_id')},function(data){$scope.asignados = data.asignados;});
+    $scope.cursos = null;
+
+    CursosDocenteAsignaturaFactory.query({curso_id: $routeParams.id, docente_id: sesionesControl.get('user_id')},
+        function(data){$scope.asignados = data.asignados;
+    });
+    
+    // metodos
+    $scope.mtdPlanificacionClases = function(asignado_id, curso_id){
+        $location.path('/planificacionClasesAsignatura/'+asignado_id+'/'+curso_id);
+    }
+
     $scope.mtdAsistencia = function(asignado_id, curso_id){
         $location.path('/registroAsistencia/'+asignado_id+'/'+curso_id);
     }

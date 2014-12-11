@@ -22,10 +22,14 @@ class AsignadosController extends AppController{
             asignados.curso_id as curso_id,
             grados.descripcion as grado, 
             paralelos.descripcion as paralelo, 
+            campos.descripcion as campo,
+            areas.descripcion as area,
             asignaturas.descripcion as asignatura 
             FROM asignados
             INNER JOIN cursos ON asignados.curso_id = cursos.id
             INNER JOIN asignaturas ON asignados.asignatura_id = asignaturas.id
+            INNER JOIN areas ON asignaturas.area_id = areas.id
+            INNER JOIN campos ON areas.campo_id = campos.id
             INNER JOIN grados ON cursos.grado_id = grados.id
             INNER JOIN paralelos ON cursos.paralelo_id = paralelos.id
             INNER JOIN docentes ON asignados.docente_id = docentes.id
