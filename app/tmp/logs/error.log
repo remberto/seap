@@ -3093,3 +3093,350 @@ Stack Trace:
 #6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
 #8 {main}
+2014-12-10 17:06:37 Error: [MissingActionException] Action PlanificacionBimestralController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionBimestralController',
+  'action' => 'index',
+)
+Request URL: /index.php/index.php/planificacion_bimestral.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionBimestralController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-10 17:07:52 Error: [MissingActionException] Action PlanificacionBimestralController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionBimestralController',
+  'action' => 'index',
+)
+Request URL: /index.php/index.php/planificacion_bimestral.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionBimestralController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-10 17:46:09 Error: [PDOException] SQLSTATE[HY000]: General error: 1 unrecognized token: "548755c1"
+Request URL: /index.php/index.php/consultas.json?query_id=102&periodo_id=548755c1-f284-4051-a151-24ccafb6fe0b&planificacion_id=1
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT \nplanifi...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT \nplanifi...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT \nplanifi...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT \nplanifi...')
+#4 [internal function]: DboSource->query('SELECT \nplanifi...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT \nplanifi...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-10 22:17:59 Error: [MissingTableException] Table planificacion_bimestral_detalles for model PlanificacionBimestralDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_bimestral_detalles',
+  'class' => 'PlanificacionBimestralDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_bimestral_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_b...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionBimestralDetalleController.php(21): Model->getDataSource()
+#2 [internal function]: PlanificacionBimestralDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionBimestralDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionBimestralDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-10 22:20:57 Error: [MissingTableException] Table planificacion_bimestral_detalles for model PlanificacionBimestralDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_bimestral_detalles',
+  'class' => 'PlanificacionBimestralDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_bimestral_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_b...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionBimestralDetalleController.php(21): Model->getDataSource()
+#2 [internal function]: PlanificacionBimestralDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionBimestralDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionBimestralDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-10 22:23:00 Error: [MissingTableException] Table planificacion_bimestral_detalles for model PlanificacionBimestralDetalle was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'planificacion_bimestral_detalles',
+  'class' => 'PlanificacionBimestralDetalle',
+  'ds' => 'default',
+)
+Request URL: /index.php/index.php/planificacion_bimestral_detalle.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3551): Model->setSource('planificacion_b...')
+#1 D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionBimestralDetalleController.php(21): Model->getDataSource()
+#2 [internal function]: PlanificacionBimestralDetalleController->add()
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PlanificacionBimestralDetalleController), Array)
+#4 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionBimestralDetalleController), Object(CakeRequest))
+#6 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#8 {main}
+2014-12-11 01:06:06 Error: [MissingActionException] Action PlanificacionBimestralDetalleController::index.php() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionBimestralDetalleController',
+  'action' => 'index.php',
+)
+Request URL: /index.php/planificacion_bimestral_detalle/index.php/index.php/planificacion_bimestral_detalle/index.php/planificacion_bimestral_detalle/index.php/planificacion_bimestral_detalle/index.php/index.php/planificacion_bimestral_detalle/index.php/planificacion_bimestral_detalle/cuenta
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionBimestralDetalleController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-11 01:10:41 Error: [MissingActionException] Action PlanificacionBimestralDetalleController::index.php() could not be found.
+Exception Attributes: array (
+  'controller' => 'PlanificacionBimestralDetalleController',
+  'action' => 'index.php',
+)
+Request URL: /index.php/planificacion_bimestral_detalle/index.php/index.php/planificacion_bimestral_detalle/index.php/planificacion_bimestral_detalle/index.php/planificacion_bimestral_detalle/index.php/index.php/planificacion_bimestral_detalle/index.php/planificacion_bimestral_detalle/cuenta
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(PlanificacionBimestralDetalleController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#4 {main}
+2014-12-11 17:06:30 Error: Fatal Error (4): syntax error, unexpected ';' in [D:\desarrollo\bienaventuranza\seap\app\Controller\PlanificacionClasesController.php, line 44]
+2014-12-11 17:06:30 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /index.php/index.php/planificacion_clases.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 44)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\\desarrollo\\b...', 44, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\\desarrollo\\b...', 44, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-11 20:16:01 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "FROM": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=108&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:15:18 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=1&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:29:11 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=1&periodo_id=&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:40:41 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=3&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:40:57 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=1&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:43:21 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=1&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:43:38 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=1&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:47:48 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=3&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:48:21 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=3&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:48:45 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=3&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:48:52 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=3&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:49:06 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=3&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}
+2014-12-11 22:51:30 Error: [PDOException] SQLSTATE[HY000]: General error: 1 near "AND": syntax error
+Request URL: /index.php/index.php/consultas.json?query_id=109&nro_clase=&periodo_id=2&asignado_id=546b2cbc-9e9c-428a-a2bf-28bcafb6fe0b
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(456): PDO->prepare('SELECT\nplanific...', Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT\nplanific...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT\nplanific...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT\nplanific...')
+#4 [internal function]: DboSource->query('SELECT\nplanific...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\ConsultasController.php(41): Model->query('SELECT\nplanific...')
+#7 [internal function]: ConsultasController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ConsultasController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(ConsultasController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\\desarrollo\\b...')
+#13 {main}

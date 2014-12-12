@@ -212,6 +212,20 @@ cuadernoAppServices.factory('ClasificadorPlanificacionBimestralFactory', functio
     })
 });
 
+// Objetivos Holistico
+cuadernoAppServices.factory('ObjetivosHolisticosFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&asignado_id=:asignado_id&periodo_id=:periodo_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', asignado_id: '@asignado_id', periodo_id: '@periodo_id'}, isArray: false},        
+    })
+});
+
+// Criterios Evaluacion
+cuadernoAppServices.factory('CriteriosEvaluacionFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&dimension_id=:dimension_id&planificacion_clases_id=:planificacion_clases_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', dimension_id: '@dimension_id', planificacion_clases_id: '@planificacion_clases_id'}, isArray: false},        
+    })
+}); 
+
 // Recupera el contenido de la planificacion detalle anual
 
 cuadernoAppServices.factory('ContenidoPlanificacionAnualFactory', function ($resource) {
@@ -497,6 +511,13 @@ cuadernoAppServices.factory('ActividadEvaluacionFactory', function ($resource) {
     });
 });
 
+// InscritosEvaluacionFactory
+// Devuelve las inscripciones para la evaluacion
+cuadernoAppServices.factory('InscritosEvaluacionFactory', function ($resource) {
+    return $resource('/index.php/evaluaciones.json?curso_id=:curso_id', {}, {
+        query: { method: 'GET', params:{curso_id: '@curso_id'}, isArray: false}
+    });
+});
 
 // login
 

@@ -2,48 +2,65 @@
 	<i class="fa fa-angle-right"></i>
 	Registro de Evaluaciones
 </h3>
+<div class="container">
 <div class="row mt" ng-controller="evaluacionController">
 
-	<div class="col-md-12">
-		<div class="col-lg-8">
+		<div class="col-lg-3">
 			Actividad de Evaluaci&oacute;n:
-			<select id="inputActividad" class="form-control">
-				<option ng-repeat="actividad in actividades" value="{{ actividad.id }}">{{ actividad.descripcion }}</option>
+			<select id="actividad" class="form-control" ng-model="actividad_id" ng-options="value as value.descripcion for (key, value) in actividades">
+				<option>Seleccione</option>
 			</select>
 		</div>
-		<div class=" col-lg-4">
+		<div class=" col-lg-9">
 			Bimestre:
-			<!-- <select id="" class="form-control" ng-options="bi.key as bi.value for (key, value) in periodos">
+			<select id="periodos" class="form-control" ng-change="mtdSelectObjetivos(periodo.id)" ng-model="periodo" ng-options="value as value.descripcion for (key, value) in periodos">
 				<option>Seleccione</option>
-			</select> -->
-			<select id="inputActividad" class="form-control">
-				<option ng-repeat="actividad in periodos" value="{{ actividad.id }}">{{ actividad.descripcion }}</option>
 			</select>
+		</div>
+		<!--input type="text" value="{{curso_id}}"-->
 		<div class="form-group col-lg-12">
 			Objetivo Holístico:
-			<select name="" class="form-control">
-				<option value="">Desarrollamos principios y valores de convivencias sociocomunitarias, analizando los saberes y conocimientos propios, diversos mediante la produccion de textos variados, utilizando adecuadamente los materiales naturales y sus procesos de transformación para desarrollarlas en actividades relacionadas con las inclinaciones vocaciones de la comunidad</option>
-				<option value="">Desarrollamos principios y valores de convivencias sociocomunitarias, analizando los saberes y conocimientos propios, diversos mediante la produccion de textos variados, utilizando adecuadamente los materiales naturales y sus procesos de transformación para desarrollarlas en actividades relacionadas con las inclinaciones vocaciones de la comunidad</option>
+			<select id="objetivos" class="form-control" ng-model="objetivo" ng-options="value as value.objetivo_holistico for (key, value) in objetivos">
+				<option>Seleccione</option>
 			</select>
 		</div>
 
-		<div class="form-group col-lg-4" style="with: 60px;">
-			Dimenci&oacute;n:
-			<select id="inputActividad" class="form-control">
-				<option ng-repeat="actividad in dimensiones" value="{{ actividad.id }}">{{ actividad.descipcion }}</option>
+		<div class="form-group col-lg-12" style="with: 60px;">
+			Dimensi&oacute;n:
+			<select id="dimensiones" class="form-control" ng-model="dimension" ng-options="value as value.descripcion for (key, value) in dimensiones" ng-change="mtdSelectCriterios(dimension.id)">
+				<option>Seleccione</option>
 			</select>
 		</div>
 
-		<div class="form-group col-lg-8" style="with: 60px;">
+		<!--div class="form-group col-lg-8" style="with: 60px;">
 			Criterio de Evaluación:
 			<select name="" class="form-control">
 				<option value="">El estudiante ayuda a sus compañeros a entender el texto</option>
 				<option value="">Hace criticas constructivas sin ofender a tus compañeros</option>
 				<option value="">Organizo a mi grupo para su buen funcionamiento</option>
 			</select>
-		</div>
+		</div-->
 
 		<div class="col-lg-12">
+			<table>
+				<thead>
+					<tr>
+						<th>Estudiante</th>
+						<th>Puntuaci&oacute;n</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="estudiante in inscripciones">
+						<td>{{ $index + 1 }}.- {{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>
+						<td>{{estudiante.criterio0}}<input type="text" style="text-align: center;" value="{{estudiante.cuantitativo0}}" size="4" ><input type="text" enable="false" name="" value="" size="3">&nbsp;</td>
+						<td>{{estudiante.criterio1}}<input type="text" style="text-align: center;" value="{{estudiante.cuantitativo1}}" size="4" ><input type="text" enable="false" name="" value="" size="3">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<!--div class="col-lg-12">
 			<table>
 				<thead>
 					<tr>
@@ -58,6 +75,7 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-	</div>
+		</div-->
+	
+</div>
 </div>
