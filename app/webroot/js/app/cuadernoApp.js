@@ -12,7 +12,8 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'filiacionControllers',
     'asistenciaControllers',
     'evaluacionControllers',
-    //'docentesControllers',
+    'administrativosControllers',
+    'docentesControllers',
     'usuariosControllers',
     'cursosControllers',
     'uploadControllers',
@@ -30,10 +31,10 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    templateUrl : 'pages/main.html',
 	    //controller  : 'mainController'
 	})
-        .when('/home', {
-            templateUrl : 'pages/home.html',
-            //controller  : 'homeController'
-        })
+    .when('/home', {
+        templateUrl : 'pages/home.html',
+        //controller  : 'homeController'
+    })
 
     // route for the about page
     /*			.when('/about', {
@@ -49,8 +50,15 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     */ 
     // route for the contact page
     
-    // Nuevo Estudiante
-        .when('/usuarios', {
+    // Aqui parte de Administracion de la Aplicacion
+    // Unidades Educativas
+    .when('/UnidadesEducativas', {
+        templateUrl : 'pages/unidadEducativa/list.html',
+        controller  : 'unidadesEducativasController'
+    })
+
+    // Usuarios
+    .when('/usuarios', {
 	    templateUrl : 'pages/usuario/list.html',
 	    controller  : 'usuariosController'
 	})
@@ -59,6 +67,58 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    controller  : 'usuarioController'
 	})
 
+    // Aqui va la parte de de Gestion Administrativa de la Unidad Educativa
+    //
+    //     
+    .when('/unidadEducativa', {
+        templateUrl : 'pages/unidadEducativa/view.html',
+        controller  : 'unidadEducativaViewController'
+    }) 
+    // Administrativos
+    .when('/administrativos', {
+        templateUrl : 'pages/administrativo/list.html',
+        controller  : 'administrativosController'
+    })
+    .when('/addAdministrativo', {
+        templateUrl : 'pages/administrativo/add.html',
+        controller  : 'administrativoController'
+    })
+
+    .when('/cursos', {
+        templateUrl : 'pages/curso/list.html',
+        controller  : 'cursosController'
+    })
+    .when('/addCurso', {
+        templateUrl : 'pages/curso/add.html',
+        controller  : 'cursoController'
+    })
+
+    .when('/cursos', {
+        templateUrl : 'pages/curso/list.html',
+        controller  : 'cursosController'
+    })
+    .when('/addCurso', {
+        templateUrl : 'pages/curso/add.html',
+        controller  : 'cursoController'
+    })     
+
+    .when('/addEstudiante', {
+            templateUrl : 'pages/estudiante/add.html',
+            controller  : 'estudianteController'
+        })
+    
+
+    .when('/docentes', {
+        templateUrl : 'pages/docente/list.html',
+        controller  : 'docentesController'
+    })
+    .when('/addDocente', {
+        templateUrl : 'pages/docente/add.html',
+        controller  : 'docentesController'
+    })
+
+    
+    // Aqui va la parte de Asistencia y Evaluacion de parte del Docente
     // Planificacion
     .when('/menuPlanificacion', {
             templateUrl : 'pages/planificacion/index.html',
@@ -131,18 +191,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
             controller  : 'evaluacionController'
         })
 
-	.when('/addEstudiante', {
-            templateUrl : 'pages/estudiante/add.html',
-            controller  : 'estudianteController'
-        })
-	.when('/cursos', {
-            templateUrl : 'pages/curso/list.html',
-            controller  : 'cursosController'
-        })
-	.when('/addCurso', {
-            templateUrl : 'pages/curso/add.html',
-            controller  : 'cursoController'
-        })     
+	    
 	.when('/unidadeseducativas', {
 	    templateUrl : 'pages/unidadEducativa/list.html',
 	    controller  : 'unidadesEducativasController'
@@ -151,14 +200,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    templateUrl : 'pages/unidadEducativa/add.html',
 	    controller  : 'unidadEducativaController'
 	})
-        .when('/docentes', {
-            templateUrl : 'pages/docente/list.html',
-            controller  : 'docentesController'
-        })
-        .when('/addDocente', {
-            templateUrl : 'pages/docente/add.html',
-            controller  : 'docentesController'
-        })
+    
 	.when('/upload', {
             templateUrl : 'pages/file/add.html',
             controller  : 'uploadController'
@@ -168,6 +210,16 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 // Factory conneccion
 
 var cuadernoAppServices = angular.module('cuadernoAppServices', ['ngResource']);
+
+// Menu
+// Devuelve los menus del uysuario
+
+cuadernoAppServices.factory('MenusFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', user_id: '@user_id'}, isArray: false},        
+    })
+});
+
 
 // Clasificadores para Campos
 // Consulta a Parametros
@@ -351,8 +403,8 @@ cuadernoAppServices.factory('UsuarioFactory', function ($resource) {
 // Gestiones
 
 cuadernoAppServices.factory('GestionesFactory', function ($resource) {
-    return $resource('/index.php/gestiones.json', {}, {
-        query: { method: 'GET', isArray: false},
+    return $resource('/index.php/consultas.json?query_id=112&habilitado=:habilitado', {}, {
+        query: { method: 'GET', params: {habilitado: '@habilitado'}, isArray: false},
         create: { method: 'POST' }
     })
 });
@@ -394,6 +446,14 @@ cuadernoAppServices.factory('UnidadesEducativasFactory', function ($resource) {
     })
 });
 
+// Listado de Unidades Educativas habilitadas para el usuario que Administra
+cuadernoAppServices.factory('UnidadesEducativasUsuarioFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', user_id: '@user_id'}, isArray: false},
+        create: { method: 'POST' }
+    })
+});
+
 cuadernoAppServices.factory('UnidadEducativaFactory', function ($resource) {
     return $resource('/index.php/unidadeseducativas/:id.json', {}, {
         update: { method: 'PUT', params: {id: '@id'} },
@@ -401,10 +461,60 @@ cuadernoAppServices.factory('UnidadEducativaFactory', function ($resource) {
     })
 });
 
+// Administrativos
+cuadernoAppServices.factory('AdministrativosFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', user_id: '@user_id'}, isArray: false}
+    });
+});
+
+// Guarda nuevo administrativo
+cuadernoAppServices.factory('AdministrativoFactory', function ($resource) {
+    return $resource('/index.php/administrativos.json', {}, {
+        create: { method: 'POST' }
+    });
+});
+
+cuadernoAppServices.factory('ActionAdministrativoFactory', function ($resource) {
+    return $resource('/index.php/administrativos/:id.json?accion=:action', {}, {
+        //show: { method: 'GET' },
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+});
+
+// Cargo de Administrativos
+cuadernoAppServices.factory('CargoAdministrativoFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=120', {}, {
+        query: { method: 'GET', isArray: false}
+    });
+});
+
+// Fuente de Financiamiento
+cuadernoAppServices.factory('FinanciamientoFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=121', {}, {
+        query: { method: 'GET', isArray: false}
+    });
+});
+
+// Formacion
+cuadernoAppServices.factory('FormacionFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=122', {}, {
+        query: { method: 'GET', isArray: false}
+    });
+});
+
 // Cursos
+cuadernoAppServices.factory('CursosListFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=111&habilitado=:habilitado&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {habilitado: '@habilitado', user_id: '@user_id'}, isArray: false},
+        create: { method: 'POST' }
+    });
+});
+
+// Cursos - Añadir curso 
 cuadernoAppServices.factory('CursosFactory', function ($resource) {
-    return $resource('/index.php/cursos.json', {}, {
-        query: { method: 'GET', isArray: false},
+    return $resource('/index.php/cursos.json', {}, {        
         create: { method: 'POST' }
     });
 });
@@ -448,6 +558,15 @@ cuadernoAppServices.factory('NivelesFactory', function ($resource) {
     })
 });
 
+// Niveles de acuerdo a la Unidad Educativa
+// 
+
+cuadernoAppServices.factory('NivelesUnidadEducativaFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=114&unidad_educativa_id=:unidad_educativa_id', {}, {
+        query: { method: 'GET', params: {unidad_educativa_id: '@unidad_educativa_id'}, isArray: false},
+    })
+});
+
 
 // Grados
 cuadernoAppServices.factory('GradosFactory', function ($resource) {
@@ -456,19 +575,27 @@ cuadernoAppServices.factory('GradosFactory', function ($resource) {
     })
 });
 
+// Grados de acuerdo al nivel
+cuadernoAppServices.factory('GradosNivelFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=115&nivel_id=:nivel_id', {}, {
+        query: { method: 'GET', params: {nivel_id: '@nivel_id'} ,isArray: false},
+    })
+});
+
 // Paralelos
 cuadernoAppServices.factory('ParalelosFactory', function ($resource) {
-    return $resource('/index.php/paralelos.json', {}, {
+    return $resource('/index.php/consultas.json?query_id=116', {}, {
         query: { method: 'GET', isArray: false},
     })
 });
 
 // Turnos
 cuadernoAppServices.factory('TurnosFactory', function ($resource) {
-    return $resource('/index.php/turnos.json', {}, {
+    return $resource('/index.php/consultas.json?query_id=117', {}, {
         query: { method: 'GET', isArray: false},
     })
 });
+
 
 // Docentes
 cuadernoAppServices.factory('DocentesFactory', function ($resource) {
@@ -544,7 +671,7 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
     }; // end cancel
     
     $scope.save = function(){
-	authUsers.login({username: $scope.user.username, password: $scope.user.password},
+	    authUsers.login({username: $scope.user.username, password: $scope.user.password},
 			function(data){
 			    if(data.login){
 				$scope.user.name = data.username;
@@ -556,7 +683,7 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
 				console.log('no ingresa');
 			    }
 			}
-		       );
+		);
     }; // end save
 		
     $scope.hitEnter = function(evt){
@@ -566,41 +693,50 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
 }]);
 
 
-loginController.controller('initController',['$scope','sesionesControl','dialogs','$location',function($scope,sesionesControl,dialogs,$location){
+loginController.controller('initController',['$rootScope', '$scope','sesionesControl','dialogs','$location','MenusFactory',function($rootScope, $scope,sesionesControl,dialogs,$location, MenusFactory){
     $scope.username = '';
+    $scope.menus = [];
+    console.log($scope.menus);
     if(!sesionesControl.get('userLogin') || (sesionesControl.get('userLogin') == 'false')){
-	var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
-	dlg.result.then(function(name){
-	    $scope.username = name;
-	},function(){
-	    $location.path('/');
-	    //if(angular.equals($scope.name,''))
-	    //    console.log('error');
-	    //$scope.name = 'You did not enter in your name!';
-	});
+	   var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
+	   dlg.result.then(function(name){        
+            $scope.username = name;
+            MenusFactory.query({query_id: 110, user_id: sesionesControl.get('user_id')},
+            function(data){
+                $scope.menus = data.datos;
+            });           
+            //$rootScope.$broadcast('evento', $scope.menus);
+	   },function(){
+	       $location.path('/');           
+	       //if(angular.equals($scope.name,''))
+	       //    console.log('error');
+	       //$scope.name = 'You did not enter in your name!';
+	   });
     }
     else{
-	$scope.username = sesionesControl.get('username');
+        $scope.username = sesionesControl.get('username');
+        MenusFactory.query({query_id: 110, user_id: sesionesControl.get('user_id')},
+            function(data){
+                $scope.menus = data.datos;
+            });
     }
 }]);
 
 var menuController = angular.module('menuControllers',[]);
 
-menuController.controller('menuController',['$scope', '$location', function($scope, $location){
-    $scope.selectMenu = function(menuId){
-        if(menuId == 1){
-            $location.path('/menuPlanificacion');
-        }else if(menuId == 2){
-            $location.path('/menuHorario');
-        }else if(menuId == 3){
-            $location.path('/filiacion');        
-        }else if(menuId == 4){
-            $location.path('/asistencia');
-        }
-        else if(menuId == 5){
-            $location.path('/evaluacion');
-        }
+menuController.controller('menuController',['$rootScope','$scope','sesionesControl','$location','MenusFactory', function($rootScope, $scope, sesionesControl,$location, MenusFactory){    
+    
+    /*$rootScope.$on('evento', function(event, data){ 
+            $scope.menus = data;
+    });*/
 
+    MenusFactory.query({query_id: 110, user_id: sesionesControl.get('user_id')},
+    function(data){
+        $scope.menus = data.datos;
+    });     
+
+    $scope.selectMenu = function(url){        
+        $location.path(url);
     }
 }]);
 

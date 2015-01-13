@@ -4,80 +4,17 @@
 		<! -- 1st ROW OF PANELS -->
 		<div class="row">
 			<!-- TWITTER PANEL -->
-			<div class="col-lg-4 col-md-4 col-sm-4 mb">
-				<div class="planificacion pn centered" ng-click="selectMenu(1)">
-					<i class="fa fa-desktop"></i>					
+			<div class="col-lg-4 col-md-4 col-sm-4 mb" ng-repeat="menu in menus">
+				<div class="planificacion pn centered" ng-click="selectMenu(menu.url)">
+					<i class="{{ menu.icono }}"></i>					
 					<div class="info">
 						<div class="row">
-							<h3 class="centered">Planificaci&oacute;n</h3>							
+							<h3 class="centered">{{ menu.menus }}</h3>							
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- /col-md-4 -->			
-					
-			<div class="col-lg-4 col-md-4 col-sm-4 mb">
-				<div class="weather-3 pn centered">
-					<i class="fa fa-calendar"></i>					
-					<div class="info">
-						<div class="row">
-							<h3 class="centered">Horario</h3>							
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /col-md-4 -->
-			
-			<div class="col-lg-4 col-md-4 col-sm-4 mb" ng-click="selectMenu(3)">
-				<div class="weather-3 pn centered">
-					<i class="fa fa-book"></i>					
-					<div class="info">
-						<div class="row">
-							<h3 class="centered">Filiaci&oacute;n</h3>							
-						</div>
-					</div>
-				</div>
-			</div><! --/col-md-4 -->
-		</div><!-- /END ROW OF PANELS -->	
-		<! -- 1st ROW OF PANELS -->
-		<div class="row">
-			<!-- TWITTER PANEL -->
-			<div class="col-lg-4 col-md-4 col-sm-4 mb"  ng-click="selectMenu(4)">
-				<div class="planificacion pn centered">
-					<i class="fa fa-check-square-o"></i>					
-					<div class="info">
-						<div class="row">
-							<h3 class="centered">Asistencia</h3>							
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- /col-md-4 -->			
-					
-			<div class="col-lg-4 col-md-4 col-sm-4 mb"  ng-click="selectMenu(5)">
-				<div class="weather-3 pn centered">
-					<i class="fa fa-edit"></i>					
-					<div class="info">
-						<div class="row">
-							<h3 class="centered">Evaluaci&oacute;n</h3>							
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /col-md-4 -->
-			
-			<div class="col-lg-4 col-md-4 col-sm-4 mb">
-				<div class="weather-3 pn centered">
-					<i class="fa fa-dashboard"></i>					
-					<div class="info">
-						<div class="row">
-							<h3 class="centered">Reportes</h3>							
-						</div>
-					</div>
-				</div>
-			</div><! --/col-md-4 -->
-		</div><!-- /END ROW OF PANELS -->	
+		</div><!-- /END ROW OF PANELS -->			
 	</div>
 </div>

@@ -12,6 +12,11 @@ class UnidadeseducativasController extends AppController{
     public $components = array('RequestHandler');
     public $uses = array('UnidadEducativa');
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('index');
+    }
+
     public function index() {
         $datas = $this->UnidadEducativa->find('all');
         $unidades_educativas = array();

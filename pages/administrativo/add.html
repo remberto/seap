@@ -1,0 +1,191 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Nuevo Personal Administrativo
+</h3>
+<div class="row mt" ng-controller="administrativoController">
+    <div class="col-lg-12">      
+      <form name="newAdministrativoForm" id="newAdministrativoForm" novalidate="novalidate" class="form-horizontal style-form">
+          <div class="form-panel">
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              1.- Datos del Personal Administrativo
+            </h4>
+            <input type="hidden" ng-model="administrativo.UnidadEducativa"/> 
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group" ng-class="{'has-error': newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty, 'has-success': !newAdministrativoForm.carnet.$invalid}">
+                   <label class="col-md-4 control-label" for="carnet">C&eacute;dula de Identidad:</label>
+                   <div class="col-md-8">
+                      <div class="input-group" >
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                        <input type="number" id="carnet" name="carnet" class="form-control" ng-required="true" ng-model="administrativo.carnet" placeholder="Ingrese el N&uacute;mero C&eacute;dula de Identidad">                        
+                        <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-if="newAdministrativoForm.carnet.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      </div>
+                      <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="help-block">Carnet de Identidad es Requerido.</span>
+                   </div>                   
+                </div> 
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.paterno.$invalid && newAdministrativoForm.paterno.$dirty, 'has-success':!newAdministrativoForm.paterno.$invalid}">
+                  <label class="col-md-4 control-label" for="paterno">Apellido Paterno:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <div class="input-group-addon">P</div>
+                      <input type="text" id="paterno" name="paterno" ng-required="true" class="form-control" ng-model="administrativo.paterno"/>
+                      <span ng-if="newAdministrativoForm.paterno.$invalid && newAdministrativoForm.paterno.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newAdministrativoForm.paterno.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <span ng-if="newAdministrativoForm.paterno.$invalid && newAdministrativoForm.paterno.$dirty" class="help-block">Apellido Paterno es Requerido</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.materno.$invalid && newAdministrativoForm.materno.$dirty}">
+                  <label class="col-md-4 control-label" for="materno">Apellido Materno:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon">M</div>
+                      <input type="text" id="materno" class="form-control" ng-model="administrativo.materno"/>
+                      <span ng-if="newAdministrativoForm.materno.$invalid && newAdministrativoForm.materno.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newAdministrativoForm.materno.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.nombres.$invalid && newAdministrativoForm.nombres.$dirty, 'has-success':!newAdministrativoForm.nombres.$invalid}">
+                  <label class="col-md-4 control-label" for="nombres">Nombres:</label>
+                    <div class="col-md-8">
+                      <div class="input-group">
+                        <div class="input-group-addon">N</div>
+                        <input type="text" id="nombres" name="nombres" ng-required="true" class="form-control" ng-model="administrativo.nombres"/>
+                        <span ng-if="newAdministrativoForm.nombres.$invalid && newAdministrativoForm.nombres.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-if="newAdministrativoForm.nombres.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      </div>
+                    <span ng-if="newAdministrativoForm.nombres.$invalid && newAdministrativoForm.nombres.$dirty" class="help-block">Nombres es Requerido</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.fechaNacimiento.$invalid && newAdministrativoForm.fechaNacimiento.$dirty, 'has-success':!newAdministrativoForm.fechaNacimiento.$invalid}">
+                  <label class="col-md-4 control-label" for="fechaNacimiento">Fecha de Nacimiento:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                      <input type="date" id="fechaNacimiento" name="fechaNacimiento" ng-required="true" class="form-control" ng-model="administrativo.fecha_nacimiento"/>
+                      <span ng-if="newAdministrativoForm.fechaNacimiento.$invalid && newAdministrativoForm.fechaNacimiento.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newAdministrativoForm.fechaNacimiento.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="genero">Genero:</label>
+                  <div class="col-md-8">
+                      <div class="radio">
+                        <label class="radio-inline"><input type="radio" id="genero" value="M" ng-model="administrativo.genero"/> Masculino</label>
+                        <label class="radio-inline"><input type="radio" id="genero" value="F" ng-model="administrativo.genero"/> Femenino</label>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.rda.$invalid && newAdministrativoForm.rda.$dirty}">
+                  <label class="col-md-4 control-label" for="rda">RDA:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon">Nro.</div>
+                      <input type="number" id="rda" name="rda" class="form-control" ng-model="administrativo.rda"/>
+                      <span ng-if="newAdministrativoForm.rda.$invalid && newAdministrativoForm.rda.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>                      
+                    </div>
+                    <span ng-if="newAdministrativoForm.rda.$invalid && newAdministrativoForm.rda.$dirty" class="help-block">Dato no valido</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="cargo">Cargo en la Unidad Educativa:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <select id="cargo" name="cargo" ng-model="administrativo.Cargo" ng-options="value as value.descripcion for (key, value) in cargos" class="form-control">                      
+                      </select>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="financiamiento">Fuente de Financiamiento:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <select id="financiamiento" name="financiamiento" ng-model="administrativo.Financiamiento" ng-options="value as value.descripcion for (key, value) in financiamientos" class="form-control">
+                      </select>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="formacion">Formacion:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <select id="formacion" name="formacion" ng-model="administrativo.Formacion" ng-options="value as value.descripcion for (key, value) in formaciones" class="form-control">                      
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.telefono.$invalid && newAdministrativoForm.telefono.$dirty}">
+                  <label class="col-md-4 control-label" for="telefono">Telefono de Contacto:</label>
+                  <div class="col-md-8">
+                    <div class="input-group" >
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></div>
+                      <input type="number" id="telefono" name="telefono" class="form-control" ng-model="administrativo.telefono"/>
+                      <span ng-if="newAdministrativoForm.telefono.$invalid && newAdministrativoForm.telefono.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="email">Correo Electronico:</label>
+                  <div class="col-md-8">
+                    <div class="input-group" >
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></div>
+                      <input type="email" id="email" name="email" class="form-control" ng-model="administrativo.email"/>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+            <div class="form-group">
+            <div class="col-sm-12">
+              <!-- user-detail.html: -->
+                <a ng-click="cancel()" class="btn btn-small">Cancelar</a>            
+              <!-- user-creation.html: -->
+                <a ng-disabled="!newAdministrativoForm.$valid" ng-click="newAdministrativo()" class="btn btn-small btn-primary">Guardar</a>
+            </div>
+           </div>
+          </div>
+        </form>       
+    </div>
+</div>

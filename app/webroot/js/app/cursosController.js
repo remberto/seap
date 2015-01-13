@@ -1,6 +1,6 @@
 var cursosController = angular.module('cursosControllers',[]);
 
-cursosController.controller('cursosController', ['$scope','CursosFactory','CursoFactory','$location', function($scope, CursosFactory, CursoFactory, $location) {
+cursosController.controller('cursosController', ['$scope','CursosListFactory','CursoFactory','$location', 'sesionesControl', function($scope, CursosListFactory, CursoFactory, $location, sesionesControl) {
     $scope.cursos = null;
 
     $scope.addCurso = function(){
@@ -9,9 +9,10 @@ cursosController.controller('cursosController', ['$scope','CursosFactory','Curso
 
     $scope.deleteCurso = function(cursoId){
        CursoFactory.delete({id: cursoId});
-       CursosFactory.query(function(data){$scope.cursos = data.cursos;});
-    };    
-    CursosFactory.query(function(data){$scope.cursos = data.cursos;});
+       CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){$scope.cursos = data.cursos;});
+    };
+
+    CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){$scope.cursos = data.datos;});
 }]);
 
 
@@ -73,24 +74,28 @@ cursosController.controller('cursosDocenteAsignaturaController', ['$scope','$rou
 }]);
 
 
-cursosController.controller('cursoController', ['$scope','GestionesFactory','UnidadesEducativasFactory','NivelesFactory','GradosFactory','ParalelosFactory','TurnosFactory','CursosFactory','$location', function($scope, GestionesFactory, UnidadesEducativasFactory, NivelesFactory, GradosFactory, ParalelosFactory, TurnosFactory, CursosFactory, $location) {
+cursosController.controller('cursoController', ['$scope','GestionesFactory','UnidadesEducativasUsuarioFactory','NivelesUnidadEducativaFactory','GradosNivelFactory','ParalelosFactory','TurnosFactory','CursosFactory','$location','sesionesControl', function($scope, GestionesFactory, UnidadesEducativasUsuarioFactory, NivelesUnidadEducativaFactory, GradosNivelFactory, ParalelosFactory, TurnosFactory, CursosFactory, $location, sesionesControl) {
     $scope.niveles = null;
     $scope.grados = null;						     
     $scope.nivel = {name:'', id:0};
-    
+
+    GestionesFactory.query({habilitado: 1}, function(data){$scope.gestiones = data.datos;});
+    UnidadesEducativasUsuarioFactory.query({user_id: sesionesControl.get('user_id')}, function(data){$scope.unidadesEducativas = data.datos;});
+    ParalelosFactory.query(function(data){$scope.paralelos = data.datos;});
+    TurnosFactory.query(function(data){$scope.turnos = data.datos;});
+
+    $scope.selectUnidadEducativa = function(id)
+    {
+        NivelesUnidadEducativaFactory.query({unidad_educativa_id: id},function(data){$scope.niveles = data.datos;});
+    }
+
     $scope.selectNivel = function(id){
-	GradosFactory.query({nivel_id: id}, function(data){ $scope.grados = data.grados });
+	   GradosNivelFactory.query({nivel_id: id}, function(data){ $scope.grados = data.datos });
     };
     
     $scope.newCurso = function(){
         CursosFactory.create($scope.curso);
         $location.path('/cursos');
     };
- 
-    GestionesFactory.query(function(data){$scope.gestiones = data.gestiones;});
-    UnidadesEducativasFactory.query(function(data){$scope.unidadesEducativas = data.unidades_educativas;});
-    NivelesFactory.query(function(data){$scope.niveles = data.niveles;});
-    ParalelosFactory.query(function(data){$scope.paralelos = data.paralelos;});
-    TurnosFactory.query(function(data){$scope.turnos = data.turnos;});
     
 }]);

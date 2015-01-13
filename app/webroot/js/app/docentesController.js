@@ -1,5 +1,5 @@
 
-var docentesController = angular.module('docentesControllers',['hhhh']);
+var docentesController = angular.module('docentesControllers',[]);
 
 docentesController.controller('docentesController', ['$scope','DocentesFactory', '$location', function($scope, DocentesFactory, $location) {
     $scope.cursos = null;

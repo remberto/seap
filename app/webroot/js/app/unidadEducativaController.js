@@ -15,10 +15,17 @@ unidadEducativaController.controller('unidadesEducativasController', ['$scope','
     UnidadesEducativasFactory.query(function(data){$scope.unidades_educativas = data.unidades_educativas;});
 }]);
 
+
 unidadEducativaController.controller('unidadEducativaController', ['$scope','UnidadesEducativasFactory','$location', function($scope, UnidadesEducativasFactory, $location) {
 
-        $scope.newUnidadEducativa = function(){
+      $scope.newUnidadEducativa = function(){
 	    UnidadesEducativasFactory.create($scope.unidadEducativa);
-            $location.path('/unidadeseducativas');
+      $location.path('/unidadeseducativas');
 	};
+}]);
+
+
+unidadEducativaController.controller('unidadEducativaViewController', ['$scope','UnidadesEducativasUsuarioFactory','$location', 'sesionesControl', function($scope, UnidadesEducativasUsuarioFactory, $location, sesionesControl) {
+    $scope.unidadEducativa = null;
+    UnidadesEducativasUsuarioFactory.query({query_id: 118, user_id: sesionesControl.get('user_id')}, function(data){$scope.unidadEducativa = data.datos[0];});    
 }]);

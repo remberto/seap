@@ -8,6 +8,7 @@
     
 
     <title>Cuaderno Pedagogico</title>
+    <link rel="Shortcut Icon" type="image/ico" href="/favicon.ico">
 
     <!-- Bootstrap core CSS -->
     <link href="/app/webroot/assets/css/bootstrap.css" rel="stylesheet">
@@ -39,6 +40,7 @@
     <script type="text/javascript" src="/app/webroot/js/app/unidadEducativaController.js"></script>    
     <script type="text/javascript" src="/app/webroot/js/app/usuariosController.js"></script>    
     <script type="text/javascript" src="/app/webroot/js/app/cursosController.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/app/administrativosController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/docentesController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/estudiantesController.js"></script>
     <script type="text/javascript" src="/app/webroot/js/app/planificacionController.js"></script> 
@@ -242,74 +244,17 @@
                       </a>
                   </li>
 
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-desktop"></i>
-                          <span>Planificaci&oacute;n</span>
+                  <li class="sub-menu" ng-repeat="menu in menus">
+                      <a href="#{{ menu.url }}" >
+                          <i class="{{ menu.icono }}"></i>
+                          <span>{{ menu.menus }}</span>
                       </a>
-                      <ul class="sub">
+                      <!--<ul class="sub">
                           <li><a  href="#planificacion_anual">Plan Anual de Desarrollo Curricular</a></li>
                           <li><a  href="#planificacion_bimestral">Plan Bimestral</a></li>
                           <li><a  href="#planificacion_clases">Plan de Desarrollo de Clases</a></li>                          
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Filiaci&oacute;n</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="#cursos">Filiaci&oacute;n</a></li>                          
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Asistencia</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="#cursos">Control de Asistencia Diaria</a></li>
-                          <li><a  href="#cursos">Seguimiento a la Asistencia</a></li>                          
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Evaluaciones</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="#docentes">Cuadro de Evaluaci&oacute;n</a></li>
-                          <li><a  href="#docentes">Cuadro de Notas del Bimestre</a></li>
-                          <li><a  href="#docentes">Cuadro de Notas Anual</a></li>                          
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Reportes</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="#docentes">Curva de Aprendizaje</a></li>
-                          <li><a  href="#docentes">...</a></li>
-                          <li><a  href="#docentes">...</a></li>                          
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Configuraci&oacute;n</span>
-                      </a>
-                      <ul class="sub">
-                        <li><a  href="#usuarios">Usuarios</a></li>
-                         <li><a  href="#unidadeseducativas">Unidades Educativas</a></li>
-                       <li><a  href="#upload">Subir Archivo</a></li>
-                      </ul>         
-                  </li>
+                      </ul>-->
+                  </li>                 
 
               </ul>
               <!-- sidebar menu end-->

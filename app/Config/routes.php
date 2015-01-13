@@ -51,6 +51,7 @@
 	Router::mapResources('planificacionClases');
 	Router::mapResources('planificacionClasesDetalle');
 
+	Router::mapResources('administrativos');
 	Router::mapResources('estudiantes');
 	Router::mapResources('users');
     Router::mapResources('gestiones');

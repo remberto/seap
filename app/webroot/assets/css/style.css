@@ -1789,6 +1789,15 @@ label {
 	margin-bottom: 15px;
 }
 
+.form-control-feedback {
+    top: 0px;
+    right: -30px;
+}
+
+.form-control-feedback .has-feedback .ng-valid{
+    border: solid green 1px;
+}
+
 .round-form {
 	border-radius: 500px;
 	-webkit-border-radius: 500px;
