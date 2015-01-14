@@ -29,11 +29,15 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // route for the home page
 	.when('/', {
 	    templateUrl : 'pages/main.html',
-	    //controller  : 'mainController'
+	    controller  : 'initController'
 	})
     .when('/home', {
         templateUrl : 'pages/home.html',
         //controller  : 'homeController'
+    })
+    .when('/logout', {
+        templateUrl : 'pages/main.html',
+        controller  : 'logoutController'
     })
 
     // route for the about page
@@ -722,6 +726,13 @@ loginController.controller('initController',['$rootScope', '$scope','sesionesCon
     }
 }]);
 
+loginController.controller('logoutController',['$rootScope', '$scope','sesionesControl','dialogs','$location','MenusFactory',function($rootScope, $scope,sesionesControl,dialogs,$location, MenusFactory){
+    sesionesControl.unset("userLogin");
+    sesionesControl.unset("username");
+    sesionesControl.unset("user_id");
+    $location.path('/');    
+}]);
+
 var menuController = angular.module('menuControllers',[]);
 
 menuController.controller('menuController',['$rootScope','$scope','sesionesControl','$location','MenusFactory', function($rootScope, $scope, sesionesControl,$location, MenusFactory){    
@@ -738,6 +749,8 @@ menuController.controller('menuController',['$rootScope','$scope','sesionesContr
     $scope.selectMenu = function(url){        
         $location.path(url);
     }
+
+    
 }]);
 
 
