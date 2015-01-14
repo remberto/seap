@@ -3,6 +3,7 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'dialogs.main',
     'angularFileUpload',
     'ngRoute',
+    'angularSpinner',
     'cuadernoAppServices',
     'loginControllers',
     'menuControllers',
@@ -88,6 +89,16 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
         controller  : 'administrativoController'
     })
 
+    // Docentes
+    .when('/docentes', {
+        templateUrl : 'pages/docente/list.html',
+        controller  : 'docentesController'
+    })
+    .when('/addDocente', {
+        templateUrl : 'pages/docente/add.html',
+        controller  : 'docenteController'
+    })
+
     .when('/cursos', {
         templateUrl : 'pages/curso/list.html',
         controller  : 'cursosController'
@@ -109,17 +120,9 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     .when('/addEstudiante', {
             templateUrl : 'pages/estudiante/add.html',
             controller  : 'estudianteController'
-        })
-    
+        })  
 
-    .when('/docentes', {
-        templateUrl : 'pages/docente/list.html',
-        controller  : 'docentesController'
-    })
-    .when('/addDocente', {
-        templateUrl : 'pages/docente/add.html',
-        controller  : 'docentesController'
-    })
+    
 
     
     // Aqui va la parte de Asistencia y Evaluacion de parte del Docente
@@ -487,6 +490,29 @@ cuadernoAppServices.factory('ActionAdministrativoFactory', function ($resource) 
     })
 });
 
+// Docentes
+cuadernoAppServices.factory('DocentesFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', user_id: '@user_id'}, isArray: false}
+    });
+});
+// Guarda Docente
+cuadernoAppServices.factory('DocenteFactory', function ($resource) {
+    return $resource('/index.php/docentes.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })
+});
+// 
+cuadernoAppServices.factory('ActionDocenteFactory', function ($resource) {
+    return $resource('/index.php/docentes/:id.json?accion=:action', {}, {
+        //show: { method: 'GET' },
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+});
+
+
 // Cargo de Administrativos
 cuadernoAppServices.factory('CargoAdministrativoFactory', function ($resource) {
     return $resource('/index.php/consultas.json?query_id=120', {}, {
@@ -601,15 +627,6 @@ cuadernoAppServices.factory('TurnosFactory', function ($resource) {
 });
 
 
-// Docentes
-cuadernoAppServices.factory('DocentesFactory', function ($resource) {
-    return $resource('/index.php/docentes.json', {}, {
-        query: { method: 'GET', isArray: false},
-        create: { method: 'POST' }
-    })
-});
-
-
 // Asistencia
 cuadernoAppServices.factory('AsistenciaFactory', function ($resource) {
     return $resource('/index.php/asistencia.json', {}, {
@@ -654,7 +671,7 @@ cuadernoAppServices.factory('InscritosEvaluacionFactory', function ($resource) {
 
 var loginController = angular.module('loginControllers',[]);
 
-loginController.controller('loginController',['$scope', '$modalInstance', '$location', 'sesionesControl', 'authUsers',function($scope, $modalInstance, $location, sesionesControl, authUsers){
+loginController.controller('loginController',['$scope', '$modalInstance', '$location', 'sesionesControl', 'authUsers', 'usSpinnerService', function($scope, $modalInstance, $location, sesionesControl, authUsers, usSpinnerService){
    //-- Variables --//
     var cacheSession = function(username, userid){
        sesionesControl.set("userLogin", true);
@@ -675,8 +692,10 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
     }; // end cancel
     
     $scope.save = function(){
+        usSpinnerService.spin('spinner-1');
 	    authUsers.login({username: $scope.user.username, password: $scope.user.password},
 			function(data){
+                usSpinnerService.stop('spinner-1');
 			    if(data.login){
 				$scope.user.name = data.username;
 				cacheSession(data.username, data.id);

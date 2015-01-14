@@ -30,10 +30,12 @@
     <script type="text/javascript" src="/app/webroot/js/angular/angular-resource.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/angular/angular-file-upload.min.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/angular/angular-spinner.min.js"></script>
 
     <script type="text/javascript" src="/app/webroot/js/jquery.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/dialogs/dialogs.min.js"></script>
     <script type="text/javascript" src="/app/webroot/js/jAlert-v2-min.js"></script>
+    <script type="text/javascript" src="/app/webroot/js/spin.min.js"></script>
 
     <script type="text/javascript" src="/app/webroot/js/app/cuadernoApp.js"></script>
 
@@ -271,6 +273,7 @@
               <div ng-view>
               </div>
           </section>
+          <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
       </section>
 
       <!--main content end-->

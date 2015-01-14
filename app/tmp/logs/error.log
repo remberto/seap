@@ -5713,3 +5713,509 @@ Stack Trace:
 #0 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
 #2 {main}
+2015-01-14 20:09:43 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:09:43 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:09:46 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:09:46 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:11:05 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:11:05 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:11:07 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:11:07 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:11:12 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:11:12 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:13:48 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:02 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:02 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:27 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:29 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:30 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:30 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:32 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:48 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:51 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:51 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:55 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:14:58 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:15:16 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:18:37 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:22:21 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:22:22 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:22:43 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:23:04 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 20:23:17 Error: [MissingActionException] Action DocentesController::entrar() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'entrar',
+)
+Request URL: /index.php/docentes/entrar
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 21:26:00 Error: Fatal Error (4): syntax error, unexpected '?>', expecting function (T_FUNCTION) in [D:\desarrollo\bienaventuranza\seap\app\Model\DocenteUe.php, line 39]
+2015-01-14 21:26:00 Error: [FatalErrorException] syntax error, unexpected '?>', expecting function (T_FUNCTION)
+Request URL: /index.php/docentes.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 39)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 39, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 39, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-01-14 21:27:17 Error: Fatal Error (4): syntax error, unexpected '?>', expecting function (T_FUNCTION) in [D:\desarrollo\bienaventuranza\seap\app\Model\DocenteUe.php, line 38]
+2015-01-14 21:27:17 Error: [FatalErrorException] syntax error, unexpected '?>', expecting function (T_FUNCTION)
+Request URL: /index.php/docentes.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-01-14 21:28:46 Error: Fatal Error (4): syntax error, unexpected '?>', expecting function (T_FUNCTION) in [D:\desarrollo\bienaventuranza\seap\app\Model\DocenteUe.php, line 38]
+2015-01-14 21:28:46 Error: [FatalErrorException] syntax error, unexpected '?>', expecting function (T_FUNCTION)
+Request URL: /index.php/docentes.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-01-14 21:29:14 Error: Fatal Error (4): syntax error, unexpected '?>', expecting function (T_FUNCTION) in [D:\desarrollo\bienaventuranza\seap\app\Model\DocenteUe.php, line 38]
+2015-01-14 21:29:14 Error: [FatalErrorException] syntax error, unexpected '?>', expecting function (T_FUNCTION)
+Request URL: /index.php/docentes.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-01-14 21:29:59 Error: Fatal Error (4): syntax error, unexpected '?>', expecting function (T_FUNCTION) in [D:\desarrollo\bienaventuranza\seap\app\Model\DocenteUe.php, line 38]
+2015-01-14 21:29:59 Error: [FatalErrorException] syntax error, unexpected '?>', expecting function (T_FUNCTION)
+Request URL: /index.php/docentes.json
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-01-14 22:02:26 Error: [MissingActionException] Action DocentesController::accion() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'accion',
+)
+Request URL: /index.php/docentes/54b6d941-7084-45d5-99bf-26e8afb6fe0b.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 22:03:36 Error: [MissingActionException] Action DocentesController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'index',
+)
+Request URL: /index.php/docentes.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 22:03:55 Error: [MissingActionException] Action DocentesController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'index',
+)
+Request URL: /index.php/docentes.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 22:04:39 Error: [MissingActionException] Action DocentesController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'index',
+)
+Request URL: /index.php/docentes.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 22:06:03 Error: [MissingActionException] Action DocentesController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'index',
+)
+Request URL: /index.php/docentes.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 22:06:15 Error: [MissingActionException] Action DocentesController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'index',
+)
+Request URL: /index.php/docentes.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 22:08:24 Error: [MissingActionException] Action DocentesController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'index',
+)
+Request URL: /index.php/docentes.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}
+2015-01-14 22:11:09 Error: [MissingActionException] Action DocentesController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'DocentesController',
+  'action' => 'index',
+)
+Request URL: /index.php/docentes.json?accion=delete
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(DocentesController), Object(CakeRequest))
+#2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#4 {main}

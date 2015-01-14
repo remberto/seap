@@ -24,6 +24,15 @@ class Docente extends AppModel {
             'dependent' => true
 		),
 	);
+
+     //Belongs
+    public $belongsTo = array(                
+        'Formacion' => array(
+            'className'=>'Formacion',
+            'type'=>'INNER',
+            'foreignKey' => 'formacion_id',
+        ),        
+    );
 }
 
 ?>

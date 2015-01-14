@@ -47,7 +47,7 @@ class AdministrativosController extends AppController{
             $message['mensaje'] = 'Guardado';
         }catch(Exception $e) {
             $datasource->rollback();
-            $message['guardado'] = true;
+            $message['guardado'] = false;
             $message = 'Error al Guardar los datos '.$e->getMessage();
         }
 
