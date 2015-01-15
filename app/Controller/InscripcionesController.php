@@ -14,42 +14,96 @@ class InscripcionesController extends AppController{
     public $uses = array('Persona','Estudiante','Inscrito');
     //funcion de inicio
 
-    public function beforeFilter() {
+   public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('index','view');
+        $this->Auth->allow('add');
+        $this->Auth->allow('accion');
+        $this->Auth->allow('delete');        
     }
+    
 
-    public function index() {
+    public function add(){       
+        $datasource = $this->Inscrito->getDataSource();
+        $datasource->useNestedTransactions = TRUE;
+        $datasource->begin();
+        
+        try{          
+            $this->Persona->create();
+            $_persona = array();
+            $_persona['paterno'] = $this->request->data['paterno'];
+            $_persona['materno'] = $this->request->data['materno'];
+            $_persona['nombres'] = $this->request->data['nombres'];
+            $_persona['fecha_nacimiento'] = $this->request->data['fecha_nacimiento'];
+            $_persona['genero'] = $this->request->data['genero'];
+            $this->Persona->save($_persona);
 
-        if(isset($this->request->query['curso_id'])):
-            //atas = $this->Estudiante->query('SELECT estudiantes.id, estudiantes.carnet, personas.paterno FROM estudiantes INNER JOIN personas ON estudiantes.id = personas.id');
-            $query = 'SELECT inscritos.id as id, 
-            CASE WHEN personas.paterno IS NULL THEN \'\' ELSE personas.paterno END as paterno,
-            CASE WHEN personas.Materno IS NULL THEN \'\' ELSE personas.materno END as materno,
-            personas.nombres as nombres
-            FROM inscritos
-            INNER JOIN estudiantes ON inscritos.estudiante_id = estudiantes.id
-            INNER JOIN personas ON personas.id = estudiantes.id
-            WHERE inscritos.curso_id = \':curso_id\'
-            ORDER BY personas.paterno, personas.materno, personas.nombres;';
-            $query = str_replace(':curso_id', $this->request->query['curso_id'], $query);                       
-            $datas = $this->Inscrito->query($query);
-        endif;
-        $inscripciones = array();
-        foreach($datas as $data):
-            $inscripcion = array();
-            foreach ($data as $key => $val):                
-                foreach ($val as $key => $value):
-                    $inscripcion[$key] = $value;
-                endforeach;                
-            endforeach;
-            array_push($inscripciones, $inscripcion);
-        endforeach;
-        //$estudiantes = $datas;
+            $this->Estudiante->create();
+            $_estudiante = array();
+            $_estudiante['id'] = $this->Persona->getLastInsertID();
+            $_estudiante['carnet_identidad'] = $this->request->data['carnet_identidad'];
+            $_estudiante['codigo_rude'] = $this->request->data['codigo_rude'];            
+            $this->Estudiante->save($_estudiante);
+
+            $this->Inscrito->create();
+            $_inscrito = array();
+            $_inscrito['estudiante_id'] = $this->Persona->getLastInsertID();
+            $_inscrito['curso_id'] = $this->request->data['curso_id'];            
+            $_inscrito['fecha_inscripcion'] = date('Y-m-d');
+            $_inscrito['estado_inicio_id'] = 1;
+            $_inscrito['estado_final_id'] = 4;
+            $this->Inscrito->save($_inscrito);
+            
+            $datasource->commit();
+            $message['guardado'] = true;
+            $message['mensaje'] = 'Se realizo la inscripcion correctamente';
+        }catch(Exception $e) {
+            $datasource->rollback();
+            $message['guardado'] = false;
+            $message = 'Error al Guardar los datos '.$e->getMessage();
+        }
+        
         $this->set(array(
-            'inscripciones' => $inscripciones,
-            '_serialize' => array('inscripciones')
-        ));       
+            'message' => $message,
+            '_serialize' => array('message')
+        ));
     }
+
+    public function accion($id){
+        if($this->request->query['accion']=='view'):
+            $this->view($id);
+        elseif($this->request->query['accion']=='delete'):
+            $this->delete($id);
+        endif;
+    }
+
+    public function view($id){       
+        $data = $this->Docente->findById($id);        
+        $estudiante = array();
+        foreach ($data as $key => $val):                
+            foreach ($val as $key => $value):
+                $estudiante[$key] = $value;
+            endforeach;                
+        endforeach;
+            //array_push($estudiantes, $estudiante);
+            //endforeach;
+        $this->set(array(
+            'estudiante' => $estudiante,
+            '_serialize' => array('estudiante')
+        ));
+    }
+
+     public function delete($id){  
+        if($this->Inscrito->delete($id)):
+          $message['eliminado'] = true;
+          $message['mensaje'] = 'Eliminado';
+        else:
+          $message['eliminado'] = false;
+          $message['mensaje'] = 'Error';
+        endif;
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+           ));
+    } 
 }
 ?>

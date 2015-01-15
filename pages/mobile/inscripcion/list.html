@@ -1,0 +1,45 @@
+<style>
+.interlineado{
+  background-color: #f5f5f5;
+  background-position: 
+}
+.celda{
+  border: 1 solid #fff;
+}
+</style>
+<div ng-controller="cursosController">
+  <h3>
+    <i class="fa fa-angle-right"></i>
+    Inscripcion
+  </h3>  
+  <div class="row mt">
+    <div class="col-xs-12">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Cursos de la Unidad Educativa</h4>
+        <section class="unseen">
+          <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th class="col-xs-1">Nro.</th>                
+                <th class="col-xs-8"><center>Curso</center></th>      
+                <th class="col-xs-3"><center>Accion</center></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="curso in cursos">
+                <td>{{ $index + 1 }}</td>                
+                <td>{{ curso.nivel }} - {{ curso.grado }} - {{ curso.paralelo }} - {{ curso.turno }}</td>
+                <td>
+                  <center>
+                  <button class="btn btn-primary btn-xs" ng-click="inscribir(curso.id)" title="Inscribir Estudiante"><i class="fa fa-book"></i></button>
+                  <button class="btn btn-danger btn-xs" ng-click="lista(curso.id)"><i class="fa fa-bookmark "></i></button>
+                  </center>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

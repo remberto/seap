@@ -1,6 +1,7 @@
 var cursosController = angular.module('cursosControllers',[]);
 
-cursosController.controller('cursosController', ['$scope','CursosListFactory','CursoFactory','$location', 'sesionesControl', function($scope, CursosListFactory, CursoFactory, $location, sesionesControl) {
+cursosController.controller('cursosController', ['$scope','CursosListFactory','CursoFactory','$location', 'sesionesControl', 'usSpinnerService', function($scope, CursosListFactory, CursoFactory, $location, sesionesControl, usSpinnerService) {
+    usSpinnerService.spin('spinner-1');
     $scope.cursos = null;
 
     $scope.addCurso = function(){
@@ -16,8 +17,10 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
           'btn': [{'label':'Eliminar', 
                    'closeOnClick': false, 
                    'cssClass': 'blue',
-                   'onClick': function(alert){                     
+                   'onClick': function(alert){
+                        usSpinnerService.spin('spinner-1');                     
                         CursoFactory.delete({id: cursoId}, function(data){
+                            usSpinnerService.stop('spinner-1');
                             if(data.message.eliminado){
                                 $.fn.jAlert({
                                       'title':'¡Satisfactorio!',
@@ -30,7 +33,8 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
                                              }],
                                       'size': 'small',                      
                                       'onClose': function(){
-                                          CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){$scope.cursos = data.datos;});
+                                          usSpinnerService.spin('spinner-1');
+                                          CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1');$scope.cursos = data.datos;});
                                       }
                                     });
 
@@ -52,7 +56,9 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
         })             
     };
 
-    CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){$scope.cursos = data.datos;});
+
+
+    CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
 }]);
 
 

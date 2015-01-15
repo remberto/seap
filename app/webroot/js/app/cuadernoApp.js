@@ -17,6 +17,7 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'docentesControllers',
     'usuariosControllers',
     'cursosControllers',
+    'inscripcionesControllers',
     'uploadControllers',
 ]);
 
@@ -107,6 +108,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
         controller  : 'docenteController'
     })
 
+    // Cursos
     .when('/cursos', {
         templateUrl : (_isNotMobile )? 'pages/mobile/curso/list.html':'pages/curso/list.html',        
         controller  : 'cursosController'
@@ -121,6 +123,21 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
         controller  : 'cursoController'
     })     
 
+    // Inscripciones
+    
+    .when('/inscripciones',{
+        templateUrl : (_isNotMobile )? 'pages/mobile/inscripcion/list.html':'pages/desktop/inscripcion/list.html',
+        controller  : 'inscripcionCursoController'
+    })
+    .when('/inscribir/:idCurso',{
+        templateUrl : 'pages/desktop/inscripcion/add.html',
+        controller  : 'inscribirController'
+    })
+    .when('/listInscripciones/:idCurso',{
+        templateUrl : (_isNotMobile )? 'pages/mobile/inscripcion/listInscripcion.html':'pages/desktop/inscripcion/listInscripcion.html',
+        controller  : 'inscripcionListController'
+    })
+    
     .when('/addEstudiante', {
             templateUrl : 'pages/estudiante/add.html',
             controller  : 'estudianteController'
@@ -566,15 +583,19 @@ cuadernoAppServices.factory('CursosDocenteAsignaturaFactory', function ($resourc
     });
 });
 
-
 // InscripcionFactory
 // Devuelve las inscripciones realizadas en un Curso
 cuadernoAppServices.factory('InscripcionFactory', function ($resource) {
-    return $resource('/index.php/inscripciones.json?curso_id=:curso_id', {}, {
-        query: { method: 'GET', params:{curso_id: '@curso_id'}, isArray: false}        
+    return $resource('/index.php/inscripciones.json', {}, {
+        create: { method: 'POST'}        
     });
 });
 
+cuadernoAppServices.factory('InscripcionListFactory', function ($resource) {
+   return $resource('/index.php/consultas.json?query_id=:query_id&curso_id=:curso_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', curso_id: '@curso_id'}, isArray: false}
+    });
+});
 
 cuadernoAppServices.factory('CursoFactory', function ($resource) {
     return $resource('/index.php/cursos/:id.json?accion=:action', {}, {
