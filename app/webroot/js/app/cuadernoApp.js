@@ -108,18 +108,14 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     })
 
     .when('/cursos', {
-        templateUrl : (_isNotMobile )? 'pages/curso/list.html':'pages/curso/list.html',        
+        templateUrl : (_isNotMobile )? 'pages/mobile/curso/list.html':'pages/curso/list.html',        
         controller  : 'cursosController'
     })
     .when('/addCurso', {
         templateUrl : 'pages/curso/add.html',
         controller  : 'cursoController'
     })
-
-    .when('/cursos', {
-        templateUrl : 'pages/curso/list.html',
-        controller  : 'cursosController'
-    })
+    
     .when('/addCurso', {
         templateUrl : 'pages/curso/add.html',
         controller  : 'cursoController'

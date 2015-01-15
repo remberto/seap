@@ -1,3 +1,12 @@
+<style>
+.interlineado{
+  background-color: #f5f5f5;
+  background-position: 
+}
+.celda{
+  border: 1 solid #fff;
+}
+</style>
 <div ng-controller="cursosController">
   <h3>
     <i class="fa fa-angle-right"></i>
@@ -8,14 +17,29 @@
     <div class="col-xs-12">
       <div class="content-panel">
         <h4><i class="fa fa-angle-right"></i> Cursos de la Unidad Educativa</h4>
-          <div class="row" ng-repeat="curso in cursos">
-              <div class="col-xs-6">
-                {{ $index + 1 }}.-  
-              </div>
-              <div class="col-xs-6">                
-                {{ curso.nivel }}-{{ curso.grado }}-{{ curso.paralelo }}-{{ curso.turno }}
-              </div>              
-          </div>
+        <section class="unseen">
+          <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th class="col-xs-1">Nro.</th>                
+                <th class="col-xs-8"><center>Curso</center></th>      
+                <th class="col-xs-3"><center>Accion</center></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="curso in cursos">
+                <td>{{ $index + 1 }}</td>                
+                <td>{{ curso.nivel }} - {{ curso.grado }} - {{ curso.paralelo }} - {{ curso.turno }}</td>
+                <td>
+                  <center>
+                  <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                  <button class="btn btn-danger btn-xs" ng-click="deleteCurso(curso.id)"><i class="fa fa-trash-o "></i></button>
+                  </center>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </div>
     </div>
   </div>
