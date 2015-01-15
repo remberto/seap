@@ -8,8 +8,48 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
     };
 
     $scope.deleteCurso = function(cursoId){
-       CursoFactory.delete({id: cursoId});
-       CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){$scope.cursos = data.cursos;});
+        $.fn.jAlert({
+          'title':'Eliminar',
+          'message': '¿Desea dar de Baja el Curso de la UnidadEducativa?',          
+          'closeBtn': false,
+          'theme': 'info',
+          'btn': [{'label':'Eliminar', 
+                   'closeOnClick': false, 
+                   'cssClass': 'blue',
+                   'onClick': function(alert){                     
+                        CursoFactory.delete({id: cursoId}, function(data){
+                            if(data.message.eliminado){
+                                $.fn.jAlert({
+                                      'title':'¡Satisfactorio!',
+                                      'message': 'Se dio de baja correctamente',
+                                      'theme': 'success',
+                                      'closeBtn': false,
+                                      'btn': [{'label':'Cerrar', 
+                                               'closeOnClick': true, 
+                                               'cssClass': 'green',                                
+                                             }],
+                                      'size': 'small',                      
+                                      'onClose': function(){
+                                          CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){$scope.cursos = data.datos;});
+                                      }
+                                    });
+
+                            }else{
+                                $.fn.jAlert({
+                                      'title':'Error!',
+                                      'message': 'No Puede ser eliminado el Personal Administrativo',
+                                      'theme': 'error'
+                                    });
+                            }    
+                        });
+                        alert.closeAlert(true);
+                   }
+                 },
+                 {'label':'Cancelar', 
+                   'closeOnClick': true,                    
+                 }],
+          'size': 'small',          
+        })             
     };
 
     CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){$scope.cursos = data.datos;});
@@ -74,28 +114,64 @@ cursosController.controller('cursosDocenteAsignaturaController', ['$scope','$rou
 }]);
 
 
-cursosController.controller('cursoController', ['$scope','GestionesFactory','UnidadesEducativasUsuarioFactory','NivelesUnidadEducativaFactory','GradosNivelFactory','ParalelosFactory','TurnosFactory','CursosFactory','$location','sesionesControl', function($scope, GestionesFactory, UnidadesEducativasUsuarioFactory, NivelesUnidadEducativaFactory, GradosNivelFactory, ParalelosFactory, TurnosFactory, CursosFactory, $location, sesionesControl) {
+cursosController.controller('cursoController', ['$scope','GestionesFactory','UnidadesEducativasUsuarioFactory','NivelesUnidadEducativaFactory','GradosNivelFactory','ParalelosFactory','TurnosFactory','CursosFactory','$location','sesionesControl', 'usSpinnerService', function($scope, GestionesFactory, UnidadesEducativasUsuarioFactory, NivelesUnidadEducativaFactory, GradosNivelFactory, ParalelosFactory, TurnosFactory, CursosFactory, $location, sesionesControl, usSpinnerService) {
+    usSpinnerService.spin('spinner-1');
     $scope.niveles = null;
-    $scope.grados = null;						     
-    $scope.nivel = {name:'', id:0};
+    $scope.grados = null;						         
+    $scope.curso = {Gestion: 2015, UnidadEducativa: '', Paralelo: null, Turno: null}; 
 
-    GestionesFactory.query({habilitado: 1}, function(data){$scope.gestiones = data.datos;});
-    UnidadesEducativasUsuarioFactory.query({user_id: sesionesControl.get('user_id')}, function(data){$scope.unidadesEducativas = data.datos;});
-    ParalelosFactory.query(function(data){$scope.paralelos = data.datos;});
-    TurnosFactory.query(function(data){$scope.turnos = data.datos;});
+    GestionesFactory.query({habilitado: 1}, function(data){ usSpinnerService.stop('spinner-1'); $scope.gestiones = data.datos;});
+    UnidadesEducativasUsuarioFactory.query({query_id: 113, user_id: sesionesControl.get('user_id')}, function(data){
+        $scope.curso.UnidadEducativa = data.datos[0];        
+        NivelesUnidadEducativaFactory.query({unidad_educativa_id: $scope.curso.UnidadEducativa.id},function(data){usSpinnerService.stop('spinner-1'); $scope.niveles = data.datos;});
+    });
+    ParalelosFactory.query(function(data){usSpinnerService.stop('spinner-1'); $scope.paralelos = data.datos;});
+    TurnosFactory.query(function(data){usSpinnerService.stop('spinner-1'); $scope.turnos = data.datos;});
 
-    $scope.selectUnidadEducativa = function(id)
-    {
-        NivelesUnidadEducativaFactory.query({unidad_educativa_id: id},function(data){$scope.niveles = data.datos;});
-    }
-
-    $scope.selectNivel = function(id){
-	   GradosNivelFactory.query({nivel_id: id}, function(data){ $scope.grados = data.datos });
+    $scope.selectNivel = function(id){        
+        if(typeof id === 'undefined'){
+            $scope.grados = null;
+            $scope.curso.Grado = null;
+        }else{
+            usSpinnerService.spin('spinner-1');
+            GradosNivelFactory.query({nivel_id: id}, function(data){usSpinnerService.stop('spinner-1'); $scope.grados = data.datos });
+        }	   
     };
     
     $scope.newCurso = function(){
-        CursosFactory.create($scope.curso);
-        $location.path('/cursos');
+        usSpinnerService.spin('spinner-1');        
+        CursosFactory.create($scope.curso, function(data){            
+            if(data.message.guardado){
+                usSpinnerService.stop('spinner-1');
+                $.fn.jAlert({
+                      'title':'¡Satisfactorio!',
+                      'message': data.message.mensaje,
+                      'theme': 'success',
+                      'closeBtn': false,
+                      'btn': [{'label':'Cerrar', 
+                               'closeOnClick': true, 
+                               'cssClass': 'green',                                
+                             }],
+                      'size': 'small',                      
+                      'onClose': function(){
+                          $scope.mtdList();
+                      }
+                    });
+
+            }else{
+                usSpinnerService.stop('spinner-1');
+                $.fn.jAlert({
+                      'title':'Error!',
+                      'message': data.message.mensaje,
+                      'theme': 'error'
+                    });
+            }            
+        });               
     };
     
+    $scope.mtdList = function(){        
+        $location.path('/cursos'); 
+        $scope.$apply();
+    }
+
 }]);

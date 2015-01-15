@@ -537,8 +537,7 @@ cuadernoAppServices.factory('FormacionFactory', function ($resource) {
 // Cursos
 cuadernoAppServices.factory('CursosListFactory', function ($resource) {
     return $resource('/index.php/consultas.json?query_id=111&habilitado=:habilitado&user_id=:user_id', {}, {
-        query: { method: 'GET', params: {habilitado: '@habilitado', user_id: '@user_id'}, isArray: false},
-        create: { method: 'POST' }
+        query: { method: 'GET', params: {habilitado: '@habilitado', user_id: '@user_id'}, isArray: false},        
     });
 });
 
@@ -574,10 +573,10 @@ cuadernoAppServices.factory('InscripcionFactory', function ($resource) {
 
 
 cuadernoAppServices.factory('CursoFactory', function ($resource) {
-    return $resource('/index.php/cursos/:id.json', {}, {
+    return $resource('/index.php/cursos/:id.json?accion=:action', {}, {
         //show: { method: 'GET' },
-        update: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'GET', params: {id: '@id'} }
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
     })
 });
 

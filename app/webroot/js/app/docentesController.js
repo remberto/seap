@@ -18,7 +18,9 @@ docentesController.controller('docentesController', ['$scope','DocentesFactory',
                    'closeOnClick': false, 
                    'cssClass': 'blue',
                    'onClick': function(alert){
+                        usSpinnerService.spin('spinner-1');
                         ActionDocenteFactory.delete({id: Id}, function(data){
+                            usSpinnerService.stop('spinner-1');
                             if(data.message.eliminado){
                                 $.fn.jAlert({
                                       'title':'¡Satisfactorio!',
@@ -31,7 +33,10 @@ docentesController.controller('docentesController', ['$scope','DocentesFactory',
                                              }],
                                       'size': 'small',                      
                                       'onClose': function(){
-                                          DocentesFactory.query({query_id: 123, user_id: sesionesControl.get('user_id')}, function(data){$scope.docentes = data.datos;});
+                                          usSpinnerService.spin('spinner-1');
+                                          DocentesFactory.query({query_id: 123, user_id: sesionesControl.get('user_id')}, function(data){
+                                             usSpinnerService.stop('spinner-1');
+                                            $scope.docentes = data.datos;});
                                       }
                                     });
 

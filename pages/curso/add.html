@@ -2,65 +2,91 @@
   <i class="fa fa-angle-right"></i>
   Nuevo Curso
 </h3>
-<div class="row mt" ng-controller="cursoController">
-    <div class="col-lg-12">
-      <div class="form-panel">
-	 <form novalidate="novalidate" class="form-horizontal style-form">
-	   <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputGestion">Gestion : </label>
-             <div class="col-sm-10">
-	             <select id="inputGestion" ng-model="curso.gestion_id" ng-options="value as value.gestion for (key, value) in gestiones" class="form-control">
-		              <option>Seleccione</option>
-		           </select>
-             </div>
-           </div>
-	  <div class="form-group">
-        <label class="col-sm-2 col-sm-2 control-label" for="inputUnidadEducativa">Unidad Educativa : </label>
-        <div class="col-sm-10">
-	        <select id="inputUnidadEducativa" ng-model="curso.unidad_educativa_id" ng-change="selectUnidadEducativa(curso.unidad_educativa_id.id)" ng-options="value as value.descripcion for (key, value) in unidadesEducativas" class="form-control">
-		      <option>Seleccione</option>
-		      </select>
-        </div>
-    </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputNivel">Nivel : </label>
-             <div class="col-sm-10">
-	        <select id="inputNivel" ng-change="selectNivel(nivel.id)" ng-model="nivel" ng-options="value as value.descripcion for (key, value) in niveles" class="form-control">
-		  <option>Seleccione</option>
-		</select>
-             </div>
-           </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputGrado">Grado : </label>
-             <div class="col-sm-10">
-	        <select id="inputGrado" ng-model="curso.grado_id" ng-options="value as value.descripcion for (key, value) in grados" class="form-control">
-		  <option>Seleccione</option>
-		</select>
-             </div>
-           </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputParalelo">Paralelo :</label>
-             <div class="col-sm-10">
-                <select id="inputParalelo" ng-model="curso.paralelo_id" ng-options="value as value.descripcion for (key, value) in paralelos" class="form-control">
-		  <option>Seleccione</option>
-		</select>
-             </div>
-           </div>
-	   <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputTurno">Turno :</label>
-             <div class="col-sm-10">
-                <select id="inputTurno" ng-model="curso.turno_id" ng-options="value as value.descripcion for (key, value) in turnos" class="form-control">
-		  <option>Seleccione</option>
-		</select>
-             </div>
-           </div>
-           <div class="form-group">
+<div class="row mt" ng-controller="cursosController">
+    <div class="col-lg-12">      
+      <form name="newCursoForm" id="newCursoForm" novalidate="novalidate" class="form-horizontal style-form">
+          <div class="form-panel">
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              1.- Crear Curso para la Unidad Educativa " {{ curso.UnidadEducativa.descripcion }} "
+            </h4>
+            <input type="hidden" ng-model="curso.Gestion"/>
+            <input type="hidden" ng-model="curso.UnidadEducativa"/> 
+            
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group" ng-class="{'has-error':newCursoForm.nivel.$error.required, 'has-success':newCursoForm.nivel.$valid}">
+                  <label class="col-md-4 control-label" for="nivel">Nivel:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                                            
+                      <select id="nivel" name="nivel" ng-change="selectNivel(nivel.id)" ng-model="nivel" ng-options="value as value.descripcion for (key, value) in niveles" class="form-control" required>
+                        <option value="">-- Seleccione Nivel --</option>
+                      </select>
+                      <span ng-if="newCursoForm.nivel.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newCursoForm.nivel.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <span ng-if="newCursoForm.nivel.$error.required" class="help-block">El nivel es requerido</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group" ng-class="{'has-error':newCursoForm.grado.$error.required, 'has-success':newCursoForm.nivel.$valid}">
+                  <label class="col-md-4 control-label" for="grado">Grado:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <select id="grado" name="grado" ng-model="curso.Grado" ng-options="value as value.descripcion for (key, value) in grados" class="form-control" required>
+                        <option value="">-- Seleccione Grado --</option>
+                      </select>
+                      <span ng-if="newCursoForm.grado.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newCursoForm.grado.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>                      
+                    </div>
+                    <span ng-if="newCursoForm.grado.$error.required" class="help-block">El grado es requerido</span>
+                  </div>
+                </div>
+              </div>              
+            </div>
+            
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group" ng-class="{'has-error':newCursoForm.paralelo.$error.required, 'has-success':newCursoForm.nivel.$valid}">
+                  <label class="col-md-4 control-label" for="paralelo">Paralelo:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <select id="paralelo" name="paralelo" ng-model="curso.Paralelo" ng-options="value as value.descripcion for (key, value) in paralelos" class="form-control" required>
+                        <option value="">-- Seleccione Paralelo</option>
+                      </select>
+                      <span ng-if="newCursoForm.paralelo.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newCursoForm.paralelo.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>                     
+                    </div>
+                    <span ng-if="newCursoForm.paralelo.$error.required" class="help-block">El paralelo es requerido</span>
+                  </div>
+                </div>
+              </div>              
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group" ng-class="{'has-error':newCursoForm.turno.$error.required, 'has-success':newCursoForm.tuno.$valid}">
+                  <label class="col-md-4 control-label" for="turno">Turno:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <select id="turno" name="turno" ng-model="curso.Turno" ng-options="value as value.descripcion for (key, value) in turnos" class="form-control" required>
+                        <option value="">-- Seleccione Turno --</option>
+                      </select>
+                      <span ng-if="newCursoForm.turno.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newCursoForm.turno.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span> 
+                    </div>
+                    <span ng-if="newCursoForm.turno.$error.required" class="help-block">El turno es requerido</span>
+                  </div>
+                </div> 
+              </div>              
+            </div>
+            
+            <div class="form-group">
             <div class="col-sm-12">
-                <a ng-click="cancel()" class="btn btn-small">Cancelar</a>
-                <a ng-click="newCurso()" class="btn btn-small btn-primary">Guardar</a>
+              <!-- user-detail.html: -->
+                <a ng-click="cancel()" class="btn btn-small">Cancelar</a>            
+              <!-- user-creation.html: -->
+                <a ng-disabled="!newCursoForm.$valid" ng-click="newCurso()" class="btn btn-small btn-primary">Crear Curso</a>
             </div>
            </div>
-	 </form>
-       </div>
+          </div>
+        </form>       
     </div>
 </div>
