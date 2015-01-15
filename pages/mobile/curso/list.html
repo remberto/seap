@@ -1,0 +1,22 @@
+<div ng-controller="cursosController">
+  <h3>
+    <i class="fa fa-angle-right"></i>
+    Cursos
+  </h3>
+  <button type="button" class="btn btn-primary" ng-click="addCurso()">Nuevo Curso</button>
+  <div class="row mt">
+    <div class="col-xs-12">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Cursos de la Unidad Educativa</h4>
+          <div class="row" ng-repeat="curso in cursos">
+              <div class="col-xs-6">
+                {{ $index + 1 }}.-  
+              </div>
+              <div class="col-xs-6">                
+                {{ curso.nivel }}-{{ curso.grado }}-{{ curso.paralelo }}-{{ curso.turno }}
+              </div>              
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
