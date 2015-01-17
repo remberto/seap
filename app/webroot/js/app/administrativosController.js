@@ -69,7 +69,7 @@ administrativosController.controller('administrativoController', ['$scope', 'Uni
             if(data.message.guardado){
                 $.fn.jAlert({
                       'title':'¡Satisfactorio!',
-                      'message': 'Se guardo correctamente el nuevo personal administrativo',
+                      'message': data.message.mensaje,
                       'theme': 'success',
                       'closeBtn': false,
                       'btn': [{'label':'Cerrar', 
@@ -85,7 +85,7 @@ administrativosController.controller('administrativoController', ['$scope', 'Uni
             }else{
                 $.fn.jAlert({
                       'title':'Error!',
-                      'message': 'El Nuevo Personal Administrativo no fue guardado correctamente',
+                      'message': data.message.mensaje,
                       'theme': 'error'
                     });
             }            

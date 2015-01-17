@@ -24,7 +24,7 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
                             if(data.message.eliminado){
                                 $.fn.jAlert({
                                       'title':'¡Satisfactorio!',
-                                      'message': 'Se dio de baja correctamente',
+                                      'message': data.message.mensaje,
                                       'theme': 'success',
                                       'closeBtn': false,
                                       'btn': [{'label':'Cerrar', 
@@ -34,14 +34,14 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
                                       'size': 'small',                      
                                       'onClose': function(){
                                           usSpinnerService.spin('spinner-1');
-                                          CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1');$scope.cursos = data.datos;});
+                                          CursosListFactory.query({habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1');$scope.cursos = data.datos;});
                                       }
                                     });
 
                             }else{
                                 $.fn.jAlert({
                                       'title':'Error!',
-                                      'message': 'No Puede ser eliminado el Personal Administrativo',
+                                      'message': data.message.mensaje,
                                       'theme': 'error'
                                     });
                             }    
@@ -58,7 +58,7 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
 
 
 
-    CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
+    CursosListFactory.query({habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
 }]);
 
 
@@ -126,7 +126,7 @@ cursosController.controller('cursoController', ['$scope','GestionesFactory','Uni
     $scope.grados = null;						         
     $scope.curso = {Gestion: 2015, UnidadEducativa: '', Paralelo: null, Turno: null}; 
 
-    GestionesFactory.query({habilitado: 1}, function(data){ usSpinnerService.stop('spinner-1'); $scope.gestiones = data.datos;});
+    GestionesFactory.query({habilitado: true}, function(data){ usSpinnerService.stop('spinner-1'); $scope.gestiones = data.datos;});
     UnidadesEducativasUsuarioFactory.query({query_id: 113, user_id: sesionesControl.get('user_id')}, function(data){
         $scope.curso.UnidadEducativa = data.datos[0];        
         NivelesUnidadEducativaFactory.query({unidad_educativa_id: $scope.curso.UnidadEducativa.id},function(data){usSpinnerService.stop('spinner-1'); $scope.niveles = data.datos;});

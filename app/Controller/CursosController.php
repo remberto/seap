@@ -35,8 +35,10 @@ class CursosController extends AppController{
             $message['mensaje'] = 'Se Guardo Correctamente el Curso';
         }catch(Exception $e) {
             $datasource->rollback();
+            $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
+            if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, el Curso ya existe !!!';}
             $message['guardado'] = false;
-            $message['mensaje'] = 'Error al Guardar los datos';
+            
         }       
 
         $this->set(array(
@@ -69,14 +71,26 @@ class CursosController extends AppController{
         ));
     }
 
-     public function delete($id){  
-        if($this->Curso->delete($id)):
-          $message['eliminado'] = true;
-          $message['mensaje'] = 'Eliminado';
-        else:
-          $message['eliminado'] = false;
-          $message['mensaje'] = 'Error';
-        endif;
+     public function delete($id){
+        $datasource = $this->Curso->getDataSource();
+        $datasource->useNestedTransactions = TRUE;
+        $datasource->begin();
+        try{
+            if($this->Curso->delete($id)):
+                $message['eliminado'] = true;
+                $message['mensaje'] = 'Fue dado de baja correctamente el curso';
+            else:
+                $message['eliminado'] = false;
+                $message['mensaje'] = 'Error';
+            endif;
+            $datasource->commit();
+        }catch(Exception $e) {
+            $datasource->rollback();
+            $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
+            if($e->getCode() == 23503) { $message['mensaje'] = 'Error al eliminar el Curso. <br/> No se puede eliminar el curso porque existe estudiantes inscritos en este curso. <br/> Primero elimine la inscripciones para eliminar el curso';}
+            $message['guardado'] = false;
+            
+        }       
         $this->set(array(
             'message' => $message,
             '_serialize' => array('message')

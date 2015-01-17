@@ -3,7 +3,7 @@ var inscripcionesController = angular.module('inscripcionesControllers',[]);
 inscripcionesController.controller('inscripcionCursoController', ['$scope','CursosListFactory','CursoFactory','$location', 'sesionesControl', 'usSpinnerService', function($scope, CursosListFactory, CursoFactory, $location, sesionesControl, usSpinnerService) {
     usSpinnerService.spin('spinner-1');
     $scope.cursos = null;    
-    CursosListFactory.query({habilitado: 1, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
+    //CursosListFactory.query({habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
 
     $scope.inscribir = function(idCurso){
       $location.path('/inscribir/'+idCurso);
@@ -17,10 +17,11 @@ inscripcionesController.controller('inscripcionCursoController', ['$scope','Curs
 
 
 inscripcionesController.controller('inscribirController', ['$scope','$routeParams','CursosListFactory','InscripcionFactory','$location', 'sesionesControl', 'usSpinnerService', function($scope, $routeParams, CursosListFactory, InscripcionFactory, $location, sesionesControl, usSpinnerService) {
-    //usSpinnerService.spin('spinner-1');
+    usSpinnerService.spin('spinner-1');
     $scope.cursos = null;    
     $scope.inscripcion = {'curso_id': $routeParams.idCurso};
-
+    usSpinnerService.stop('spinner-1');
+    
     $scope.newInscripcion = function(){
       usSpinnerService.spin('spinner-1');
       InscripcionFactory.create($scope.inscripcion, function(data){

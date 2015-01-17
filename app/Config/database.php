@@ -65,10 +65,13 @@
 class DATABASE_CONFIG {
 
 	public $default = array(
-		'datasource' => 'Database/Sqlite',
+		'datasource' => 'Database/Postgres',
 		'persistent' => false,
-		'database' => 'sqlite-database.db',
+		'host' => 'localhost',
+		'login' => 'postgres',
+		'password' => 'postgresql',
+		'database' => 'cuaderno',
 		'prefix' => '',
-		//'encoding' => 'utf8',
+        	'encoding' => 'utf8',
 	);
 }

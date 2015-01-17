@@ -742,8 +742,7 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
 
 loginController.controller('initController',['$rootScope', '$scope','sesionesControl','dialogs','$location','MenusFactory',function($rootScope, $scope,sesionesControl,dialogs,$location, MenusFactory){
     $scope.username = '';
-    $scope.menus = [];
-    console.log($scope.menus);
+    $scope.menus = [];    
     if(!sesionesControl.get('userLogin') || (sesionesControl.get('userLogin') == 'false')){
 	   var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
 	   dlg.result.then(function(name){        

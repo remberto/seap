@@ -20,7 +20,9 @@ class AdministrativosController extends AppController{
         $datasource = $this->Administrativo->getDataSource();
         $datasource->useNestedTransactions = TRUE;
         $datasource->begin();
-        try{            
+        try{
+            /*print_r($this->request->data);
+            die();            */
             $this->Persona->create();
             $_persona['paterno'] = $this->request->data['paterno'];
             $_persona['materno'] = $this->request->data['materno'];
@@ -48,7 +50,7 @@ class AdministrativosController extends AppController{
         }catch(Exception $e) {
             $datasource->rollback();
             $message['guardado'] = false;
-            $message = 'Error al Guardar los datos '.$e->getMessage();
+            $message['mensaje'] = 'Error al Guardar los datos '.$e->getMessage();
         }
 
         $this->set(array(
