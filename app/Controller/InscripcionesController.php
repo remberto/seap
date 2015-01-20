@@ -11,7 +11,7 @@ App::uses('HttpSocket', 'Network/Http');
 class InscripcionesController extends AppController{
     var $name = 'Inscripciones';//inicializacion de variables
     public $components = array('RequestHandler');
-    public $uses = array('Persona','Estudiante','Inscrito');
+    public $uses = array('Persona','Estudiante','Inscrito','Apoderado');
     //funcion de inicio
 
    public function beforeFilter(){
@@ -46,12 +46,27 @@ class InscripcionesController extends AppController{
 
             $this->Inscrito->create();
             $_inscrito = array();
-            $_inscrito['estudiante_id'] = $this->Persona->getLastInsertID();
+            $_inscrito['estudiante_id'] = $this->Estudiante->getLastInsertID();
             $_inscrito['curso_id'] = $this->request->data['curso_id'];            
             $_inscrito['fecha_inscripcion'] = date('Y-m-d');
             $_inscrito['estado_inicio_id'] = 1;
             $_inscrito['estado_final_id'] = 4;
             $this->Inscrito->save($_inscrito);
+
+            $this->Persona->create();
+            $_persona = array();
+            $_persona['paterno'] = $this->request->data['apoderado']['paterno'];
+            $_persona['materno'] = $this->request->data['apoderado']['materno'];
+            $_persona['nombres'] = $this->request->data['apoderado']['nombres'];
+            $this->Persona->save($_persona);
+
+            $this->Apoderado->create();
+            $_apoderado = array();
+            $_apoderado['carnet_identidad'] = $this->request->data['apoderado']['carnet_identidad'];
+            $_apoderado['estudiante_id'] = $this->Estudiante->getLastInsertID();
+            $_apoderado['persona_id'] = $this->Persona->getLastInsertID();
+            $this->Apoderado->save($_apoderado);
+
             
             $datasource->commit();
             $message['guardado'] = true;

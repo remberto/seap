@@ -27,7 +27,8 @@ class CursosController extends AppController{
             $_curso['unidad_educativa_id'] = $this->request->data['UnidadEducativa']['id'];
             $_curso['grado_id'] = $this->request->data['Grado']['id'];
             $_curso['paralelo_id'] = $this->request->data['Paralelo']['id'];
-            $_curso['turno_id'] = $this->request->data['Turno']['id'];           
+            $_curso['turno_id'] = $this->request->data['Turno']['id'];
+            $_curso['cupo'] = $this->request->data['cupo'];           
             $this->Curso->save($_curso);
 
             $datasource->commit();

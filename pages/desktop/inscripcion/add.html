@@ -4,7 +4,7 @@
 </h3>
 <div class="row mt" ng-controller="inscribirController">
     <div class="col-lg-12">      
-      <form name="newInscripcionForm" id="newInscripcionForm" novalidate="novalidate" class="form-horizontal style-form">
+      <form name="newInscripcionForm" id="newInscripcionForm" novalidate="novalidate" class="form-horizontal style-form">        
           <div class="form-panel">
             <h4 class="mb"><i class=" fa fa-angle-right"></i>
               1.- Datos del Estudiante
@@ -114,8 +114,135 @@
               <div class="col-sm-6 col-lg-4">                
                 
               </div>
-            </div>       
+            </div>
+
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              2.- Datos del Curso
+            </h4>        
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="curso">Gesti&oacute;n :</label>
+                  <div class="col-md-8">
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{ curso.gestion }}" disabled="" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.materno.$invalid && newAdministrativoForm.materno.$dirty}">
+                  <label class="col-md-4 control-label" for="materno">Unidad Educativa :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{ curso.unidad_educativa }}" disabled="" />
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="curso">Nivel :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{ curso.nivel }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.materno.$invalid && newAdministrativoForm.materno.$dirty}">
+                  <label class="col-md-4 control-label" for="materno">Grado : </label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{ curso.grado }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="curso">Paralelo :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{ curso.paralelo }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group" ng-class="{'has-error':newAdministrativoForm.materno.$invalid && newAdministrativoForm.materno.$dirty}">
+                  <label class="col-md-4 control-label" for="materno">Turno :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{ curso.turno }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>              
+            </div>
+
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              3.- Datos del Apoderado o Tutor (Padre)
+            </h4>            
+            <input type="hidden" ng-model="inscripcion.curso_id"/> 
             
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group" ng-class="{'has-error': newInscripcionForm.carnet_apoderado.$invalid && newInscripcionForm.carnet_apoderado.$dirty, 'has-success': !newInscripcionForm.carnet_apoderado.$invalid}">
+                   <label class="col-md-4 control-label" for="carnet_apoderado">C&eacute;dula de Identidad:</label>
+                   <div class="col-md-8">
+                      <div class="input-group" >
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                        <input type="number" id="carnet_apoderado" name="carnet_apoderado" class="form-control" ng-required="true" ng-model="inscripcion.apoderado.carnet_identidad" placeholder="Ingrese el N&uacute;mero C&eacute;dula de Identidad">                        
+                        <span ng-if="newInscripcionForm.carnet_apoderado.$invalid && newInscripcionForm.carnet_apoderado.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-if="newInscripcionForm.carnet_apoderado.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      </div>
+                      <span ng-if="newInscripcionForm.carnet_apoderado.$invalid && newInscripcionForm.carnet_apoderado.$dirty" class="help-block">Carnet de Identidad es Requerido.</span>
+                   </div>                   
+                </div> 
+              </div>
+              <div class="col-sm-6 col-lg-6">
+                                              
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newInscripcionForm.paterno_apoderado.$invalid && newInscripcionForm.paterno_apoderado.$dirty, 'has-success':!newInscripcionForm.paterno_apoderado.$invalid}">
+                  <label class="col-md-4 control-label" for="paterno_apoderado">Apellido Paterno :</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <div class="input-group-addon">P</div>
+                      <input type="text" id="paterno_apoderado" name="paterno_apoderado" ng-required="true" class="form-control" ng-model="inscripcion.apoderado.paterno"/>
+                      <span ng-if="newInscripcionForm.paterno_apoderado.$invalid && newInscripcionForm.paterno_apoderado.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newInscripcionForm.paterno_apoderado.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <span ng-if="newInscripcionForm.paterno_apoderado.$invalid && newInscripcionForm.paterno_apoderado.$dirty" class="help-block">Apellido Paterno es Requerido</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newInscripcionForm.materno_apoderado.$invalid && newInscripcionForm.materno_apoderado.$dirty}">
+                  <label class="col-md-4 control-label" for="materno_apoderado">Apellido Materno :</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon">M</div>
+                      <input type="text" id="materno_apoderado" class="form-control" ng-model="inscripcion.apoderado.materno"/>
+                      <span ng-if="newInscripcionForm.materno_apoderado.$invalid && newInscripcionForm.materno_apoderado.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newInscripcionForm.materno_apoderado.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newInscripcionForm.nombres_apoderado.$invalid && newInscripcionForm.nombres_apoderado.$dirty, 'has-success':!newInscripcionForm.nombres_apoderado.$invalid}">
+                  <label class="col-md-4 control-label" for="nombres_apoderado">Nombres :</label>
+                    <div class="col-md-8">
+                      <div class="input-group">
+                        <div class="input-group-addon">N</div>
+                        <input type="text" id="nombres_apoderado" name="nombres_apoderado" ng-required="true" class="form-control" ng-model="inscripcion.apoderado.nombres"/>
+                        <span ng-if="newInscripcionForm.nombres_apoderado.$invalid && newInscripcionForm.nombres_apoderado.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-if="newInscripcionForm.nombres_apoderado.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      </div>
+                    <span ng-if="newInscripcionForm.nombres_apoderado.$invalid && newInscripcionForm.nombres_apoderado.$dirty" class="help-block">Nombres es Requerido</span>
+                  </div>
+                </div>
+              </div>
+            </div>            
+
             <div class="form-group">
             <div class="col-sm-12">
               <!-- user-detail.html: -->

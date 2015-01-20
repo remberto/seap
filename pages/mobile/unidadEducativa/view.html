@@ -1,0 +1,270 @@
+<div ng-controller="unidadEducativaViewController">
+  <h3>
+  <i class="fa fa-angle-right"></i>
+  Informaci&oacute;n de la Unidad Educativa
+  </h3>
+  <div class="row mt">
+    <form novalidate="novalidate" class="form-horizontal style-form">      
+      <div class="col-lg-12">
+      <!-- Panel de Datos de Identificacion -->
+      <div class="form-panel">        
+        <h4 class="mb">
+          <i class=" fa fa-angle-right"></i>
+          1.- Datos de Identificaci&oacute;n
+        </h4>      
+          
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputCodigoUE">Codigo de la Unidad Educativa:</label>
+                <div class="col-md-6">
+                  <input type="text" id="inputCodigoUE" class="form-control" ng-model="unidadEducativa.id" disabled/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputDescripcion">Nombre de la Unidad Educativa:</label>
+                <div class="col-md-6">
+                  <input type="text" id="inputDescripcion" class="form-control" ng-model="unidadEducativa.descripcion" disabled/>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputCodigoUE">C.I. del Director o Director Encargado:</label>
+                <div class="col-md-6 ">
+                  <input type="text" id="inputCodigoUE" class="form-control" ng-model="unidadEducativa.ci_director" disabled/>
+                </div>          
+              </div>
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputDescripcion">Nombre del Director o Director Encargado:</label>
+                <div class="col-md-6">
+                  <input type="text" id="inputDescripcion" class="form-control" ng-model="unidadEducativa.director" disabled/>
+                </div>
+              </div>
+            </div>
+          </div>        
+      </div>  
+      <!-- Fin de Panel de Datos -->
+      <!-- Panel de Datos de Ubicacion Geografica -->
+      <div class="form-panel">        
+        <h4 class="mb">
+          <i class=" fa fa-angle-right"></i>
+          2.- Datos de Ubicaci&oacute;n del Edificio Escolar
+        </h4>      
+          
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="Departamento">Departamento :</label>
+                <div class="col-md-2">
+                  <input type="text" id="IDDepartamento" class="form-control" ng-model="unidadEducativa.id_departamento" disabled/>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" id="Departamento" class="form-control" ng-model="unidadEducativa.desc_departamento" disabled/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="Provincia">Provincia :</label>
+                <div class="col-md-2">
+                  <input type="text" id="IDProvincia" class="form-control" ng-model="unidadEducativa.id_provincia" disabled/>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" id="Provincia" class="form-control" ng-model="unidadEducativa.desc_provincia" disabled/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="Seccion">Seccion Municipal :</label>
+                <div class="col-md-2">
+                  <input type="text" id="IDSeccion" class="form-control" ng-model="unidadEducativa.id_seccion" disabled/>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" id="Seccion" class="form-control" ng-model="unidadEducativa.desc_seccion" disabled/>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="Canton">Canton :</label>
+                <div class="col-md-2">
+                  <input type="text" id="IDCanton" class="form-control" ng-model="unidadEducativa.id_canton" disabled/>
+                </div>
+                <div class="col-md-7 ">
+                  <input type="text" id="Canton" class="form-control" ng-model="unidadEducativa.desc_canton" disabled/>
+                </div>          
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="Localidad">Localidad o Ciudad :</label>
+                <div class="col-md-2">
+                  <input type="text" id="IDLocalidad" class="form-control" ng-model="unidadEducativa.id_localidad" disabled/>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" id="Localidad" class="form-control" ng-model="unidadEducativa.desc_localidad" disabled/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="Zona">Zona :</label>
+                <div class="col-md-9">
+                  <input type="text" id="Zona" class="form-control" ng-model="unidadEducativa.zona" disabled/>
+                </div>                
+              </div>  
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Canton">Codigo de Edificio Escolar:</label>                
+                <div class="col-md-7 ">
+                  <input type="text" id="Canton" class="form-control" ng-model="unidadEducativa.cod_le_id" disabled/>
+                </div>          
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Localidad">Direccion :</label>                
+                <div class="col-md-7">
+                  <input type="text" id="Localidad" class="form-control" ng-model="unidadEducativa.direccion" disabled/>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Zona">Area :</label>
+                <div class="col-md-7">
+                  <input type="text" id="Zona" class="form-control" ng-model="unidadEducativa.tipo_area" disabled/>
+                </div>                
+              </div>  
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Canton">Nro. de Telefono de la Unidad Educativa:</label>                
+                <div class="col-md-7 ">
+                  <input type="text" id="Canton" class="form-control" ng-model="unidadEducativa.telefono1" />
+                </div>          
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Localidad">Nro de Fax de la Unidad Educativa:</label>                
+                <div class="col-md-7">
+                  <input type="text" id="Localidad" class="form-control" ng-model="unidadEducativa.fax" />
+                </div>
+              </div>
+            </div>            
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Canton">Otro Nro. de Telefono para contactarse:</label>                
+                <div class="col-md-7 ">
+                  <input type="text" id="Canton" class="form-control" ng-model="unidadEducativa.telefono2" />
+                </div>          
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Localidad">El Nro de Telefono Pertence a:</label>                
+                <div class="col-md-7">
+                  <input type="text" id="Localidad" class="form-control" ng-model="unidadEducativa.referencia_telefono2" />
+                </div>
+              </div>
+            </div>            
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Canton">Correo Electronico de la U.E.:</label>                
+                <div class="col-md-7 ">
+                  <input type="text" id="Canton" class="form-control" ng-model="unidadEducativa.email" />
+                </div>          
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-md-5 control-label" for="Localidad">Casilla Postal:</label>                
+                <div class="col-md-7">
+                  <input type="text" id="Localidad" class="form-control" ng-model="unidadEducativa.casilla" />
+                </div>
+              </div>
+            </div>            
+          </div>
+
+      </div>  
+      <!-- Fin de Panel de Ubicacion Geografica Datos -->
+
+      <!-- Panel de Datos de Jurisdiccion Administrativa -->
+      <div class="form-panel">        
+        <h4 class="mb">
+          <i class=" fa fa-angle-right"></i>
+          3.- Jurisdicci&oacute;n Administrativa
+        </h4>      
+          
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputCodigoUE">Codigo del Distrito:</label>
+                <div class="col-md-6">
+                  <input type="text" id="inputCodigoUE" class="form-control" ng-model="unidadEducativa.cod_distrito" disabled/>
+                </div>
+              </div>              
+            </div>
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputCodigoUE">Nombre del Distrito Educativo:</label>
+                <div class="col-md-6 ">
+                  <input type="text" id="inputCodigoUE" class="form-control" ng-model="unidadEducativa.distrito" disabled/>
+                </div>          
+              </div>              
+            </div>
+          </div>        
+      </div>  
+      <!-- Fin de Panel de Datos -->
+
+      <!-- Panel de Datos de Jurisdiccion Administrativa -->
+      <div class="form-panel">        
+        <h4 class="mb">
+          <i class=" fa fa-angle-right"></i>
+          4.- Dependencia
+        </h4>      
+          
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputCodigoUE">Dependecia:</label>
+                <div class="col-md-6">
+                  <input type="text" id="inputCodigoUE" class="form-control" ng-model="unidadEducativa.cod_distrito" disabled/>
+                </div>
+              </div>              
+            </div>
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="inputCodigoUE">Turno:</label>
+                <div class="col-md-6 ">
+                  <input type="text" id="inputCodigoUE" class="form-control" ng-model="unidadEducativa.distrito" disabled/>
+                </div>          
+              </div>              
+            </div>
+          </div>        
+      </div>  
+      <!-- Fin de Panel de Datos -->
+
+
+
+      <div class="form-group">
+        <div class="col-sm-12">
+            <!-- user-detail.html: -->
+              <a ng-click="cancel()" class="btn btn-small">Cancelar</a>                
+
+            <!-- user-creation.html: -->
+              <a ng-click="newUnidadEducativa()" class="btn btn-small btn-primary">Guardar</a>
+        </div>
+      </div>      
+    </div>
+    </form>    
+  </div>
+</div>

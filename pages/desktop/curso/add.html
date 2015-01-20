@@ -29,7 +29,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-lg-6">                
-                <div class="form-group" ng-class="{'has-error':newCursoForm.grado.$error.required, 'has-success':newCursoForm.nivel.$valid}">
+                <div class="form-group" ng-class="{'has-error':newCursoForm.grado.$error.required, 'has-success':newCursoForm.grado.$valid}">
                   <label class="col-md-4 control-label" for="grado">Grado:</label>
                   <div class="col-md-8">
                     <div class="input-group">                      
@@ -47,7 +47,7 @@
             
             <div class="row">
               <div class="col-sm-6 col-lg-6">
-                <div class="form-group" ng-class="{'has-error':newCursoForm.paralelo.$error.required, 'has-success':newCursoForm.nivel.$valid}">
+                <div class="form-group" ng-class="{'has-error':newCursoForm.paralelo.$error.required, 'has-success':newCursoForm.paralelo.$valid}">
                   <label class="col-md-4 control-label" for="paralelo">Paralelo:</label>
                   <div class="col-md-8">
                     <div class="input-group">                      
@@ -62,7 +62,7 @@
                 </div>
               </div>              
               <div class="col-sm-6 col-lg-6">                
-                <div class="form-group" ng-class="{'has-error':newCursoForm.turno.$error.required, 'has-success':newCursoForm.tuno.$valid}">
+                <div class="form-group" ng-class="{'has-error':newCursoForm.turno.$error.required, 'has-success':newCursoForm.turno.$valid}">
                   <label class="col-md-4 control-label" for="turno">Turno:</label>
                   <div class="col-md-8">
                     <div class="input-group">
@@ -75,6 +75,24 @@
                     <span ng-if="newCursoForm.turno.$error.required" class="help-block">El turno es requerido</span>
                   </div>
                 </div> 
+              </div>              
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group" ng-class="{'has-error':newCursoForm.cupo.$error.required, 'has-success':newCursoForm.cupo.$valid}">
+                  <label class="col-md-4 control-label" for="cupo">Nro. de Estudiantes (Cupo):</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <input type="number" id="cupo" name="cupo" class="form-control" ng-required="true" ng-model="curso.cupo" placeholder="Numero de Estudiantes limite">                        
+                        <span ng-if="newCursoForm.cupo.$invalid && newCursoForm.cupo.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-if="newCursoForm.cupo.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <span ng-if="newCursoForm.cupo.$error.required" class="help-block">El cupo es requerido</span>
+                  </div>
+                </div>
+              </div>              
+              <div class="col-sm-6 col-lg-6">                 
               </div>              
             </div>
             

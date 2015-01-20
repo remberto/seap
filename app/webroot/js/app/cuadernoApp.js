@@ -85,12 +85,12 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     //
     //     
     .when('/unidadEducativa', {
-        templateUrl : 'pages/unidadEducativa/view.html',
+        templateUrl : (_isNotMobile )? 'pages/mobile/unidadEducativa/view.html':'pages/desktop/unidadEducativa/view.html',
         controller  : 'unidadEducativaViewController'
     }) 
     // Administrativos
     .when('/administrativos', {
-        templateUrl : 'pages/administrativo/list.html',
+        templateUrl : (_isNotMobile )? 'pages/mobile/administrativo/list.html':'pages/desktop/administrativo/list.html',
         controller  : 'administrativosController'
     })
     .when('/addAdministrativo', {
@@ -100,26 +100,22 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 
     // Docentes
     .when('/docentes', {
-        templateUrl : 'pages/docente/list.html',
+        templateUrl : (_isNotMobile )? 'pages/mobile/docente/list.html':'pages/desktop/docente/list.html',
         controller  : 'docentesController'
     })
     .when('/addDocente', {
-        templateUrl : 'pages/docente/add.html',
+        templateUrl : 'pages/desktop/docente/add.html',
         controller  : 'docenteController'
     })
 
     // Cursos
     .when('/cursos', {
-        templateUrl : (_isNotMobile )? 'pages/mobile/curso/list.html':'pages/curso/list.html',        
+        templateUrl : (_isNotMobile )? 'pages/mobile/curso/list.html':'pages/desktop/curso/list.html',        
         controller  : 'cursosController'
-    })
-    .when('/addCurso', {
-        templateUrl : 'pages/curso/add.html',
-        controller  : 'cursoController'
-    })
+    })    
     
     .when('/addCurso', {
-        templateUrl : 'pages/curso/add.html',
+        templateUrl : 'pages/desktop/curso/add.html',
         controller  : 'cursoController'
     })     
 
@@ -557,8 +553,8 @@ cuadernoAppServices.factory('FormacionFactory', function ($resource) {
 
 // Cursos
 cuadernoAppServices.factory('CursosListFactory', function ($resource) {
-    return $resource('/index.php/consultas.json?query_id=111&habilitado=:habilitado&user_id=:user_id', {}, {
-        query: { method: 'GET', params: {habilitado: '@habilitado', user_id: '@user_id'}, isArray: false},        
+    return $resource('/index.php/consultas.json?query_id=:query_id&habilitado=:habilitado&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', habilitado: '@habilitado', user_id: '@user_id'}, isArray: false},        
     });
 });
 
@@ -566,6 +562,13 @@ cuadernoAppServices.factory('CursosListFactory', function ($resource) {
 cuadernoAppServices.factory('CursosFactory', function ($resource) {
     return $resource('/index.php/cursos.json', {}, {        
         create: { method: 'POST' }
+    });
+});
+
+// Informacion Detalle del Curos
+cuadernoAppServices.factory('CursoViewFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&curso_id=:curso_id', {}, {        
+        query: { method: 'GET', params: {query_id: '@query_id', curso_id: '@curso_id'}, isArray: false},
     });
 });
 

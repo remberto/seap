@@ -1,4 +1,4 @@
-<div ng-controller="cursosController">
+<div ng-controller="inscripcionCursoController">
   <h3>
     <i class="fa fa-angle-right"></i>
     Inscripci&oacute;n
@@ -17,7 +17,11 @@
                 <th>Nivel</th>
                 <th>Grado</th>
                 <th>Paralelo</th>
-                <th>Turno</th>      
+                <th>Turno</th>  
+                <th>Cupo</th>
+                <th>Nro. Estudiantes</th>
+                <th>Varones</th>      
+                <th>Mujeres</th>          
                 <th>Acci&oacute;n</th>
               </tr>
             </thead>
@@ -30,8 +34,12 @@
                 <td>{{ curso.grado }}</td>
                 <td>{{ curso.paralelo }}</td>
                 <td>{{ curso.turno }}</td>
+                <td><center>{{ curso.cupo }}</center></td>
+                <td><center>{{ curso.numero_estudiantes }}</center></td>
+                <td><center>{{ curso.numero_masculino }}</center></td>
+                <td><center>{{ curso.numero_femenino }}</center></td>
                 <td>
-                  <button class="btn btn-primary btn-xs" ng-click="inscribir(curso.id)" title="Inscribir Estudiante"><i class="fa fa-book"></i></button>
+                  <button class="btn btn-primary btn-xs" ng-click="inscribir(curso.id)" title="Inscribir Estudiante"><i class="fa fa-sign-in"></i></button>
                   <button class="btn btn-danger btn-xs" ng-click="lista(curso.id)"><i class="fa fa-bookmark "></i></button>
                 </td>
               </tr>

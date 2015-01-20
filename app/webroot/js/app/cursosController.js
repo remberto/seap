@@ -34,7 +34,7 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
                                       'size': 'small',                      
                                       'onClose': function(){
                                           usSpinnerService.spin('spinner-1');
-                                          CursosListFactory.query({habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1');$scope.cursos = data.datos;});
+                                          CursosListFactory.query({query_id: 111, habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1');$scope.cursos = data.datos;});
                                       }
                                     });
 
@@ -58,7 +58,7 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
 
 
 
-    CursosListFactory.query({habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
+    CursosListFactory.query({query_id: 111, habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
 }]);
 
 
@@ -124,7 +124,7 @@ cursosController.controller('cursoController', ['$scope','GestionesFactory','Uni
     usSpinnerService.spin('spinner-1');
     $scope.niveles = null;
     $scope.grados = null;						         
-    $scope.curso = {Gestion: 2015, UnidadEducativa: '', Paralelo: null, Turno: null}; 
+    $scope.curso = {Gestion: 2015, UnidadEducativa: '', Paralelo: null, Turno: null, cupo: 20}; 
 
     GestionesFactory.query({habilitado: true}, function(data){ usSpinnerService.stop('spinner-1'); $scope.gestiones = data.datos;});
     UnidadesEducativasUsuarioFactory.query({query_id: 113, user_id: sesionesControl.get('user_id')}, function(data){
