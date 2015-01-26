@@ -10,53 +10,10 @@ class AsignadosController extends AppController{
     public $uses = array('Asignado');
 
     public function beforeFilter(){
-        parent::beforeFilter();
-        $this->Auth->allow('index');
-    }
-
-    public function index() {
-	
-		if(isset($this->request->query['docente_id']) && isset($this->request->query['curso_id'])):
-			//Retorna los cursos asignado al docente elegido
-            $query = 'SELECT asignados.id, 
-            asignados.curso_id as curso_id,
-            grados.descripcion as grado, 
-            paralelos.descripcion as paralelo, 
-            campos.descripcion as campo,
-            areas.descripcion as area,
-            asignaturas.descripcion as asignatura 
-            FROM asignados
-            INNER JOIN cursos ON asignados.curso_id = cursos.id
-            INNER JOIN asignaturas ON asignados.asignatura_id = asignaturas.id
-            INNER JOIN areas ON asignaturas.area_id = areas.id
-            INNER JOIN campos ON areas.campo_id = campos.id
-            INNER JOIN grados ON cursos.grado_id = grados.id
-            INNER JOIN paralelos ON cursos.paralelo_id = paralelos.id
-            INNER JOIN docentes ON asignados.docente_id = docentes.id
-            WHERE asignados.docente_id = \':docente_id\'
-            AND asignados.curso_id = \':curso_id\'';
-            $query = str_replace(':curso_id', $this->request->query['curso_id'], $query);
-            $query = str_replace(':docente_id', $this->request->query['docente_id'], $query);            
-			$datas = $this->Asignado->query($query);
-		endif;
-        //pr($datas);
-        
-		$asignados = array();
-        foreach($datas as $data):
-            $asignado = array();
-            foreach ($data as $key => $val):                
-                foreach ($val as $key => $value):
-                    $asignado[$key] = $value;
-                endforeach;                
-            endforeach;
-            array_push($asignados, $asignado);
-        endforeach;
-		//print_r("sii");
-        $this->set(array(
-            'asignados' => $asignados,
-            '_serialize' => array('asignados')
-        ));       
-    }
+        parent::beforeFilter();     
+        $this->Auth->allow('add');
+        $this->Auth->allow('accion');
+    }    
 
     public function add(){
         $datasource = $this->Asignado->getDataSource();
@@ -66,21 +23,48 @@ class AsignadosController extends AppController{
             $this->Asignado->create();
             
 			$_asignado = array();
-            $_asignado['docente_id'] = $this->request->data['docente_id']['id'];
-            $_asignado['curso_id'] = $this->request->data['curso_id']['id'];
-            $_asignado['asignatura_id'] = $this->request->data['asignatura_id']['id'];
+            $_asignado['docente_id'] = $this->request->data['docente']['id'];
+            $_asignado['curso_id'] = $this->request->data['curso']['id'];
+            $_asignado['asignatura_id'] = $this->request->data['asignatura']['id'];
             
 			$this->Asignado->save($_asignado);
             $datasource->commit();
-            $message = 'Guardado';
+            $message['guardado'] = true;
+            $message['mensaje'] = 'Guardado';
         } catch(Exception $e) {
-            $datasource->rollback();
-            $message = 'Error al Guardar los datos';
+            $datasource->rollback();            
+            $message['guardado'] = False;
+            if($e->getCode() == 23505):
+                $message['mensaje'] = 'Error al Guardar los datos, Ya existe asignado el Docente a la Asiognatura';
+            else:
+                $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
+            endif;
         }
         $this->set(array(
             'message' => $message,
             '_serialize' => array('message')
         ));
     }
+
+    public function accion($id){        
+        if($this->request->query['accion']=='delete'):
+            $this->delete($id);
+        endif;
+    }
+
+
+    public function delete($id){  
+        if($this->Asignado->delete($id)):
+          $message['eliminado'] = true;
+          $message['mensaje'] = 'Eliminado';
+        else:
+          $message['eliminado'] = false;
+          $message['mensaje'] = 'Error';
+        endif;
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+           ));
+    } 
 }
 ?>

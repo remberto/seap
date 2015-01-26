@@ -16,7 +16,7 @@ inscripcionesController.controller('inscripcionCursoController', ['$scope','Curs
 }]);
 
 
-inscripcionesController.controller('inscribirController', ['$scope','$routeParams','CursoViewFactory','InscripcionFactory','$location', 'sesionesControl', 'usSpinnerService', function($scope, $routeParams, CursoViewFactory, InscripcionFactory, $location, sesionesControl, usSpinnerService) {
+inscripcionesController.controller('inscribirController', ['$scope','$routeParams', 'DocentesFactory', 'CursoViewFactory','InscripcionFactory','$location', 'sesionesControl', 'usSpinnerService', function($scope, $routeParams, DocentesFactory, CursoViewFactory, InscripcionFactory, $location, sesionesControl, usSpinnerService) {
     usSpinnerService.spin('spinner-1');
     $scope.cursos = null;    
     $scope.inscripcion = {'curso_id': $routeParams.idCurso};
@@ -65,7 +65,7 @@ inscripcionesController.controller('inscribirController', ['$scope','$routeParam
 }]);
 
 
-inscripcionesController.controller('inscripcionListController', ['$scope','$routeParams','InscripcionListFactory','CursoViewFactory','$location', 'sesionesControl', 'usSpinnerService', function($scope, $routeParams, InscripcionListFactory, CursoViewFactory, $location, sesionesControl, usSpinnerService) {
+inscripcionesController.controller('inscripcionListController', ['$scope','$routeParams','InscripcionListFactory','InscripcionActionFactory','CursoViewFactory','$location', 'sesionesControl', 'usSpinnerService', function($scope, $routeParams, InscripcionListFactory, InscripcionActionFactory, CursoViewFactory, $location, sesionesControl, usSpinnerService) {
     usSpinnerService.spin('spinner-1');
     $scope.curso = {id: $routeParams.idCurso};       
 
@@ -114,5 +114,56 @@ inscripcionesController.controller('inscripcionListController', ['$scope','$rout
       }
       popupWin.document.close();
     }
+
+    $scope.deleteInscripcion = function(idEstudiante){          
+        $.fn.jAlert({
+          'title':'Eliminar',
+          'message': '¿Desea dar de Baja la Inscripcion?',          
+          'closeBtn': false,
+          'theme': 'info',
+          'btn': [{'label':'Eliminar', 
+                   'closeOnClick': false, 
+                   'cssClass': 'blue',
+                   'onClick': function(alert){
+                        usSpinnerService.spin('spinner-1');                     
+                        InscripcionActionFactory.delete({id: idEstudiante }, function(data){
+                            usSpinnerService.stop('spinner-1');
+                            if(data.message.eliminado){
+                                $.fn.jAlert({
+                                      'title':'¡Satisfactorio!',
+                                      'message': data.message.mensaje,
+                                      'theme': 'success',
+                                      'closeBtn': false,
+                                      'btn': [{'label':'Cerrar', 
+                                               'closeOnClick': true, 
+                                               'cssClass': 'green',                                
+                                             }],
+                                      'size': 'small',                      
+                                      'onClose': function(){
+                                          usSpinnerService.spin('spinner-1');
+                                          InscripcionListFactory.query({query_id:124, curso_id:$routeParams.idCurso}, function(data){
+                                            usSpinnerService.stop('spinner-1');
+                                            $scope.inscripciones = data.datos;
+                                          })
+                                      }
+                                    });
+
+                            }else{
+                                $.fn.jAlert({
+                                      'title':'Error!',
+                                      'message': data.message.mensaje,
+                                      'theme': 'error'
+                                    });
+                            }    
+                        });
+                        alert.closeAlert(true);
+                   }
+                 },
+                 {'label':'Cancelar', 
+                   'closeOnClick': true,                    
+                 }],
+          'size': 'small',          
+        })             
+    };
 
 }]);

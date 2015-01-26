@@ -119,6 +119,11 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
         controller  : 'cursoController'
     })     
 
+    .when('/assignCurso/:idCurso', {
+        templateUrl : (_isNotMobile )? 'pages/mobile/curso/list.html':'pages/desktop/curso/assign.html',        
+        controller  : 'assignCursoController'
+    })
+
     // Inscripciones
     
     .when('/inscripciones',{
@@ -139,7 +144,21 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
             controller  : 'estudianteController'
         })  
 
+    // Configuracion
     
+    .when('/configuracion',{
+        templateUrl : (_isNotMobile )? 'pages/mobile/configuracion/init.html':'pages/desktop/configuracion/init.html',
+        controller  : 'configuracionController'
+    })
+    // Usuarios
+    .when('/usuariosUnidadEducativa', {
+        templateUrl : 'pages/usuario/list.html',
+        controller  : 'usuariosUnidadEducativaController'
+    })
+    .when('/addUsuarioUnidadEducativa', {
+        templateUrl : 'pages/usuario/add.html',
+        controller  : 'usuarioUnidadEducativaController'
+    })
 
     
     // Aqui va la parte de Asistencia y Evaluacion de parte del Docente
@@ -152,6 +171,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    templateUrl : 'pages/planificacion/list.html',
 	    controller : 'planificacionController'
 	})
+
     // 2.1 PLanificacion Anual
     .when('/planificacionAnual/:curso_id', {
             templateUrl : 'pages/planificacionAnual/index.html',
@@ -177,26 +197,26 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // filiacion
     // 3.1 Filiacion
     .when('/filiacion', {
-            templateUrl : 'pages/filiacion/listCursos.html',
+            templateUrl : 'pages/desktop/filiacion/listCursos.html',
             controller  : 'cursosDocenteController'
         })
     .when('/filiacionEstudiantes/:curso_id', {
-            templateUrl : 'pages/filiacion/listEstudiantes.html',
+            templateUrl : 'pages/desktop/filiacion/listEstudiantes.html',
             controller  : 'filiacionController'
         })
 
     // Asistencia
     // 4.1 Filiacion
     .when('/asistencia', {
-            templateUrl : 'pages/asistencia/listCursos.html',
+            templateUrl : 'pages/desktop/asistencia/listCursos.html',
             controller  : 'cursosDocenteController'
         })
     .when('/asistenciaAsignatura/:id', {
-            templateUrl : 'pages/asistencia/listAsignatura.html',
+            templateUrl : 'pages/desktop/asistencia/listAsignatura.html',
             controller  : 'cursosDocenteAsignaturaController'
         })
     .when('/registroAsistencia/:asignado_id/:curso_id', {
-            templateUrl : 'pages/asistencia/registroAsistencia.html',
+            templateUrl : 'pages/desktop/asistencia/registroAsistencia.html',
             controller  : 'asistenciaController'
         })
 
@@ -416,6 +436,19 @@ cuadernoAppServices.factory('UsuariosFactory', function ($resource) {
     })*/
 });
 
+cuadernoAppServices.factory('UsuariosListFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {query_id : '@query_id', user_id: '@user_id'}, isArray: false},
+    })    
+});
+
+cuadernoAppServices.factory('DocentesUsuarioFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&carnet=:carnet&user_id=:user_id', {}, {
+        query: { method: 'GET', params: {query_id : '@query_id', carnet : '@carnet', user_id: '@user_id'}, isArray: false},
+    })    
+});
+
+
 cuadernoAppServices.factory('UsuarioFactory', function ($resource) {
     return $resource('/index.php/users/:id.json', {}, {
         //show: { method: 'GET' },
@@ -573,16 +606,50 @@ cuadernoAppServices.factory('CursoViewFactory', function ($resource) {
 });
 
 // Busqueda de Cursos 
+// query_id = 131
 cuadernoAppServices.factory('CursosDocenteFactory', function ($resource) {
-    return $resource('/index.php/cursos.json?docente_id=:docente_id&gestion_id=:gestion_id', {}, {
-        query: { method: 'GET', params:{docente_id: '@docente_id', gestion_id: '@gestion_id'}, isArray: false}        
+    return $resource('/index.php/consultas.json?query_id=:query_id&docente_id=:docente_id&gestion_id=:gestion_id', {}, {
+        query: { method: 'GET', params:{query_id: '@query_id', docente_id: '@docente_id', gestion_id: '@gestion_id'}, isArray: false}        
     });
 });
 
 
+// Asignaturas asignadas al docente en un curso
+// query_id = 132
 cuadernoAppServices.factory('CursosDocenteAsignaturaFactory', function ($resource) {
-    return $resource('/index.php/asignados.json?curso_id=:curso_id&docente_id=:docente_id', {}, {
-        query: { method: 'GET', params:{curso_id: '@curso_id', docente_id: '@docente_id'}, isArray: false}        
+    return $resource('/index.php/consultas.json?query_id=:query_id&docente_id=:docente_id&curso_id=:curso_id', {}, {
+        query: { method: 'GET', params:{query_id: '@query_id', docente_id: '@docente_id', curso_id: '@curso_id'}, isArray: false}        
+    });
+});
+
+cuadernoAppServices.factory('CursoFactory', function ($resource) {
+    return $resource('/index.php/cursos/:id.json?accion=:action', {}, {
+        //show: { method: 'GET' },
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+});
+
+// Asignaturfas
+// Similar al de CursoView
+// Query 129 
+// Query 130 Selecciona Asignatura y Docentes
+
+cuadernoAppServices.factory('AsignaturasCursoFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&curso_id=:curso_id', {}, {        
+        query: { method: 'GET', params: {query_id: '@query_id', curso_id: '@curso_id'}, isArray: false},
+    });
+});
+
+cuadernoAppServices.factory('AsignarFactory', function ($resource) {
+    return $resource('/index.php/asignados.json', {}, {
+        create: { method: 'POST'}    
+    });
+});
+
+cuadernoAppServices.factory('ActionAsignarFactory', function ($resource) {
+    return $resource('/index.php/asignados/:id.json?accion=:action', {}, {
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }    
     });
 });
 
@@ -600,8 +667,8 @@ cuadernoAppServices.factory('InscripcionListFactory', function ($resource) {
     });
 });
 
-cuadernoAppServices.factory('CursoFactory', function ($resource) {
-    return $resource('/index.php/cursos/:id.json?accion=:action', {}, {
+cuadernoAppServices.factory('InscripcionActionFactory', function ($resource) {
+    return $resource('/index.php/inscripciones/:id.json?accion=:action', {}, {
         //show: { method: 'GET' },
         view: { method: 'GET', params: {id: '@id', action: 'view'} },
         delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
@@ -704,11 +771,13 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
        sesionesControl.set("userLogin", true);
        sesionesControl.set("username", username);
        sesionesControl.set("user_id", userid);
+       sesionesControl.set("gestion", '2015');
     }
     var unCacheSession = function(){
        sesionesControl.unset("userLogin");
        sesionesControl.unset("username");
 	   sesionesControl.unset("user_id");
+       sesionesControl.unset("gestion");
     }
     $scope.user = {name : ''};
 
@@ -724,9 +793,9 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
 			function(data){
                 usSpinnerService.stop('spinner-1');
 			    if(data.login){
-				$scope.user.name = data.username;
-				cacheSession(data.username, data.id);
-				$modalInstance.close($scope.user.username);           
+				    $scope.user.name = data.username;
+				    cacheSession(data.username, data.id);
+				    $modalInstance.close($scope.user.username);           
 			    }
 			    else{
 				unCacheSession();

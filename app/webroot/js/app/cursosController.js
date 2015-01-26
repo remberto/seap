@@ -56,6 +56,10 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
         })             
     };
 
+    $scope.asignarDocentes = function(idCurso){
+      $location.path('/assignCurso/'+idCurso);
+    }
+
 
 
     CursosListFactory.query({query_id: 111, habilitado: true, user_id: sesionesControl.get('user_id')}, function(data){usSpinnerService.stop('spinner-1'); $scope.cursos = data.datos;});
@@ -66,7 +70,9 @@ cursosController.controller('cursosController', ['$scope','CursosListFactory','C
 cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteFactory','sesionesControl','$location', function($scope, CursosDocenteFactory, sesionesControl, $location) {
     $scope.cursos = null;
 
-    CursosDocenteFactory.query({docente_id: sesionesControl.get('user_id'), gestion_id: '2014'},function(data){$scope.cursos = data.cursos;});
+    CursosDocenteFactory.query({query_id: 131, docente_id: sesionesControl.get('user_id'), gestion_id: sesionesControl.get('gestion')},function(data){
+      $scope.cursos = data.datos;
+    });
 
     // Planificacion
     // Lista de Planificacion
@@ -100,8 +106,9 @@ cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteF
 cursosController.controller('cursosDocenteAsignaturaController', ['$scope','$routeParams','CursosDocenteAsignaturaFactory','sesionesControl','$location', function($scope, $routeParams, CursosDocenteAsignaturaFactory, sesionesControl, $location) {
     $scope.cursos = null;
 
-    CursosDocenteAsignaturaFactory.query({curso_id: $routeParams.id, docente_id: sesionesControl.get('user_id')},
-        function(data){$scope.asignados = data.asignados;
+    CursosDocenteAsignaturaFactory.query({query_id: 132, docente_id: sesionesControl.get('user_id'), curso_id: $routeParams.id } ,
+        function(data){
+          $scope.asignados = data.datos;
     });
     
     // metodos
@@ -179,5 +186,70 @@ cursosController.controller('cursoController', ['$scope','GestionesFactory','Uni
         $location.path('/cursos'); 
         $scope.$apply();
     }
+
+}]);
+
+
+cursosController.controller('assignCursoController', ['$scope', '$routeParams', 'AsignarFactory', 'ActionAsignarFactory', 'DocentesFactory', 'CursosFactory', 'CursoViewFactory', 'AsignaturasCursoFactory', '$location','sesionesControl', 'usSpinnerService', function($scope, $routeParams, AsignarFactory, ActionAsignarFactory, DocentesFactory, CursosFactory, CursoViewFactory, AsignaturasCursoFactory, $location, sesionesControl, usSpinnerService) {
+    usSpinnerService.spin('spinner-1');
+    $scope.asignar = {curso: null};
+    $scope.inscripcion = {'curso_id': $routeParams.idCurso};
+    $scope.asignados = null;
+    // Visualiza el curso
+    CursoViewFactory.query({query_id: 126, curso_id: $routeParams.idCurso}, function(data){
+      usSpinnerService.stop('spinner-1'); 
+      $scope.asignar.curso = data.datos[0];
+    });
+
+    // Selecciona las Asignaturas
+    AsignaturasCursoFactory.query({query_id: 129, curso_id: $routeParams.idCurso}, function(data){
+      usSpinnerService.stop('spinner-1');      
+      $scope.asignatura = data.datos;
+    });   
+    
+    DocentesFactory.query({query_id: 123, user_id: sesionesControl.get('user_id')}, function(data){
+      usSpinnerService.stop('spinner-1');       
+      $scope.docentes = data.datos;
+    });    
+
+
+    $scope.mtdAsignar = function(){
+      AsignarFactory.create($scope.asignar, function(data){
+        console.log(data);
+        usSpinnerService.stop('spinner-1');
+        if(data.message.guardado){
+          $scope.mtdListarAsignados();                                
+        }else{            
+            $.fn.jAlert({
+                  'title':'Error!',
+                  'message': data.message.mensaje,
+                  'theme': 'error'
+                });
+        }        
+      });  
+    };
+
+    $scope.mtdEliminar = function(idAsignado){
+      ActionAsignarFactory.delete({id: idAsignado}, function(data){
+        $scope.mtdListarAsignados();
+      }); 
+    }
+    
+    $scope.mtdList = function(){        
+        $location.path('/cursos'); 
+        $scope.$apply();
+    };    
+
+    // Listado de Asignados: Asignaturas y Docentes
+    $scope.mtdListarAsignados = function(){      
+      usSpinnerService.spin('spinner-1');
+      AsignaturasCursoFactory.query({query_id: 130, curso_id: $routeParams.idCurso}, function(data){
+        usSpinnerService.stop('spinner-1');        
+        $scope.asignados = data.datos;        
+      });
+    };
+
+    // Asignados
+    $scope.mtdListarAsignados();
 
 }]);

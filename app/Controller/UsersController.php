@@ -10,13 +10,14 @@
 class UsersController extends AppController {
     var $name = 'Users';//inicializacion de variables
     public $components = array('RequestHandler');
-    public $uses = array('Persona','User');
+    public $uses = array('Persona','User','Administra');
         
     
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->allow('index');
-        }
+        $this->Auth->allow('add');
+    }
 
     public function login(){
     
@@ -121,24 +122,41 @@ class UsersController extends AppController {
         $datasource = $this->User->getDataSource();
         $datasource->useNestedTransactions = TRUE;
         $datasource->begin();
-        try{
-            $this->Persona->create();
-            $this->request->data['Persona']['paterno'] = $this->request->data['paterno'];
-            $this->request->data['Persona']['materno'] = $this->request->data['materno'];
-            $this->request->data['Persona']['nombres'] = $this->request->data['nombres'];
-            //$this->request->data['Persona']['fecha_nacimiento'] = $this->request->data['fecha_nacimiento'];
-            $this->request->data['Persona']['genero'] = $this->request->data['genero'];
-            $this->Persona->save($this->request->data);
+        try{            
+            if(!isset($this->request->data['id']) || empty($this->request->data['id'])){
+                $this->Persona->create();
+                $this->request->data['Persona']['paterno'] = $this->request->data['paterno'];
+                $this->request->data['Persona']['materno'] = $this->request->data['materno'];
+                $this->request->data['Persona']['nombres'] = $this->request->data['nombres'];
+                $this->request->data['Persona']['fecha_nacimiento'] = $this->request->data['fecha_nacimiento'];
+                $this->request->data['Persona']['genero'] = $this->request->data['genero'];
+                $this->Persona->save($this->request->data);
+                $id_persona = $this->Persona->getLastInsertID();
+            }
+            else{
+                $id_persona = $this->request->data['id'];
+            }
             $this->User->create();
-            $this->request->data['User']['id'] = $this->Persona->getLastInsertID();
+
+            $this->request->data['User']['id'] = $id_persona;
             $this->request->data['User']['username'] = $this->request->data['username'];
             $this->request->data['User']['password'] = $this->request->data['password'];            
+            $this->request->data['User']['rol_id'] = $this->request->data['rol_id'];            
             $this->User->save($this->request->data);
+
+            $_administra = array();
+            $this->Administra->create();
+            $_administra['Administra']['user_id'] = $id_persona;
+            $_administra['Administra']['unidad_educativa_id'] = $this->request->data['unidad_educativa'];            
+            $this->Administra->save($_administra);
+
             $datasource->commit();
-            $message = 'Guardado';
+            $message['guardado'] = true;
+            $message['mensaje'] = 'Guardado';
         }catch(Exception $e) {
             $datasource->rollback();
-            $message = 'Error al Guardar los datos ->'.$e->getMessage();
+            $message['guardado'] = false;
+            $message['mensaje'] = 'Error al Guardar los datos '.$e->getMessage();
         }
         
         $this->set(array(

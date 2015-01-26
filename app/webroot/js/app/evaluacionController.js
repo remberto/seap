@@ -1,6 +1,6 @@
 var evaluacionController = angular.module('evaluacionControllers',[]);
 
-evaluacionController.controller('evaluacionController', ['$scope','$routeParams','InscripcionFactory', 'PeriodoFactory', 'DimensionFactory', 'ActividadEvaluacionFactory', 'ClasificadorFactory', 'InscritosEvaluacionFactory', '$location', function($scope, $routeParams, InscripcionFactory, PeriodoFactory, DimensionFactory, ActividadEvaluacionFactory, ClasificadorFactory, InscritosEvaluacionFactory, $location) {
+evaluacionController.controller('evaluacionController', ['$scope','$routeParams','InscripcionListFactory', 'PeriodoFactory', 'DimensionFactory', 'ActividadEvaluacionFactory', 'ClasificadorFactory', 'InscritosEvaluacionFactory', '$location', function($scope, $routeParams, InscripcionListFactory, PeriodoFactory, DimensionFactory, ActividadEvaluacionFactory, ClasificadorFactory, InscritosEvaluacionFactory, $location) {
 	$scope.estudiantes = null;       
 	$scope.periodos = null;
 	$scope.dimensiones = null;
@@ -24,7 +24,9 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 
 	$scope.curso_id = $routeParams.curso_id;
 
-	InscripcionFactory.query({curso_id: $routeParams.curso_id}, function(data){$scope.estudiantes = data.inscripciones;});
+	InscripcionListFactory.query({query_id: 124, curso_id: $routeParams.curso_id}, function(data){
+        	$scope.estudiantes = data.datos;
+    	});
 
   //alert($routeParams.curso_id);
 

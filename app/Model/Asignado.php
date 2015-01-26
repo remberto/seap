@@ -14,7 +14,7 @@ class Asignado extends AppModel {
     //Belongs
     public $belongsTo = array(
         'Docente' => array(
-            'className'=>'Docente',
+            'className'=>'DocenteUe',
             'type'=>'INNER',
             'foreignKey' => 'docente_id',
         ),

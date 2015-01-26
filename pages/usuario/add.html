@@ -2,70 +2,188 @@
   <i class="fa fa-angle-right"></i>
   Nuevo Usuario
 </h3>
-<div class="row mt">
-    <div class="col-lg-12">
-      <div class="form-panel">
-	 <form novalidate="novalidate" class="form-horizontal style-form">
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputPaterno">Apellido Paterno:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputPaterno" class="form-control" ng-model="usuario.paterno"/>
-             </div>
-           </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputMaterno">Apellido Materno:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputMaterno" class="form-control" ng-model="usuario.materno"/>
-             </div>
-           </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputNombres">Nombres:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputNombres" class="form-control" ng-model="usuario.nombres"/>
-             </div>
-           </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputCarnet">C&eacute;dula de Identidad:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputCarnet" class="form-control" ng-model="usuario.carnet"/>
-             </div>
-           </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputGenero">Genero:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputGenero" class="form-control" ng-model="usuario.genero"/>
-             </div>
-           </div>
-	   <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputFechaNacimiento">Fecha Nacimiento:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputFechaNacimiento" class="form-control" ng-model="usuario.fecha_nacimiento"/>
-             </div>
-           </div>
-           <div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputUsername">Usuario:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputUsername" class="form-control" ng-model="usuario.username"/>
-             </div>
-           </div>
-<div class="form-group">
-             <label class="col-sm-2 col-sm-2 control-label" for="inputPassword">Contraseña:</label>
-             <div class="col-sm-10">
-                <input type="text" id="inputPassword" class="form-control" ng-model="usuario.password"/>
-             </div>
-           </div>
+<div class="row mt" ng-controller="usuarioController">
+    <div class="col-lg-12">      
+      <form name="newUsuarioForm" id="newUsuarioForm" novalidate="novalidate" class="form-horizontal style-form">
+          <div class="form-panel">
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              1.- Datos del usuario
+            </h4>            
+            <input type="hidden" ng-model="usuario.unidad_educativa"/> 
+            <input type="hidden" ng-model="usuario.id"/>
+            <input type="hidden" ng-model="usuario.rol_id"/> 
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group" ng-class="{'has-error': newUsuarioForm.carnet.$invalid && newUsuarioForm.carnet.$dirty, 'has-success': !newUsuarioForm.carnet.$invalid}">
+                   <label class="col-md-4 control-label" for="carnet">C&eacute;dula de Identidad:</label>
+                   <div class="col-md-8">
+                      <div class="input-group" >
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                        <input type="number" id="carnet" name="carnet" class="form-control" ng-required="true" ng-model="usuario.carnet" placeholder="Ingrese el N&uacute;mero C&eacute;dula de Identidad">                        
+                        <span ng-if="newUsuarioForm.carnet.$invalid && newUsuarioForm.carnet.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-if="newUsuarioForm.carnet.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      </div>
+                      <span ng-if="newUsuarioForm.carnet.$invalid && newUsuarioForm.carnet.$dirty" class="help-block">Carnet de Identidad es Requerido.</span>
+                   </div>                   
+                </div> 
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+              </div>
+            </div>
 
-           <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newUsuarioForm.paterno.$invalid && newUsuarioForm.paterno.$dirty, 'has-success':!newUsuarioForm.paterno.$invalid}">
+                  <label class="col-md-4 control-label" for="paterno">Apellido Paterno:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <div class="input-group-addon">P</div>
+                      <input type="text" id="paterno" name="paterno" ng-required="true" class="form-control" ng-model="usuario.paterno"/>
+                      <span ng-if="newUsuarioForm.paterno.$invalid && newUsuarioForm.paterno.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newUsuarioForm.paterno.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <span ng-if="newUsuarioForm.paterno.$invalid && newUsuarioForm.paterno.$dirty" class="help-block">Apellido Paterno es Requerido</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newUsuarioForm.materno.$invalid && newUsuarioForm.materno.$dirty}">
+                  <label class="col-md-4 control-label" for="materno">Apellido Materno:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon">M</div>
+                      <input type="text" id="materno" class="form-control" ng-model="usuario.materno"/>
+                      <span ng-if="newUsuarioForm.materno.$invalid && newUsuarioForm.materno.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newUsuarioForm.materno.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newUsuarioForm.nombres.$invalid && newUsuarioForm.nombres.$dirty, 'has-success':!newUsuarioForm.nombres.$invalid}">
+                  <label class="col-md-4 control-label" for="nombres">Nombres:</label>
+                    <div class="col-md-8">
+                      <div class="input-group">
+                        <div class="input-group-addon">N</div>
+                        <input type="text" id="nombres" name="nombres" ng-required="true" class="form-control" ng-model="usuario.nombres"/>
+                        <span ng-if="newUsuarioForm.nombres.$invalid && newUsuarioForm.nombres.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-if="newUsuarioForm.nombres.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      </div>
+                    <span ng-if="newUsuarioForm.nombres.$invalid && newUsuarioForm.nombres.$dirty" class="help-block">Nombres es Requerido</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newUsuarioForm.fechaNacimiento.$invalid && newUsuarioForm.fechaNacimiento.$dirty, 'has-success':!newUsuarioForm.fechaNacimiento.$invalid}">
+                  <label class="col-md-4 control-label" for="fechaNacimiento">Fecha de Nacimiento:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                      <input type="date" id="fechaNacimiento" name="fechaNacimiento" ng-required="true" class="form-control" ng-model="usuario.fecha_nacimiento"/>
+                      <span ng-if="newUsuarioForm.fechaNacimiento.$invalid && newUsuarioForm.fechaNacimiento.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newUsuarioForm.fechaNacimiento.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="genero">Genero:</label>
+                  <div class="col-md-8">
+                      <div class="radio">
+                        <label class="radio-inline"><input type="radio" id="genero" value="M" ng-model="usuario.genero"/> Masculino</label>
+                        <label class="radio-inline"><input type="radio" id="genero" value="F" ng-model="usuario.genero"/> Femenino</label>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                
+              </div>
+            </div>            
+
+            <div class="row">
+              
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group" ng-class="{'has-error':newUsuarioForm.telefono.$invalid && newUsuarioForm.telefono.$dirty}">
+                  <label class="col-md-4 control-label" for="telefono">Telefono de Contacto:</label>
+                  <div class="col-md-8">
+                    <div class="input-group" >
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></div>
+                      <input type="number" id="telefono" name="telefono" class="form-control" ng-model="usuario.telefono"/>
+                      <span ng-if="newUsuarioForm.telefono.$invalid && newUsuarioForm.telefono.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="email">Correo Electronico:</label>
+                  <div class="col-md-8">
+                    <div class="input-group" >
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></div>
+                      <input type="email" id="email" name="email" class="form-control" ng-model="usuario.email"/>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="direccion">Direccion:</label>
+                  <div class="col-md-8">
+                    <div class="input-group" >
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-road"></i></div>
+                      <input type="text" id="direccion" name="direccion" class="form-control" ng-model="usuario.direccion"/>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newUsuarioForm.username.$invalid && newUsuarioForm.username.$dirty, 'has-success':!newUsuarioForm.username.$invalid}">
+                  <label class="col-md-4 control-label" for="username">Usuario:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                      <input type="text" id="username" name="username" ng-required="true" class="form-control" ng-model="usuario.username"/>
+                      <span ng-if="newUsuarioForm.username.$invalid && newUsuarioForm.username.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newUsuarioForm.username.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group" ng-class="{'has-error':newUsuarioForm.password.$invalid && newUsuarioForm.password.$dirty, 'has-success':!newUsuarioForm.password.$invalid}">
+                  <label class="col-md-4 control-label" for="password">Password:</label>
+                  <div class="col-md-8">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+                      <input type="password" id="password" name="password" ng-required="true" class="form-control" ng-model="usuario.password"/>
+                      <span ng-if="newUsuarioForm.password.$invalid && newUsuarioForm.password.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newUsuarioForm.password.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">                
+                
+              </div>
+            </div> 
+
+            <div class="form-group">
             <div class="col-sm-12">
               <!-- user-detail.html: -->
-                <a ng-click="cancel()" class="btn btn-small">Cancelar</a>
-                <a ng-click="updateUser()" class="btn btn-small btn-primary">update user</a>
-
+                <a ng-click="cancel()" class="btn btn-small">Cancelar</a>            
               <!-- user-creation.html: -->
-                <a ng-click="newUsuario()" class="btn btn-small btn-primary">Guardar</a>
+                <a ng-disabled="!newUsuarioForm.$valid" ng-click="newUsuario()" class="btn btn-small btn-primary">Guardar</a>
             </div>
            </div>
-	 </form>
-       </div>
+          </div>
+        </form>       
     </div>
 </div>

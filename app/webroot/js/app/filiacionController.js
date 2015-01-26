@@ -1,7 +1,13 @@
 var filiacionController = angular.module('filiacionControllers',[]);
 
-filiacionController.controller('filiacionController', ['$scope','$routeParams','InscripcionFactory','$location', function($scope, $routeParams, InscripcionFactory, $location) {
+filiacionController.controller('filiacionController', ['$scope','$routeParams','InscripcionListFactory','$location', 'usSpinnerService', function($scope, $routeParams, InscripcionListFactory, $location, usSpinnerService) {
     $scope.estudiantes = null;    
-    InscripcionFactory.query({curso_id: $routeParams.curso_id}, function(data){$scope.estudiantes = data.inscripciones;});
+    usSpinnerService.spin('spinner-1');
+    $scope.curso = {id: $routeParams.idCurso};       
+
+    InscripcionListFactory.query({query_id:124, curso_id:$routeParams.curso_id}, function(data){
+      usSpinnerService.stop('spinner-1');
+      $scope.estudiantes = data.datos;
+    })
 
 }]);

@@ -1,0 +1,139 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Asignar Docentes a Curso
+</h3>
+<div class="row mt" >
+    <div class="col-lg-12">
+      <form name="newAsignarForm" id="newCursoForm" novalidate="novalidate" class="form-horizontal style-form">
+
+          <div class="form-panel">
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              1.- Datos del Curso
+            </h4>        
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gestion">Gesti&oacute;n :</label>
+                  <div class="col-md-8">
+                    <input class="form-control" id="gestion" type="text" placeholder="{{ asignar.curso.gestion }}" disabled="" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="unidadEducativa">Unidad Educativa :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="unidadEducativa" type="text" placeholder="{{ asignar.curso.unidad_educativa }}" disabled="" />
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="nivel">Nivel :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="nivel" type="text" placeholder="{{ asignar.curso.nivel }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="grado">Grado : </label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="grado" type="text" placeholder="{{ asignar.curso.grado }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="paralelo">Paralelo :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="paralelo" type="text" placeholder="{{ asignar.curso.paralelo }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-6">                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="turno">Turno :</label>
+                  <div class="col-md-8">                    
+                    <input class="form-control" id="turno" type="text" placeholder="{{ asignar.curso.turno }}" disabled="" />                    
+                  </div>
+                </div>
+              </div>              
+            </div>
+
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              2. Asignar Area - Asignatura a Docente
+            </h4>
+
+            <div class="row">
+              <div class="col-sm-2 col-lg-5">
+                <div class="form-group" ng-class="{'has-error':newAsignarForm.asignatura.$error.required, 'has-success':newAsignarForm.asignatura.$valid}">
+                  <label class="col-md-4 control-label" for="asignatura">Asignatura :</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                                            
+                      <select id="asignatura" name="asignatura" ng-model="asignar.asignatura" ng-options="value as value.descripcion for (key, value) in asignatura" class="form-control" required>
+                        <option value="">-- Seleccione Asignatura --</option>
+                      </select>
+                      <span ng-if="newAsignarForm.asignatura.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newAsignarForm.asignatura.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <span ng-if="newAsignarForm.asignatura.$error.required" class="help-block">La Asignatura es requerida</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2 col-lg-5">                
+                <div class="form-group" ng-class="{'has-error':newAsignarForm.docente.$error.required, 'has-success':newAsignarForm.docente.$valid}">
+                  <label class="col-md-4 control-label" for="docente">Docente :</label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <select id="docente" name="docente" ng-model="asignar.docente" ng-options="value as value.paterno + ' ' + value.materno + ', ' + value.nombres for (key, value) in docentes" class="form-control" required>
+                        <option value="">-- Seleccione Docente --</option>
+                      </select>
+                      <span ng-if="newAsignarForm.docente.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newAsignarForm.docente.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>                      
+                    </div>
+                    <span ng-if="newAsignarForm.docente.$error.required" class="help-block">El docente es requerido</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2 col-lg-2">                
+                <div class="form-group">
+                    <a ng-disabled="!newAsignarForm.$valid" ng-click="mtdAsignar()" class="btn btn-small btn-primary"><i class="fa fa-chevron-down"></i> Asignar</a>
+                </div>    
+              </div>
+            </div>
+
+            <div class="row" ng-repeat="asignado in asignados">
+              <div class="col-sm-2 col-lg-5">
+                <div class="form-group">                  
+                  <div class="col-md-8">
+                    <div class="input-group">                                            
+                      {{ asignado.descripcion }}
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2 col-lg-5">                
+                <div class="form-group">                  
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      {{ asignado.paterno }} {{ asignado.materno }}, {{ asignado.nombres }}     
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2 col-lg-2">                
+                <div class="form-group">
+                    <a ng-click="mtdEliminar(asignado.id)" class="btn btn-small btn-danger"><i class="fa fa-trash-o"></i> Eliminar</a>
+                </div>    
+              </div>
+            </div>
+
+
+        </form>               
+    </div>
+</div>

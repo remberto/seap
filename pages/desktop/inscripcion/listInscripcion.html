@@ -106,8 +106,8 @@
                 <td>{{ inscripcion.fecha_nacimiento }}</td>
                 <td>{{ inscripcion.genero }}</td>
                 <td class="action">
-                  <button class="btn btn-primary btn-xs" ng-click="inscribir(curso.id)" title="Inscribir Estudiante"><i class="fa fa-book"></i></button>
-                  <button class="btn btn-danger btn-xs" ng-click="deleteCurso(curso.id)"><i class="fa fa-trash-o "></i></button>
+                  <button class="btn btn-primary btn-xs" ng-click="editInscripcion(inscripcion.id)" title="Editar Inscripcion"><i class="fa fa-book"></i></button>
+                  <button class="btn btn-danger btn-xs" ng-click="deleteInscripcion(inscripcion.id)"  title="Eliminar Inscripcion"><i class="fa fa-trash-o "></i></button>
                 </td>
               </tr>
             </tbody>

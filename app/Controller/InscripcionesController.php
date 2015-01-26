@@ -110,10 +110,10 @@ class InscripcionesController extends AppController{
      public function delete($id){  
         if($this->Inscrito->delete($id)):
           $message['eliminado'] = true;
-          $message['mensaje'] = 'Eliminado';
+          $message['mensaje'] = 'Se dio de Baja las inscripcion correctamente';
         else:
           $message['eliminado'] = false;
-          $message['mensaje'] = 'Error';
+          $message['mensaje'] = 'Error al dar de baja';
         endif;
         $this->set(array(
             'message' => $message,
