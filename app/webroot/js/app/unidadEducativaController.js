@@ -3,6 +3,14 @@ var unidadEducativaController = angular.module('unidadEducativaControllers',[]);
 unidadEducativaController.controller('unidadesEducativasController', ['$scope','UnidadesEducativasFactory','UnidadEducativaFactory', 'UnidadesEducativasUsuarioFactory', '$location', 'usSpinnerService', 'sesionesControl',  function($scope, UnidadesEducativasFactory, UnidadEducativaFactory, UnidadesEducativasUsuarioFactory, $location, usSpinnerService, sesionesControl) {
     $scope.unidades_educativas = null;
 
+    $scope.__construct = function(){
+      usSpinnerService.spin('spinner-1');
+      UnidadesEducativasUsuarioFactory.query({query_id:113, user_id: sesionesControl.get('user_id')}, function(data){
+        usSpinnerService.stop('spinner-1');
+        $scope.unidades_educativas = data.datos;
+      });   
+    }
+
     $scope.addUnidadEducativa = function(){
        $location.path('/addUnidadEducativa');
     };
@@ -58,9 +66,7 @@ unidadEducativaController.controller('unidadesEducativasController', ['$scope','
         })
     };
     
-    UnidadesEducativasUsuarioFactory.query({query_id:113, user_id: sesionesControl.get('user_id')}, function(data){
-      $scope.unidades_educativas = data.datos;
-    });
+    $scope.__construct();
 }]);
 
 
