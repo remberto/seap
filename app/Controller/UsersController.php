@@ -147,7 +147,11 @@ class UsersController extends AppController {
             $_administra = array();
             $this->Administra->create();
             $_administra['Administra']['user_id'] = $id_persona;
-            $_administra['Administra']['unidad_educativa_id'] = $this->request->data['unidad_educativa'];            
+            if(isset($this->request->data['unidad_educativa']['id'])):
+                $_administra['Administra']['unidad_educativa_id'] = $this->request->data['unidad_educativa']['id'];            
+            else:
+                $_administra['Administra']['unidad_educativa_id'] = $this->request->data['unidad_educativa'];            
+            endif;
             $this->Administra->save($_administra);
 
             $datasource->commit();

@@ -67,8 +67,12 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // Aqui parte de Administracion de la Aplicacion
     // Unidades Educativas
     .when('/UnidadesEducativas', {
-        templateUrl : 'pages/unidadEducativa/list.html',
+        templateUrl : 'pages/desktop/unidadEducativa/list.html',
         controller  : 'unidadesEducativasController'
+    })
+    .when('/addUnidadEducativa', {
+        templateUrl : 'pages/desktop/unidadEducativa/add.html',
+        controller  : 'unidadEducativaController'
     })
 
     // Usuarios
@@ -77,8 +81,8 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
 	    controller  : 'usuariosController'
 	})
 	.when('/addUsuario', {
-	    templateUrl : 'pages/usuario/add.html',
-	    controller  : 'usuarioController'
+	    templateUrl : 'pages/usuario/addUnidadEducativa.html',
+	    controller  : 'usuarioAdministraController'
 	})
 
     // Aqui va la parte de de Gestion Administrativa de la Unidad Educativa
@@ -236,15 +240,6 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
         })
 
 	    
-	.when('/unidadeseducativas', {
-	    templateUrl : 'pages/unidadEducativa/list.html',
-	    controller  : 'unidadesEducativasController'
-	})
-	.when('/addUnidadEducativa', {
-	    templateUrl : 'pages/unidadEducativa/add.html',
-	    controller  : 'unidadEducativaController'
-	})
-    
 	.when('/upload', {
             templateUrl : 'pages/file/add.html',
             controller  : 'uploadController'
@@ -503,7 +498,16 @@ cuadernoAppServices.factory('UnidadesEducativasFactory', function ($resource) {
     })
 });
 
+// Acciones de la Unidad Educativa
+// Eliminar
+cuadernoAppServices.factory('UnidadEducativaFactory', function ($resource) {
+    return $resource('/index.php/unidadeseducativas/:id.json?accion=:action', {}, {        
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+});
+
 // Listado de Unidades Educativas habilitadas para el usuario que Administra
+// // query_id  113
 cuadernoAppServices.factory('UnidadesEducativasUsuarioFactory', function ($resource) {
     return $resource('/index.php/consultas.json?query_id=:query_id&user_id=:user_id', {}, {
         query: { method: 'GET', params: {query_id: '@query_id', user_id: '@user_id'}, isArray: false},
@@ -511,12 +515,6 @@ cuadernoAppServices.factory('UnidadesEducativasUsuarioFactory', function ($resou
     })
 });
 
-cuadernoAppServices.factory('UnidadEducativaFactory', function ($resource) {
-    return $resource('/index.php/unidadeseducativas/:id.json', {}, {
-        update: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'GET', params: {id: '@id'} }
-    })
-});
 
 // Administrativos
 cuadernoAppServices.factory('AdministrativosFactory', function ($resource) {
