@@ -70,8 +70,25 @@ unidadEducativaController.controller('unidadesEducativasController', ['$scope','
 }]);
 
 
-unidadEducativaController.controller('unidadEducativaController', ['$scope','UnidadesEducativasFactory','$location', 'usSpinnerService', 'sesionesControl', function($scope, UnidadesEducativasFactory, $location, usSpinnerService, sesionesControl) {
+unidadEducativaController.controller('unidadEducativaController', ['$scope','UnidadesEducativasFactory','UnidadesEducativasOficialFactory','$location', 'usSpinnerService', 'sesionesControl', function($scope, UnidadesEducativasFactory, UnidadesEducativasOficialFactory, $location, usSpinnerService, sesionesControl) {
   $scope.unidadEducativa = {user_id:  sesionesControl.get('user_id') }
+
+  $scope.__construct = function()
+  {
+    $scope.$watch("unidadEducativa.id", function(newValue, oldValue){
+      UnidadesEducativasOficialFactory.query({query_id: 134, unidad_educativa_id: newValue}, function(data){        
+        if(data.datos.length > 0){          
+          $scope.unidadEducativa.id = data.datos[0].id;
+          $scope.unidadEducativa.descripcion = data.datos[0].descripcion;
+          $scope.unidadEducativa.user_id = sesionesControl.get('user_id');
+        }else{
+          //$scope.unidadEducativa.id = null;
+          $scope.unidadEducativa.descripcion = null;
+          $scope.unidadEducativa.user_id = sesionesControl.get('user_id');
+        }
+      });
+    });
+  }
 
   $scope.newUnidadEducativa = function(){
     usSpinnerService.spin('spinner-1');        
@@ -101,15 +118,15 @@ unidadEducativaController.controller('unidadEducativaController', ['$scope','Uni
                   'theme': 'error'
                 });
         }            
-    });        
-  
+    });      
   };
 
   $scope.mtdList = function(){        
     $location.path('/UnidadesEducativas');
     $scope.$apply();
-  }
+  };
 
+  $scope.__construct(); 
      
 }]);
 

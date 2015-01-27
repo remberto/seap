@@ -490,6 +490,12 @@ cuadernoAppServices.factory("authUsers", function($resource){
 
 
 // Unidades Educativas
+// query_id  134 Unidades Educativas Oficial
+cuadernoAppServices.factory('UnidadesEducativasOficialFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&unidad_educativa_id=:unidad_educativa_id', {}, {
+        query: { method: 'GET', params: {query_id: '@query_id', unidad_educativa_id: '@unidad_educativa_id'}, isArray: false},        
+    })
+});
 
 cuadernoAppServices.factory('UnidadesEducativasFactory', function ($resource) {
     return $resource('/index.php/unidadeseducativas.json', {}, {
