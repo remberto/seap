@@ -802,8 +802,8 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
 				    $modalInstance.close($scope.user.username);           
 			    }
 			    else{
-				unCacheSession();
-				console.log('no ingresa');
+				    unCacheSession();
+				    console.log('no ingresa');
 			    }
 			}
 		);
@@ -816,24 +816,21 @@ loginController.controller('loginController',['$scope', '$modalInstance', '$loca
 }]);
 
 
-loginController.controller('initController',['$rootScope', '$scope','sesionesControl','dialogs','$location','MenusFactory',function($rootScope, $scope,sesionesControl,dialogs,$location, MenusFactory){
+loginController.controller('initController',['$rootScope', '$scope','sesionesControl','dialogs','$location','$window','MenusFactory',function($rootScope, $scope,sesionesControl,dialogs,$location, $window, MenusFactory){
     $scope.username = '';
     $scope.menus = [];    
     if(!sesionesControl.get('userLogin') || (sesionesControl.get('userLogin') == 'false')){
-	   var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
-	   dlg.result.then(function(name){        
+	   /*var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
+	   dlg.result.then(function(name){                    
             $scope.username = name;
-            MenusFactory.query({query_id: 110, user_id: sesionesControl.get('user_id')},
+            $location.apply();
+            /*MenusFactory.query({query_id: 110, user_id: sesionesControl.get('user_id')},
             function(data){
                 $scope.menus = data.datos;
-            });           
+            });
             //$rootScope.$broadcast('evento', $scope.menus);
-	   },function(){
-	       $location.path('/');           
-	       //if(angular.equals($scope.name,''))
-	       //    console.log('error');
-	       //$scope.name = 'You did not enter in your name!';
-	   });
+	   });*/
+       //$window.location.href = 'http://bienaventuranza.example.com/';
     }
     else{
         $scope.username = sesionesControl.get('username');
@@ -844,11 +841,12 @@ loginController.controller('initController',['$rootScope', '$scope','sesionesCon
     }
 }]);
 
-loginController.controller('logoutController',['$rootScope', '$scope','sesionesControl','dialogs','$location','MenusFactory',function($rootScope, $scope,sesionesControl,dialogs,$location, MenusFactory){
+loginController.controller('logoutController',['$rootScope', '$scope','sesionesControl','dialogs','$location','$window','MenusFactory',function($rootScope, $scope,sesionesControl,dialogs,$location, $window, MenusFactory){
     sesionesControl.unset("userLogin");
     sesionesControl.unset("username");
     sesionesControl.unset("user_id");
-    $location.path('/');    
+    $window.location.href = 'http://104.236.71.163';      
+    //$window.location.href = 'http://bienaventuranza.example.com/';      
 }]);
 
 var menuController = angular.module('menuControllers',[]);
@@ -872,20 +870,12 @@ menuController.controller('menuController',['$rootScope','$scope','sesionesContr
 }]);
 
 
-cuadernoApp.run(['$rootScope','$location','dialogs','sesionesControl', function($rootScope, $location, dialogs, sesionesControl){
+cuadernoApp.run(['$rootScope','$location','dialogs','$window','sesionesControl', function($rootScope, $location, dialogs, $window, sesionesControl){    
 //    $templateCache.put('/dialogs/custom.html','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> User\'s Name</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="course">Name:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.name" ng-keyup="hitEnter($event)" required><span class="help-block">Enter your full name, first &amp; last.</span></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div>');
-    
-    //var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'lg',keyboard: true,backdrop: false,windowClass: 'my-class'});
-/*    if(!sesionesControl.get('userLogin')){
-	var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
-	dlg.result.then(function(name){
-	    
-	},function(){
-	    $location.path('/');
-	    //if(angular.equals($scope.name,''))
-	    //    console.log('error');
-	    //$scope.name = 'You did not enter in your name!';
-	});
+    if(!sesionesControl.get('userLogin') || (sesionesControl.get('userLogin') == 'false')){
+        var dlg = dialogs.create('/pages/dialogs/custom.html','loginController',{},{size:'sm'});
+            dlg.result.then(function(name){                                            
+            $window.location.reload();            
+       });
     }
-*/
 }]);
