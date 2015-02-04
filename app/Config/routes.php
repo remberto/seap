@@ -63,6 +63,7 @@
     Router::mapResources('docentes');
 	Router::mapResources('asistencia');
 	Router::mapResources('evaluaciones');
+	Router::mapResources('actividadevaluaciones');
 	Router::mapResources('criterios');
 	Router::parseExtensions();
 /**
