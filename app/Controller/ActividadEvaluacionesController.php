@@ -7,8 +7,8 @@
 App::uses('AppController', 'Controller');
 /**
  */
-class ActividadEvaluacionesController extends AppController{
-    var $name = 'ActividadEvaluaciones';//inicializacion de variables
+class ActividadevaluacionesController extends AppController{
+    var $name = 'Actividadevaluaciones';//inicializacion de variables
     public $components = array('RequestHandler');
     public $uses = array('ActividadEvaluacion');
 
