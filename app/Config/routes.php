@@ -66,6 +66,7 @@
 	Router::mapResources('actividadevaluaciones');
 	Router::mapResources('criterios');
 	Router::parseExtensions();
+	
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
