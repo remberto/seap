@@ -26,10 +26,15 @@ class CriterioEvaluacion extends AppModel {
             'type'=>'INNER',
             'foreignKey' => 'dimension_id',
         ),
-        'PlanificacionClaseDetalle' => array(
-            'className'=>'PlanificacionClaseDetalle',
+        'Periodo' => array(
+            'className'=>'Periodo',
             'type'=>'INNER',
-            'foreignKey' => 'planificacion_clase_detalle_id',
+            'foreignKey' => 'periodo_id',
+        ),
+        'Actividad' => array(
+            'className'=>'ActividadEvaluacion',
+            'type'=>'INNER',
+            'foreignKey' => 'actividad_evaluacion_id',
         ),
     );
 }

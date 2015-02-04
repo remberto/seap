@@ -65,6 +65,10 @@ unidadEducativaController.controller('unidadesEducativasController', ['$scope','
           'size': 'small',          
         })
     };
+
+    $scope.uploadUnidadEducativa = function(idUnidadEducativa){
+      $location.path('/upload/'+idUnidadEducativa);
+    }
     
     $scope.__construct();
 }]);

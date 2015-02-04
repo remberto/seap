@@ -98,7 +98,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
         controller  : 'administrativosController'
     })
     .when('/addAdministrativo', {
-        templateUrl : 'pages/administrativo/add.html',
+        templateUrl : (_isNotMobile )? 'pages/mobile/administrativo/add.html':'pages/desktop/administrativo/add.html',
         controller  : 'administrativoController'
     })
 
@@ -223,6 +223,10 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
             templateUrl : 'pages/desktop/asistencia/registroAsistencia.html',
             controller  : 'asistenciaController'
         })
+    .when('/registrarAsistencia/:asignado_id/:curso_id', {
+            templateUrl : 'pages/desktop/asistencia/registrarAsistencia.html',
+            controller  : 'asistenciaCheckController'
+        })
 
     // Evaluacion
     
@@ -240,7 +244,7 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
         })
 
 	    
-	.when('/upload', {
+	.when('/upload/:idUnidadEducativa', {
             templateUrl : 'pages/file/add.html',
             controller  : 'uploadController'
         })
@@ -316,6 +320,18 @@ cuadernoAppServices.factory('CriteriosEvaluacionFactory', function ($resource) {
         query: { method: 'GET', params: {query_id: '@query_id', dimension_id: '@dimension_id', planificacion_clases_id: '@planificacion_clases_id'}, isArray: false},        
     })
 }); 
+
+cuadernoAppServices.factory('CriteriosFactory', function ($resource) {
+    return $resource('/index.php/criterios.json', {}, {
+        create: { method: 'POST' }
+    })
+});
+
+cuadernoAppServices.factory('CriteriosAccionFactory', function ($resource) {
+    return $resource('/index.php/criterios/:id.json?accion=:action', {}, {
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+});
 
 // Recupera el contenido de la planificacion detalle anual
 
@@ -750,6 +766,15 @@ cuadernoAppServices.factory('DimensionFactory', function ($resource) {
 });
 
 // ActividadEvaluacion
+
+// Asistencia
+cuadernoAppServices.factory('EvaluacionFactory', function ($resource) {
+    return $resource('/index.php/evaluaciones.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })
+});
+
 // Devuelve las Actividades de Evaluacion
 cuadernoAppServices.factory('ActividadEvaluacionFactory', function ($resource) {
     return $resource('/index.php/actividadevaluaciones.json', {}, {
@@ -845,8 +870,8 @@ loginController.controller('logoutController',['$rootScope', '$scope','sesionesC
     sesionesControl.unset("userLogin");
     sesionesControl.unset("username");
     sesionesControl.unset("user_id");
-    $window.location.href = 'http://104.236.71.163';      
-    //$window.location.href = 'http://bienaventuranza.example.com/';      
+    //$window.location.href = 'http://104.236.71.163';      
+    $window.location.href = 'http://bienaventuranza.example.com/';      
 }]);
 
 var menuController = angular.module('menuControllers',[]);

@@ -1,8 +1,9 @@
 var uploadController = angular.module('uploadControllers',[]);
 
-uploadController.controller('uploadController', ['$scope','FileUploader','$location', function($scope, FileUploader, $location) {
-    var uploader = $scope.uploader = new FileUploader({
-            url: '/index.php/upload/index'
+uploadController.controller('uploadController', ['$scope','$routeParams','FileUploader','$location', function($scope, $routeParams, FileUploader, $location) {
+    var id = $routeParams.idUnidadEducativa;
+    var uploader = $scope.uploader = new FileUploader({            
+            url: '/index.php/upload/index/'+id
         });
 
         // FILTERS

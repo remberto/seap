@@ -78,7 +78,7 @@ docentesController.controller('docenteController', ['$scope', 'UnidadesEducativa
                 usSpinnerService.stop('spinner-1');
                 $.fn.jAlert({
                       'title':'¡Satisfactorio!',
-                      'message': 'Se guardo correctamente el nuevo personal administrativo',
+                      'message': 'Se guardo correctamente el nuevo personal docente',
                       'theme': 'success',
                       'closeBtn': false,
                       'btn': [{'label':'Cerrar', 
@@ -95,7 +95,7 @@ docentesController.controller('docenteController', ['$scope', 'UnidadesEducativa
                 usSpinnerService.stop('spinner-1');
                 $.fn.jAlert({
                       'title':'Error!',
-                      'message': 'El Nuevo Personal Administrativo no fue guardado correctamente',
+                      'message': 'El Nuevo Personal Docente no fue guardado correctamente',
                       'theme': 'error'
                     });
             }            

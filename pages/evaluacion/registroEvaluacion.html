@@ -2,80 +2,50 @@
 	<i class="fa fa-angle-right"></i>
 	Registro de Evaluaciones
 </h3>
-<div class="container">
-<div class="row mt" ng-controller="evaluacionController">
-
-		<div class="col-lg-3">
-			Actividad de Evaluaci&oacute;n:
-			<select id="actividad" class="form-control" ng-model="actividad_id" ng-options="value as value.descripcion for (key, value) in actividades">
-				<option>Seleccione</option>
-			</select>
-		</div>
-		<div class=" col-lg-9">
-			Bimestre:
-			<select id="periodos" class="form-control" ng-change="mtdSelectObjetivos(periodo.id)" ng-model="periodo" ng-options="value as value.descripcion for (key, value) in periodos">
-				<option>Seleccione</option>
-			</select>
-		</div>
-		<!--input type="text" value="{{curso_id}}"-->
-		<div class="form-group col-lg-12">
-			Objetivo Holístico:
-			<select id="objetivos" class="form-control" ng-model="objetivo" ng-options="value as value.objetivo_holistico for (key, value) in objetivos">
-				<option>Seleccione</option>
-			</select>
-		</div>
-
-		<div class="form-group col-lg-12" style="with: 60px;">
-			Dimensi&oacute;n:
-			<select id="dimensiones" class="form-control" ng-model="dimension" ng-options="value as value.descripcion for (key, value) in dimensiones" ng-change="mtdSelectCriterios(dimension.id)">
-				<option>Seleccione</option>
-			</select>
-		</div>
-
-		<!--div class="form-group col-lg-8" style="with: 60px;">
-			Criterio de Evaluación:
-			<select name="" class="form-control">
-				<option value="">El estudiante ayuda a sus compañeros a entender el texto</option>
-				<option value="">Hace criticas constructivas sin ofender a tus compañeros</option>
-				<option value="">Organizo a mi grupo para su buen funcionamiento</option>
-			</select>
-		</div-->
-
-		<div class="col-lg-12">
-			<table>
-				<thead>
-					<tr>
-						<th>Estudiante</th>
-						<th>Puntuaci&oacute;n</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="estudiante in inscripciones">
-						<td>{{ $index + 1 }}.- {{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>
-						<td>{{estudiante.criterio0}}<input type="text" style="text-align: center;" value="{{estudiante.cuantitativo0}}" size="4" ><input type="text" enable="false" name="" value="" size="3">&nbsp;</td>
-						<td>{{estudiante.criterio1}}<input type="text" style="text-align: center;" value="{{estudiante.cuantitativo1}}" size="4" ><input type="text" enable="false" name="" value="" size="3">&nbsp;</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-
-		<!--div class="col-lg-12">
-			<table>
-				<thead>
-					<tr>
-						<th>Estudiante</th>
-						<th>Puntuaci&oacute;n</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="estudiante in estudiantes">
-						<td>{{ $index + 1 }}.- {{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>
-						<td><input type="text" value="" size="4" ><input type="text" enable="false" name="" value="" size="3">&nbsp;</td>
-					</tr>
-				</tbody>
-			</table>
-		</div-->
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="content-panel">
+      <h4><i class="fa fa-angle-right"></i> Evaluacion</h4>
 	
-</div>
+      	<div class=" col-lg-12">
+		Bimestre:
+		<select id="periodos" class="form-control" ng-change="mtdVer2(periodo, idAsignado, idCurso)" ng-model="periodo" ng-options="value as value.descripcion for (key, value) in periodos">
+			<option>Seleccione</option>
+		</select>
+	</div>        
+        <br/><br/>
+        <tabset>            
+          <tab ng-repeat="actividad in actividades" select="mtdVer1(actividad, idAsignado, idCurso)">
+            <tab-heading>{{actividad.descripcion}}</tab-heading>
+            <section class="unseen">
+            <table class="table table-bordered table-striped table-condensed">
+              <thead style="background-color:black; color:white;">
+                <tr>
+                  <th rowspan="2">Nro.</th>
+                  <th rowspan="2">Apellidos y Nombres</th>
+                  <th ng-repeat="dimension in dimensiones" colspan="{{ dimension.columnas }}"><center>{{ dimension.dimension}}</center></th>
+                  <TH rowspan="2"><center><button class="btn btn-success btn-xs" ng-click="mtdAddCriterio(periodo.id, actividad.id, idAsignado)"><i class=" fa fa-plus"></i></button></center></TH>                    
+                </tr>
+                <tr>
+               	   <th ng-repeat="criterio in criterios"><center>{{criterio.criterio}}&nbsp;<button class="btn btn-danger btn-xs" ng-click="mtdDelCriterio(criterio)"><i class=" fa fa-minus fa-xs"></i></button></center></th>
+               	</tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="estudiante in estudiantes">
+                  <td>{{ $index + 1 }}</td>                    
+                  <td>{{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>                    
+                  <td ng-repeat="criterio in criterios" align="right">
+                  	<span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] > 0">{{ evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] }} | &nbsp; {{ evaluaciones[estudiante.id][criterio.idcriterio]['cualitativo'] }}</span>
+                  	&nbsp;
+                  	<button class="btn btn-primary btn-xs" ng-click="mtdEvaluar(estudiante, criterio, idAsignado)"><i class="fa fa-pencil"></i></button>                  
+                  </td>
+                  <TD></TD>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          </tab>
+        </tabset>                  
+    </div>
+  </div>
 </div>

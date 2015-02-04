@@ -35,12 +35,7 @@ class Evaluacion extends AppModel {
             'className'=>'CriterioEvaluacion',
             'type'=>'INNER',
             'foreignKey' => 'criterio_de_evaluacion_id',
-        ),
-        'ActividadEvaluacion' => array(
-            'className'=>'ActividadEvaluacion',
-            'type'=>'INNER',
-            'foreignKey' => 'actividad_evaluacion_id',
-        ),
+        ),        
     );
 }
 ?>

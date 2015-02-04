@@ -62,6 +62,8 @@
     Router::mapResources('unidadeseducativas');
     Router::mapResources('docentes');
 	Router::mapResources('asistencia');
+	Router::mapResources('evaluaciones');
+	Router::mapResources('criterios');
 	Router::parseExtensions();
 /**
  * Load all plugin routes. See the CakePlugin documentation on

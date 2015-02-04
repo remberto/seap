@@ -1,0 +1,51 @@
+<h3><i class="fa fa-angle-right"></i>Registro de Asistencia</h3>
+<div class="row mt" ng-controller="administrativoController">
+    <div class="col-lg-12">
+    	<div class="content-panel">            
+          
+            <h4 class="mb"><i class=" fa fa-angle-right"></i>
+              1.- Datos del Personal Administrativo
+            </h4>
+            <input type="hidden" ng-model="administrativo.UnidadEducativa"/> 
+            <div class="row">
+            	<div class="col-sm-6 col-lg-6">
+	            	<div class="form-group">
+				<label class="col-sm-2 col-sm-2 control-label" for="inputFecha">Fecha</label>
+				<div class="col-sm-6">
+					<p class="input-group">
+						<input type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" min-date="1999-01-01" max-date="'2025-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="asistencia.fecha"/>
+
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</p>
+				</div>				
+			</div>
+		</div>
+	    </div>            
+            	<section class="unseen">
+	          <table class="table table-bordered table-striped table-condensed">
+	            <thead>
+	              <tr>
+	                <th class="col-span-2">Nro.</th>
+	                <th class="col-span-5">Apellidos y Nombres</th>                
+	                <th class="col-span-5">Acciones</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr ng-repeat="estudiante in estudiantes">
+	                <td>{{ $index + 1 }}</td>
+	                <td>{{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>                
+	                <td>
+	                 <label title="Asiste" class="col-lg-3"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 1)">Asiste</label>
+	                 <label title="Atraso" class="col-lg-3"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 2)">Tarde</label>
+	                 <label title="Falta" class="col-lg-3"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 3)">Falta</label>
+	                 <label title="Falta con licencia" class="col-lg-3"><input type="radio" name="opciones_{{$index}}" ng-click="mtdRegistraAsistencia(estudiante.id, 4)">Licencia</label> 
+	                </td>
+	              </tr>
+	            </tbody>
+	          </table>
+	        </section>                                           
+        </div>       
+    </div>
+</div>

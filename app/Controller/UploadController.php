@@ -22,12 +22,12 @@ class UploadController extends AppController {
      *
      * @return void
      */
-    public function index() {
-        if ( !empty( $_FILES ) ) {
+    public function index($id) {
+        if ( !empty( $_FILES ) ) {            
             $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
             $uploadPath = WWW_ROOT . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $_FILES[ 'file' ][ 'name' ];
             move_uploaded_file( $tempPath, $uploadPath );
-
+            
             $gestor = fopen($uploadPath, "r");
             $contenido = fread($gestor, filesize($uploadPath));
             fclose($gestor);
@@ -39,13 +39,9 @@ class UploadController extends AppController {
             $name_campos = array();
             $name_tables = array();
             $curso = array();
-            $estudiante = array();
+            $estudiante = array();                        
             foreach($lineas as $linea):                
-                $fields = explode('|', $linea);
-                /*foreach ($fields as $key => $value) {
-                    print_r($value);
-                    echo "---------";
-                }*/                
+                $fields = explode('|', $linea);                                               
                 if(strcmp($fields[0],'SieTypeFile')==0):
                     $error = 'Finalizado';
                 elseif(($fields[0] == 1000) || ($fields[0] == 18)):
@@ -132,7 +128,7 @@ class UploadController extends AppController {
                         $build = true;                        
                     endif;
                     
-                    /*if(isset($table['Tabla']['table'])):
+                    if(isset($table['Tabla']['table'])):
                         $name_table = $table['Tabla']['table'];                        
                         $name_campos = array();
                         foreach ($fields as $key => $field) {                            
@@ -141,13 +137,13 @@ class UploadController extends AppController {
                             endif;
                         }
                         $build = true;                      
-                    endif;*/                  
+                    endif;                  
                     $nro_tabla = $fields[0];
                 else:
                     $error = 'error archivo';
                 endif;
-                $fields = array();
-            endforeach;            
+                $fields = array();                
+            endforeach;           
             $datos = array( 'answer' => 'File transfer completed' );
         } else {
             $datos = array( 'answer' => 'No files' );
