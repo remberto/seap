@@ -1,42 +1,40 @@
-<div ng-controller="administrativosController">
-  <h3>
-    <i class=""></i>
-    Registro de Asistencia
-  </h3>
-  <button type="button" class="btn btn-primary" ng-click="addAsistencia(idCurso, idAsignado)">Tomar Asistencia</button>
-  <div class="row mt">
-    <div class="col-lg-12">
-      <div class="content-panel">
-        <h4><i class="fa fa-angle-right"></i> Registro de Asistencia</h4>        
-          <tabset>            
-            <tab ng-repeat="mes in meses" select="mtdVer(mes.id, idCurso, idAsignado)">
-              <tab-heading>{{mes.title}}</tab-heading>
-              <section class="unseen">
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Nro.</th>
-                    <th>Apellidos y Nombres</th>
-                    <th ng-repeat="dia in dias">{{dia.dia}}</th>                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="estudiante in estudiantes">
-                    <td>{{ $index + 1 }}</td>                    
-                    <td>{{ estudiante.paterno }} {{ estuddiante.materno }}, {{ estudiante.nombres }}</td>                    
-                    <td ng-repeat="dia in dias">
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '1'"><i class="fa fa-check" style="color:green"></i></span>
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '2'"><i class="fa fa-check-circle" style="color:blue"></i></span>
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '3'"><i class="fa fa-times"style="color:red"></i></span>
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '4'"><i class="fa fa-asterisk" style="color:orange"></i></span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-            </tab>
-          </tabset>                  
-      </div>
+<h3>
+  <i class=""></i>
+  Registro de Asistencia
+</h3>
+<button type="button" class="btn btn-primary" ng-click="addAsistencia(idCurso, idAsignado)">Tomar Asistencia</button>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="content-panel">
+      <h4><i class="fa fa-angle-right"></i> Registro de Asistencia</h4>        
+        <tabset>            
+          <tab ng-repeat="mes in meses" select="mtdVer(mes.id, idCurso, idAsignado)">
+            <tab-heading>{{mes.title}}</tab-heading>
+            <section class="unseen">
+            <table class="table table-bordered table-striped table-condensed">
+              <thead>
+                <tr>
+                  <th>Nro.</th>
+                  <th>Apellidos y Nombres</th>
+                  <th ng-repeat="dia in dias">{{dia.dia}}</th>                    
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="estudiante in estudiantes">
+                  <td>{{ $index + 1 }}</td>                    
+                  <td>{{ estudiante.paterno }} {{ estuddiante.materno }}, {{ estudiante.nombres }}</td>                    
+                  <td ng-repeat="dia in dias">
+                    <span ng-if="asistencia[estudiante.id][dia.id] == '1'"><i class="fa fa-check" style="color:green"></i></span>
+                    <span ng-if="asistencia[estudiante.id][dia.id] == '2'"><i class="fa fa-check-circle" style="color:blue"></i></span>
+                    <span ng-if="asistencia[estudiante.id][dia.id] == '3'"><i class="fa fa-times"style="color:red"></i></span>
+                    <span ng-if="asistencia[estudiante.id][dia.id] == '4'"><i class="fa fa-asterisk" style="color:orange"></i></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          </tab>
+        </tabset>                  
     </div>
   </div>
 </div>

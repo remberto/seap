@@ -34,5 +34,4 @@ class Docente extends AppModel {
         ),        
     );
 }
-
 ?>

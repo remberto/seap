@@ -1,0 +1,48 @@
+<div>
+  <h3>
+    <i class=""></i>
+    Horario de Clases
+  </h3>  
+  <div class="row mt">
+    <div class="col-lg-12">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Horario de Clases</h4>
+        <section class="unseen">
+          <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Periodos</th>
+                <th ng-repeat="dia in dias">{{dia.descripcion}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="periodo in periodos" >
+                <td context-menu="menuPeriodo"><b>{{ periodo.numero_periodo }} </b>- De: {{ periodo.de_horas | date:"H:mm" }} A: {{ periodo.a_horas | date:"H:mm" }}</td>                
+                <td ng-repeat="dia in dias" ng-click="mtdAddClase($event, dia.id, periodo.id)">
+                  <span ng-if="horarios[periodo.id][dia.id]['nivel'] != '0'">
+                    <table style="background-color: green; color: white">
+                      <tr>
+                        <td align="center" ng-model="horarios[periodo.id][dia.id]" context-menu="menuOptions">
+                          {{ horarios[periodo.id][dia.id]['nivel'] }} <a href="" ng-click="mtdDelClase($event, horarios[periodo.id][dia.id]['id'])"><i class="fa fa-times-circle-o"></i></a><br/>
+                          {{ horarios[periodo.id][dia.id]['grado'] }}<br/>
+                          {{ horarios[periodo.id][dia.id]['paralelo'] }}<br/>
+                          {{ horarios[periodo.id][dia.id]['asignatura'] }}
+                        </td>
+                      </tr>
+                    </table>                    
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td><a href="" ng-click="mtdAddPeriodo()"><i class="fa fa-plus"></a></td>
+                <td ng-repeat="dias in dias"></td>                
+              </tr>
+            </tfoot>
+          </table>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

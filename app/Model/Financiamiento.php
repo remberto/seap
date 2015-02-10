@@ -12,4 +12,4 @@ class Financiamiento extends AppModel {
     public $primaryKey = 'id';    
     
 }
-?>8
+?>

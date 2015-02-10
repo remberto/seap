@@ -61,6 +61,8 @@
     Router::mapResources('niveles');
     Router::mapResources('unidadeseducativas');
     Router::mapResources('docentes');
+    Router::mapResources('horario');
+    Router::mapResources('periodohorario');    
 	Router::mapResources('asistencia');
 	Router::mapResources('evaluaciones');
 	Router::mapResources('actividadevaluaciones');

@@ -1,8 +1,9 @@
 var cuadernoApp = angular.module('cuadernoApp', [
     'ui.bootstrap',
+    'ui.bootstrap.contextMenu',
     'dialogs.main',
     'angularFileUpload',
-    'ngRoute',
+    'ngRoute',    
     'angularSpinner',
     'cuadernoAppServices',
     'loginControllers',
@@ -13,6 +14,7 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'filiacionControllers',
     'asistenciaControllers',
     'evaluacionControllers',
+    'horarioControllers',
     'administrativosControllers',
     'docentesControllers',
     'usuariosControllers',
@@ -196,6 +198,12 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     .when('/newPlanificacionClases/:asignado_id/:curso_id', {
             templateUrl : 'pages/planificacionClases/add.html',
             controller  : 'addplanificacionClasesController'
+        })
+
+    // Horario
+    .when('/horario', {
+            templateUrl : 'pages/desktop/horario/horario.html',
+            controller  : 'horarioController'
         })
 
     // filiacion
@@ -436,6 +444,27 @@ cuadernoAppServices.factory('EstudianteFactory', function ($resource) {
 });
 
 // Usuarios
+cuadernoAppServices.factory('HorarioFactory', function ($resource) {
+    return $resource('/index.php/horario.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })    
+});
+
+cuadernoAppServices.factory('PeriodosHorarioFactory', function ($resource) {
+    return $resource('/index.php/periodohorario.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })    
+});
+
+cuadernoAppServices.factory('PeriodoHorarioFactory', function ($resource) {
+    return $resource('/index.php/periodohorario/:id.json?accion=:action', {}, {
+       delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })    
+});
+
+// Usuarios
 cuadernoAppServices.factory('UsuariosFactory', function ($resource) {
     return $resource('/index.php/users.json', {}, {
         query: { method: 'GET', isArray: false},
@@ -658,6 +687,12 @@ cuadernoAppServices.factory('CursoFactory', function ($resource) {
 cuadernoAppServices.factory('AsignaturasCursoFactory', function ($resource) {
     return $resource('/index.php/consultas.json?query_id=:query_id&curso_id=:curso_id', {}, {        
         query: { method: 'GET', params: {query_id: '@query_id', curso_id: '@curso_id'}, isArray: false},
+    });
+});
+
+cuadernoAppServices.factory('AsignaturasNivelFactory', function ($resource) {
+    return $resource('/index.php/consultas.json?query_id=:query_id&nivel_id=:nivel_id', {}, {        
+        query: { method: 'GET', params: {query_id: '@query_id', nivel_id: '@nivel_id'}, isArray: false},
     });
 });
 

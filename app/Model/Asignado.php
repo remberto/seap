@@ -7,7 +7,7 @@
  * @see AppModel
  */
 class Asignado extends AppModel {
-	public $name = 'Asignado';        
+    public $name = 'Asignado';        
     public $useTable = 'asignados';
     public $primaryKey = 'id';
     
