@@ -67,9 +67,10 @@ horarioController.controller('horarioController', ['$scope','$routeParams','sesi
     $scope.mtdAddPeriodo = function(){
       var dlg = dialogs.create('/pages/dialogs/periodo.html','periodoController', {}, {size:'sm'});
       dlg.result.then(function(data){
-          HorarioFactory.query(function(data){
+          HorarioFactory.query({docente_id: sesionesControl.get('user_id')}, function(data){
             $scope.dias = data.datos.dias;
             $scope.periodos = data.datos.periodos;
+            $scope.horarios = data.datos.horario; 
           });                       
       });
     }
