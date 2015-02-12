@@ -13,6 +13,8 @@ class HorarioController extends AppController{
         parent::beforeFilter();
         $this->Auth->allow('index');
         $this->Auth->allow('add');
+        $this->Auth->allow('accion');
+        $this->Auth->allow('delete');
 
     }
 
@@ -52,18 +54,20 @@ class HorarioController extends AppController{
                 $horario[$_key][$dia['id']]['grado'] = 0;
                 $horario[$_key][$dia['id']]['paralelo'] = 0;
                 $horario[$_key][$dia['id']]['asignatura'] = 0;
+                $horario[$_key][$dia['id']]['color'] = 0;
             }      
         endforeach;
               
                
         
-        $_horario = $this->Horario->query('SELECT horario.asignado_id as asignado_id,
+        $_horario = $this->Horario->query('SELECT horario.id as id,
                                             horario.periodo_id as periodo_id,
                                             horario.dia_id as dias_id,
                                             niveles.descripcion as nivel,
                                             grados.descripcion as grado,
                                             paralelos.descripcion as paralelo,
-                                            asignaturas.descripcion as asignatura FROM horario
+                                            asignaturas.descripcion as asignatura,
+                                            horario.color as color FROM horario
                                             INNER JOIN asignados
                                             ON horario.asignado_id = asignados.id
                                             INNER JOIN docente_ue
@@ -87,7 +91,7 @@ class HorarioController extends AppController{
         
         foreach ($Rhorario as $key => $value) {            
             if(isset($horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['id'])):
-                $horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['id'] = $Rhorario[$key]['asignado_id'];
+                $horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['id'] = $Rhorario[$key]['id'];
             endif;
             if(isset($horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['nivel'])):
                 $horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['nivel'] = $Rhorario[$key]['nivel'];
@@ -100,6 +104,9 @@ class HorarioController extends AppController{
             endif;
             if(isset($horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['asignatura'])):
                 $horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['asignatura'] = $Rhorario[$key]['asignatura'];
+            endif;
+            if(isset($horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['color'])):
+                $horario[$Rhorario[$key]['periodo_id']][$Rhorario[$key]['dias_id']]['color'] = $Rhorario[$key]['color'];
             endif;
         }      
         
@@ -171,7 +178,8 @@ class HorarioController extends AppController{
             $_horario = array();
             $_horario['asignado_id'] = $id_asignado;
             $_horario['dia_id'] = $this->request->data['dia_id'];
-            $_horario['periodo_id'] = $this->request->data['periodo_id'];            
+            $_horario['periodo_id'] = $this->request->data['periodo_id'];
+            $_horario['color'] = $this->request->data['color'];            
             $this->Horario->save($_horario);
 
             $datasource->commit();
@@ -189,6 +197,56 @@ class HorarioController extends AppController{
             'message' => $message,
             '_serialize' => array('message')
         ));
+    }
+
+     public function accion($id){
+        if($this->request->query['accion']=='view'):
+            $this->view($id);
+        elseif($this->request->query['accion']=='delete'):
+            $this->delete($id);
+        endif;
+    }
+
+    public function view($id){       
+        $data = $this->Docente->findById($id);        
+        $estudiante = array();
+        foreach ($data as $key => $val):                
+            foreach ($val as $key => $value):
+                $estudiante[$key] = $value;
+            endforeach;                
+        endforeach;
+            //array_push($estudiantes, $estudiante);
+            //endforeach;
+        $this->set(array(
+            'estudiante' => $estudiante,
+            '_serialize' => array('estudiante')
+        ));
+    }
+
+    public function delete($id){
+        $datasource = $this->Horario->getDataSource();
+        $datasource->useNestedTransactions = TRUE;
+        $datasource->begin();
+        try{
+            if($this->Horario->delete($id)):
+                $message['eliminado'] = true;
+                $message['mensaje'] = 'Fue dado de baja correctamente la Clase';
+            else:
+                $message['eliminado'] = false;
+                $message['mensaje'] = 'Error';
+            endif;
+            $datasource->commit();
+        }catch(Exception $e) {
+            $datasource->rollback();
+            $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
+            if($e->getCode() == 23503) { $message['mensaje'] = 'Error al eliminar la Clase';}
+            $message['guardado'] = false;
+            
+        }       
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+           ));
     }
 
 }

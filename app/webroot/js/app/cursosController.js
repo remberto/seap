@@ -88,8 +88,12 @@ cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteF
 
     // Filiacion
     // Lista los Estudiantes inscritos en el Curso
-    $scope.mtdFiliacion = function(id){        
-        $location.path('/filiacionEstudiantes/'+id);
+    $scope.inscribir = function(idCurso){
+      $location.path('/inscribir/'+idCurso);
+    }
+
+    $scope.lista = function(idCurso){
+      $location.path('/listInscripciones/'+idCurso);
     }
 
     // Evaluacion

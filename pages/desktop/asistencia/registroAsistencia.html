@@ -2,13 +2,45 @@
   <i class=""></i>
   Registro de Asistencia
 </h3>
-<button type="button" class="btn btn-primary" ng-click="addAsistencia(idCurso, idAsignado)">Tomar Asistencia</button>
 <div class="row mt">
   <div class="col-lg-12">
     <div class="content-panel">
-      <h4><i class="fa fa-angle-right"></i> Registro de Asistencia</h4>        
+      <h4><i class="fa fa-angle-right"></i> Registro de Asistencia</h4>
+        <div class="row">
+          <div class="col-sm-6 col-lg-6">
+            <div class="form-group" ng-class="{'has-error':newClaseForm.nivel.$error.required, 'has-success':newClaseForm.nivel.$valid}">
+              <label class="col-md-4 control-label" for="nivel">Curso:</label>
+              <div class="col-md-8">
+                <div class="input-group">                                            
+                  <select id="nivel" name="nivel" ng-change="mtdSelectCurso(curso)" ng-model="curso" ng-options="value as value.nivel+' - '+value.grado+' - '+value.paralelo+' - '+value.turno for (key, value) in cursos" class="form-control" required>
+                    <option value="">-- Seleccione Curso --</option>
+                  </select>
+                  <span ng-if="newClaseForm.nivel.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  <span ng-if="newClaseForm.nivel.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                </div>
+                <span ng-if="newClaseForm.nivel.$error.required" class="help-block">El nivel es requerido</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-6">                
+            <div class="form-group" ng-class="{'has-error':newClaseForm.grado.$error.required, 'has-success':newClaseForm.grado.$valid}">
+              <label class="col-md-4 control-label" for="grado">Asignatura:</label>
+              <div class="col-md-8">
+                <div class="input-group">                      
+                  <select id="grado" name="grado" ng-model="asignado" ng-change="mtdView(curso, asignado)" ng-click="meses[0].active = true" ng-options="value as value.asignatura for (key, value) in asignados" class="form-control" required>
+                    <option value="">-- Seleccione Asignatura --</option>
+                  </select>
+                  <span ng-if="newClaseForm.grado.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  <span ng-if="newClaseForm.grado.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>                      
+                </div>
+                <span ng-if="newClaseForm.grado.$error.required" class="help-block">El grado es requerido</span>
+              </div>
+            </div>
+          </div>              
+        </div> 
+        <div ng-if="habilitado">       
         <tabset>            
-          <tab ng-repeat="mes in meses" select="mtdVer(mes.id, idCurso, idAsignado)">
+          <tab ng-repeat="mes in meses" select="mtdVer(mes.id, curso, asignado)">
             <tab-heading>{{mes.title}}</tab-heading>
             <section class="unseen">
             <table class="table table-bordered table-striped table-condensed">
@@ -16,25 +48,66 @@
                 <tr>
                   <th>Nro.</th>
                   <th>Apellidos y Nombres</th>
-                  <th ng-repeat="dia in dias">{{dia.dia}}</th>                    
+                  <th ng-repeat="dia in dias">{{dia.dia}}</th> 
+                  <th>Asiti&oacute;</th> 
+                  <th>Atraso</th> 
+                  <th>Falta</th>
+                  <th>Licencia</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="estudiante in estudiantes">
                   <td>{{ $index + 1 }}</td>                    
                   <td>{{ estudiante.paterno }} {{ estuddiante.materno }}, {{ estudiante.nombres }}</td>                    
-                  <td ng-repeat="dia in dias">
-                    <span ng-if="asistencia[estudiante.id][dia.id] == '1'"><i class="fa fa-check" style="color:green"></i></span>
-                    <span ng-if="asistencia[estudiante.id][dia.id] == '2'"><i class="fa fa-check-circle" style="color:blue"></i></span>
-                    <span ng-if="asistencia[estudiante.id][dia.id] == '3'"><i class="fa fa-times"style="color:red"></i></span>
-                    <span ng-if="asistencia[estudiante.id][dia.id] == '4'"><i class="fa fa-asterisk" style="color:orange"></i></span>
+                  <td ng-repeat="dia in dias" ng-click="mtdAddAsistencia(estudiante, mes, dia, curso, asignado, asistencia[estudiante.id][dia.id])"  align="center">
+                    <center>
+                      <span ng-if="asistencia[estudiante.id][dia.id] == '1'"><i class="fa fa-check" style="color:green"></i></span>
+                      <span ng-if="asistencia[estudiante.id][dia.id] == '2'"><i class="fa fa-check-circle" style="color:blue"></i></span>
+                      <span ng-if="asistencia[estudiante.id][dia.id] == '3'"><i class="fa fa-times"style="color:red"></i></span>
+                      <span ng-if="asistencia[estudiante.id][dia.id] == '4'"><i class="fa fa-asterisk" style="color:orange"></i></span>
+                    </center>
                   </td>
+                  <td align="center"><center>{{ resumen[estudiante.id]['asistio'] }}</center></td>
+                  <td align="center"><center>{{ resumen[estudiante.id]['atraso'] }}</center></td>
+                  <td align="center"><center>{{ resumen[estudiante.id]['falta'] }}</center></td>
+                  <td align="center"><center>{{ resumen[estudiante.id]['licencia'] }}</center></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          </tab>
+          <tab select="mtdResumen(curso, asignado)">
+            <tab-heading >
+              Resumen de Asistencia
+            </tab-heading>
+            <section class="unseen">
+            <table class="table table-bordered table-striped table-condensed">
+              <thead>
+                <tr>
+                  <th>Nro.</th>
+                  <th>Apellidos y Nombres</th>                   
+                  <th>Asiti&oacute;</th> 
+                  <th>Atraso</th> 
+                  <th>Falta</th>
+                  <th>Licencia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="estudiante in estudiantes">
+                  <td>{{ $index + 1 }}</td>                    
+                  <td>{{ estudiante.paterno }} {{ estuddiante.materno }}, {{ estudiante.nombres }}</td>                   
+                  <td align="center"><center>{{ resumen_anual[estudiante.id]['asistio'] }}</center></td>
+                  <td align="center"><center>{{ resumen_anual[estudiante.id]['atraso'] }}</center></td>
+                  <td align="center"><center>{{ resumen_anual[estudiante.id]['falta'] }}</center></td>
+                  <td align="center"><center>{{ resumen_anual[estudiante.id]['licencia'] }}</center></td>
+                  <td align="center"><center><button>Reporte</button></center></td>
                 </tr>
               </tbody>
             </table>
           </section>
           </tab>
         </tabset>                  
+      </div>
     </div>
   </div>
 </div>

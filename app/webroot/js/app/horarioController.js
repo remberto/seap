@@ -1,6 +1,6 @@
 var horarioController = angular.module('horarioControllers',[]);
 
-horarioController.controller('horarioController', ['$scope','$routeParams','sesionesControl','dialogs','HorarioFactory','PeriodoHorarioFactory','InscripcionListFactory', 'AsistenciaFactory', '$location', function($scope, $routeParams, sesionesControl, dialogs, HorarioFactory, PeriodoHorarioFactory, InscripcionListFactory, AsistenciaFactory, $location) {
+horarioController.controller('horarioController', ['$scope','$routeParams','sesionesControl','dialogs','HorarioFactory','HorariosFactory','PeriodoHorarioFactory','InscripcionListFactory', 'AsistenciaFactory', 'usSpinnerService', '$location', function($scope, $routeParams, sesionesControl, dialogs, HorarioFactory, HorariosFactory, PeriodoHorarioFactory, InscripcionListFactory, AsistenciaFactory, usSpinnerService, $location) {
     $scope.idCurso = $routeParams.curso_id;
     $scope.idAsignado = $routeParams.asignado_id;
 
@@ -60,8 +60,57 @@ horarioController.controller('horarioController', ['$scope','$routeParams','sesi
     }
 
     $scope.mtdDelClase = function($event, idClase){
-      $event.preventDefault();
-      console.log(idClase);
+      $event.preventDefault();         
+        $.fn.jAlert({
+                'title':'Eliminar',
+                'message': '¿Desea dar Eliminar la Clase?',          
+                'closeBtn': false,
+                'theme': 'info',
+                'btn': [{'label':'Eliminar', 
+                         'closeOnClick': false, 
+                         'cssClass': 'blue',
+                         'onClick': function(alert){
+                              usSpinnerService.spin('spinner-1');                     
+                              HorariosFactory.delete({id: idClase}, function(data){
+                                  usSpinnerService.stop('spinner-1');
+                                  if(data.message.eliminado){
+                                      $.fn.jAlert({
+                                            'title':'¡Satisfactorio!',
+                                            'message': data.message.mensaje,
+                                            'theme': 'success',
+                                            'closeBtn': false,
+                                            'btn': [{'label':'Cerrar', 
+                                                     'closeOnClick': true, 
+                                                     'cssClass': 'green',                                
+                                                   }],
+                                            'size': 'small',                      
+                                            'onClose': function(){
+                                                  usSpinnerService.spin('spinner-1');
+                                                  HorarioFactory.query({docente_id: sesionesControl.get('user_id')}, function(data){
+                                                    usSpinnerService.stop('spinner-1');
+                                                    $scope.dias = data.datos.dias;
+                                                    $scope.periodos = data.datos.periodos;
+                                                    $scope.horarios = data.datos.horario; 
+                                                  });  
+                                            }
+                                          });
+
+                                  }else{
+                                      $.fn.jAlert({
+                                            'title':'Error!',
+                                            'message': data.message.mensaje,
+                                            'theme': 'error'
+                                          });
+                                  }    
+                              });
+                              alert.closeAlert(true);
+                         }
+                       },
+                       {'label':'Cancelar', 
+                         'closeOnClick': true,                    
+                       }],
+                'size': 'small',          
+              }) 
     }
 
     $scope.mtdAddPeriodo = function(){
@@ -75,7 +124,13 @@ horarioController.controller('horarioController', ['$scope','$routeParams','sesi
       });
     }
 
+    $scope.mtdViewAdd = function(event){
+      $(event.target).addClass('active');
+    }
 
+    $scope.mtdViewRem = function(event){
+      $(event.target).removeClass('active');
+    }
 
     $scope.mtdDelPeriodo = function(){
       

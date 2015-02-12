@@ -1,18 +1,51 @@
-
-<div class="row mt" ng-controller="cursosDocenteController">
-  <div class="col-lg-12">    
-    <div class="row" ng-repeat="curso in cursos">
-      <!-- TWITTER PANEL -->
-      <div class="col-lg-12 col-md-12 col-sm-4 mb" ng-click="mtdFiliacion(curso.id)">
-        <div class="planificacion pn centered">
-          <i class="fa fa-desktop"></i>         
-          <div class="info">
-            <div class="row">
-              <h3 class="centered">{{ curso.nivel }} - {{ curso.grado }} - {{ curso.paralelo }} - {{ curso.turno }}</h3>              
-            </div>
-          </div>
-        </div>
-      </div>     
-    </div><!-- /END ROW OF PANELS --> 
+  <h3>
+    <i class="fa fa-angle-right"></i>
+    Inscripci&oacute;n
+  </h3>  
+  <div class="row mt">
+    <div class="col-lg-12">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Cursos de la Unidad Educativa</h4>
+        <section class="unseen">
+          <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Nro.</th>
+                <th>Gesti&oacute;n</th>
+                <th>Unidad Educativa</th>
+                <th>Nivel</th>
+                <th>Grado</th>
+                <th>Paralelo</th>
+                <th>Turno</th>  
+                <th>Cupo</th>
+                <th>Nro. Estudiantes</th>
+                <th>Varones</th>      
+                <th>Mujeres</th>          
+                <th>Acci&oacute;n</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="curso in cursos">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ curso.gestion }}</td>
+                <td>{{ curso.unidad_educativa }}</td>
+                <td>{{ curso.nivel }}</td>
+                <td>{{ curso.grado }}</td>
+                <td>{{ curso.paralelo }}</td>
+                <td>{{ curso.turno }}</td>
+                <td><center>{{ curso.cupo }}</center></td>
+                <td><center>{{ curso.numero_estudiantes }}</center></td>
+                <td><center>{{ curso.numero_masculino }}</center></td>
+                <td><center>{{ curso.numero_femenino }}</center></td>
+                <td>
+                  <button class="btn btn-primary btn-xs" ng-click="inscribir(curso.id)" title="Inscribir Estudiante"><i class="fa fa-sign-in"></i></button>
+                  <button class="btn btn-danger btn-xs" ng-click="lista(curso.id)"><i class="fa fa-bookmark "></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
   </div>
-</div>
+

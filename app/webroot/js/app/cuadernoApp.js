@@ -1,6 +1,7 @@
 var cuadernoApp = angular.module('cuadernoApp', [
     'ui.bootstrap',
     'ui.bootstrap.contextMenu',
+    'colorpicker.module',
     'dialogs.main',
     'angularFileUpload',
     'ngRoute',    
@@ -220,8 +221,8 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // Asistencia
     // 4.1 Filiacion
     .when('/asistencia', {
-            templateUrl : 'pages/desktop/asistencia/listCursos.html',
-            controller  : 'cursosDocenteController'
+            templateUrl : 'pages/desktop/asistencia/registroAsistencia.html',
+            controller  : 'asistenciaController'
         })
     .when('/asistenciaAsignatura/:id', {
             templateUrl : 'pages/desktop/asistencia/listAsignatura.html',
@@ -448,6 +449,12 @@ cuadernoAppServices.factory('HorarioFactory', function ($resource) {
     return $resource('/index.php/horario.json', {}, {
         query: { method: 'GET', isArray: false},
         create: { method: 'POST' }
+    })    
+});
+
+cuadernoAppServices.factory('HorariosFactory', function ($resource) {
+    return $resource('/index.php/horario/:id.json?accion=:action', {}, {
+       delete: { method: 'GET', params: {id: '@id', action: 'delete'} } 
     })    
 });
 
@@ -781,6 +788,12 @@ cuadernoAppServices.factory('AsistenciaFactory', function ($resource) {
     return $resource('/index.php/asistencia.json', {}, {
         query: { method: 'GET', isArray: false},
         create: { method: 'POST' }
+    })
+});
+
+cuadernoAppServices.factory('AsistenciaResumenFactory', function ($resource) {
+    return $resource('/index.php/asistenciaresumen.json', {}, {
+        query: { method: 'GET', isArray: false}        
     })
 });
 

@@ -9,18 +9,18 @@
         <h4><i class="fa fa-angle-right"></i> Horario de Clases</h4>
         <section class="unseen">
           <table class="table table-bordered table-striped table-condensed">
-            <thead>
+            <thead  style="background-color: black; color: white;">
               <tr>
                 <th>Periodos</th>
-                <th ng-repeat="dia in dias">{{dia.descripcion}}</th>
+                <th ng-repeat="dia in dias"><center>{{dia.descripcion}}</center></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="periodo in periodos" >
-                <td context-menu="menuPeriodo"><b>{{ periodo.numero_periodo }} </b>- De: {{ periodo.de_horas | date:"H:mm" }} A: {{ periodo.a_horas | date:"H:mm" }}</td>                
-                <td ng-repeat="dia in dias" ng-click="mtdAddClase($event, dia.id, periodo.id)">
+                <td context-menu="menuPeriodo"><b>{{ periodo.numero_periodo }} </b><br/> De: {{ periodo.de_horas | date:"H:mm" }} <br/> A: {{ periodo.a_horas | date:"H:mm" }}</td>                
+                <td ng-repeat="dia in dias" width="15%" height="100px" ng-dblclick="mtdAddClase($event, dia.id, periodo.id)">
                   <span ng-if="horarios[periodo.id][dia.id]['nivel'] != '0'">
-                    <table style="background-color: green; color: white">
+                    <table style="background-color: {{ horarios[periodo.id][dia.id]['color'] }}; color: white">
                       <tr>
                         <td align="center" ng-model="horarios[periodo.id][dia.id]" context-menu="menuOptions">
                           {{ horarios[periodo.id][dia.id]['nivel'] }} <a href="" ng-click="mtdDelClase($event, horarios[periodo.id][dia.id]['id'])"><i class="fa fa-times-circle-o"></i></a><br/>
@@ -30,6 +30,14 @@
                         </td>
                       </tr>
                     </table>                    
+                  </span>
+                  <span ng-if="horarios[periodo.id][dia.id]['nivel'] == '0'">
+                    <table>
+                      <tr>
+                        <td align="center">
+                        </td>
+                      </tr>
+                    </table>    
                   </span>
                 </td>
               </tr>
@@ -46,3 +54,8 @@
     </div>
   </div>
 </div>
+<style>
+  .active{
+    background-color: orange;    
+  }
+</style>
