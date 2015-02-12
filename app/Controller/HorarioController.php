@@ -163,7 +163,8 @@ class HorarioController extends AppController{
 
             $_find_asignado = $this->Asignado->find('first',
                                                     array('conditions'=>array('Asignado.docente_id' => $_asignado['docente_id'],
-                                                        'Asignado.curso_id' => $_asignado['curso_id'])));
+                                                                              'Asignado.curso_id' => $_asignado['curso_id'],
+                                                                              'Asignado.asignatura_id' => $_asignado['asignatura_id'])));
 
             if(empty($_find_asignado)):
                 $this->Asignado->create();           
