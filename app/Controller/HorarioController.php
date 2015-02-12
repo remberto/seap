@@ -189,7 +189,7 @@ class HorarioController extends AppController{
         }catch(Exception $e) {
             $datasource->rollback();
             $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
-            if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, el Curso ya existe !!!';}
+            //if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, el Curso ya existe !!!';}
             $message['guardado'] = false;
             
         }       
