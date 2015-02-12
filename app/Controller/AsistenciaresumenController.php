@@ -18,6 +18,7 @@ class AsistenciaresumenController extends AppController{
 
     public function index() {        
         $asistencia = array();
+        $resumen_asistencia = array();
 
         $curso = $this->request->query('curso');
         $_inscritos = $this->Inscrito->query('SELECT inscritos.id as id, 
@@ -43,7 +44,7 @@ class AsistenciaresumenController extends AppController{
             $resumen_asistencia[$value[0]['id']]['falta'] = 0;
             $resumen_asistencia[$value[0]['id']]['licencia'] = 0;
         } 
-        
+
         $asignado = $this->request->query('asignado');              
 
         $_resumen_asistencia = $this->Asistencia->query('SELECT inscripcion_id as inscripcion_id,

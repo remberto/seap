@@ -18,6 +18,7 @@ class AsistenciaController extends AppController{
 
     public function index() {        
         $asistencia = array();
+        $resumen_mes_asistencia = array();
 
         $curso = $this->request->query('curso');
         $_inscritos = $this->Inscrito->query('SELECT inscritos.id as id, 
