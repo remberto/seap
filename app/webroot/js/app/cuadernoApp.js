@@ -4,6 +4,7 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'colorpicker.module',
     'dialogs.main',
     'angularFileUpload',
+    "highcharts-ng",
     'ngRoute',    
     'angularSpinner',
     'cuadernoAppServices',
@@ -240,8 +241,8 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // Evaluacion
     
     .when('/evaluacion', {
-            templateUrl : 'pages/evaluacion/listCursos.html',
-            controller  : 'cursosDocenteController'
+            templateUrl : 'pages/evaluacion/registroEvaluacion.html',
+            controller  : 'evaluacionController'
         })
     .when('/evaluacionAsignatura/:id', {
             templateUrl : 'pages/evaluacion/listAsignatura.html',
@@ -828,6 +829,13 @@ cuadernoAppServices.factory('ActividadEvaluacionFactory', function ($resource) {
     return $resource('/index.php/actividadevaluaciones.json', {}, {
         query: { method: 'GET', params:{}, isArray: false}
     });
+});
+
+
+cuadernoAppServices.factory('ReportesFactory', function ($resource) {
+    return $resource('/index.php/reporte.json', {}, {
+        query: { method: 'GET', isArray: false},        
+    })
 });
 
 // InscritosEvaluacionFactory

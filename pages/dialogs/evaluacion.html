@@ -39,7 +39,7 @@
 			<div class="row">
 		              <div class="col-sm-12 col-lg-12">
 		                <div class="form-group">
-		                  <label class="col-md-4 control-label" for="cuantitativo">Evaluacion Cuantitativa:</label>
+		                  <label class="col-md-4 control-label" for="cuantitativo">Evaluacion Cuantitativa (sobre 100):</label>
 		                  <div class="col-md-8">
 		                    <div class="input-group">                      
 		                	<input type="number" id="cuantitativo" name="cuantitativo" class="form-control" ng-required="true" ng-model="evaluacion.cuantitativo" placeholder="1 al 100" ng-change="mtdChange()">                        
@@ -52,9 +52,24 @@
 		              </div>
 		        </div>
 		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="convertida">Evaluacion Convertida (sobre {{ criterio.valor}}) :</label>
+		                  <div class="col-md-8">
+		                    <div class="input-group">                      
+		                	<input type="number" id="convertida" name="convertida" class="form-control" ng-required="true" ng-model="evaluacion.convertida" placeholder="1 al {{ criterio.valor}}" required disabled>                        
+		                        <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		                	<span ng-if="newAdministrativoForm.carnet.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+			                </div>
+			                <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="help-block">Evaluacion Cuatitativa es requerida</span>		                    		                    
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="row">
 		              <div class="col-sm-12 col-lg-12">                
 		                <div class="form-group">
-		                  <label class="col-md-4 control-label" for="cualitativo">Evaluacion Cualitativa:</label>
+		                  <label class="col-md-4 control-label" for="cualitativo">Referencia:</label>
 		                  <div class="col-md-8">
 		                    <div class="input-group">		                      
 		                     	<input type="text" id="cualitativo" name="cualitativo" class="form-control" ng-required="true" ng-model="_cualitativo" disabled>                        

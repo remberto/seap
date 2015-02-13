@@ -100,7 +100,7 @@
                   <td align="center"><center>{{ resumen_anual[estudiante.id]['atraso'] }}</center></td>
                   <td align="center"><center>{{ resumen_anual[estudiante.id]['falta'] }}</center></td>
                   <td align="center"><center>{{ resumen_anual[estudiante.id]['licencia'] }}</center></td>
-                  <td align="center"><center><button>Reporte</button></center></td>
+                  <td align="center"><center><button ng-click="mtdReporte(estudiante.id, asignado.id)">Reporte</button></center></td>
                 </tr>
               </tbody>
             </table>

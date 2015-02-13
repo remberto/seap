@@ -1,6 +1,6 @@
 var asistenciaController = angular.module('asistenciaControllers',[]);
 
-asistenciaController.controller('asistenciaController', ['$scope','$routeParams','sesionesControl','EstudiantesFactory','InscripcionListFactory', 'AsistenciaFactory', 'AsistenciaResumenFactory', 'CursosDocenteFactory', 'CursosDocenteAsignaturaFactory', 'usSpinnerService','$location', function($scope, $routeParams, sesionesControl, EstudiantesFactory, InscripcionListFactory, AsistenciaFactory, AsistenciaResumenFactory, CursosDocenteFactory, CursosDocenteAsignaturaFactory, usSpinnerService, $location) {
+asistenciaController.controller('asistenciaController', ['$scope','$routeParams','sesionesControl','EstudiantesFactory','InscripcionListFactory', 'AsistenciaFactory', 'AsistenciaResumenFactory', 'CursosDocenteFactory', 'CursosDocenteAsignaturaFactory', 'usSpinnerService', 'dialogs', '$location', function($scope, $routeParams, sesionesControl, EstudiantesFactory, InscripcionListFactory, AsistenciaFactory, AsistenciaResumenFactory, CursosDocenteFactory, CursosDocenteAsignaturaFactory, usSpinnerService, dialogs, $location) {
     $scope.habilitado = false;
     $scope.meses = [ {id: 2, title: 'Febrero'},
                      {id: 3, title: 'Marzo'},
@@ -101,71 +101,46 @@ asistenciaController.controller('asistenciaController', ['$scope','$routeParams'
         }
     }
 
+    $scope.mtdReporte = function(inscripcion_id, asignado_id){
+      var dlg = dialogs.create('/pages/dialogs/asistenciareporte.html','asistenciareporteController', {inscripcion_id: inscripcion_id, asignado_id: asignado_id}, {size:'lg'});
+      dlg.result.then(function(data){
+          
+      });
+    }
+
 }]);
 
-asistenciaController.controller('asistenciaCheckController', ['$scope','$routeParams','sesionesControl','EstudiantesFactory','InscripcionListFactory', 'AsistenciaFactory', '$location', 'usSpinnerService', function($scope, $routeParams, sesionesControl, EstudiantesFactory, InscripcionListFactory, AsistenciaFactory, $location, usSpinnerService) {
+
+asistenciaController.controller('asistenciareporteController', ['$scope','ReportesFactory','$modalInstance', '$location', 'usSpinnerService', 'sesionesControl', 'data',  function($scope, ReportesFactory, $modalInstance, $location, usSpinnerService, sesionesControl, data) {
+  //$scope.evaluacion = {criterios: null}   
+  usSpinnerService.spin('spinner-1');    
+  $scope.chart = null;
+  $scope.gridTable = {};
+
+  $scope.datreporte = {id:0,inscripcion_id:0, asignado_id:0};
+  $scope.datreporte.id = 1;
+  $scope.datreporte.inscripcion_id = data.inscripcion_id;
+  $scope.datreporte.asignado_id = data.asignado_id; 
     
-    $scope.estudiantes = null;
-    $scope.asistencia = {fecha: '2014-11-15'};
-    $scope.asignado_id = $routeParams.asignado_id;
+  ReportesFactory.query($scope.datreporte,
+       function(data){
+          usSpinnerService.stop('spinner-1');
+          console.log(data.datos);
+          $scope.reporte = data.datos.title.text;
+          $scope.chart = data.datos;         
+          $scope.chart.series[0].color = "#08298A";
+          $scope.chart.series[1].color = "#B40404";
+          $scope.chart.series[2].color = "#0B610B";
+          $scope.chart.series[3].color = "#FF8000";  
+       });
+  
 
-    $scope.today = function() {
-        $scope.asistencia.fecha = new Date();
-    };    
+  $scope.cancel = function(){
+    $modalInstance.dismiss('Canceled');
+      }; // end cancel
     
-    $scope.today();
-
-    $scope.clear = function () {
-        $scope.asistencia.fecha = null;
-    };
-
-  // Disable weekend selection
-    $scope.disabled = function(date, mode) {
-        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-    };
-
-    $scope.toggleMin = function() {
-        $scope.minDate = $scope.minDate ? null : new Date();
-    };
-    $scope.toggleMin();
-
-    $scope.open = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        $scope.opened = true;
-    };
-
-    $scope.dateOptions = {
-        formatYear: 'yyyy',
-        startingDay: 1
-    };
-    
-    $scope.format = 'yyyy-MM-dd';
-
-
-    InscripcionListFactory.query({query_id: 124, curso_id: $routeParams.curso_id}, function(data){
-        $scope.estudiantes = data.datos;
-    });
-
-    //Registra Asistencia del Inscrito
-    $scope.mtdRegistraAsistencia = function(id, asiste)
-    {           
-        $scope.asistencia.asignado_id = $scope.asignado_id;
-        $scope.asistencia.inscripcion_id = id;
-        $scope.asistencia.calendario_fecha = $scope.asistencia.fecha;
-        $scope.asistencia.estado_asistencia = asiste;
-        $scope.asistencia.docente_id = sesionesControl.get('user_id');        
-        usSpinnerService.spin('spinner-1');
-        AsistenciaFactory.create($scope.asistencia, function(data){
-            usSpinnerService.stop('spinner-1');
-            if(!data.datos.guardado){
-                $.fn.jAlert({
-                      'title':'Error!',
-                      'message': data.datos.message,
-                      'theme': 'error'
-                    });
-            };
-        });
-    };    
-
+  $scope.save = function(){
+    $modalInstance.close();        
+  };
+  
 }]);

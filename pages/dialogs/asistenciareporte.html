@@ -1,0 +1,24 @@
+<div class="modal-header">
+	<h4 class="modal-title">
+		<span class="glyphicon glyphicon-bars"></span> Reporte de Asistencia
+	</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>{{ reporte }}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-12">                        
+                        <highchart id="grafico" config="chart"></highchart>	                        
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Volver</button>	
+</div>

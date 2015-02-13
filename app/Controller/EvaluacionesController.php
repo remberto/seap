@@ -70,6 +70,7 @@ class EvaluacionesController extends AppController{
         $_criterios = $this->CriterioEvaluacion->query('SELECT 
                                             dimension.id as idDimension, 
                                             dimension.descripcion as Dimension,
+                                            dimension.valor as valor,
                                             criterios_evaluacion.id as idCriterio,
                                             criterios_evaluacion.criterio as Criterio
                                             FROM criterios_evaluacion
@@ -85,6 +86,7 @@ class EvaluacionesController extends AppController{
             foreach ($evaluaciones as $_key => $_value) {
                 $evaluaciones[$_key][$value[0]['idcriterio']]['cuantitativo'] = 0;
                 $evaluaciones[$_key][$value[0]['idcriterio']]['cualitativo'] = 0;
+                $evaluaciones[$_key][$value[0]['idcriterio']]['valor'] = 0;
             }
         }
 
@@ -92,6 +94,7 @@ class EvaluacionesController extends AppController{
                                                      evaluaciones.inscrito_id as inscrito_id, 
                                                      evaluaciones.criterio_de_evaluacion_id as criterio_id,
                                                      evaluaciones.cuantitativo as cuantitativo,
+                                                     evaluaciones.valor as convertida,
                                                      evaluacion_cualitativo.abreviacion as cualitativo
                                                      FROM evaluaciones
                                                      INNER JOIN evaluacion_cualitativo 
@@ -112,6 +115,9 @@ class EvaluacionesController extends AppController{
             endif;
             if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['cualitativo'])):
                 $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['cualitativo'] = $Revaluaciones[$key]['cualitativo'];
+            endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['valor'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['valor'] = round($Revaluaciones[$key]['convertida']);
             endif;
         }
 
@@ -138,6 +144,7 @@ class EvaluacionesController extends AppController{
             $_evaluacion['criterio_de_evaluacion_id'] = $this->request->data['criterio_id'];
             $_evaluacion['cuantitativo'] = $this->request->data['cuantitativo'];
             $_evaluacion['cualitativo'] = $this->request->data['cualitativo'];
+            $_evaluacion['valor'] = $this->request->data['convertida'];
             $_evaluacion['observaciones'] = $this->request->data['observaciones'];           
             $this->Evaluacion->save($_evaluacion);
 

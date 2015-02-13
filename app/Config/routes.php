@@ -65,6 +65,7 @@
     Router::mapResources('periodohorario');    
 	Router::mapResources('asistencia');
 	Router::mapResources('asistenciaresumen');
+	Router::mapResources('reporte');
 	Router::mapResources('evaluaciones');
 	Router::mapResources('actividadevaluaciones');
 	Router::mapResources('criterios');

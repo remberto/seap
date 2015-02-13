@@ -1,11 +1,12 @@
 var evaluacionController = angular.module('evaluacionControllers',[]);
 
-evaluacionController.controller('evaluacionController', ['$scope','$routeParams','InscripcionListFactory', 'PeriodoFactory', 'DimensionFactory', 'ActividadEvaluacionFactory', 'ClasificadorFactory', 'InscritosEvaluacionFactory', 'EvaluacionFactory', 'dialogs', 'CriteriosAccionFactory', 'usSpinnerService', '$location', function($scope, $routeParams, InscripcionListFactory, PeriodoFactory, DimensionFactory, ActividadEvaluacionFactory, ClasificadorFactory, InscritosEvaluacionFactory, EvaluacionFactory, dialogs, CriteriosAccionFactory, usSpinnerService, $location) {
+evaluacionController.controller('evaluacionController', ['$scope','$routeParams', 'sesionesControl','InscripcionListFactory', 'PeriodoFactory', 'DimensionFactory', 'ActividadEvaluacionFactory', 'ClasificadorFactory', 'InscritosEvaluacionFactory', 'EvaluacionFactory', 'dialogs', 'CriteriosAccionFactory','CursosDocenteFactory', 'CursosDocenteAsignaturaFactory', 'usSpinnerService', '$location', function($scope, $routeParams, sesionesControl, InscripcionListFactory, PeriodoFactory, DimensionFactory, ActividadEvaluacionFactory, ClasificadorFactory, InscritosEvaluacionFactory, EvaluacionFactory, dialogs, CriteriosAccionFactory, CursosDocenteFactory, CursosDocenteAsignaturaFactory, usSpinnerService, $location) {
 	//$scope.evaluacion = {criterios: null}
 	$scope.idCurso = $routeParams.curso_id;
     	$scope.idAsignado = $routeParams.asignado_id;
     	$scope.periodo = null;
     	$scope.actividad = null;
+    	$scope.habilitado = false;
 
     	$scope.dimensiones = [{id:1, dimension:'Ser'},
 			      {id:2, dimension:'Saber'},
@@ -16,36 +17,55 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
     	$scope.evaluacion = {periodo: 1, curso: 0, actividad: 0};
 	$scope.criterio = {periodo: 0};
 
+	CursosDocenteFactory.query({query_id: 131, docente_id: sesionesControl.get('user_id'), gestion_id: sesionesControl.get('gestion')},function(data){
+	      $scope.cursos = data.datos;            
+	});
+
 	ActividadEvaluacionFactory.query({}, function(data){ 		
 		$scope.actividades = data.actividades;
 	});
+	
 
-	PeriodoFactory.query({}, function(data){
-		$scope.periodos = data.periodos;
-		$scope.periodo = $scope.periodos[0];
-		$scope.evaluacion.periodo = $scope.periodo.id;
-	});
+	$scope.mtdSelectCurso = function(curso){
+	      $scope.habilitado = false;	      
+	      CursosDocenteAsignaturaFactory.query({query_id: 132, docente_id: sesionesControl.get('user_id'), curso_id: curso.id } ,
+	        function(data){
+	          	$scope.asignados = data.datos;
+			          
+	      });
+    	}
 
-	 
+    	$scope.mtdView = function(Asignado, Curso){
+	      	$scope.habilitado = true;
+	      	console.log(Curso);
+		PeriodoFactory.query({}, function(data){
+			$scope.periodos = data.periodos;
+			$scope.periodo = $scope.periodos[0];
+			$scope.evaluacion.periodo = $scope.periodo.id;			
+		});	    
+    	}
 
-	$scope.mtdVer1 = function(Actividad, idAsignado, idCurso){		
-	 	$scope.actividad = Actividad;		
-		$scope.evaluacion.curso = idCurso;		
-		$scope.evaluacion.actividad = $scope.actividad.id;
-		$scope.evaluacion.asignado_id = idAsignado;
-		EvaluacionFactory.query($scope.evaluacion, function(data){			
-			$scope.estudiantes = data.datos.inscritos;
-			$scope.criterios = data.datos.criterios;
-			$scope.dimensiones = data.datos.dimensiones;
-			$scope.evaluaciones = data.datos.evaluaciones;
-		});
+	$scope.mtdVer1 = function(Actividad, Asignado, Curso){
+		if ($scope.habilitado) {
+		 	$scope.actividad = Actividad;		
+			$scope.evaluacion.curso = Curso.id;		
+			$scope.evaluacion.actividad = $scope.actividad.id;
+			$scope.evaluacion.asignado_id = Asignado.id;
+			EvaluacionFactory.query($scope.evaluacion, function(data){			
+				$scope.estudiantes = data.datos.inscritos;
+				$scope.criterios = data.datos.criterios;
+				$scope.dimensiones = data.datos.dimensiones;
+				$scope.evaluaciones = data.datos.evaluaciones;
+				console.log($scope.evaluaciones);
+			});
+		};		
 	}
 
-	$scope.mtdVer2 = function(Periodo, idAsignado, idCurso){		
+	$scope.mtdVer2 = function(Periodo, Asignado, Curso){		
 	 	$scope.periodo = Periodo;		
-		$scope.evaluacion.curso = idCurso;		
+		$scope.evaluacion.curso = Curso.id;		
 		$scope.evaluacion.periodo= $scope.periodo.id;
-		$scope.evaluacion.asignado_id = idAsignado;
+		$scope.evaluacion.asignado_id = Asignado.id;
 		EvaluacionFactory.query($scope.evaluacion, function(data){			
 			$scope.estudiantes = data.datos.inscritos;
 			$scope.criterios = data.datos.criterios;
@@ -54,10 +74,11 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 		});
 	}
 
-	$scope.mtdAddCriterio = function(idPeriodo, idActividad, idAsignado){
+	$scope.mtdAddCriterio = function(idPeriodo, idActividad, Asignado){
+		console.log(Asignado);
 		$scope.criterio.periodo_id = idPeriodo;
 		$scope.criterio.actividad_evaluacion_id = idActividad;	
-		$scope.criterio.asignado_id = idAsignado;		
+		$scope.criterio.asignado_id = Asignado.id;		
 		var dlg = dialogs.create('/pages/dialogs/criterio.html','criterioController', $scope.criterio, {size:'sm'});
             	dlg.result.then(function(data){            		
 			EvaluacionFactory.query($scope.evaluacion, function(data){			
@@ -163,21 +184,23 @@ evaluacionController.controller('evaluarController', ['$scope','$routeParams','$
 
 	$scope.evaluacion = {inscripcion_id:0, asignado_id:0, criterio_id:0, cualitativo:0}
 
+	console.log($scope.criterio);
+
 	$scope.mtdChange = function(){
 		if($scope.evaluacion.cuantitativo <= 50){
 			$scope.evaluacion.cualitativo = 1;
 			$scope._cualitativo = 'En Desarrollo';
-		}else if($scope.evaluacion.cuantitativo < 50 && $scope.evaluacion.cuantitativo <= 68){
+		}else if($scope.evaluacion.cuantitativo > 50 && $scope.evaluacion.cuantitativo <= 68){
 			$scope.evaluacion.cualitativo = 2;
 			$scope._cualitativo = 'Desarrollo Aceptable';
-		}else if($scope.evaluacion.cuantitativo < 69 && $scope.evaluacion.cuantitativo <= 84){
+		}else if($scope.evaluacion.cuantitativo > 68 && $scope.evaluacion.cuantitativo <= 84){
 			$scope.evaluacion.cualitativo = 3;
 			$scope._cualitativo = 'Desarrollo Optimo';
 		}else if($scope.evaluacion.cuantitativo > 84 && $scope.evaluacion.cuantitativo <= 100){
 			$scope.evaluacion.cualitativo = 4;
-			$scope._cualitativo = 'Desarrollo Pleno';
+			$scope._cualitativo = 'Desarrollo Pleno';		
 		}
-
+		$scope.evaluacion.convertida = ($scope.evaluacion.cuantitativo * $scope.criterio.valor) / 100;
 	}
 
 	$scope.cancel = function(){
