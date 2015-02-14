@@ -81,7 +81,7 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 		$scope.evaluacion.asignado_id = Asignado.id;
 		EvaluacionFactory.query($scope.evaluacion, function(data){			
 			$scope.estudiantes = data.datos.inscritos;
-			$scope.criterios = data.datos.criterios;
+			$scope.criterios = data.datos.criterios;f
 			$scope.dimensiones = data.datos.dimensiones;
 			$scope.evaluaciones = data.datos.evaluaciones;
 		});*/

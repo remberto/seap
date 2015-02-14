@@ -847,7 +847,7 @@ cuadernoAppServices.factory('InscritosEvaluacionFactory', function ($resource) {
     });
 });
 
-// login
+// loginks
 
 var loginController = angular.module('loginControllers',[]);
 
