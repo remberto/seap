@@ -32,9 +32,9 @@ class CriterioEvaluacion extends AppModel {
             'foreignKey' => 'periodo_id',
         ),
         'Actividad' => array(
-            'className'=>'ActividadEvaluacion',
+            'className'=>'ActividadEvaluacionAsigbnado',
             'type'=>'INNER',
-            'foreignKey' => 'actividad_evaluacion_id',
+            'foreignKey' => 'actividad_evaluacion_asignado_id',
         ),
     );
 }

@@ -21,9 +21,16 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 	      $scope.cursos = data.datos;            
 	});
 
-	ActividadEvaluacionFactory.query({}, function(data){ 		
-		$scope.actividades = data.actividades;
-	});
+	
+
+	$scope.menuCriterios = [
+        	['Editar', function ($itemScope) {
+        		console.log($itemScope);
+        	}],        
+        	['Eliminar', function ($itemScope) {
+        		console.log($itemScope)                
+        	}]
+    	];
 	
 
 	$scope.mtdSelectCurso = function(curso){
@@ -36,8 +43,7 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
     	}
 
     	$scope.mtdView = function(Asignado, Curso){
-	      	$scope.habilitado = true;
-	      	console.log(Curso);
+	      	$scope.habilitado = true;	      	
 		PeriodoFactory.query({}, function(data){
 			$scope.periodos = data.periodos;
 			$scope.periodo = $scope.periodos[0];
@@ -46,7 +52,7 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
     	}
 
 	$scope.mtdVer1 = function(Actividad, Asignado, Curso){
-		if ($scope.habilitado) {
+		if ($scope.habilitado) {		
 		 	$scope.actividad = Actividad;		
 			$scope.evaluacion.curso = Curso.id;		
 			$scope.evaluacion.actividad = $scope.actividad.id;
@@ -56,13 +62,20 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 				$scope.criterios = data.datos.criterios;
 				$scope.dimensiones = data.datos.dimensiones;
 				$scope.evaluaciones = data.datos.evaluaciones;
-				console.log($scope.evaluaciones);
+				$scope.promedios = data.datos.promedios;
+				$scope.notas = data.datos.notas;								
 			});
 		};		
 	}
 
-	$scope.mtdVer2 = function(Periodo, Asignado, Curso){		
-	 	$scope.periodo = Periodo;		
+	$scope.mtdVer2 = function(Periodo, Asignado, Curso){
+		$scope.actividad = {asignado_id:0, periodo_id: 0};
+		$scope.actividad.asignado_id = Asignado.id;
+		$scope.actividad.periodo_id = Periodo.id;
+		ActividadEvaluacionFactory.query($scope.actividad, function(data){ 		
+			$scope.actividades = data.actividades;
+		});		
+	 	/*$scope.periodo = Periodo;		
 		$scope.evaluacion.curso = Curso.id;		
 		$scope.evaluacion.periodo= $scope.periodo.id;
 		$scope.evaluacion.asignado_id = Asignado.id;
@@ -71,14 +84,27 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 			$scope.criterios = data.datos.criterios;
 			$scope.dimensiones = data.datos.dimensiones;
 			$scope.evaluaciones = data.datos.evaluaciones;
-		});
+		});*/
 	}
 
-	$scope.mtdAddCriterio = function(idPeriodo, idActividad, Asignado){
-		console.log(Asignado);
+	$scope.mtdAddActividad =function(Periodo, Asignado){
+		if($scope.habilitado == true){
+			$scope.actividad = {asignado_id:0, periodo_id: 0};
+			$scope.actividad.asignado_id = Asignado.id;
+			$scope.actividad.periodo_id = Periodo.id;
+			var dlg = dialogs.create('/pages/dialogs/actividad.html','actividadController', $scope.actividad, {size:'sm'});
+            		dlg.result.then(function(data){            		
+				ActividadEvaluacionFactory.query($scope.actividad, function(data){ 		
+					$scope.actividades = data.actividades;
+				});
+       			});
+            	}
+	}
+
+	$scope.mtdAddCriterio = function(idPeriodo, idActividad, Asignado){		
 		$scope.criterio.periodo_id = idPeriodo;
 		$scope.criterio.actividad_evaluacion_id = idActividad;	
-		$scope.criterio.asignado_id = Asignado.id;		
+		$scope.criterio.asignado_id = Asignado.id;				
 		var dlg = dialogs.create('/pages/dialogs/criterio.html','criterioController', $scope.criterio, {size:'sm'});
             	dlg.result.then(function(data){            		
 			EvaluacionFactory.query($scope.evaluacion, function(data){			
@@ -146,22 +172,44 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 	}
 
 	$scope.mtdEvaluar = function(Estudiante, Criterio, asignado_id){		
-		var dlg = dialogs.create('/pages/dialogs/evaluacion.html','evaluarController', {estudiante: Estudiante, criterio: Criterio, asignado_id: asignado_id}, {size:'md'});
-            	dlg.result.then(function(data){            		
-			EvaluacionFactory.query($scope.evaluacion, function(data){			
-				$scope.estudiantes = data.datos.inscritos;
-				$scope.criterios = data.datos.criterios;
-				$scope.dimensiones = data.datos.dimensiones;
-				$scope.evaluaciones = data.datos.evaluaciones;
-			});                                                       		            
-       		});
+		if(Criterio.idcriterio !== Criterio.iddimension){		
+			var dlg = dialogs.create('/pages/dialogs/evaluacion.html','evaluarController', {estudiante: Estudiante, criterio: Criterio, asignado_id: asignado_id}, {size:'md'});
+	            	dlg.result.then(function(data){            		
+				EvaluacionFactory.query($scope.evaluacion, function(data){			
+					$scope.estudiantes = data.datos.inscritos;
+					$scope.criterios = data.datos.criterios;
+					$scope.dimensiones = data.datos.dimensiones;
+					$scope.evaluaciones = data.datos.evaluaciones;
+					$scope.promedios = data.datos.promedios;
+					$scope.notas = data.datos.notas;
+				});                                                       		            
+	       		});
+	       	}
 	}
 }]);
 
+evaluacionController.controller('actividadController', ['$scope','$routeParams','$modalInstance', 'ClasificadorFactory','ActividadEvaluacionFactory', '$location', 'data',  function($scope, $routeParams, $modalInstance, ClasificadorFactory, ActividadEvaluacionFactory, $location, data) {
+	//$scope.evaluacion = {criterios: null}
+	$scope.actividad = data;	
+	ClasificadorFactory.query({query_id:136}, function(data){ $scope.actividades = data.datos; });
+
+	$scope.cancel = function(){
+		$modalInstance.dismiss('Canceled');
+    	}; // end cancel
+    
+    	$scope.save = function(){
+    		$scope.actividad.actividad_evaluacion_id = $scope.actividad.actividad_evaluacion.id;    		
+    		ActividadEvaluacionFactory.create($scope.actividad, function(data){
+    			$modalInstance.close();
+    		});
+    	};
+	
+}]);
 
 evaluacionController.controller('criterioController', ['$scope','$routeParams','$modalInstance', 'ClasificadorFactory','CriteriosFactory', '$location', 'data',  function($scope, $routeParams, $modalInstance, ClasificadorFactory, CriteriosFactory, $location, data) {
 	//$scope.evaluacion = {criterios: null}
 	$scope.criterio = data;
+	console.log($scope.criterio);
 	ClasificadorFactory.query({query_id:107}, function(data){ $scope.dimensiones = data.datos; });
 
 	$scope.cancel = function(){

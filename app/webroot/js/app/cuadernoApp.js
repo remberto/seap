@@ -827,7 +827,8 @@ cuadernoAppServices.factory('EvaluacionFactory', function ($resource) {
 // Devuelve las Actividades de Evaluacion
 cuadernoAppServices.factory('ActividadEvaluacionFactory', function ($resource) {
     return $resource('/index.php/actividadevaluaciones.json', {}, {
-        query: { method: 'GET', params:{}, isArray: false}
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
     });
 });
 

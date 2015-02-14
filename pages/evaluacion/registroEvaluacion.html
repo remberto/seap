@@ -59,35 +59,52 @@
           <tab ng-repeat="actividad in actividades" select="mtdVer1(actividad, asignado, curso)">
             <tab-heading>{{actividad.descripcion}}</tab-heading>
             <section class="unseen">
-            <table class="table table-bordered table-striped table-condensed">
-              <thead style="background-color:black; color:white;">
+            <table class="table table-bordered table-hover table-condensed">
+              <thead style="background-color:#7a31aa; color:white;">
                 <tr>
                   <th rowspan="2">Nro.</th>
                   <th rowspan="2">Apellidos y Nombres</th>
-                  <th ng-repeat="dimension in dimensiones" colspan="{{ dimension.columnas }}"><center>{{ dimension.dimension}}</center></th>
-                  <TH rowspan="2"><center><span ng-click="mtdAddCriterio(periodo.id, actividad.id, asignado)"><i class=" fa fa-plus"></i></span></center></TH>                    
+                  <th ng-repeat="dimension in dimensiones" colspan="{{ dimension.columnas }}" ><center>{{ dimension.dimension}}</center></th>
+                  <th rowspan="2">Nota Final</th>
+                  <th rowspan="2"><center><span ng-click="mtdAddCriterio(periodo.id, actividad.id, asignado)"><i class=" fa fa-plus"></i></span></center></th>                    
                 </tr>
                 <tr>
-               	   <th ng-repeat="criterio in criterios"><center>{{criterio.criterio}}&nbsp;<span ng-click="mtdDelCriterio(criterio)"><i class=" fa fa-minus fa-xs"></i></span></center></th>
+               	   <th ng-repeat="criterio in criterios" context-menu="menuCriterios" ng-class="{rotate: criterio.idcriterio === criterio.iddimension }">
+                    <div tooltip-placement="top" tooltip="{{criterio.criterio}}" ng-if="criterio.idcriterio !== criterio.iddimension" style="font-size:10px"><span>{{criterio.criterio | limitTo: 20}}<br/>{{ criterio.criterio.length > 20 ? '...' : ''}}</span></div>
+                    <div ng-if="criterio.idcriterio == criterio.iddimension" style="font-size:10px"><span>{{criterio.criterio }}</span></div>
+                  </th>
                	</tr>
               </thead>
               <tbody>
                 <tr ng-repeat="estudiante in estudiantes">
                   <td>{{ $index + 1 }}</td>                    
                   <td>{{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>                    
-                  <td ng-repeat="criterio in criterios" align="right" ng-dblclick="mtdEvaluar(estudiante, criterio, idAsignado)">
-                  	<span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] > 0">
-                      <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] >= 51" style="font-size:20px; font-weight: bold; color: black;">{{ evaluaciones[estudiante.id][criterio.idcriterio]['valor'] }} </span>
-                      <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] < 51" style="font-size:20px; font-weight: bold; color:red;">{{ evaluaciones[estudiante.id][criterio.idcriterio]['valor'] }} </span>
-                      | &nbsp; &nbsp; {{ evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] }} 
-                      | &nbsp; &nbsp; {{ evaluaciones[estudiante.id][criterio.idcriterio]['cualitativo'] }}</span>
-                  	&nbsp;                  	
+                  <td ng-repeat="criterio in criterios" align="right" ng-dblclick="mtdEvaluar(estudiante, criterio, idAsignado)" ng-class="{ promedio: criterio.idcriterio === criterio.iddimension }">
+                    <span ng-if="criterio.idcriterio == criterio.iddimension">
+                      <span ng-if="promedios[estudiante.id][criterio.idcriterio]['promedio'] > promedios[estudiante.id][criterio.idcriterio]['valor']" style="font-size:16px; font-weight: bold; color: black;">{{ promedios[estudiante.id][criterio.idcriterio]['promedio'] }} </span>
+                      <span ng-if="promedios[estudiante.id][criterio.idcriterio]['promedio'] <= promedios[estudiante.id][criterio.idcriterio]['valor']" style="font-size:16px; font-weight: bold; color: red;">{{ promedios[estudiante.id][criterio.idcriterio]['promedio'] }} </span>
+                    </span>
+                    <span ng-if="criterio.idcriterio != criterio.iddimension">
+                      <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] > 0" style="white-space: nowrap;">
+                        <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ evaluaciones[estudiante.id][criterio.idcriterio]['valor'] | number }} </span>
+                        <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] < 51" style="font-size:16px; font-weight: bold; color:red;">{{ evaluaciones[estudiante.id][criterio.idcriterio]['valor'] | number}} </span>
+                        | &nbsp; <span style="font-size:10px;"> {{ evaluaciones[estudiante.id][criterio.idcriterio]['cuantitativo'] | number}} </span>
+                        | &nbsp; <span style="font-size:10px;"> {{ evaluaciones[estudiante.id][criterio.idcriterio]['cualitativo'] }} </span>
+                      </span>
+                    </span>
                   </td>
-                  <TD></TD>
+                  <td align="right">                    
+                    <span ng-if="notas[estudiante.id]['nota'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ notas[estudiante.id]['nota'] }}</span>
+                    <span ng-if="notas[estudiante.id]['nota'] < 51" style="font-size:16px; font-weight: bold; color: red;">{{ notas[estudiante.id]['nota'] }}</span>
+                  </td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
           </section>
+          </tab>
+          <tab>
+            <tab-heading><i class="glyphicon glyphicon-plus" ng-click="mtdAddActividad(periodo, asignado)"></i></tab-heading>
           </tab>
           <tab>
             <tab-heading> Promedio por Dimensiones </tab-heading>
@@ -99,3 +116,27 @@
     </div>
   </div>
 </div>
+<style>
+.promedio{
+  background-color: rgb(212,212,212);
+}
+th.rotate {
+  /* Something you can count on */
+  height: 50px;  
+  white-space: nowrap;  
+  margin:0 auto 0 auto;
+}
+
+th.rotate > div {
+  display: block;
+  width:20px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+th.rotate > div > span {
+  /*border-bottom: 1px solid #ccc;*/
+  /*padding: 5px 10px;*/  
+
+}
+</style>

@@ -26,7 +26,7 @@ class CriteriosController extends AppController{
             $_criterio['dimension_id'] = $this->request->data['Dimension']['id'];
             $_criterio['criterio'] = $this->request->data['criterio'];
             $_criterio['periodo_id'] = $this->request->data['periodo_id'];
-            $_criterio['actividad_evaluacion_id'] = $this->request->data['actividad_evaluacion_id'];           
+            $_criterio['actividad_evaluacion_asignado_id'] = $this->request->data['actividad_evaluacion_id'];           
             $_criterio['asignado_id'] = $this->request->data['asignado_id'];
             $this->CriterioEvaluacion->save($_criterio);
 

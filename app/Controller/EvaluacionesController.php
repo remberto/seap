@@ -22,6 +22,8 @@ class EvaluacionesController extends AppController{
 
     public function index(){
         $evaluaciones = array();
+        $promedios = array();
+        $notas = array();
 
         $curso = $this->request->query('curso');
         $_inscritos = $this->Inscrito->query('SELECT inscritos.id as id, 
@@ -42,6 +44,8 @@ class EvaluacionesController extends AppController{
         foreach ($_inscritos as $key => $value) {
             array_push($inscritos, $value[0]);            
             $evaluaciones[$value[0]['id']] = array();
+            $promedios[$value[0]['id']] = array();
+            $notas[$value[0]['id']]['nota'] = 0;
         }
 
         // actividades de evaluacion
@@ -53,42 +57,67 @@ class EvaluacionesController extends AppController{
         $_dimensiones = $this->CriterioEvaluacion->query('SELECT 
                                                         dimension.id as id, 
                                                         dimension.descripcion as Dimension,
-                                                        count(*) as columnas
+                                                        count(*) + 1 as columnas
                                                         FROM criterios_evaluacion
-                                                        INNER JOIN dimension
-                                                        ON criterios_evaluacion.dimension_id = dimension.id
-                                                        WHERE criterios_evaluacion.periodo_id = '.$periodo.'
-                                                        AND criterios_evaluacion.actividad_evaluacion_id = '.$actividad.'
-                                                        AND criterios_evaluacion.asignado_id = \''.$asignado.'\'                                                        
+                                                        INNER JOIN dimension ON criterios_evaluacion.dimension_id = dimension.id
+                                                        INNER JOIN actividad_evaluacion_asignado ON criterios_evaluacion.actividad_evaluacion_asignado_id = actividad_evaluacion_asignado.id
+                                                        WHERE actividad_evaluacion_asignado.periodo_id = \''.$periodo.'\'
+                                                        AND criterios_evaluacion.actividad_evaluacion_asignado_id = \''.$actividad.'\'
+                                                        AND actividad_evaluacion_asignado.asignado_id = \''.$asignado.'\'                                                        
                                                         GROUP BY dimension.id, dimension.descripcion ORDER BY dimension.id;');
 
         $dimensiones = array();
+        $criterios = array(); 
         foreach ($_dimensiones as $key => $value) {
-            array_push($dimensiones, $value[0]);
+            array_push($dimensiones, $value[0]);           
         }
 
         $_criterios = $this->CriterioEvaluacion->query('SELECT 
-                                            dimension.id as idDimension, 
-                                            dimension.descripcion as Dimension,
-                                            dimension.valor as valor,
-                                            criterios_evaluacion.id as idCriterio,
-                                            criterios_evaluacion.criterio as Criterio
-                                            FROM criterios_evaluacion
-                                            INNER JOIN dimension
-                                            ON criterios_evaluacion.dimension_id = dimension.id
-                                            WHERE criterios_evaluacion.periodo_id = '.$periodo.'                                             
-                                            AND criterios_evaluacion.actividad_evaluacion_id = '.$actividad.' 
-                                            AND criterios_evaluacion.asignado_id = \''.$asignado.'\'
-                                            ORDER BY dimension.id, criterios_evaluacion.id;');
-        $criterios = array();
+                                                        dimension.id as idDimension, 
+                                                        dimension.descripcion as Dimension,
+                                                        dimension.valor as valor,
+                                                        criterios_evaluacion.id as idCriterio,
+                                                        criterios_evaluacion.criterio as Criterio
+                                                        FROM criterios_evaluacion
+                                                        INNER JOIN dimension ON criterios_evaluacion.dimension_id = dimension.id
+                                                        INNER JOIN actividad_evaluacion_asignado ON criterios_evaluacion.actividad_evaluacion_asignado_id = actividad_evaluacion_asignado.id
+                                                        WHERE actividad_evaluacion_asignado.periodo_id = \''.$periodo.'\'                                             
+                                                        AND criterios_evaluacion.actividad_evaluacion_asignado_id = \''.$actividad.'\'
+                                                        AND actividad_evaluacion_asignado.asignado_id = \''.$asignado.'\'
+                                                        ORDER BY dimension.id, criterios_evaluacion.id;');
+                
+        $_idDimesion = $_criterios[0][0]['iddimension'];
+        $_idDimesion_desc = $_criterios[0][0]['dimension'];        
         foreach ($_criterios as $key => $value) {
-            array_push($criterios, $value[0]);
+            if($_idDimesion == $value[0]['iddimension']){
+                array_push($criterios, $value[0]);
+            }else{                
+                $criterio = array();
+                $criterio['iddimension'] = $_idDimesion;
+                $criterio['descripcion'] = $_idDimesion_desc;
+                $criterio['idcriterio'] = $_idDimesion;
+                $criterio['criterio'] = 'Promedio';
+                array_push($criterios, $criterio);
+                array_push($criterios, $value[0]);
+                $_idDimesion = $value[0]['iddimension'];
+                $_idDimesion_desc = $value[0]['dimension'];
+            }
             foreach ($evaluaciones as $_key => $_value) {
                 $evaluaciones[$_key][$value[0]['idcriterio']]['cuantitativo'] = 0;
                 $evaluaciones[$_key][$value[0]['idcriterio']]['cualitativo'] = 0;
                 $evaluaciones[$_key][$value[0]['idcriterio']]['valor'] = 0;
+                $promedios[$_key][$value[0]['iddimension']]['promedio'] = 0;
+                $promedios[$_key][$value[0]['iddimension']]['valor'] = 0;
             }
         }
+        $criterio = array();
+        $criterio['iddimension'] = $_idDimesion;
+        $criterio['descripcion'] = $_idDimesion_desc;
+        $criterio['idcriterio'] = $_idDimesion;
+        $criterio['criterio'] = 'Promedio';
+        array_push($criterios, $criterio);
+                
+
 
         $_evaluaciones = $this->Evaluacion->query('SELECT evaluaciones.id as id, 
                                                      evaluaciones.inscrito_id as inscrito_id, 
@@ -97,13 +126,12 @@ class EvaluacionesController extends AppController{
                                                      evaluaciones.valor as convertida,
                                                      evaluacion_cualitativo.abreviacion as cualitativo
                                                      FROM evaluaciones
-                                                     INNER JOIN evaluacion_cualitativo 
-                                                     ON evaluaciones.cualitativo = evaluacion_cualitativo.id
-                                                     INNER JOIN criterios_evaluacion
-                                                     ON criterio_de_evaluacion_id = criterios_evaluacion.id
-                                                     WHERE criterios_evaluacion.periodo_id = '.$periodo.'
-                                                    AND criterios_evaluacion.actividad_evaluacion_id = '.$actividad.' 
-                                                    AND criterios_evaluacion.asignado_id = \''.$asignado.'\';');
+                                                     INNER JOIN evaluacion_cualitativo ON evaluaciones.cualitativo = evaluacion_cualitativo.id
+                                                     INNER JOIN criterios_evaluacion ON criterio_de_evaluacion_id = criterios_evaluacion.id
+                                                     INNER JOIN actividad_evaluacion_asignado ON criterios_evaluacion.actividad_evaluacion_asignado_id = actividad_evaluacion_asignado.id
+                                                     WHERE actividad_evaluacion_asignado.periodo_id = '.$periodo.'
+                                                    AND criterios_evaluacion.actividad_evaluacion_asignado_id = \''.$actividad.'\' 
+                                                    AND actividad_evaluacion_asignado.asignado_id = \''.$asignado.'\';');
         $Revaluaciones = array();
         foreach($_evaluaciones as $key => $value) {
             array_push($Revaluaciones, $value[0]);    
@@ -121,8 +149,60 @@ class EvaluacionesController extends AppController{
             endif;
         }
 
+        // Promedios por Dimnesiones
+        
+        $_promedios = $this->Evaluacion->query('SELECT evaluaciones.inscrito_id as inscrito_id, 
+                                                criterios_evaluacion.dimension_id as dimension_id,
+                                                dimension.valor / 2 as valor,
+                                                avg(evaluaciones.valor) as promedio
+                                                FROM evaluaciones
+                                                INNER JOIN evaluacion_cualitativo ON evaluaciones.cualitativo = evaluacion_cualitativo.id
+                                                INNER JOIN criterios_evaluacion ON criterio_de_evaluacion_id = criterios_evaluacion.id
+                                                INNER JOIN actividad_evaluacion_asignado ON criterios_evaluacion.actividad_evaluacion_asignado_id = actividad_evaluacion_asignado.id
+                                                INNER JOIN dimension ON criterios_evaluacion.dimension_id = dimension.id
+                                                WHERE actividad_evaluacion_asignado.periodo_id = '.$periodo.'
+                                                AND criterios_evaluacion.actividad_evaluacion_asignado_id = \''.$actividad.'\' 
+                                                AND actividad_evaluacion_asignado.asignado_id = \''.$asignado.'\'
+                                                GROUP BY evaluaciones.inscrito_id, criterios_evaluacion.dimension_id, dimension.valor
+                                                ORDER BY evaluaciones.inscrito_id, criterios_evaluacion.dimension_id;');
+        $Rpromedios = array();
+        foreach($_promedios as $key => $value) {
+            array_push($Rpromedios, $value[0]);    
+        }        
+
+        foreach ($Rpromedios as $key => $value) {            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio'])):
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio'] = round($Rpromedios[$key]['promedio']);
+            endif;
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['valor'])):
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['valor'] = round($Rpromedios[$key]['valor']);
+            endif;
+        }
+
+        $_notas = $this->Evaluacion->query('SELECT inscrito_id as inscrito_id,
+                                    sum(promedio) AS nota
+                                    FROM promedios
+                                    WHERE periodo_id = '.$periodo.'
+                                    AND actividad_evaluacion_asignado_id = \''.$actividad.'\'  
+                                    AND asignado_id = \''.$asignado.'\'
+                                    GROUP BY inscrito_id;');
+
+        $Rnotas = array();
+        foreach($_notas as $key => $value) {
+            array_push($Rnotas, $value[0]);    
+        }        
+
+        foreach ($Rnotas as $key => $value) {            
+            if(isset($notas[$Rnotas[$key]['inscrito_id']]['nota'])):
+                $notas[$Rnotas[$key]['inscrito_id']]['nota'] = round($Rnotas[$key]['nota']);
+            endif;
+        }
+
+
         $datos = array();
         $datos['evaluaciones'] = $evaluaciones;
+        $datos['promedios'] = $promedios;
+        $datos['notas'] = $notas;
         $datos['inscritos'] = $inscritos;
         $datos['dimensiones'] =  $dimensiones;
         $datos['criterios'] =  $criterios;
