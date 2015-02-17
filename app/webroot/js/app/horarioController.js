@@ -13,10 +13,6 @@ horarioController.controller('horarioController', ['$scope','$routeParams','sesi
     $scope.asistencia = {curso: 0, mes: 0};
 
     $scope.selected = 'None';
-    $scope.items = [
-        { name: 'John', otherProperty: 'Foo' },
-        { name: 'Joe', otherProperty: 'Bar' }
-    ];
 
     $scope.menuOptions = [
         ['Select', function ($itemScope) {
