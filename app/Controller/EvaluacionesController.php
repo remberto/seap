@@ -18,6 +18,8 @@ class EvaluacionesController extends AppController{
         parent::beforeFilter();
         $this->Auth->allow('index');
         $this->Auth->allow('add');
+        $this->Auth->allow('accion');
+        $this->Auth->allow('reforzamiento');
     }
 
     public function index(){
@@ -56,7 +58,7 @@ class EvaluacionesController extends AppController{
 
         $_dimensiones = $this->CriterioEvaluacion->query('SELECT 
                                                         dimension.id as id, 
-                                                        dimension.descripcion as Dimension,
+                                                        dimension.descripcion as dimension,
                                                         count(*) + 1 as columnas
                                                         FROM criterios_evaluacion
                                                         INNER JOIN dimension ON criterios_evaluacion.dimension_id = dimension.id
@@ -73,11 +75,11 @@ class EvaluacionesController extends AppController{
         }
 
         $_criterios = $this->CriterioEvaluacion->query('SELECT 
-                                                        dimension.id as idDimension, 
-                                                        dimension.descripcion as Dimension,
+                                                        dimension.id as iddimension, 
+                                                        dimension.descripcion as dimension,
                                                         dimension.valor as valor,
-                                                        criterios_evaluacion.id as idCriterio,
-                                                        criterios_evaluacion.criterio as Criterio
+                                                        criterios_evaluacion.id as idcriterio,
+                                                        criterios_evaluacion.criterio as criterio
                                                         FROM criterios_evaluacion
                                                         INNER JOIN dimension ON criterios_evaluacion.dimension_id = dimension.id
                                                         INNER JOIN actividad_evaluacion_asignado ON criterios_evaluacion.actividad_evaluacion_asignado_id = actividad_evaluacion_asignado.id
@@ -85,37 +87,46 @@ class EvaluacionesController extends AppController{
                                                         AND criterios_evaluacion.actividad_evaluacion_asignado_id = \''.$actividad.'\'
                                                         AND actividad_evaluacion_asignado.asignado_id = \''.$asignado.'\'
                                                         ORDER BY dimension.id, criterios_evaluacion.id;');
-                
-        $_idDimesion = $_criterios[0][0]['iddimension'];
-        $_idDimesion_desc = $_criterios[0][0]['dimension'];        
-        foreach ($_criterios as $key => $value) {
-            if($_idDimesion == $value[0]['iddimension']){
-                array_push($criterios, $value[0]);
-            }else{                
-                $criterio = array();
-                $criterio['iddimension'] = $_idDimesion;
-                $criterio['descripcion'] = $_idDimesion_desc;
-                $criterio['idcriterio'] = $_idDimesion;
-                $criterio['criterio'] = 'Promedio';
-                array_push($criterios, $criterio);
-                array_push($criterios, $value[0]);
-                $_idDimesion = $value[0]['iddimension'];
-                $_idDimesion_desc = $value[0]['dimension'];
+                    
+        if(!empty($_criterios)):
+            $_idDimesion = $_criterios[0][0]['iddimension'];
+            $_idDimesion_desc = $_criterios[0][0]['dimension'];        
+            foreach ($_criterios as $key => $value) {
+                if($_idDimesion == $value[0]['iddimension']){
+                    array_push($criterios, $value[0]);
+                }else{                
+                    $criterio = array();
+                    $criterio['iddimension'] = $_idDimesion;
+                    $criterio['descripcion'] = $_idDimesion_desc;
+                    $criterio['idcriterio'] = $_idDimesion;
+                    $criterio['criterio'] = 'Promedio';
+                    array_push($criterios, $criterio);
+                    array_push($criterios, $value[0]);
+                    $_idDimesion = $value[0]['iddimension'];
+                    $_idDimesion_desc = $value[0]['dimension'];
+                }
+                foreach ($evaluaciones as $_key => $_value) {
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['id'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['cuantitativo'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['cualitativo'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['valor'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['reforzamiento_cuantitativo'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['reforzamiento_cualitativo'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['reforzamiento_valor'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['nota_cuantitativo'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['nota_cualitativo'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['nota_valor'] = 0;
+                    $promedios[$_key][$value[0]['iddimension']]['promedio'] = 0;
+                    $promedios[$_key][$value[0]['iddimension']]['valor'] = 0;
+                }
             }
-            foreach ($evaluaciones as $_key => $_value) {
-                $evaluaciones[$_key][$value[0]['idcriterio']]['cuantitativo'] = 0;
-                $evaluaciones[$_key][$value[0]['idcriterio']]['cualitativo'] = 0;
-                $evaluaciones[$_key][$value[0]['idcriterio']]['valor'] = 0;
-                $promedios[$_key][$value[0]['iddimension']]['promedio'] = 0;
-                $promedios[$_key][$value[0]['iddimension']]['valor'] = 0;
-            }
-        }
-        $criterio = array();
-        $criterio['iddimension'] = $_idDimesion;
-        $criterio['descripcion'] = $_idDimesion_desc;
-        $criterio['idcriterio'] = $_idDimesion;
-        $criterio['criterio'] = 'Promedio';
-        array_push($criterios, $criterio);
+            $criterio = array();
+            $criterio['iddimension'] = $_idDimesion;
+            $criterio['descripcion'] = $_idDimesion_desc;
+            $criterio['idcriterio'] = $_idDimesion;
+            $criterio['criterio'] = 'Promedio';
+            array_push($criterios, $criterio);
+        endif;
                 
 
 
@@ -124,9 +135,17 @@ class EvaluacionesController extends AppController{
                                                      evaluaciones.criterio_de_evaluacion_id as criterio_id,
                                                      evaluaciones.cuantitativo as cuantitativo,
                                                      evaluaciones.valor as convertida,
-                                                     evaluacion_cualitativo.abreviacion as cualitativo
+                                                     evaluacion_cualitativo.abreviacion as cualitativo,
+                                                     evaluaciones.reforzamiento_cuantitativo as reforzamiento_cuantitativo,
+                                                     evaluaciones.reforzamiento_valor as reforzamiento_convertida,
+                                                     evaluacion_cualitativo_1.abreviacion as reforzamiento_cualitativo,
+                                                     evaluaciones.nota_cuantitativo as nota_cuantitativo,
+                                                     evaluaciones.nota_valor as nota_convertida,
+                                                     evaluacion_cualitativo_2.abreviacion as nota_cualitativo
                                                      FROM evaluaciones
                                                      INNER JOIN evaluacion_cualitativo ON evaluaciones.cualitativo = evaluacion_cualitativo.id
+                                                     INNER JOIN evaluacion_cualitativo evaluacion_cualitativo_1 ON evaluaciones.reforzamiento_cualitativo = evaluacion_cualitativo_1.id
+                                                     INNER JOIN evaluacion_cualitativo evaluacion_cualitativo_2 ON evaluaciones.nota_cualitativo = evaluacion_cualitativo_2.id
                                                      INNER JOIN criterios_evaluacion ON criterio_de_evaluacion_id = criterios_evaluacion.id
                                                      INNER JOIN actividad_evaluacion_asignado ON criterios_evaluacion.actividad_evaluacion_asignado_id = actividad_evaluacion_asignado.id
                                                      WHERE actividad_evaluacion_asignado.periodo_id = '.$periodo.'
@@ -135,9 +154,12 @@ class EvaluacionesController extends AppController{
         $Revaluaciones = array();
         foreach($_evaluaciones as $key => $value) {
             array_push($Revaluaciones, $value[0]);    
-        }        
+        }                
         
-        foreach ($Revaluaciones as $key => $value) {            
+        foreach ($Revaluaciones as $key => $value) {
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['id'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['id'] = $Revaluaciones[$key]['id'];
+            endif;            
             if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['cuantitativo'])):
                 $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['cuantitativo'] = $Revaluaciones[$key]['cuantitativo'];
             endif;
@@ -147,6 +169,24 @@ class EvaluacionesController extends AppController{
             if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['valor'])):
                 $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['valor'] = round($Revaluaciones[$key]['convertida']);
             endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_cuantitativo'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_cuantitativo'] = $Revaluaciones[$key]['reforzamiento_cuantitativo'];
+            endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_cualitativo'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_cualitativo'] = $Revaluaciones[$key]['reforzamiento_cualitativo'];
+            endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_valor'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_valor'] = round($Revaluaciones[$key]['reforzamiento_convertida']);
+            endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_cuantitativo'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_cuantitativo'] = $Revaluaciones[$key]['nota_cuantitativo'];
+            endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_cualitativo'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_cualitativo'] = $Revaluaciones[$key]['nota_cualitativo'];
+            endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_valor'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_valor'] = round($Revaluaciones[$key]['nota_convertida']);
+            endif;
         }
 
         // Promedios por Dimnesiones
@@ -154,7 +194,7 @@ class EvaluacionesController extends AppController{
         $_promedios = $this->Evaluacion->query('SELECT evaluaciones.inscrito_id as inscrito_id, 
                                                 criterios_evaluacion.dimension_id as dimension_id,
                                                 dimension.valor / 2 as valor,
-                                                avg(evaluaciones.valor) as promedio
+                                                avg(evaluaciones.nota_valor) as promedio
                                                 FROM evaluaciones
                                                 INNER JOIN evaluacion_cualitativo ON evaluaciones.cualitativo = evaluacion_cualitativo.id
                                                 INNER JOIN criterios_evaluacion ON criterio_de_evaluacion_id = criterios_evaluacion.id
@@ -225,7 +265,11 @@ class EvaluacionesController extends AppController{
             $_evaluacion['cuantitativo'] = $this->request->data['cuantitativo'];
             $_evaluacion['cualitativo'] = $this->request->data['cualitativo'];
             $_evaluacion['valor'] = $this->request->data['convertida'];
-            $_evaluacion['observaciones'] = $this->request->data['observaciones'];           
+            $_evaluacion['observaciones'] = $this->request->data['observaciones'];
+            $_evaluacion['nota_cuantitativo'] = $_evaluacion['cuantitativo'];
+            $_evaluacion['nota_cualitativo'] = $_evaluacion['cualitativo'];
+            $_evaluacion['nota_valor'] = $_evaluacion['valor'];
+            
             $this->Evaluacion->save($_evaluacion);
 
             $datasource->commit();
@@ -243,6 +287,62 @@ class EvaluacionesController extends AppController{
             'message' => $message,
             '_serialize' => array('message')
         ));
+    }
+
+    public function accion($id){
+        if($this->request->query['accion']=='delete'):
+            $this->delete($id);
+        elseif($this->request->query['accion']=='reforzamiento'):            
+            $evaluaciones = json_decode($this->request->query['evaluaciones'], true);
+            $this->reforzamiento($id, $evaluaciones);
+        endif;
+    }
+
+    public function reforzamiento($id, $evaluaciones){
+        $datasource = $this->Evaluacion->getDataSource();
+        $datasource->useNestedTransactions = TRUE;
+        $datasource->begin();
+        try{            
+            $_evaluacion['id'] = $id;            
+            $_evaluacion['reforzamiento_cuantitativo'] = $evaluaciones['reforzamiento_cuantitativo'];
+            $_evaluacion['reforzamiento_cualitativo'] = $evaluaciones['reforzamiento_cualitativo'];
+            $_evaluacion['reforzamiento_valor'] = $evaluaciones['reforzamiento_convertida'];
+            $_evaluacion['reforzamiento_observaciones'] = $evaluaciones['reforzamiento_observaciones'];           
+            if($evaluaciones['reforzamiento_cuantitativo'] >= $evaluaciones['cuantitativo']):
+                $_evaluacion['nota_cuantitativo'] = round(($evaluaciones['reforzamiento_cuantitativo'] + $evaluaciones['cuantitativo'])/2);
+                $_evaluacion['nota_valor'] = round(($evaluaciones['reforzamiento_convertida'] + $evaluaciones['valor'])/2);
+                if($_evaluacion['nota_cuantitativo'] <= 51):
+                    $_evaluacion['nota_cualitativo'] = 1;
+                elseif ($_evaluacion['nota_cuantitativo'] >  51 && $_evaluacion['nota_cuantitativo'] <= 68):
+                    $_evaluacion['nota_cualitativo'] = 2;
+                elseif ($_evaluacion['nota_cuantitativo'] >  68 && $_evaluacion['nota_cuantitativo'] <= 84):
+                    $_evaluacion['nota_cualitativo'] = 3;
+                elseif ($_evaluacion['nota_cuantitativo'] >  84 && $_evaluacion['nota_cuantitativo'] <= 100):
+                    $_evaluacion['nota_cualitativo'] = 4;
+                endif;
+            else:
+
+            endif;
+            $this->Evaluacion->save($_evaluacion);
+
+            $datasource->commit();
+            $message['guardado'] = true;
+            $message['mensaje'] = 'Se Guardo Correctamente la Evaluacion';
+        }catch(Exception $e) {
+            $datasource->rollback();
+            $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
+            if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, el Curso ya existe !!!';}
+            $message['guardado'] = false;
+            
+        }       
+
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+        ));    
+    }
+    public function delete($id){
+        
     }
 }
 ?>

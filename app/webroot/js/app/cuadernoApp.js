@@ -816,11 +816,32 @@ cuadernoAppServices.factory('DimensionFactory', function ($resource) {
 
 // ActividadEvaluacion
 
-// Asistencia
+// Evaluaciones
 cuadernoAppServices.factory('EvaluacionFactory', function ($resource) {
     return $resource('/index.php/evaluaciones.json', {}, {
         query: { method: 'GET', isArray: false},
         create: { method: 'POST' }
+    })
+});
+
+cuadernoAppServices.factory('EvaluacionesFactory', function ($resource) {
+    return $resource('/index.php/evaluaciones/:id.json?accion=:action', {}, {
+        reforzamiento: { method: 'GET', params: {id: '@id', action: 'reforzamiento'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }   
+    })
+});
+
+
+// Promedio de Evaluaciones por Dimesion
+cuadernoAppServices.factory('PromedioDimensionFactory', function ($resource) {
+    return $resource('/index.php/promediodimension.json', {}, {
+        query: { method: 'GET', isArray: false},        
+    })
+});
+
+cuadernoAppServices.factory('PromedioActividadFactory', function ($resource) {
+    return $resource('/index.php/promedioactividad.json', {}, {
+        query: { method: 'GET', isArray: false},        
     })
 });
 
@@ -832,6 +853,13 @@ cuadernoAppServices.factory('ActividadEvaluacionFactory', function ($resource) {
     });
 });
 
+// Objetivo Holistico
+cuadernoAppServices.factory('ObjetivoHolisticoFactory', function ($resource) {
+    return $resource('/index.php/objetivoholistico.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    });
+});
 
 cuadernoAppServices.factory('ReportesFactory', function ($resource) {
     return $resource('/index.php/reporte.json', {}, {

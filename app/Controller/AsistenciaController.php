@@ -55,7 +55,7 @@ class AsistenciaController extends AppController{
                                             FROM calendario
                                             INNER JOIN dias ON calendario.dia_id = dias.id
                                             INNER JOIN horario ON horario.dia_id = calendario.dia_id
-                                            WHERE mes_id = \''.$mes.'\' AND dias.habil = true
+                                            WHERE mes_id = \''.$mes.'\' AND dias.habil = 1
                                             AND horario.asignado_id = \''.$asignado.'\'
                                             ORDER BY calendario.id');
         $dias = array();

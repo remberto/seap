@@ -1,0 +1,106 @@
+<div class="modal-header">
+	<h4 class="modal-title">
+		<span class="glyphicon glyphicon-pencil"></span> Evaluar al Estudiante - Reforzamiento
+	</h4>
+</div>
+<div class="modal-body">
+	<ng-form name="nameDialog" novalidate role="form">
+		<div class="form-group input-group-lg" ng-class="{true: 'has-error'}[nameDialog.username.$dirty && nameDialog.username.$invalid] ">
+			<div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="nombre">Nombre:</label>
+		                  <div class="col-md-8">
+		                    	<p class="form-control-static">{{ estudiante.paterno}} {{ estudiante.materno}}, {{ estudiante.nombres}}</p>                
+		                  </div>
+		                </div>
+		              </div>
+		        </div>		        
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="reforzamiento"><u><b>Evaluacion :</b></u></label>
+		                  <div class="col-md-8">		                              
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="evaluacion">Evaluacion :</label>
+		                  <div class="col-md-8">		                  	
+		                    	<p class="form-control-static" style="font-size:16px; font-weight: bold">{{ evaluaciones.valor }} &nbsp; &nbsp; | {{ evaluaciones.cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.cualitativo }}</p>                
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="evaluacion">Observacion :</label>
+		                  <div class="col-md-8">
+		                    	<p class="form-control-static" style="font-size:16px; font-weight: bold">{{ evaluaciones.observaciones }}</p>                
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="reforzamiento"><u><b>Reforzamiento :</b></u></label>
+		                  <div class="col-md-8">		                              
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="evaluacion">Evaluacion :</label>
+		                  <div class="col-md-8">
+		                  	<div ng-if="evaluaciones.reforzamiento_cuantitativo == 0"> <p class="form-control-static">--------</p></div>
+		                  	<div ng-if="evaluaciones.reforzamiento_cuantitativo > 0">
+		                    		<p class="form-control-static" style="font-size:16px; font-weight: bold">{{ evaluaciones.reforzamiento_valor }} &nbsp; &nbsp; | {{ evaluaciones.reforzamiento_cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.reforzamiento_cualitativo }}</p>                
+		                    	</div>
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="evaluacion">Observacion :</label>
+		                  <div class="col-md-8">
+		                    	<p class="form-control-static" style="font-size:16px; font-weight: bold">{{ evaluaciones.reforzamiento_observaciones }}</p>                
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+			<div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="reforzamiento"><u><b>Nota de Evaluaciones :</b></u></label>
+		                  <div class="col-md-8">		                              
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="evaluacion">Evaluacion :</label>
+		                  <div class="col-md-8">
+		                    	<p class="form-control-static" style="font-size:16px; font-weight: bold">{{ evaluaciones.nota_valor }} &nbsp; &nbsp; | {{ evaluaciones.nota_cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.nota_cualitativo }}</p>                
+		                  </div>
+		                </div>
+		              </div>
+		        </div>		        	       
+		        
+		</div>
+	</ng-form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+	<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Guardar</button>
+</div>

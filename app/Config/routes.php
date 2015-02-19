@@ -67,7 +67,10 @@
 	Router::mapResources('asistenciaresumen');
 	Router::mapResources('reporte');
 	Router::mapResources('evaluaciones');
+	Router::mapResources('objetivoholistico');
 	Router::mapResources('actividadevaluaciones');
+	Router::mapResources('promediodimension');
+	Router::mapResources('promedioactividad');
 	Router::mapResources('criterios');
 	Router::parseExtensions();
 	
