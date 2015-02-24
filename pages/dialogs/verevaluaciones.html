@@ -1,6 +1,6 @@
 <div class="modal-header">
 	<h4 class="modal-title">
-		<span class="glyphicon glyphicon-pencil"></span> Evaluar al Estudiante - Reforzamiento
+		<span class="glyphicon glyphicon-pencil"></span> Evaluaci&oacute;n del Estudiante
 	</h4>
 </div>
 <div class="modal-body">
@@ -29,8 +29,9 @@
 		              <div class="col-sm-12 col-lg-12">
 		                <div class="form-group">
 		                  <label class="col-md-4 control-label" for="evaluacion">Evaluacion :</label>
-		                  <div class="col-md-8">		                  	
-		                    	<p class="form-control-static" style="font-size:16px; font-weight: bold">{{ evaluaciones.valor }} &nbsp; &nbsp; | {{ evaluaciones.cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.cualitativo }}</p>                
+		                  <div class="col-md-8">		                  		                  	
+		                    	<p ng-if="evaluaciones.cuantitativo < 51" class="form-control-static" style="font-size:16px; font-weight: bold; color: red">{{ evaluaciones.valor }} &nbsp; &nbsp; | {{ evaluaciones.cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.cualitativo }}</p>
+		                    	<p ng-if="evaluaciones.cuantitativo >= 51"class="form-control-static" style="font-size:16px; font-weight: bold; color: black">{{ evaluaciones.valor }} &nbsp; &nbsp; | {{ evaluaciones.cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.cualitativo }}</p>
 		                  </div>
 		                </div>
 		              </div>
@@ -91,7 +92,8 @@
 		                <div class="form-group">
 		                  <label class="col-md-4 control-label" for="evaluacion">Evaluacion :</label>
 		                  <div class="col-md-8">
-		                    	<p class="form-control-static" style="font-size:16px; font-weight: bold">{{ evaluaciones.nota_valor }} &nbsp; &nbsp; | {{ evaluaciones.nota_cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.nota_cualitativo }}</p>                
+		                    	<p ng-if="evaluaciones.nota_cuantitativo < 51" class="form-control-static" style="font-size:16px; font-weight: bold; color:red">{{ evaluaciones.nota_valor }} &nbsp; &nbsp; | {{ evaluaciones.nota_cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.nota_cualitativo }}</p>
+		                    	<p ng-if="evaluaciones.nota_cuantitativo >= 51" class="form-control-static" style="font-size:16px; font-weight: bold; color:black">{{ evaluaciones.nota_valor }} &nbsp; &nbsp; | {{ evaluaciones.nota_cuantitativo }} &nbsp; &nbsp; | {{ evaluaciones.nota_cualitativo }}</p>
 		                  </div>
 		                </div>
 		              </div>
@@ -100,7 +102,9 @@
 		</div>
 	</ng-form>
 </div>
-<div class="modal-footer">
-	<button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
-	<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Guardar</button>
+<div class="modal-footer">	
+	<button type="button" class="btn btn-secundary" ng-click="edit(1)">Editar Evaluacion</button>
+	<button ng-if="evaluaciones.nota_cuantitativo < 51 && evaluaciones.reforzamiento_cuantitativo == 0" type="button" class="btn btn-secundary" ng-click="refozarmiento()">Evaluar Reforzamiento</button>
+	<button ng-if="evaluaciones.reforzamiento_cuantitativo > 0" type="button" class="btn btn-secundary" ng-click="edit(2)">Editar Reforzamiento</button>
+	<button type="button" class="btn btn-primary" ng-click="save()">Cerrar</button>
 </div>

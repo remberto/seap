@@ -20,14 +20,19 @@ class CriteriosController extends AppController{
         $datasource = $this->CriterioEvaluacion->getDataSource();
         $datasource->useNestedTransactions = TRUE;
         $datasource->begin();
-        try{            
-            $this->CriterioEvaluacion->create();            
+        try{ 
             $_criterio = array();
-            $_criterio['dimension_id'] = $this->request->data['Dimension']['id'];
-            $_criterio['criterio'] = $this->request->data['criterio'];
-            $_criterio['periodo_id'] = $this->request->data['periodo_id'];
-            $_criterio['actividad_evaluacion_asignado_id'] = $this->request->data['actividad_evaluacion_id'];           
-            $_criterio['asignado_id'] = $this->request->data['asignado_id'];
+            if(!isset($this->request->data['idcriterio'])):
+                $this->CriterioEvaluacion->create();            
+                $_criterio['dimension_id'] = $this->request->data['Dimension']['id'];
+                $_criterio['criterio'] = $this->request->data['criterio'];
+                $_criterio['periodo_id'] = $this->request->data['periodo_id'];
+                $_criterio['actividad_evaluacion_asignado_id'] = $this->request->data['actividad_evaluacion_id'];           
+                $_criterio['asignado_id'] = $this->request->data['asignado_id'];
+            else:
+                $_criterio['id'] = $this->request->data['idcriterio'];
+                $_criterio['criterio'] = $this->request->data['criterio'];
+            endif;          
             $this->CriterioEvaluacion->save($_criterio);
 
             $datasource->commit();
@@ -86,7 +91,7 @@ class CriteriosController extends AppController{
         }catch(Exception $e) {
             $datasource->rollback();
             $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
-            if($e->getCode() == 23503) { $message['mensaje'] = 'Error al eliminar el Criterio. <br/> No se puede eliminar el criterio, porque existe estudiantes evaluados con este criterio. <br/> Primero elimine las evaluaciones para eliminar el criterio';}
+            if($e->getCode() == 23503) { $message['mensaje'] = 'Error al eliminar el Criterio. <br/> No se puede eliminar el criterio, porque existe estudiantes evaluados con este criterio. ';}
             $message['guardado'] = false;
             
         }       

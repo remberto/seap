@@ -74,4 +74,12 @@ class DATABASE_CONFIG {
 		'prefix' => '',
         	'encoding' => 'utf8',
 	);
+
+	/*public $default = array(
+		'datasource' => 'Database/Sqlite',
+		'persistent' => false,
+		'database' => 'cuaderno.db',
+		'prefix' => '',
+		//'encoding' => 'utf8',
+	);*/
 }

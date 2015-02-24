@@ -1,12 +1,12 @@
 <div class="modal-header">
 	<h4 class="modal-title">
-		<span class="glyphicon glyphicon-plus"></span> A&ntilde;adir Criterio de Evaluaci&oacute;n
+		<span class="glyphicon glyphicon-plus"></span> {{ title }}
 	</h4>
 </div>
 <div class="modal-body">
 	<ng-form name="nameDialog" novalidate role="form">
 		<div class="form-group input-group-lg" ng-class="{true: 'has-error'}[nameDialog.username.$dirty && nameDialog.username.$invalid] ">
-			<div class="row">
+			<div ng-if="new" class="row">
 		              <div class="col-sm-12 col-lg-12">
 		                <div class="form-group">
 		                  <label class="col-md-4 control-label" for="dimensiones">Dimension:</label>
@@ -20,13 +20,25 @@
 		                </div>
 		              </div>
 		        </div>
+		        <div ng-if="edit" class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="dimensiones">Dimension:</label>
+		                  <div class="col-md-8">
+		                    <div class="input-group">                      
+		                	<p class="form-control-static">{{ criterio.dimension }}</p> 
+		                    </div>		                    
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
 		        <div class="row">
 		              <div class="col-sm-12 col-lg-12">                
 		                <div class="form-group">
 		                  <label class="col-md-4 control-label" for="criterio">Criterio:</label>
 		                  <div class="col-md-8">
 		                    <div class="input-group">		                      
-		                      <textarea type="text" id="criterio" class="form-control" ng-model="criterio.criterio"></textarea>		
+		                      <textarea type="text" id="criterio" class="form-control" ng-model="criterio.criterio"  style="width:100%" rows="7"></textarea>		
 		                    </div>
 		                  </div>
 		                </div>

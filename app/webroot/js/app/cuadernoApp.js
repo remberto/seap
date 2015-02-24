@@ -16,6 +16,7 @@ var cuadernoApp = angular.module('cuadernoApp', [
     'filiacionControllers',
     'asistenciaControllers',
     'evaluacionControllers',
+    'centralizadorControllers',
     'horarioControllers',
     'administrativosControllers',
     'docentesControllers',
@@ -252,7 +253,10 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
             templateUrl : 'pages/evaluacion/registroEvaluacion.html',
             controller  : 'evaluacionController'
         })
-
+    .when('/centralizador', {
+            templateUrl : 'pages/desktop/centralizador/centralizador.html',
+            controller  : 'centralizadorController'
+        })
 	    
 	.when('/upload/:idUnidadEducativa', {
             templateUrl : 'pages/file/add.html',
@@ -831,6 +835,19 @@ cuadernoAppServices.factory('EvaluacionesFactory', function ($resource) {
     })
 });
 
+cuadernoAppServices.factory('CentralizadorFactory', function ($resource) {
+    return $resource('/index.php/centralizador.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })
+});
+
+cuadernoAppServices.factory('EvaluacionCualitativaFactory', function ($resource) {
+    return $resource('/index.php/evaluacioncualitativa.json', {}, {
+        query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    })
+});
 
 // Promedio de Evaluaciones por Dimesion
 cuadernoAppServices.factory('PromedioDimensionFactory', function ($resource) {
@@ -849,6 +866,18 @@ cuadernoAppServices.factory('PromedioActividadFactory', function ($resource) {
 cuadernoAppServices.factory('ActividadEvaluacionFactory', function ($resource) {
     return $resource('/index.php/actividadevaluaciones.json', {}, {
         query: { method: 'GET', isArray: false},
+        create: { method: 'POST' }
+    });
+});
+
+cuadernoAppServices.factory('ActividadEvaluacionesFactory', function ($resource) {
+    return $resource('/index.php/actividadevaluaciones/:id.json?accion=:action', {}, {
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} },
+    });
+});
+
+cuadernoAppServices.factory('ActividadFactory', function ($resource) {
+    return $resource('/index.php/actividad.json', {}, {        
         create: { method: 'POST' }
     });
 });

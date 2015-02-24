@@ -1,6 +1,6 @@
 <div class="modal-header">
 	<h4 class="modal-title">
-		<span class="glyphicon glyphicon-plus"></span> A&ntilde;adir Actividad de Evaluaci&oacute;n
+		<span class="glyphicon glyphicon-plus"></span> A&ntilde;adir Parametro de Actividad de Evaluaci&oacute;n
 	</h4>
 </div>
 <div class="modal-body">
@@ -12,10 +12,11 @@
 		                  <label class="col-md-4 control-label" for="actividad">Actividad de Evaluacion:</label>
 		                  <div class="col-md-8">
 		                    <div class="input-group">
-		                    	<div class="input-group-addon" ng-click="mtdAddActividad()"><i class="glyphicon glyphicon-plus"></i></div>                      
-		                	<select id="actividad" class="form-control" ng-model="actividad.actividad_evaluacion" ng-options="value as value.descripcion for (key, value) in actividades">
-						<option>Seleccione</option>
-					</select>
+		                    	<input type="text" id="actividad" name="actividad" class="form-control" ng-required="true" ng-model="actividad.descripcion" ng-change="actividad.descripcion=actividad.descripcion.toUpperCase();">                        
+		                        <span ng-if="nameDialog.actividad.$invalid && nameDialog.actividad.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		                	<span ng-if="nameDialog.actividad.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+			                </div>
+			                <span ng-if="nameDialog.actividad.$invalid && nameDialog.actividad.$dirty" class="help-block">Actividad de Evaluacion Requerida</span>					
 		                    </div>		                    
 		                  </div>
 		                </div>

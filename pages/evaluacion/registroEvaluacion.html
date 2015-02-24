@@ -61,7 +61,7 @@
           <div class="form-group">
               <label class="col-md-2 control-label" for="objetivo"> Objetivo Holistico :</label>
               <div class="col-md-10">                
-                  <textarea id="objetivo" name="objetivo" style="width:100%" ng-model="objetivo.objetivo_holistico" ng-dblclick="mtdAddObjetivo(periodo, asignado)"></textarea>                  
+                  <textarea id="objetivo" name="objetivo" style="width:100%" ng-model="objetivo.objetivo_holistico" ng-dblclick="mtdAddObjetivo(periodo, asignado, objetivo)"></textarea>                  
               </div>
             </div>       
         </div>
@@ -69,7 +69,7 @@
         <br/>
         <div ng-if="habilitado">
           <tabset>            
-            <tab ng-repeat="actividad in actividades" select="mtdSelectActividad(actividad, asignado, curso, periodo)" active="tab.active">
+            <tab ng-repeat="actividad in actividades" select="mtdSelectActividad(actividad, asignado, curso, periodo)" context-menu="menuActividades" active="tab.active">
               <tab-heading>{{actividad.descripcion}}</tab-heading>
               <section class="unseen">
               <table class="table table-bordered table-hover table-condensed">
@@ -92,14 +92,14 @@
                   <tr ng-repeat="estudiante in estudiantes">
                     <td>{{ $index + 1 }}</td>                    
                     <td>{{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>                    
-                    <td ng-repeat="criterio in criterios" align="right" ng-dblclick="mtdEvaluar(evaluaciones[estudiante.id][criterio.idcriterio], estudiante, criterio, idAsignado)" ng-class="{ promedio: criterio.idcriterio === criterio.iddimension }">                      
+                    <td ng-repeat="criterio in criterios" align="right" ng-dblclick="mtdEvaluar(evaluaciones[estudiante.id][criterio.idcriterio], estudiante, criterio, asignado.id)" ng-class="{ promedio: criterio.idcriterio === criterio.iddimension }">                      
                       <span ng-if="criterio.idcriterio == criterio.iddimension">
                         <span ng-if="promedios[estudiante.id][criterio.idcriterio]['promedio'] > promedios[estudiante.id][criterio.idcriterio]['valor']" style="font-size:16px; font-weight: bold; color: black;">{{ promedios[estudiante.id][criterio.idcriterio]['promedio'] }} </span>
                         <span ng-if="promedios[estudiante.id][criterio.idcriterio]['promedio'] <= promedios[estudiante.id][criterio.idcriterio]['valor']" style="font-size:16px; font-weight: bold; color: red;">{{ promedios[estudiante.id][criterio.idcriterio]['promedio'] }} </span>
                       </span>
                       <span ng-if="criterio.idcriterio != criterio.iddimension">                        
                         <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['nota_cuantitativo'] > 0" style="white-space: nowrap;">
-                          <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['nota_cuantitativo'] >= 51" ng-class="{ noreforzamiento: evaluaciones[estudiante.id][criterio.idcriterio]['reforzamiento_cuantitativo'] == null, reforzamiento: evaluaciones[estudiante.id][criterio.idcriterio]['reforzamiento_cuantitativo'] > 0 }">{{ evaluaciones[estudiante.id][criterio.idcriterio]['nota_valor'] | number }} </span>
+                          <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['nota_cuantitativo'] >= 51" ng-class="{ noreforzamiento: evaluaciones[estudiante.id][criterio.idcriterio]['reforzamiento_cuantitativo'] == 0, reforzamiento: evaluaciones[estudiante.id][criterio.idcriterio]['reforzamiento_cuantitativo'] > 0 }">{{ evaluaciones[estudiante.id][criterio.idcriterio]['nota_valor'] | number }} </span>
                           <span ng-if="evaluaciones[estudiante.id][criterio.idcriterio]['nota_cuantitativo'] < 51" style="font-size:16px; font-weight: bold; color:red;">{{ evaluaciones[estudiante.id][criterio.idcriterio]['nota_valor'] | number}} </span>
                           | &nbsp; <span style="font-size:10px;"> {{ evaluaciones[estudiante.id][criterio.idcriterio]['nota_cuantitativo'] | number}} </span>
                           | &nbsp; <span style="font-size:10px;"> {{ evaluaciones[estudiante.id][criterio.idcriterio]['nota_cualitativo'] }} </span>
@@ -123,7 +123,7 @@
               <br/>
             </tab>
             <tab select="mtdPromedioDimensiones(curso, asignado, periodo)">
-              <tab-heading> Promedio por Dimensiones </tab-heading>
+              <tab-heading> Promedio por Dimensiones </tab-heading>                                
                 <section class="unseen">
                 <table class="table table-bordered table-hover table-condensed">
                   <thead style="background-color:#7a31aa; color:white;">
@@ -150,6 +150,7 @@
                   </tbody>
                 </table>
               </section>
+              <br/>              
             </tab>
             <tab select="mtdPromedioActividades(curso, asignado, periodo)">
               <tab-heading> Promedio por Actividades </tab-heading>
@@ -210,12 +211,12 @@ th.rotate > div > span {
 }
 
 .noreforzamiento {
-  font-size:16px; 
+  font-size: 16px; 
   font-weight: bold; 
   color: black;
 }
 .reforzamiento {
-  font-size:16px; 
+  font-size: 16px; 
   font-weight: bold; 
   color: blue;
 }

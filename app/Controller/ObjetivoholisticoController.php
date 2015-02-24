@@ -33,8 +33,13 @@
  		$datasource->useNestedTransactions=TRUE;
  		$datasource->begin();
  		try{
- 			$this->ObjetivoHolistico->create();
  			$_objetivo_holistico=array();
+ 			if(!isset($this->request->data['id'])):
+ 				$this->ObjetivoHolistico->create();
+ 			else:
+ 				$_objetivo_holistico['id'] = $this->request->data['id'];
+ 			endif;
+ 			
  			$_objetivo_holistico['asignado_id']=$this->request->data['asignado_id'];
  			$_objetivo_holistico['periodo_id']=$this->request->data['periodo_id'];
  			$_objetivo_holistico['objetivo_holistico']=$this->request->data['objetivo_holistico'];

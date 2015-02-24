@@ -110,9 +110,11 @@ class EvaluacionesController extends AppController{
                     $evaluaciones[$_key][$value[0]['idcriterio']]['cuantitativo'] = 0;
                     $evaluaciones[$_key][$value[0]['idcriterio']]['cualitativo'] = 0;
                     $evaluaciones[$_key][$value[0]['idcriterio']]['valor'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['observaciones'] = '';
                     $evaluaciones[$_key][$value[0]['idcriterio']]['reforzamiento_cuantitativo'] = 0;
                     $evaluaciones[$_key][$value[0]['idcriterio']]['reforzamiento_cualitativo'] = 0;
                     $evaluaciones[$_key][$value[0]['idcriterio']]['reforzamiento_valor'] = 0;
+                    $evaluaciones[$_key][$value[0]['idcriterio']]['reforzamiento_observaciones'] = '';
                     $evaluaciones[$_key][$value[0]['idcriterio']]['nota_cuantitativo'] = 0;
                     $evaluaciones[$_key][$value[0]['idcriterio']]['nota_cualitativo'] = 0;
                     $evaluaciones[$_key][$value[0]['idcriterio']]['nota_valor'] = 0;
@@ -136,9 +138,11 @@ class EvaluacionesController extends AppController{
                                                      evaluaciones.cuantitativo as cuantitativo,
                                                      evaluaciones.valor as convertida,
                                                      evaluacion_cualitativo.abreviacion as cualitativo,
+                                                     evaluaciones.observaciones as observaciones,
                                                      evaluaciones.reforzamiento_cuantitativo as reforzamiento_cuantitativo,
                                                      evaluaciones.reforzamiento_valor as reforzamiento_convertida,
                                                      evaluacion_cualitativo_1.abreviacion as reforzamiento_cualitativo,
+                                                     evaluaciones.reforzamiento_observaciones as reforzamiento_observaciones,
                                                      evaluaciones.nota_cuantitativo as nota_cuantitativo,
                                                      evaluaciones.nota_valor as nota_convertida,
                                                      evaluacion_cualitativo_2.abreviacion as nota_cualitativo
@@ -169,6 +173,9 @@ class EvaluacionesController extends AppController{
             if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['valor'])):
                 $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['valor'] = round($Revaluaciones[$key]['convertida']);
             endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['observaciones'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['observaciones'] = $Revaluaciones[$key]['observaciones'];
+            endif;
             if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_cuantitativo'])):
                 $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_cuantitativo'] = $Revaluaciones[$key]['reforzamiento_cuantitativo'];
             endif;
@@ -177,6 +184,9 @@ class EvaluacionesController extends AppController{
             endif;
             if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_valor'])):
                 $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_valor'] = round($Revaluaciones[$key]['reforzamiento_convertida']);
+            endif;
+            if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_observaciones'])):
+                $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['reforzamiento_observaciones'] = $Revaluaciones[$key]['reforzamiento_observaciones'];
             endif;
             if(isset($evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_cuantitativo'])):
                 $evaluaciones[$Revaluaciones[$key]['inscrito_id']][$Revaluaciones[$key]['criterio_id']]['nota_cuantitativo'] = $Revaluaciones[$key]['nota_cuantitativo'];
@@ -256,8 +266,7 @@ class EvaluacionesController extends AppController{
         $datasource = $this->Evaluacion->getDataSource();
         $datasource->useNestedTransactions = TRUE;
         $datasource->begin();
-        try{
-            $this->Evaluacion->create();            
+        try{            
             $_evaluacion = array();
             $_evaluacion['asignado_id'] = $this->request->data['asignado_id'];
             $_evaluacion['inscrito_id'] = $this->request->data['inscrito_id'];
@@ -266,9 +275,35 @@ class EvaluacionesController extends AppController{
             $_evaluacion['cualitativo'] = $this->request->data['cualitativo'];
             $_evaluacion['valor'] = $this->request->data['convertida'];
             $_evaluacion['observaciones'] = $this->request->data['observaciones'];
-            $_evaluacion['nota_cuantitativo'] = $_evaluacion['cuantitativo'];
-            $_evaluacion['nota_cualitativo'] = $_evaluacion['cualitativo'];
-            $_evaluacion['nota_valor'] = $_evaluacion['valor'];
+            if(!isset($this->request->data['id'])):
+                $this->Evaluacion->create();
+                $_evaluacion['reforzamiento_cuantitativo'] = 0;
+                $_evaluacion['reforzamiento_cualitativo'] = 0;
+                $_evaluacion['reforzamiento_valor'] = 0;
+                $_evaluacion['reforzamiento_observaciones'] = '';
+                $_evaluacion['nota_cuantitativo'] = $_evaluacion['cuantitativo'];
+                $_evaluacion['nota_cualitativo'] = $_evaluacion['cualitativo'];
+                $_evaluacion['nota_valor'] = $_evaluacion['valor'];                
+            else:
+                $_evaluacion['id'] = $this->request->data['id'];                
+                if($this->request->data['reforzamiento_cuantitativo'] >= $this->request->data['cuantitativo']):
+                    $_evaluacion['nota_cuantitativo'] = round(($this->request->data['reforzamiento_cuantitativo'] + $this->request->data['cuantitativo'])/2);
+                    $_evaluacion['nota_valor'] = round(($this->request->data['reforzamiento_convertida'] + $this->request->data['convertida'])/2);
+                    if($_evaluacion['nota_cuantitativo'] <= 51):
+                        $_evaluacion['nota_cualitativo'] = 1;
+                    elseif ($_evaluacion['nota_cuantitativo'] >  51 && $_evaluacion['nota_cuantitativo'] <= 68):
+                        $_evaluacion['nota_cualitativo'] = 2;
+                    elseif ($_evaluacion['nota_cuantitativo'] >  68 && $_evaluacion['nota_cuantitativo'] <= 84):
+                        $_evaluacion['nota_cualitativo'] = 3;
+                    elseif ($_evaluacion['nota_cuantitativo'] >  84 && $_evaluacion['nota_cuantitativo'] <= 100):
+                        $_evaluacion['nota_cualitativo'] = 4;
+                    endif;
+                else:                    
+                    $_evaluacion['nota_cuantitativo'] = $_evaluacion['cuantitativo'];
+                    $_evaluacion['nota_cualitativo'] = $_evaluacion['cualitativo'];
+                    $_evaluacion['nota_valor'] = $_evaluacion['valor'];   
+                endif;
+            endif;
             
             $this->Evaluacion->save($_evaluacion);
 
@@ -278,7 +313,7 @@ class EvaluacionesController extends AppController{
         }catch(Exception $e) {
             $datasource->rollback();
             $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
-            if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, el Curso ya existe !!!';}
+            if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, la Evaluacion ya Existe !!!';}
             $message['guardado'] = false;
             
         }       
@@ -327,11 +362,11 @@ class EvaluacionesController extends AppController{
 
             $datasource->commit();
             $message['guardado'] = true;
-            $message['mensaje'] = 'Se Guardo Correctamente la Evaluacion';
+            $message['mensaje'] = 'Se Guardo Correctamente la Evaluacion de Reforzamiento';
         }catch(Exception $e) {
             $datasource->rollback();
             $message['mensaje'] = 'Error al Guardar los datos'.$e->getMessage();
-            if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, el Curso ya existe !!!';}
+            if($e->getCode() == 23505) { $message['mensaje'] = 'Error al Guardar datos, el Evaluacion ya existe !!!';}
             $message['guardado'] = false;
             
         }       

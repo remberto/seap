@@ -69,9 +69,12 @@
 	Router::mapResources('evaluaciones');
 	Router::mapResources('objetivoholistico');
 	Router::mapResources('actividadevaluaciones');
+	Router::mapResources('actividad');
 	Router::mapResources('promediodimension');
 	Router::mapResources('promedioactividad');
 	Router::mapResources('criterios');
+	Router::mapResources('centralizador');
+	Router::mapResources('evaluacioncualitativa');
 	Router::parseExtensions();
 	
 /**

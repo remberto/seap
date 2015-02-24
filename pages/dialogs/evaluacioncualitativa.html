@@ -1,0 +1,70 @@
+<div class="modal-header">
+	<h4 class="modal-title">
+		<span class="glyphicon glyphicon-pencil"></span> Evaluaci&oacute;n Cualitativa de {{ estudiante.paterno}} {{ estudiante.materno}}, {{ estudiante.nombres}}
+	</h4>
+</div>
+<div class="modal-body">
+	<ng-form name="nameDialog" novalidate role="form">
+		<div class="form-group input-group-lg" ng-class="{true: 'has-error'}[nameDialog.periodo.$dirty && nameDialog.periodo.$invalid] ">
+			<div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="periodo">Periodo :</label>
+		                  <div class="col-md-8">
+			                  <select id="periodo" name="periodo" ng-change="mtdSelectPeriodo(valoracion_cualitativa.periodo)" ng-model="valoracion_cualitativa.periodo" ng-options="value as value.descripcion for (key, value) in periodos" class="form-control" required>
+			                    <option value="">-- Seleccione Periodo --</option>
+			                  </select  	
+		                  </div>
+		                </div>
+		              </div>
+		        </div>
+		        <br/>
+	        	<section class="unseen">
+		        	<table class="table table-bordered table-hover table-condensed">
+			                <thead style="background-color:#7a31aa; color:white;">
+			                  <tr>
+			                    <th>Nro.</th>
+			                    <th>Area</th>
+			                    <th ng-repeat="dimension in dimensiones"><div><span>{{ dimension.descripcion}} ({{ dimension.valor }} Pts.)</span></div></th>                    			                    
+			                  </tr>			                  			                 	   
+			                </thead>
+			                <tbody>
+			                  <tr ng-repeat="area in areas">
+			                    <td>{{ $index + 1 }}</td>                    
+			                    <td>{{ area.descripcion }}</td>                    
+			                    <td ng-repeat="dimension in dimensiones" align="right">			                      
+			                        <span ng-if="centralizador[area.id][dimension.id]['nota'] >= dimension['valor']" style="font-size:10px; font-weight: bold; color: black;">{{ centralizador[area.id][dimension.id]['nota'] }}</span>
+			                        <span ng-if="centralizador[area.id][dimension.id]['nota'] < dimension['valor']" style="font-size:10px; font-weight: bold; color: red;">{{ centralizador[area.id][dimension.id]['nota'] }}</span>	
+			                    </td>                    
+			                  </tr>
+			                </tbody>
+			                <tfoot>
+			                  <tr>
+			                	<td colspan="2"> PROMEDIO: </td>
+			                	<td ng-repeat="dimension in dimensiones" align="right">
+				                	<span ng-if="promedios[dimension.id]['nota'] >= dimension['valor']" style="font-size:10px; font-weight: bold; color: black;">{{ promedios[dimension.id]['nota'] }}</span>
+				                        <span ng-if="promedios[dimension.id]['nota'] < dimension['valor']" style="font-size:10px; font-weight: bold; color: red;">{{ promedios[dimension.id]['nota'] }}</span>	
+			                	</td>
+			                  </tr>
+			                </tfoot>
+		              	</table>
+			</section>	        
+		        
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="evaluacion">Evaluacion :</label>
+		                  <div class="col-md-8">
+		                    	<textarea style="width:100%" ng-model="valoracion_cualitativa.valoracion_cualitativa"></textarea>                
+		                  </div>
+		                </div>
+		              </div>
+		        </div>		        	       
+		        
+		</div>
+	</ng-form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+	<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Guardar</button>
+</div>
