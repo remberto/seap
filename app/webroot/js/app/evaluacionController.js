@@ -134,7 +134,8 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 				$scope._actividades = data.datos.actividades;
 				$scope.estudiantes = data.datos.inscritos;
 				$scope.promedios = data.datos.promedios;
-				$scope.notas = data.datos.notas;				
+				$scope.notas = data.datos.notas;
+				$scope.actividad_evaluaciones = data.datos.actividad_evaluacion;				
 			})	
 		}
 	}
@@ -493,7 +494,7 @@ evaluacionController.controller('evaluarController', ['$scope','$routeParams','$
 	}
 
 	$scope.mtdChange = function(){
-		if($scope.evaluacion.cuantitativo < 51){
+		if($scope.evaluacion.cuantitativo > 0 && $scope.evaluacion.cuantitativo < 51){
 			$scope.evaluacion.cualitativo = 1;
 			$scope._cualitativo = 'En Desarrollo';
 		}else if($scope.evaluacion.cuantitativo >= 51 && $scope.evaluacion.cuantitativo <= 68){

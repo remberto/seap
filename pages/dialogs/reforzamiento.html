@@ -5,7 +5,7 @@
 </div>
 <div class="modal-body">
 	<ng-form name="nameDialog" novalidate role="form">
-		<div class="form-group input-group-lg" ng-class="{true: 'has-error'}[nameDialog.username.$dirty && nameDialog.username.$invalid] ">
+		<div class="form-group input-group-lg" ng-class="{true: 'has-error'}[nameDialog.cuantitativo.$dirty && nameDialog.cuantitativo.$invalid] ">
 			<div class="row">
 		              <div class="col-sm-12 col-lg-12">
 		                <div class="form-group">
@@ -41,11 +41,11 @@
 		                  <label class="col-md-4 control-label" for="cuantitativo">Evaluacion Cuantitativa (sobre 100):</label>
 		                  <div class="col-md-8">
 		                    <div class="input-group">                      
-		                	<input type="number" id="cuantitativo" name="cuantitativo" class="form-control" ng-required="true" ng-model="evaluacion.reforzamiento_cuantitativo" placeholder="1 al 100" ng-change="mtdChange()">                        
-		                        <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
-		                	<span ng-if="newAdministrativoForm.carnet.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+		                	<input type="number" id="cuantitativo" name="cuantitativo" class="form-control" ng-required="true" ng-model="evaluacion.reforzamiento_cuantitativo" placeholder="1 al 100" ng-change="mtdChange()" max="100" min="35">                        
+		                        <span ng-if="nameDialog.cuantitativo.$invalid && nameDialog.cuantitativo.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		                	<span ng-if="nameDialog.cuantitativo.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
 			                </div>
-			                <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="help-block">Evaluacion Cuatitativa es requerida</span>		                    		                    
+			                <span ng-if="nameDialog.cuantitativo.$invalid && nameDialog.cuantitativo.$dirty" class="help-block">Evaluacion Cuatitativa es requerida</span>		                    		                    
 		                  </div>
 		                </div>
 		              </div>
@@ -56,11 +56,11 @@
 		                  <label class="col-md-4 control-label" for="convertida">Evaluacion Convertida (sobre {{ criterio.valor}}) :</label>
 		                  <div class="col-md-8">
 		                    <div class="input-group">                      
-		                	<input type="number" id="convertida" name="convertida" class="form-control" ng-required="true" ng-model="evaluacion.reforzamiento_convertida" placeholder="1 al {{ criterio.valor}}" required disabled>                        
-		                        <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
-		                	<span ng-if="newAdministrativoForm.carnet.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+		                	<input type="number" id="convertida" name="convertida" class="form-control" ng-required="true" ng-model="evaluacion.reforzamiento_convertida" placeholder="1 al {{ criterio.valor}}" required disabled max="{{ criterio.valor}}" min="0">                        
+		                        <span ng-if="nameDialog.convertida.$invalid && nameDialog.convertida.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		                	<span ng-if="nameDialog.convertida.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
 			                </div>
-			                <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="help-block">Evaluacion Cuatitativa es requerida</span>		                    		                    
+			                <span ng-if="nameDialog.convertida.$invalid && nameDialog.convertida.$dirty" class="help-block">Evaluacion Cuatitativa es requerida</span>		                    		                    
 		                  </div>
 		                </div>
 		              </div>
@@ -72,10 +72,10 @@
 		                  <div class="col-md-8">
 		                    <div class="input-group">		                      
 		                     	<input type="text" id="cualitativo" name="cualitativo" class="form-control" ng-required="true" ng-model="_cualitativo" disabled>                        
-		                        <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
-		                	<span ng-if="newAdministrativoForm.carnet.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+		                        <span ng-if="nameDialog.cualitativo.$invalid && nameDialog.cualitativo.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		                	<span ng-if="nameDialog.cualitativo.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
 			                </div>
-			                <span ng-if="newAdministrativoForm.carnet.$invalid && newAdministrativoForm.carnet.$dirty" class="help-block">Evaluaci&oacute;n Cualitativa es requerida</span>
+			                <span ng-if="nameDialog.cualitativo.$invalid && nameDialog.cualitativo.$dirty" class="help-block">Evaluaci&oacute;n Cualitativa es requerida</span>
 		                    </div>
 		                  </div>
 		                </div>

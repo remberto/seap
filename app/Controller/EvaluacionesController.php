@@ -274,7 +274,9 @@ class EvaluacionesController extends AppController{
             $_evaluacion['cuantitativo'] = $this->request->data['cuantitativo'];
             $_evaluacion['cualitativo'] = $this->request->data['cualitativo'];
             $_evaluacion['valor'] = $this->request->data['convertida'];
-            $_evaluacion['observaciones'] = $this->request->data['observaciones'];
+            if(isset($this->request->data['observaciones'])):
+                $_evaluacion['observaciones'] = $this->request->data['observaciones'];
+            endif;
             if(!isset($this->request->data['id'])):
                 $this->Evaluacion->create();
                 $_evaluacion['reforzamiento_cuantitativo'] = 0;
@@ -342,7 +344,9 @@ class EvaluacionesController extends AppController{
             $_evaluacion['reforzamiento_cuantitativo'] = $evaluaciones['reforzamiento_cuantitativo'];
             $_evaluacion['reforzamiento_cualitativo'] = $evaluaciones['reforzamiento_cualitativo'];
             $_evaluacion['reforzamiento_valor'] = $evaluaciones['reforzamiento_convertida'];
-            $_evaluacion['reforzamiento_observaciones'] = $evaluaciones['reforzamiento_observaciones'];           
+            if(isset($evaluaciones['reforzamiento_observaciones'])):
+                $_evaluacion['reforzamiento_observaciones'] = $evaluaciones['reforzamiento_observaciones'];           
+            endif;
             if($evaluaciones['reforzamiento_cuantitativo'] >= $evaluaciones['cuantitativo']):
                 $_evaluacion['nota_cuantitativo'] = round(($evaluaciones['reforzamiento_cuantitativo'] + $evaluaciones['cuantitativo'])/2);
                 $_evaluacion['nota_valor'] = round(($evaluaciones['reforzamiento_convertida'] + $evaluaciones['valor'])/2);

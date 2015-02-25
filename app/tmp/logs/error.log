@@ -1253,3 +1253,72 @@ Stack Trace:
 #2 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
 #4 {main}
+2015-02-24 15:29:43 Error: Fatal Error (4): syntax error, unexpected '}', expecting ']' in [D:\desarrollo\bienaventuranza\seap\app\Controller\BoletinController.php, line 38]
+2015-02-24 15:29:43 Error: [FatalErrorException] syntax error, unexpected '}', expecting ']'
+Request URL: /index.php/boletin.json?carnet=3423&codigo_rude=f32423dqwe&fecha_nacimiento=1984-02-08&genero=M&id=54de77a8-9928-44fe-8857-1a4cafb6fe0b&materno=fsd&nombres=fsd&paterno=dfsd
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 38, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-24 17:21:07 Error: Fatal Error (4): syntax error, unexpected ';', expecting ']' in [D:\desarrollo\bienaventuranza\seap\app\Controller\BoletinController.php, line 81]
+2015-02-24 17:21:07 Error: [FatalErrorException] syntax error, unexpected ';', expecting ']'
+Request URL: /index.php/boletin.json?carnet=3423&codigo_rude=f32423dqwe&fecha_nacimiento=1984-02-08&genero=M&id=54de77a8-9928-44fe-8857-1a4cafb6fe0b&materno=fsd&nombres=fsd&paterno=dfsd
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 81)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 81, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 81, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-24 19:00:21 Error: Fatal Error (4): syntax error, unexpected '54' (T_LNUMBER) in [D:\desarrollo\bienaventuranza\seap\app\Controller\BoletinController.php, line 104]
+2015-02-24 19:00:21 Error: [FatalErrorException] syntax error, unexpected '54' (T_LNUMBER)
+Request URL: /index.php/boletin.json?carnet=3423&codigo_rude=f32423dqwe&fecha_nacimiento=1984-02-08&genero=M&id=54de77a8-9928-44fe-8857-1a4cafb6fe0b&materno=fsd&nombres=fsd&paterno=dfsd
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 104)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 104, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 104, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-24 19:00:28 Error: Fatal Error (4): syntax error, unexpected '54' (T_LNUMBER) in [D:\desarrollo\bienaventuranza\seap\app\Controller\BoletinController.php, line 104]
+2015-02-24 19:00:28 Error: [FatalErrorException] syntax error, unexpected '54' (T_LNUMBER)
+Request URL: /index.php/boletin.json?carnet=3423&codigo_rude=f32423dqwe&fecha_nacimiento=1984-02-08&genero=M&id=54de77a8-9928-44fe-8857-1a4cafb6fe0b&materno=fsd&nombres=fsd&paterno=dfsd
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 104)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 104, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 104, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-24 19:01:16 Error: [PDOException] SQLSTATE[42601]: Syntax error: 7 ERROR:  error de sintaxis en o cerca de «FROM»
+LINE 3: ...                                                  FROM valor...
+                                                             ^
+Request URL: /index.php/boletin.json?carnet=3423&codigo_rude=f32423dqwe&fecha_nacimiento=1984-02-08&genero=M&id=54de77a8-9928-44fe-8857-1a4cafb6fe0b&materno=fsd&nombres=fsd&paterno=dfsd
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT periodo_...', Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(666): DboSource->execute('SELECT periodo_...', Array, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Datasource\DboSource.php(537): DboSource->fetchAll('SELECT periodo_...')
+#4 [internal function]: DboSource->query('SELECT periodo_...')
+#5 D:\desarrollo\bienaventuranza\seap\lib\Cake\Model\Model.php(3354): call_user_func_array(Array, Array)
+#6 D:\desarrollo\bienaventuranza\seap\app\Controller\BoletinController.php(104): Model->query('SELECT periodo_...')
+#7 [internal function]: BoletinController->index()
+#8 D:\desarrollo\bienaventuranza\seap\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(BoletinController), Array)
+#9 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#10 D:\desarrollo\bienaventuranza\seap\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(BoletinController), Object(CakeRequest))
+#11 D:\desarrollo\bienaventuranza\seap\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 D:\desarrollo\bienaventuranza\seap\index.php(41): require('D:\desarrollo\b...')
+#13 {main}
+2015-02-24 20:39:13 Error: Fatal Error (4): syntax error, unexpected '.1' (T_DNUMBER), expecting ']' in [D:\desarrollo\bienaventuranza\seap\app\Controller\PromedioactividadController.php, line 69]
+2015-02-24 20:39:13 Error: [FatalErrorException] syntax error, unexpected '.1' (T_DNUMBER), expecting ']'
+Request URL: /index.php/promedioactividad.json?asignado=54d9f4c0-e484-4f02-a850-1f74afb6fe0b&curso=54d9f4c0-027c-4745-b7ea-1f74afb6fe0b&periodo=1
+Stack Trace:
+#0 D:\desarrollo\bienaventuranza\seap\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\desarrollo\b...', 69)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\desarrollo\b...', 69, Array)
+#2 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\desarrollo\b...', 69, Array)
+#3 D:\desarrollo\bienaventuranza\seap\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

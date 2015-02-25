@@ -59,16 +59,24 @@ class PromedioactividadController extends AppController{
                                             WHERE actividad_evaluacion_asignado.asignado_id = \''.$asignado.'\'
                                             AND actividad_evaluacion_asignado.periodo_id = '.$periodo.';');
         $actividadevaluaciones=array();
+        $_actividad_evaluacion=array();
         foreach($_actividadevaluaciones as $key=>$value){
             array_push($actividadevaluaciones,$value[0]);
             foreach ($promedios as $_key => $_value) {
-                $promedios[$_key][$value[0]['id']]['nota'] = 0;
-            }                        
+                $promedios[$_key][$value[0]['id']]['evaluacion_promedio'] = 0;
+                $promedios[$_key][$value[0]['id']]['reforzamiento_promedio'] = 0;
+                $promedios[$_key][$value[0]['id']]['nota'] = 0;               
+            }
+            array_push($_actividad_evaluacion,array('id'=>$value[0]['id'],'descripcion'=>'Nota'));
+            array_push($_actividad_evaluacion,array('id'=>$value[0]['id'],'descripcion'=>'Reforzamiento'));
+            array_push($_actividad_evaluacion,array('id'=>$value[0]['id'],'descripcion'=>'Nota Final'));                        
         }        
 
         // Promedios por Dimnesiones        
         $_promedios = $this->Evaluacion->query('SELECT inscrito_id as inscrito_id,
                                                 actividad_evaluacion_asignado_id as actividad_id,
+                                                sum(evaluacion_promedio) AS evaluacion_promedio,
+                                                sum(reforzamiento_promedio) AS reforzamiento_promedio,
                                                 sum(promedio) AS nota
                                                 FROM promedios
                                                 WHERE promedios.periodo_id = '.$periodo.'
@@ -84,6 +92,12 @@ class PromedioactividadController extends AppController{
         foreach ($Rpromedios as $key => $value) {            
             if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['nota'])):
                 $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['nota'] = round($Rpromedios[$key]['nota']);
+            endif;            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['evaluacion_promedio'])):
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['evaluacion_promedio'] = round($Rpromedios[$key]['evaluacion_promedio']);
+            endif;            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['reforzamiento_promedio'])):
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['reforzamiento_promedio'] = round($Rpromedios[$key]['reforzamiento_promedio']);
             endif;            
         }
 
@@ -111,7 +125,8 @@ class PromedioactividadController extends AppController{
         $datos['notas'] = $notas;
         $datos['promedios'] = $promedios;
         $datos['inscritos'] = $inscritos;
-        $datos['actividades'] = $actividadevaluaciones;        
+        $datos['actividades'] = $actividadevaluaciones;
+        $datos['actividad_evaluacion'] = $_actividad_evaluacion;
         $this->set(array(
             'datos' => $datos,
             '_serialize' => array('datos')

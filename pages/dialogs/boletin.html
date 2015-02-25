@@ -1,0 +1,92 @@
+<div class="modal-header">
+	<h4 class="modal-title">
+		<span class="glyphicon glyphicon-pencil"></span> Boletin de Notas de  {{ estudiante.paterno}} {{ estudiante.materno}}, {{ estudiante.nombres}}
+	</h4>
+</div>
+<div class="modal-body">
+	<ng-form name="nameDialog" novalidate role="form">
+		<div id="boletin">
+	        	<section class="unseen">
+		        	<table class="table table-bordered table-condensed" style="text-align: center; font-size: 10px;">
+			                <thead style="text-align: center;">
+			                  	<tr>
+			                    		<th colspan="12"><center><b> EDUCACI&Oacute;N {{ cabezera.nivel }} </b><center></th>
+			                    	</tr>
+			                    	<tr>			                    		
+							<th>Nro.</th>				                	
+				                	<th colspan="4"><b>Nombres y Apellidos</b> {{estudiante.paterno}} {{estudiante.materno}} {{estudiante.nombres}}</th>				                	
+				                	<th colspan="2"><b>Año :<b> {{ cabezera.grado }}</th>				                	
+				                	<th colspan="2"><b>Gesti&oacute;n : </b>{{ cabezera.gestion}}</th>							
+						</tr>
+						<tr>
+							<th colspan="12"><center>Evaluaci&oacute;n</center></th>
+						</tr>
+						<tr>
+							<th colspan="12"><center>(Ser, Saber, Hacer, Decidir)<center></th>
+						</tr>
+						<tr style="background-color:#7a31aa; color:white;">
+							<th rowspan="3" style="vertical-align=middle;"><center>Campos de Saberes y Conocimientos</center></th>
+							<th rowspan="3" style="vertical-align=middle;"><center>Areas Curriculares</center></th>
+							<th colspan="6" style="vertical-align=middle;"><center>Valoraci&oacute;n Cuantitativa</center></th>
+							<th rowspan="3" style="vertical-align=middle;"><center>Valoraci&oacute;n Cualitativa</center></th>
+						</tr>
+						<tr style="background-color:#7a31aa; color:white;">
+							<th rowspan="2" ng-repeat="periodo in periodos"><center>{{periodo.descripcion}}</center></th>
+				                	<th colspan="2"><center>PROMEDIO ANUAL</center></th>				                	    
+			                  	</tr>			         
+			                  	<tr style="background-color:#7a31aa; color:white;">
+			                  		<th><center>Numeral</center></th>
+			                  		<th><center>Literal</center></th>
+			                  	</tr>         			                 	   
+			                </thead>
+			                <tbody>
+			                	<tr ng-repeat="area in areas | orderBy:area.id:false">
+			                		<!--<td ng-if="area.idcampos != 0" style="text-align:left" rowspan="{{ campos[area.idcampos].rows }}"> {{ campos[area.idcampos].descripcion }}</td> -->
+			                		<td> {{ campos[area.idcampos].descripcion }}</td>
+			                		<td style="text-align:left"> {{ area.descripcion }}</td>
+			                		<td ng-repeat="periodo in periodos">
+			                			<span ng-if="boletin[area.id][periodo.id]['nota'] >= 51" style="font-size:10px; font-weight: bold; color: black;">
+			                			{{ boletin[area.id][periodo.id]['nota'] }}
+			                			</span>
+			                			<span ng-if="boletin[area.id][periodo.id]['nota'] < 51" style="font-size:10px; font-weight: bold; color: red;">
+			                			{{ boletin[area.id][periodo.id]['nota'] }}
+			                			</SPAN>
+			                		</td>
+			                		<td> 
+			                			<span ng-if="nota_final[area.id]['nota'] >= 51" style="font-size:10px; font-weight: bold; color: black;">
+			                				{{ nota_final[area.id]['nota'] }}
+			                			</span>
+			                			<span ng-if="nota_final[area.id]['nota'] < 51" style="font-size:10px; font-weight: bold; color: red;">
+			                				{{ nota_final[area.id]['nota'] }}
+			                			</span>
+			                		</td>
+			                		<td> {{ nota_final[area.id]['descripcion'] }}</td>
+			                		<td ng-if="$index == 0" rowspan="{{areas.length}}" style="height:100%">
+			                			<table class="table table-bordered" style="height:100%">
+			                				<tr ng-repeat="periodo in periodos" style="height:25%;">
+			                					<td align="left"><b>{{ periodo.abreviacion }} .-</b> {{ valoracion_cualitativa[periodo.id]['valoracion_cualitativa'] }} <br/></td>
+			                				</tr>
+			                			</table>
+			                		</td>
+			                		<!--<td  rowspan="{{ campo.rows }}"> {{ campo.descripcion }}</td>-->
+			                	</tr>			                				                	
+			                </tbody>
+			                <tfoot>
+			                	<tr>
+				                  	<td colspan="2"> PROMEDIO: </td>
+				                	<td ng-repeat="periodo in periodos" align="center">			                	
+					                	<span ng-if="promedio_trimestre[periodo.id]['promedio_trimestre'] >= 51" style="font-size:10px; font-weight: bold; color: black;">{{ promedio_trimestre[periodo.id]['promedio_trimestre'] }}</span>
+					                        <span ng-if="promedio_trimestre[periodo.id]['promedio_trimestre'] < 51" style="font-size:10px; font-weight: bold; color: red;">{{ promedio_trimestre[periodo.id]['promedio_trimestre'] }}</span>	
+				                	</td>
+				                	<td colspan="3"></td>
+				                </tr>
+			                </tfoot>
+		              	</table>
+			</section>	        
+		</div>
+	</ng-form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="print('boletin')">Imprimir</button>
+	<button type="button" class="btn btn-primary" ng-click="close()">Cerrar</button>
+</div>

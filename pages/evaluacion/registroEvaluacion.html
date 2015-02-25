@@ -122,6 +122,48 @@
               <alert type="info">Hacer clic en "+" para agregar una nueva Actividad de Evaluacion, o seleccione una de las Actividades de Evaluacion (lado derecho) para ver las evaluaciones por Dimensiones y Criterios, o finalmente seleccione los itemes de promedio (lado izquierdo) para ver los promedios de las evaluaciones</alert>
               <br/>
             </tab>
+            <tab select="mtdPromedioActividades(curso, asignado, periodo)">
+              <tab-heading> Promedio por Actividades </tab-heading>
+              <section class="unseen">
+                <table class="table table-bordered table-hover table-condensed">
+                  <thead style="background-color:#7a31aa; color:white;">
+                    <tr>
+                      <th rowspan="2">Nro.</th>
+                      <th rowspan="2">Apellidos y Nombres</th>
+                      <th colspan="3" ng-repeat="_actividad in _actividades"><center>{{ _actividad.descripcion }}</center></th>
+                      <th rowspan="2"><center>Nota Final</center></th>                      
+                    </tr>
+                    <tr>
+                      <th ng-repeat="actividad_evaluacion in actividad_evaluaciones">{{ actividad_evaluacion.descripcion }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="estudiante in estudiantes">
+                      <td>{{ $index + 1 }}</td>                    
+                      <td>{{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>                    
+                      <td ng-repeat="actividad_evaluacion in actividad_evaluaciones" align="right">
+                        <div ng-if="actividad_evaluacion.descripcion == 'Nota'">                        
+                          <span ng-if="promedios[estudiante.id][actividad_evaluacion.id]['evaluacion_promedio'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ promedios[estudiante.id][actividad_evaluacion.id]['evaluacion_promedio'] }} </span>
+                          <span ng-if="promedios[estudiante.id][actividad_evaluacion.id]['evaluacion_promedio'] < 51" style="font-size:16px; font-weight: bold; color: red;">{{ promedios[estudiante.id][actividad_evaluacion.id]['evaluacion_promedio'] }} </span>
+                        </div>
+                        <div ng-if="actividad_evaluacion.descripcion == 'Reforzamiento'">                        
+                          <span ng-if="promedios[estudiante.id][actividad_evaluacion.id]['reforzamiento_promedio'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ promedios[estudiante.id][actividad_evaluacion.id]['reforzamiento_promedio'] }} </span>
+                          <span ng-if="promedios[estudiante.id][actividad_evaluacion.id]['reforzamiento_promedio'] < 51 && promedios[estudiante.id][actividad_evaluacion.id]['reforzamiento_promedio'] > 0" style="font-size:16px; font-weight: bold; color: red;">{{ promedios[estudiante.id][actividad_evaluacion.id]['reforzamiento_promedio'] }} </span>
+                        </div>
+                        <div ng-if="actividad_evaluacion.descripcion == 'Nota Final'">                        
+                          <span ng-if="promedios[estudiante.id][actividad_evaluacion.id]['nota'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ promedios[estudiante.id][actividad_evaluacion.id]['nota'] }} </span>
+                          <span ng-if="promedios[estudiante.id][actividad_evaluacion.id]['nota'] < 51" style="font-size:16px; font-weight: bold; color: red;">{{ promedios[estudiante.id][actividad_evaluacion.id]['nota'] }} </span>
+                        </div>
+                      </td>
+                      <td align="right" class="promedio">                        
+                        <span ng-if="notas[estudiante.id]['nota'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ notas[estudiante.id]['nota'] }}</span>
+                        <span ng-if="notas[estudiante.id]['nota'] < 51" style="font-size:16px; font-weight: bold; color: red;">{{ notas[estudiante.id]['nota'] }}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </tab>
             <tab select="mtdPromedioDimensiones(curso, asignado, periodo)">
               <tab-heading> Promedio por Dimensiones </tab-heading>                                
                 <section class="unseen">
@@ -151,36 +193,7 @@
                 </table>
               </section>
               <br/>              
-            </tab>
-            <tab select="mtdPromedioActividades(curso, asignado, periodo)">
-              <tab-heading> Promedio por Actividades </tab-heading>
-              <section class="unseen">
-                <table class="table table-bordered table-hover table-condensed">
-                  <thead style="background-color:#7a31aa; color:white;">
-                    <tr>
-                      <th>Nro.</th>
-                      <th>Apellidos y Nombres</th>
-                      <th ng-repeat="_actividad in _actividades"><center>{{ _actividad.descripcion }}</center></th>
-                      <th><center>Nota Final</center></th>                      
-                    </tr>                    
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="estudiante in estudiantes">
-                      <td>{{ $index + 1 }}</td>                    
-                      <td>{{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>                    
-                      <td ng-repeat="_actividad in _actividades" align="right">                        
-                        <span ng-if="promedios[estudiante.id][_actividad.id]['nota'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ promedios[estudiante.id][_actividad.id]['nota'] }} </span>
-                        <span ng-if="promedios[estudiante.id][_actividad.id]['nota'] < 51" style="font-size:16px; font-weight: bold; color: red;">{{ promedios[estudiante.id][_actividad.id]['nota'] }} </span>
-                      </td>
-                      <td align="right">                        
-                        <span ng-if="notas[estudiante.id]['nota'] >= 51" style="font-size:16px; font-weight: bold; color: black;">{{ notas[estudiante.id]['nota'] }}</span>
-                        <span ng-if="notas[estudiante.id]['nota'] < 51" style="font-size:16px; font-weight: bold; color: red;">{{ notas[estudiante.id]['nota'] }}</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
-            </tab>
+            </tab>           
           </tabset>
         </div>                  
     </div>

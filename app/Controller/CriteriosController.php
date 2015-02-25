@@ -75,7 +75,8 @@ class CriteriosController extends AppController{
         ));
     }
 
-     public function delete($id){
+    
+    public function delete($id){
         $datasource = $this->CriterioEvaluacion->getDataSource();
         $datasource->useNestedTransactions = TRUE;
         $datasource->begin();

@@ -842,6 +842,12 @@ cuadernoAppServices.factory('CentralizadorFactory', function ($resource) {
     })
 });
 
+cuadernoAppServices.factory('BoletinFactory', function ($resource) {
+    return $resource('/index.php/boletin.json', {}, {
+        query: { method: 'GET', isArray: false},        
+    })
+});
+
 cuadernoAppServices.factory('EvaluacionCualitativaFactory', function ($resource) {
     return $resource('/index.php/evaluacioncualitativa.json', {}, {
         query: { method: 'GET', isArray: false},
