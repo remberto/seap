@@ -173,27 +173,38 @@ cuadernoApp.config(['$routeProvider','dialogsProvider',function($routeProvider,d
     // Aqui va la parte de Asistencia y Evaluacion de parte del Docente
     // Planificacion
     .when('/menuPlanificacion', {
-            templateUrl : 'pages/planificacion/index.html',
-            controller  : 'planificacionController'
-        })
-	.when('/listPlanificacion/:id',{
+        templateUrl : 'pages/planificacion/index.html',
+        controller  : 'cursosDocenteController'
+    })
+	.when('/listPlanificacion/:id/:nivel_id',{
 	    templateUrl : 'pages/planificacion/list.html',
 	    controller : 'planificacionController'
 	})
 
     // 2.1 PLanificacion Anual
-    .when('/planificacionAnual/:curso_id', {
+    // Primaria
+    .when('/planificacionAnualBimestral/:curso_id', {
             templateUrl : 'pages/planificacionAnual/index.html',
+            controller  : 'planificacionAnualBimestralController'
+        })
+    .when('/planificacionClases1/:id', {
+            templateUrl : 'pages/planificacionClases/listAsignatura.html',
+            controller  : 'cursosDocenteAsignaturaController'
+        })
+    // Secundaria
+    .when('/planificacionAnual/:curso_id', {
+            templateUrl : 'pages/planificacionAnual/index1.html',
             controller  : 'planificacionAnualController'
         })
     .when('/planificacionBimestral/:curso_id', {
             templateUrl : 'pages/planificacionBimestral/index.html',
             controller  : 'planificacionBimestralController'
         })
-    .when('/planificacionClases/:id', {
+    .when('/planificacionClases2/:id', {
             templateUrl : 'pages/planificacionClases/listAsignatura.html',
             controller  : 'cursosDocenteAsignaturaController'
         })
+
     .when('/planificacionClasesAsignatura/:asignado_id/:curso_id', {
             templateUrl : 'pages/planificacionClases/listClases.html',
             controller  : 'planificacionClasesController'
@@ -708,6 +719,13 @@ cuadernoAppServices.factory('AsignaturasNivelFactory', function ($resource) {
     });
 });
 
+// Agregar asignatura
+cuadernoAppServices.factory('AsignaturaFactory', function ($resource) {
+    return $resource('/index.php/asignatura.json', {}, {
+        create: { method: 'POST'}    
+    });
+});
+
 cuadernoAppServices.factory('AsignarFactory', function ($resource) {
     return $resource('/index.php/asignados.json', {}, {
         create: { method: 'POST'}    
@@ -991,7 +1009,8 @@ loginController.controller('logoutController',['$rootScope', '$scope','sesionesC
     sesionesControl.unset("username");
     sesionesControl.unset("user_id");
     //$window.location.href = 'http://104.236.71.163';      
-    $window.location.href = 'http://bienaventuranza.example.com/';      
+    $window.location.href = 'http://bienaventuranza.example.com/';
+    //$window.location.href = 'http://127.0.0.1:54007/';      
 }]);
 
 var menuController = angular.module('menuControllers',[]);

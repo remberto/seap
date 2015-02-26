@@ -11,8 +11,10 @@ asistenciaController.controller('asistenciaController', ['$scope','$routeParams'
                      {id: 8, title: 'Agosto'},
                      {id: 9, title: 'Septiembre'},
                      {id: 10, title: 'Octubre'},
-                     {id: 11, title: 'Noviembre'},                     
+                     {id: 11, title: 'Noviembre'},
+                     {id: 11, title: 'Diciembre'},                     
                       ];
+
 
     $scope.asistencia = {curso: 0, mes: 0};
     $scope.resumen = {curso: 0, asignado: 0};
@@ -106,6 +108,37 @@ asistenciaController.controller('asistenciaController', ['$scope','$routeParams'
       dlg.result.then(function(data){
           
       });
+    }
+
+    $scope.mtdPrint = function(divName, Curso, Asignado, Mes){
+      var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWin.window.focus();
+            popupWin.document.write('<!DOCTYPE html><html><head>' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" />' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" />' +
+                '<link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />' +
+                '</head><body onload="window.print()"><div class="reward-body"><table class="table table-bordered table-striped table-condensed"><thead><tr><th colspan="4" style="font-size>16px;"><center><b>REPORTE DE ASISTENCIA</b></center></th></tr></thead><tbody><tr><td>NIVEL :</td><td>'+Curso.nivel+'</td><td>GRADO :</td><td>'+Curso.grado+'</td></tr><tr><td>PARALELO :</td><td>'+Curso.paralelo+'</td><td>TURNO :</td><td>'+Curso.turno+'</td></tr><tr><td>ASIGNATURA : </td><td>'+Asignado.asignatura+'</td><td>MES : </td><td>'+Mes.title+'</td></tr></tbody></table>' + printContents + '</div>'+
+                '</html>');
+            popupWin.onbeforeunload = function (event) {              
+                popupWin.close();
+                //return '.\n';
+            };
+            popupWin.onabort = function (event) {
+                popupWin.document.close();
+                popupWin.close();
+            }
+        } else {
+            var popupWin = window.open('', '_blank', 'width=800,height=600');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" /><link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" /></head><body onload="window.print()"><table class="table table-bordered table-striped table-condensed"><thead><tr><th colspan="4" style="font-size>16px;"><center><b>REPORTE DE ASISTENCIA</b></center></th></tr></thead><tbody><tr><td>NIVEL :</td><td>'+Curso.nivel+'</td><td>GRADO :</td><td>'+Curso.grado+'</td></tr><tr><td>PARALELO :</td><td>'+Curso.paralelo+'</td><td>TURNO :</td><td>'+Curso.turno+'</td></tr><tr><td>ASIGNATURA : </td><td>'+Asignado.asignatura+'</td><td>MES : </td><td>'+Mes.title+'</td></tr></tbody></table>' + printContents + 
+                '</html>');
+            popupWin.document.close();
+        }
+        popupWin.document.close();
     }
 
 }]);

@@ -42,7 +42,7 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 	
 
     	// Cuando se seleciona el Curso se modifica las asignaturas
-	$scope.mtdSelectCurso = function(curso){
+		$scope.mtdSelectCurso = function(curso){
 	      $scope.habilitado = false;	      
 	      CursosDocenteAsignaturaFactory.query({query_id: 132, docente_id: sesionesControl.get('user_id'), curso_id: curso.id } ,
 	        function(data){
@@ -407,27 +407,27 @@ evaluacionController.controller('actividadevaluacionController', ['$scope','$rou
 	
 	$scope.cancel = function(){
 		$modalInstance.dismiss('Canceled');
-    	}; // end cancel
+    }; // end cancel
     
-    	$scope.save = function(){
-    		$scope.actividad.actividad_evaluacion_id = $scope.actividad.actividad_evaluacion.id;    		
-    		ActividadEvaluacionFactory.create($scope.actividad, function(data){
-    			$modalInstance.close({result: ''});
-    		});
-    	};
+    $scope.save = function(){
+    	$scope.actividad.actividad_evaluacion_id = $scope.actividad.actividad_evaluacion.id;    		
+    	ActividadEvaluacionFactory.create($scope.actividad, function(data){
+    		$modalInstance.close({result: ''});
+    	});
+    };
 	
 }]);
 
 evaluacionController.controller('actividadController', ['$scope','$routeParams','$modalInstance', 'ActividadFactory', '$location', 'data',  function($scope, $routeParams, $modalInstance, ActividadFactory, $location, data) {
 	$scope.cancel = function(){
 		$modalInstance.dismiss('Canceled');
-    	}; // end cancel
+    }; // end cancel
     
-    	$scope.save = function(){    		
-    		ActividadFactory.create($scope.actividad, function(data){
-    			$modalInstance.close();
-    		});
-    	};
+    $scope.save = function(){    		
+    	ActividadFactory.create($scope.actividad, function(data){
+    		$modalInstance.close();
+    	});
+    };
 	
 }]);
 
@@ -446,13 +446,13 @@ evaluacionController.controller('criterioController', ['$scope','$routeParams','
 
 	$scope.cancel = function(){
 		$modalInstance.dismiss('Canceled');
-    	}; // end cancel
+    }; // end cancel
     
-    	$scope.save = function(){    		
-    		CriteriosFactory.create($scope.criterio, function(data){
-    			$modalInstance.close();
-    		});        	
-    	};
+    $scope.save = function(){    		
+    	CriteriosFactory.create($scope.criterio, function(data){
+    		$modalInstance.close();
+    	});        	
+    };
 	
 }]);
 

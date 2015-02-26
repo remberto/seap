@@ -37,43 +37,47 @@
               </div>
             </div>
           </div>              
-        </div> 
+        </div>
+        <br />
         <div ng-if="habilitado">       
         <tabset>            
           <tab ng-repeat="mes in meses" select="mtdVer(mes.id, curso, asignado)">
             <tab-heading>{{mes.title}}</tab-heading>
             <section class="unseen">
-            <table class="table table-bordered table-striped table-condensed">
-              <thead>
-                <tr>
-                  <th>Nro.</th>
-                  <th>Apellidos y Nombres</th>
-                  <th ng-repeat="dia in dias">{{dia.dia}}</th> 
-                  <th>Asiti&oacute;</th> 
-                  <th>Atraso</th> 
-                  <th>Falta</th>
-                  <th>Licencia</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="estudiante in estudiantes">
-                  <td>{{ $index + 1 }}</td>                    
-                  <td>{{ estudiante.paterno }} {{ estuddiante.materno }}, {{ estudiante.nombres }}</td>                    
-                  <td ng-repeat="dia in dias" ng-click="mtdAddAsistencia(estudiante, mes, dia, curso, asignado, asistencia[estudiante.id][dia.id])"  align="center">
-                    <center>
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '1'"><i class="fa fa-check" style="color:green"></i></span>
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '2'"><i class="fa fa-check-circle" style="color:blue"></i></span>
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '3'"><i class="fa fa-times"style="color:red"></i></span>
-                      <span ng-if="asistencia[estudiante.id][dia.id] == '4'"><i class="fa fa-asterisk" style="color:orange"></i></span>
-                    </center>
-                  </td>
-                  <td align="center"><center>{{ resumen[estudiante.id]['asistio'] }}</center></td>
-                  <td align="center"><center>{{ resumen[estudiante.id]['atraso'] }}</center></td>
-                  <td align="center"><center>{{ resumen[estudiante.id]['falta'] }}</center></td>
-                  <td align="center"><center>{{ resumen[estudiante.id]['licencia'] }}</center></td>
-                </tr>
-              </tbody>
-            </table>
+              <div id="print">
+                  <table class="table table-bordered table-striped table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Nro.</th>
+                      <th>Apellidos y Nombres</th>
+                      <th ng-repeat="dia in dias">{{dia.dia}}</th> 
+                      <th>Asiti&oacute;</th> 
+                      <th>Atraso</th> 
+                      <th>Falta</th>
+                      <th>Licencia</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="estudiante in estudiantes">
+                      <td>{{ $index + 1 }}</td>                    
+                      <td>{{ estudiante.paterno }} {{ estuddiante.materno }}, {{ estudiante.nombres }}</td>                    
+                      <td ng-repeat="dia in dias" ng-click="mtdAddAsistencia(estudiante, mes, dia, curso, asignado, asistencia[estudiante.id][dia.id])"  align="center">
+                        <center>
+                          <span ng-if="asistencia[estudiante.id][dia.id] == '1'"><i class="fa fa-check" style="color:green"></i></span>
+                          <span ng-if="asistencia[estudiante.id][dia.id] == '2'"><i class="fa fa-check-circle" style="color:blue"></i></span>
+                          <span ng-if="asistencia[estudiante.id][dia.id] == '3'"><i class="fa fa-times"style="color:red"></i></span>
+                          <span ng-if="asistencia[estudiante.id][dia.id] == '4'"><i class="fa fa-asterisk" style="color:orange"></i></span>
+                        </center>
+                      </td>
+                      <td align="center"><center>{{ resumen[estudiante.id]['asistio'] }}</center></td>
+                      <td align="center"><center>{{ resumen[estudiante.id]['atraso'] }}</center></td>
+                      <td align="center"><center>{{ resumen[estudiante.id]['falta'] }}</center></td>
+                      <td align="center"><center>{{ resumen[estudiante.id]['licencia'] }}</center></td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+                <button class="btn btn-primary" ng-click="mtdPrint('print', curso, asignado, mes)">Imprimir</button>
           </section>
           </tab>
           <tab select="mtdResumen(curso, asignado)">

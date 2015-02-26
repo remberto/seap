@@ -1,14 +1,14 @@
 
-<div class="row mt" ng-controller="cursosDocenteAsignaturaController">
+<div class="row mt">
   <div class="col-lg-12">    
-    <div class="row" ng-repeat="asignado in asignados">
+    <div class="row">
       <!-- TWITTER PANEL -->
-      <div class="col-lg-12 col-md-12 col-sm-4 mb" ng-click="mtdPlanificacionClases(asignado.id, asignado.curso_id)">
-        <div class="planificacion pn centered">
+      <div class="col-lg-4 col-md-4 col-sm-4 mb" ng-repeat="asignado in asignados" ng-click="mtdPlanificacionClases(asignado.id, asignado.curso_id)">
+        <div class="planificacion pn centered"> 
           <i class="fa fa-desktop"></i>         
           <div class="info">
             <div class="row">
-              <h3 class="centered">Campo: {{asignado.campo}} <br/> Area: {{asignado.area}} <br/> {{ asignado.asignatura }}</h3>              
+              <h5 class="centered">Campo: {{asignado.campo}} <br/> Area: {{asignado.areas}} <br/> {{ asignado.asignatura }}</h5>              
             </div>
           </div>
         </div>

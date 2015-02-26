@@ -33,7 +33,15 @@ class PlanificacionAnualController extends AppController{
             if(!empty($data))
             {
                 // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado
-                $data['PlanificacionAnual']['objetivo_holistico_anual'] = $this->request->data['objetivo_holistico_anual'];
+                if(isset($this->request->data['proyecto_socio_productivo'])):
+                    $data['PlanificacionAnual']['proyecto_socio_productivo'] = $this->request->data['proyecto_socio_productivo'];
+                endif;
+                if(isset($this->request->data['objetivo_general_anual'])):
+                    $data['PlanificacionAnual']['objetivo_general_anual'] = $this->request->data['objetivo_general_anual'];
+                endif;
+                if(isset($this->request->data['objetivo_holistico_anual'])):
+                    $data['PlanificacionAnual']['objetivo_holistico_anual'] = $this->request->data['objetivo_holistico_anual'];
+                endif;
                 $this->PlanificacionAnual->save($data);
             }
             else
@@ -42,6 +50,8 @@ class PlanificacionAnualController extends AppController{
 
                 $_planificacion_anual = array();
                 $_planificacion_anual['curso_id'] = $this->request->data['curso_id'];
+                $_planificacion_anual['objetivo_proyecto_socio_productivo'] = $this->request->data['objetivo_proyecto_socio_productivo'];
+                $_planificacion_anual['objetivo_general_anual'] = $this->request->data['objetivo_general_anual'];
                 $_planificacion_anual['objetivo_holistico_anual'] = $this->request->data['objetivo_holistico_anual'];
 			    $this->PlanificacionAnual->save($_planificacion_anual);
             }

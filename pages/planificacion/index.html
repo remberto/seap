@@ -1,13 +1,13 @@
-<div class="row mt" ng-controller="cursosDocenteController">
+<div class="row mt">
   <div class="col-lg-12">    
-    <div class="row" ng-repeat="curso in cursos">
+    <div class="row">
       <!-- TWITTER PANEL -->
-      <div class="col-lg-12 col-md-12 col-sm-4 mb" ng-click="mtdPlanificacion(curso.id)">
+      <div class="col-lg-4 col-md-4 col-sm-4 mb" ng-repeat="curso in cursos" ng-click="mtdPlanificacion(curso)">
         <div class="planificacion pn centered">
           <i class="fa fa-desktop"></i>         
           <div class="info">
             <div class="row">
-              <h3 class="centered">{{ curso.nivel }} - {{ curso.grado }} - {{ curso.paralelo }} - {{ curso.turno }}</h3>              
+              <h4 class="centered">{{ curso.nivel }} - {{ curso.grado }} - {{ curso.paralelo }} - {{ curso.turno }}</h3>              
             </div>
           </div>
         </div>

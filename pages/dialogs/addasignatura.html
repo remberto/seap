@@ -1,0 +1,66 @@
+<div class="modal-header">
+	<h4 class="modal-title">
+		<span class="glyphicon glyphicon-plus"></span> A&ntilde;adir Asignatura
+	</h4>
+</div>
+<div class="modal-body">
+	<ng-form name="newClaseForm" novalidate role="form">		
+		<div class="form-group input-group-lg">			
+			<div class="row">
+              <div class="col-sm-12 col-lg-12">
+                <div class="form-group" ng-class="{'has-error':newClaseForm.nivel.$error.required, 'has-success':newClaseForm.nivel.$valid}">
+                  <label class="col-md-4 control-label" for="nivel">Nivel : </label>
+                  <div class="col-md-8">
+                    <div class="input-group">                                            
+                      <select id="nivel" name="nivel" ng-model="asignatura.nivel" ng-options="value as value.descripcion for (key, value) in niveles" class="form-control" required>
+                        <option value="">-- Seleccione Nivel --</option>
+                      </select>
+                      <span ng-if="newClaseForm.nivel.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newClaseForm.nivel.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <span ng-if="newClaseForm.nivel.$error.required" class="help-block">El nivel es requerido</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-12 col-lg-12">                
+                <div class="form-group" ng-class="{'has-error':newClaseForm.area.$error.required, 'has-success':newClaseForm.area.$valid}">
+                  <label class="col-md-4 control-label" for="area">Area : </label>
+                  <div class="col-md-8">
+                    <div class="input-group">                      
+                      <select id="area" name="area" ng-model="asignatura.area" ng-options="value as value.descripcion for (key, value) in areas" class="form-control" required>
+                        <option value="">-- Seleccione Area --</option>
+                      </select>
+                      <span ng-if="newClaseForm.area.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span ng-if="newClaseForm.area.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>                      
+                    </div>
+                    <span ng-if="newClaseForm.area.$error.required" class="help-block">El Area es requerido</span>
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <br />
+	        <div class="row">
+	            <div class="col-sm-12 col-lg-12">
+	                <div class="form-group" ng-class="{'has-error':newClaseForm.asignatura.$error.required, 'has-success':newClaseForm.asignatura.$valid}">
+	                  <label class="col-md-4 control-label" for="asignatura">Asignatura :</label>
+	                  <div class="col-md-8">
+	                    <div class="input-group">
+	                    	<input id="asignatura" name="asignatura" ng-model="asignatura.descripcion" class="form-control col-lg-12"  ng-maxlength="100" size="35" required ng-change="asignatura.descripcion=asignatura.descripcion.toUpperCase();"></input>                                              
+	                      	<span ng-if="newClaseForm.asignatura.$error.required" class="glyphicon glyphicon-remove form-control-feedback"></span>
+	                      	<span ng-if="newClaseForm.asignatura.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	                    </div>
+	                    <span ng-if="newClaseForm.asignatura.$error.required" class="help-block">La Asignatura es requerida</span>
+	                  </div>
+	                </div>
+	            </div>	         			              
+	        </div>			
+		</div>
+	</ng-form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+	<button type="button" class="btn btn-primary" ng-disabled="!newClaseForm.$valid" ng-click="save()" >Guardar</button>
+</div>

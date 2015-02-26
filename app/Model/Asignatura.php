@@ -18,6 +18,11 @@ class Asignatura extends AppModel {
             'type'=>'INNER',
             'foreignKey' => 'area_id',
         ),
+        'Nivel' => array(
+            'className'=>'Nivel',
+            'type'=>'INNER',
+            'foreignKey' => 'nivel_id',
+        ),
     );
 }
 ?>

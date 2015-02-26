@@ -33,7 +33,9 @@ class PlanificacionBimestralController extends AppController{
             if(!empty($data))
             {
                 // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado
-                $data['PlanificacionBimestral']['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
+                if(isset($this->request->data['tematica_orientadora'])):
+                    $data['PlanificacionBimestral']['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
+                endif;
                 $data['PlanificacionBimestral']['objetivo_holistico'] = $this->request->data['objetivo_holistico'];
                 $this->PlanificacionBimestral->save($data);
             }
@@ -43,7 +45,9 @@ class PlanificacionBimestralController extends AppController{
 
                 $_planificacion_bimestral = array();                
                 $_planificacion_bimestral['periodo_id'] = $this->request->data['periodo_id'];
-                $_planificacion_bimestral['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
+                if(isset($this->request->data['tematica_orientadora'])):
+                    $_planificacion_bimestral['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
+                endif;
                 $_planificacion_bimestral['objetivo_holistico'] = $this->request->data['objetivo_holistico'];
                 $_planificacion_bimestral['planificacion_anual_id'] = $this->request->data['planificacion_anual_id'];
 			    $this->PlanificacionBimestral->save($_planificacion_bimestral);

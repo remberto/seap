@@ -76,8 +76,8 @@ cursosController.controller('cursosDocenteController', ['$scope','CursosDocenteF
 
     // Planificacion
     // Lista de Planificacion
-    $scope.mtdPlanificacion = function(id){
-	$location.path('/listPlanificacion/'+id);
+    $scope.mtdPlanificacion = function(Curso){
+	     $location.path('/listPlanificacion/'+Curso.id+'/'+Curso.nivel_id);
     }
 
     // Asistencia
@@ -112,6 +112,7 @@ cursosController.controller('cursosDocenteAsignaturaController', ['$scope','$rou
 
     CursosDocenteAsignaturaFactory.query({query_id: 132, docente_id: sesionesControl.get('user_id'), curso_id: $routeParams.id } ,
         function(data){
+          console.log(data.datos);
           $scope.asignados = data.datos;
     });
     
