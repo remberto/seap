@@ -109,78 +109,117 @@
                 </div>               
               </div>    
             </div>
-            <br/>
+            <br/><br/>
             <div class="col-lg-12">
-              <section class="unseen">
-              <table class="table table-bordered table-striped table-condensed">
-                <thead >
-                  <tr style="background-color:#7a31aa; color:white;">
-                    <td colspan="5"><center><b>Planificaci&oacute;n</b></center></td>
-                  </tr>
-                  <tr>
-                    <td colspan="5">
-                      <table class="table table-bordered table-striped table-condensed">
+              <tabset>
+                <tab ng-repeat="periodo in periodos" select="mtdSelectedBimestre(periodo.id, encabezado.planificacion_id)">
+                  <tab-heading>{{ periodo.descripcion }}</tab-heading>
+                  <br/>
+                  <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                      <div class="form-group">
+                        <label class="col-md-2 control-label" for="objetivo_holistico_bimestral"><b>Tematica Orientadora</b></label>
+                        <div class="col-md-10">
+                          <div class="input-group">
+                            <div class="input-group-addon" ng-click="mtdGuardarPlanificacionBimestre(periodo, encabezado.planificacion_id, objetivo_holistico_bimestral, tematica_orientadora)"><i class="glyphicon glyphicon-floppy-disk"></i>
+                            </div>
+                            <textarea class="col-xs-12 col-md-12" rows="2" cols="6" ng-model="tematica_orientadora" html-text>{{ planificacion_bimestral.tematica_orientadora }}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>               
+                  </div>
+                  <br />
+                  <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                      <div class="form-group">
+                        <label class="col-md-2 control-label" for="objetivo_holistico_bimestral"><b>Objetivo Holistico Bimestral</b></label>
+                        <div class="col-md-10">
+                          <div class="input-group">
+                            <div class="input-group-addon" ng-click="mtdGuardarPlanificacionBimestre(periodo, encabezado.planificacion_id, objetivo_holistico_bimestral, tematica_orientadora)"><i class="glyphicon glyphicon-floppy-disk"></i>
+                            </div>
+                            <textarea class="col-xs-12 col-md-12" rows="2" cols="6" ng-model="objetivo_holistico_bimestral" html-text>{{ planificacion_bimestral.objetivo_holistico }}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>               
+                  </div>
+                  <br/>
+                  <section class="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                      <thead >                        
+                        <tr style="background-color:#7a31aa; color:white;">
+                          <th style="width:35%">Contenidos Articulados<br/> (Curriculum Base - Curriculum Regionalizado)</th>
+                          <th style="width:20%">Orientaciones Metodol&oacute;gicas</th>
+                          <th style="width:20%">Evaluaci&oacute;n</th>
+                          <th style="width:20%">Producto</th>
+                          <th style="width:5%"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
                         <tr>
-                          <td style="width:10%;"><b>Bimestre : </b></td>
-                          <td style="width:20%;"><select id="periodo" class="form-control" ng-model="periodo" ng-change="mtdSelectedBimestre(periodo.id, encabezado.planificacion_id)" ng-options="value as value.descripcion for (key, value) in periodos"></select>
+                          <td>
+                            <div class="col-sm-12 col-lg-12">
+                              <div class="form-group">
+                                <label class="col-md-2 control-label" for="campo"><b>Campo</b></label>
+                                <div class="col-md-10">
+                                  <div class="input-group">
+                                      <select id="campos" class="form-control" ng-change="mtdSelectCampo(campo.id)" ng-model="campo" ng-options="value as value.descripcion for (key, value) in campos"></select>        
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                              <div class="form-group">
+                                <label class="col-md-2 control-label" for="campo"><b>Area</b></label>
+                                <div class="col-md-10">
+                                  <div class="input-group">
+                                      <select id="areas" class="form-control" ng-change="mtdSelectArea(area.id, periodo.id, encabezado.planificacion_id)" ng-model="area" ng-options="value as value.descripcion for (key, value) in areas"></select>        
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                              <div class="form-group">
+                                <div class="col-lg-12">
+                                      <textarea style="width:100%" ng-model="contenido" rows="4"></textarea>        
+                                </div>
+                              </div>
+                            </div>
                           </td>
-                          <td style="width:20%;"><b>Objetivo Holistico</b></td>
-                          <td style="width:45%;"><textarea class="col-xs-12 col-md-12" rows="2" cols="6" style="color:#000000;" ng-model="objetivo_holistico_bimestral" html-text></textarea>
+                          <td>
+                            <select id="orientacion" class="form-control" ng-model="orientacion" ng-options="value as value.descripcion for (key, value) in orientaciones"></select>
+                            <textarea class="col-xs-12 col-md-12" ng-model="orientacion_metodologica" rows="6" cols="6"></textarea>
                           </td>
-                          <td style="width:45%;">
+                          <td>
+                            <textarea class="col-xs-12 col-md-12" ng-model="evaluacion" rows="8" cols="6"></textarea>
+                          </td>
+                          <td>
+                            <textarea class="col-xs-12 col-md-12" ng-model="producto" rows="8" cols="6"></textarea>
+                          </td>
+                          <td>
                             <center>
-                            <button type="button" class="btn btn-theme" ng-click="mtdGuardarPlanificacionBimestre(periodo, encabezado.planificacion_id)"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+                            <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(encabezado.planificacion_id, planificacion_bimestral.id, area.id, periodo.id, contenido, orientacion, orientacion_metodologica, evaluacion, producto)"><i class="glyphicon glyphicon-download-alt"></i></button>
                             </center>
                           </td>
                         </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-
-                  </tr>
-                  <tr style="background-color:#7a31aa; color:white;">
-                    <th>Contenidos Articulados<br/> (Curriculum Base - Curriculum Regionalizado)</th>
-                    <th>Orientaciones Metodol&oacute;gicas</th>
-                    <th>Evaluaci&oacute;n</th>
-                    <th>Producto</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <select id="campos" class="form-control" ng-change="mtdSelectAreas(campo.id)" ng-model="campo" ng-options="value as value.descripcion for (key, value) in campos"></select>
-                      <select id="areas" class="form-control" ng-model="area" ng-options="value as value.descripcion for (key, value) in areas"></select>
-                      <textarea class="col-xs-12 col-md-12" ng-model="contenido" rows="4" cols="6"></textarea>
-                    </td>
-                    <td>
-                      <select id="orientacion" class="form-control" ng-model="orientacion" ng-options="value as value.descripcion for (key, value) in orientaciones"></select>
-                      <textarea class="col-xs-12 col-md-12" ng-model="orientacion_metodologica" rows="4" cols="6"></textarea>
-                    </td>
-                    <td>
-                      <textarea class="col-xs-12 col-md-12" ng-model="evaluacion" rows="4" cols="6"></textarea>
-                    </td>
-                    <td>
-                      <textarea class="col-xs-12 col-md-12" ng-model="producto" rows="4" cols="6"></textarea>
-                    </td>
-                    <td>
-                      <center>
-                      <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(encabezado.planificacion_id, area.id, periodo.id)"><i class="glyphicon glyphicon-download-alt"></i></button>
-                      </center>
-                    </td>
-                  </tr>
-                  <tr ng-repeat="planificacion_detalle in planificacion_detalles">
-                    <td>{{ planificacion_detalle.campo }}</td>
-                    <td>{{ planificacion_detalle.area }}</td>
-                    <td><b>{{ planificacion_detalle.periodo }}</b><br/>{{ planificacion_detalle.contenido }}</td>
-                    <td><button type="button" class="btn btn-danger btn-xs" ng-click="mtdDeletePlanificacion(planificacion_detalle.id)">
-                        <i class="fa fa-trash-o"></i>
-                      </button></td>
-                  </tr>
-                </tbody>
-              </table>
-              </section>             
+                        <tr ng-repeat="planificacion_detalle in planificacion_detalles">
+                          <td><b>{{ planificacion_detalle.campo }} - {{ planificacion_detalle.area }}</b>.- {{ planificacion_detalle.contenido }}</td>
+                          <td><b>{{ planificacion_detalle.orientacion_metodologica_descripcion }}</b><br/>{{ planificacion_detalle.orientacion_metodologica }}</td>
+                          <td>{{ planificacion_detalle.evaluacion }}</td>
+                          <td>{{ planificacion_detalle.producto }}</td>
+                          <td><button type="button" class="btn btn-danger btn-xs" ng-click="mtdDeletePlanificacion(encabezado.planificacion_id, planificacion_detalle.idplanificacionbimestre, periodo.id)">
+                              <i class="fa fa-trash-o"></i>
+                            </button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </section>
+                </tab>
+              </tabset>
+            </div>
+            <div class="col-lg-12">
+                           
             </div>
           
         </div>

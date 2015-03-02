@@ -22,7 +22,9 @@
                     <label class="col-md-4 control-label" for="periodo"><b>Periodo :</b></label>
                     <div class="col-md-8">
                       <div class="input-group">
-                        <select id="periodo" class="form-control" ng-model="periodo" ng-change="mtdSelectedBimestre(periodo.id, encabezado.planificacion_id)"ng-options="value as value.descripcion for (key, value) in periodos"></select>
+                        <select id="periodo" class="form-control" ng-model="periodo" ng-change="mtdSelectedBimestre(periodo.id, encabezado.planificacion_id)"ng-options="value as value.descripcion for (key, value) in periodos">
+                          <option value="-1">Seleccione el Periodo</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -101,39 +103,70 @@
               </div>               
             </div>
             <br/>
-            <div class="col-lg-12">
+            <div ng-if="periodo" class="col-lg-12">
               <section class="unseen">
               <table class="table table-bordered table-striped table-condensed">
                 <thead >
                   <tr style="background-color:#7a31aa; color:white;">
-                    <th style="width:35%;">Campo y Areas</th>
-                    <th style="width:35%;">Contenidos</th>
-                    <th style="width:35%;">Orientaciones Metodol&oacute;gicas</th>
-                    <th style="width:5%;"></th>
+                    <th style="width:35%">Contenidos Articulados<br/> (Curriculum Base - Curriculum Regionalizado)</th>
+                    <th style="width:20%">Orientaciones Metodol&oacute;gicas</th>
+                    <th style="width:20%">Evaluaci&oacute;n</th>
+                    <th style="width:20%">Producto</th>
+                    <th style="width:5%"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
-                      <select id="area" class="form-control" ng-model="area" ng-change="mtdSelectedAreas(area.id, periodo.id, encabezado.planificacion_id)" ng-options="value as value.descripcion for (key, value) in areas"></select>
-                    </td>
-                    <td>
-                      <textarea class="col-xs-12 col-md-12" ng-model="contenido" rows="6" cols="6">{{ contenido }}</textarea>
-                    </td>
-                    <td>
+                      <div class="col-sm-12 col-lg-12">
+                        <div class="form-group">
+                          <label class="col-md-2 control-label" for="campo"><b>Campo</b></label>
+                          <div class="col-md-10">
+                            <div class="input-group">
+                                <select id="campos" class="form-control" ng-change="mtdSelectAreas(campo.id)" ng-model="campo" ng-options="value as value.descripcion for (key, value) in campos"></select>        
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-lg-12">
+                        <div class="form-group">
+                          <label class="col-md-2 control-label" for="campo"><b>Area</b></label>
+                          <div class="col-md-10">
+                            <div class="input-group">
+                                <select id="areas" class="form-control" ng-model="area" ng-options="value as value.descripcion for (key, value) in areas" ng-change="mtdSelectedAreas(area.id, periodo.id, encabezado.planificacion_id)"></select>        
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-lg-12">
+                        <div class="form-group">
+                          <div class="col-lg-12">
+                                <textarea style="width:100%" ng-model="contenido" rows="4"></textarea>        
+                          </div>
+                        </div>
+                      </div>
+                  </td>
+                  <td>
                       <select id="orientacion" class="form-control" ng-model="orientacion" ng-options="value as value.descripcion for (key, value) in orientaciones"></select>
-                      <textarea class="col-xs-12 col-md-12" ng-model="orientacion_metodologica" rows="4" cols="6"></textarea>
-                    </td>
-                    <td>
+                      <textarea class="col-xs-12 col-md-12" ng-model="orientacion_metodologica" rows="6" cols="6"></textarea>
+                  </td>
+                  <td>
+                      <textarea class="col-xs-12 col-md-12" ng-model="evaluacion" rows="8" cols="6"></textarea>
+                  </td>
+                  <td>
+                      <textarea class="col-xs-12 col-md-12" ng-model="producto" rows="8" cols="6"></textarea>
+                  </td>
+                  <td>
                       <center>
                       <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(area.id, planificacion_anual_detalle_id, orientacion.id, planificacion_bimestral.id, periodo.id,  encabezado.planificacion_id )"><i class="glyphicon glyphicon-download-alt"></i></button>
                       </center>
                     </td>
                   </tr>
                   <tr ng-repeat="planificacion_detalle in planificacion_detalles">
-                    <td>{{ planificacion_detalle.descripcion }}</td>
-                    <td>{{ planificacion_detalle.contenido }}</td>
+                    <td><b>{{ planificacion_detalle.descripcion }} : </b>{{ planificacion_detalle.contenido }}</td>
                     <td><b>{{ planificacion_detalle.orientacion }}</b> <br/> {{ planificacion_detalle.orientacion_metodologica }}</td>
+                    <td>{{ planificacion_detalle.evaluacion }}</td>
+                    <td>{{ planificacion_detalle.producto }}</td>
                     <td><button type="button" class="btn btn-danger btn-xs" ng-click="mtdDeletePlanificacion(planificacion_detalle.id, periodo.id,  encabezado.planificacion_id)">
                         <i class="fa fa-trash-o"></i>
                       </button></td>

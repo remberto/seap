@@ -36,6 +36,8 @@ class PlanificacionBimestralDetalleController extends AppController{
             {
                 // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado
                 $data['PlanificacionBimestralDetalle']['contenido'] = $this->request->data['contenido'];
+                $data['PlanificacionBimestralDetalle']['evaluacion'] = $this->request->data['evaluacion'];
+                $data['PlanificacionBimestralDetalle']['producto'] = $this->request->data['producto'];
                 //$data['PlanificacionBimestralDetalle']['objetivo_holistico'] = $this->request->data['objetivo_holistico'];
                 $this->PlanificacionBimestralDetalle->save($data);
             }
@@ -48,6 +50,8 @@ class PlanificacionBimestralDetalleController extends AppController{
                 $_planificacion_bimestral_detalle['planificacion_anual_detalle_id'] = $this->request->data['planificacion_anual_detalle_id'];
                 $_planificacion_bimestral_detalle['orientacion_metodologica_id'] = $this->request->data['orientacion_metodologica_id'];
                 $_planificacion_bimestral_detalle['contenido'] = $this->request->data['contenido'];
+                $_planificacion_bimestral_detalle['evaluacion'] = $this->request->data['evaluacion'];
+                $_planificacion_bimestral_detalle['producto'] = $this->request->data['producto'];
                 $_planificacion_bimestral_detalle['planificacion_bimestral_id'] = $this->request->data['planificacion_bimestral_id'];
 			    $this->PlanificacionBimestralDetalle->save($_planificacion_bimestral_detalle);
             }

@@ -33,7 +33,7 @@ class PlanificacionClasesController extends AppController{
             if(!empty($data))
             {
                 // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado
-                $data['PlanificacionClase']['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
+                //$data['PlanificacionClase']['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
                 $data['PlanificacionClase']['objetivo_holistico'] = $this->request->data['objetivo_holistico'];
                 $this->PlanificacionClase->save($data);
             }
@@ -46,7 +46,7 @@ class PlanificacionClasesController extends AppController{
                              
                 $_planificacion_clase = array();                
                 $_planificacion_clase['nro_clase'] = $this->request->data['nro_clase'];
-                $_planificacion_clase['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
+                //$_planificacion_clase['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
                 $_planificacion_clase['objetivo_holistico'] = $this->request->data['objetivo_holistico'];
                 $_planificacion_clase['contenido'] = $this->request->data['contenido'];
                 $_planificacion_clase['producto'] = $this->request->data['producto'];

@@ -402,6 +402,19 @@ cuadernoAppServices.factory('PlanificacionAnualDetallesFactory', function ($reso
     })
 });
 
+cuadernoAppServices.factory('PlanificacionAnualBimestreDetalleFactory', function ($resource) {
+    return $resource('/index.php/planificacion_anual_bimestre_detalle.json', {}, {
+        create: { method: 'POST' }
+    })
+});
+
+cuadernoAppServices.factory('PlanificacionAnualBimestreDetallesFactory', function ($resource) {
+    return $resource('/index.php/planificacion_anual_bimestre_detalle/:id.json?accion=:action', {}, {
+        //show: { method: 'GET' },
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+});
 
 // Planificacion Bimiestral
 cuadernoAppServices.factory('PlanificacionBimestralFactory', function ($resource) {

@@ -117,12 +117,25 @@ planificacionController.controller('planificacionAnualController', ['$scope','$r
 
 // Planificacion Anual Bimestral
 
-planificacionController.controller('planificacionAnualBimestralController', ['$scope','$routeParams','sesionesControl','ClasificadorFactory', 'EncabezadoFactory', 'PlanificacionAnualFactory', 'PlanificacionBimestralFactory', 'PlanificacionAnualDetalleFactory', 'PlanificacionAnualDetallesFactory', 'ClasificadorPlanificacionFactory', 'ClasificadorPlanificacionBimestralFactory', 'ClasificadorAreasFactory', '$location', function($scope, $routeParams, sesionesControl, ClasificadorFactory, EncabezadoFactory, PlanificacionAnualFactory, PlanificacionBimestralFactory, PlanificacionAnualDetalleFactory, PlanificacionAnualDetallesFactory, ClasificadorPlanificacionFactory, ClasificadorPlanificacionBimestralFactory, ClasificadorAreasFactory, $location) {
+planificacionController.controller('planificacionAnualBimestralController', ['$scope','$routeParams','sesionesControl','ClasificadorFactory', 'EncabezadoFactory', 'PlanificacionAnualFactory', 'ContenidoPlanificacionAnualFactory', 'PlanificacionBimestralFactory', 'PlanificacionAnualBimestreDetalleFactory', 'PlanificacionAnualBimestreDetallesFactory', 'PlanificacionBimestralDetallesFactory', 'ClasificadorPlanificacionFactory', 'ClasificadorPlanificacionBimestralFactory', 'ClasificadorAreasFactory', '$location', function($scope, $routeParams, sesionesControl, ClasificadorFactory, EncabezadoFactory, PlanificacionAnualFactory, ContenidoPlanificacionAnualFactory, PlanificacionBimestralFactory, PlanificacionAnualBimestreDetalleFactory, PlanificacionAnualBimestreDetallesFactory, PlanificacionBimestralDetallesFactory, ClasificadorPlanificacionFactory, ClasificadorPlanificacionBimestralFactory, ClasificadorAreasFactory, $location) {
 
     $scope.curso_id = $routeParams.curso_id;
     $scope.planificacion_anual = {id:'', curso_id: $scope.curso_id, proyecto_socio_productivo:'', objetivo_general_anual: '', objetivo_holistico_anual: ''};
-    $scope.planificacion_anual_detalle = {id:'', area_id: '', periodo_id: '', planificacion_id: '', contenido: ''};
-    $scope.planificacion_bimestral = {periodo_id:0, tematica_orientadora:'', objetivo_holistico: '', planificacion_anual_id: 0};
+    $scope.planificacion_anual_bimestre_detalle = {id:'', area_id: '', periodo_id: '', planificacion_id: '', contenido: ''};
+    $scope.planificacion_bimestral = {id:'', periodo_id:'', tematica_orientadora:'', objetivo_holistico: '', planificacion_anual_id: ''};
+
+    // Campos
+    ClasificadorFactory.query({query_id:1}, function(data){ $scope.campos = data.datos; });
+    // Areas
+    ClasificadorFactory.query({query_id:0}, function(data){ $scope.areas = data.datos; });
+    // Periodos
+    ClasificadorFactory.query({query_id:2}, function(data){ 
+        $scope.periodos = data.datos;
+        $scope.periodo = $scope.periodos[0]; 
+    });
+    // Orientaciones Metodoligicas
+    ClasificadorFactory.query({query_id:101}, function(data){ $scope.orientaciones = data.datos; });
+    // Detalles
 
     // Encabezado
     EncabezadoFactory.query({query_id:5, curso_id: $scope.curso_id},
@@ -138,7 +151,7 @@ planificacionController.controller('planificacionAnualBimestralController', ['$s
                         $scope.objetivo_general_anual = $scope.encabezado.objetivo_general_anual;
                         $scope.objetivo_holistico_anual = $scope.encabezado.objetivo_holistico_anual;
                         // Detalle Planificacion Anual a Detalle
-                        ClasificadorPlanificacionFactory.query({query_id: 100, planificacion_id: $scope.planificacion_anual.id}, function(data){ 
+                        ClasificadorFactory.query({query_id: 137, planificacion_id: $scope.planificacion_anual.id, periodo_id: $scope.periodo.id }, function(data){ 
                                                                                                                                         $scope.planificacion_detalles = data.datos; 
                                                                                                                                 });
         });
@@ -148,6 +161,8 @@ planificacionController.controller('planificacionAnualBimestralController', ['$s
     ClasificadorFactory.query({query_id:0}, function(data){ $scope.areas = data.datos; });
     // Periodos
     ClasificadorFactory.query({query_id:2}, function(data){ $scope.periodos = data.datos; });
+    // Orientaciones Metodoligicas
+    ClasificadorFactory.query({query_id:101}, function(data){ $scope.orientaciones = data.datos; });
     // Detalles
     
     
@@ -172,10 +187,10 @@ planificacionController.controller('planificacionAnualBimestralController', ['$s
         });        
     };
 
-    $scope.mtdGuardarPlanificacionBimestre = function(Periodo, planificacion_id){
+    $scope.mtdGuardarPlanificacionBimestre = function(Periodo, planificacion_id, objetivo, tematica){
         $scope.planificacion_bimestral.periodo_id = Periodo.id;
-        $scope.planificacion_bimestral.tematica_orientadora = $scope.tematica_orientadora;
-        $scope.planificacion_bimestral.objetivo_holistico = $scope.objetivo_holistico_bimestral;
+        $scope.planificacion_bimestral.tematica_orientadora = tematica;
+        $scope.planificacion_bimestral.objetivo_holistico = objetivo;
         $scope.planificacion_bimestral.planificacion_anual_id = planificacion_id;
 
         PlanificacionBimestralFactory.create($scope.planificacion_bimestral, function(data){
@@ -199,37 +214,56 @@ planificacionController.controller('planificacionAnualBimestralController', ['$s
                 $scope.planificacion_bimestral.planificacion_anual_id = data.datos[0].planificacion_anual_id;                
             }
             $scope.objetivo_holistico_bimestral = $scope.planificacion_bimestral.objetivo_holistico;
-        })
-        ClasificadorPlanificacionBimestralFactory.query({query_id: 105, periodo_id: periodo_id, planificacion_id: planificacion_id}, function(data){
-            $scope.planificacion_detalles = data.datos;
-        })
-        
-    }
+            $scope.tematica_orientadora = $scope.planificacion_bimestral.tematica_orientadora;
+         });
+         ClasificadorFactory.query({query_id: 137, planificacion_id: $scope.planificacion_anual.id, periodo_id: periodo_id }, function(data){ 
+                                                                                                                                        $scope.planificacion_detalles = data.datos; 
+                                                                                                                                });        
+    };
 
-    $scope.mtdSelectAreas = function(campo_id){
+    $scope.mtdSelectCampo = function(campo_id){
         ClasificadorAreasFactory.query({query_id:4, campo_id: campo_id}, function(data){ $scope.areas = data.datos; });
     };
 
-    $scope.mtdAddPlanificacion = function(planificacion_anual_id, area_id, periodo_id){
+    $scope.mtdSelectArea = function(area_id, periodo_id, planificacion_id){
+        ContenidoPlanificacionAnualFactory.query({query_id: 104, area_id: area_id, periodo_id: periodo_id, planificacion_id: planificacion_id}, 
+            function(data){
+                if(data.datos.length != 0){
+                    $scope.planificacion_anual_detalle_id = data.datos[0].id;
+                    $scope.contenido = data.datos[0].contenido;
+                }
+            });
+    };
+
+    $scope.mtdAddPlanificacion = function(planificacion_anual_id, planificacion_bimestral_id, area_id, periodo_id, contenido, Orientacion, orientacion_metodologica, evaluacion, producto){
         // validar                
-        $scope.planificacion_anual_detalle.area_id = area_id;
-        $scope.planificacion_anual_detalle.periodo_id = periodo_id;
-        $scope.planificacion_anual_detalle.contenido = $scope.contenido;
-        $scope.planificacion_anual_detalle.planificacion_anual_id = planificacion_anual_id;
-        PlanificacionAnualDetalleFactory.create($scope.planificacion_anual_detalle, function(data){
-            ClasificadorPlanificacionFactory.query({query_id: 100, planificacion_id: $scope.planificacion_anual.id}, 
+        $scope.planificacion_anual_bimestre_detalle.area_id = area_id;
+        $scope.planificacion_anual_bimestre_detalle.periodo_id = periodo_id;
+        $scope.planificacion_anual_bimestre_detalle.contenido = contenido;
+        $scope.planificacion_anual_bimestre_detalle.planificacion_anual_id = planificacion_anual_id;
+        
+        $scope.planificacion_anual_bimestre_detalle.planificacion_bimestral_id = planificacion_bimestral_id;
+
+        $scope.planificacion_anual_bimestre_detalle.orientacion_metodologica_id = Orientacion.id; 
+        $scope.planificacion_anual_bimestre_detalle.orientacion_metodologica = orientacion_metodologica; 
+        $scope.planificacion_anual_bimestre_detalle.evaluacion = evaluacion; 
+        $scope.planificacion_anual_bimestre_detalle.producto = producto;
+        PlanificacionAnualBimestreDetalleFactory.create($scope.planificacion_anual_bimestre_detalle, function(data){
+            
+            ClasificadorFactory.query({query_id: 137, planificacion_id: planificacion_anual_id, periodo_id: periodo_id}, 
                 function(data){ 
                     $scope.planificacion_detalles = data.datos; 
             });  
         })
     }
 
-    $scope.mtdDeletePlanificacion = function(planificacion_anual_detalle_id){
-        PlanificacionAnualDetallesFactory.delete({id: planificacion_anual_detalle_id}, function(data){
-            ClasificadorPlanificacionFactory.query({query_id: 100, planificacion_id: $scope.planificacion_anual.id}, 
-                function(data){ 
+    $scope.mtdDeletePlanificacion = function(planificacion_anual_id, planificacion_bimestral_detalle_id, periodo_id){
+        console.log(planificacion_anual_id);
+         PlanificacionBimestralDetallesFactory.delete({id: planificacion_bimestral_detalle_id}, function(data){            
+            ClasificadorFactory.query({query_id: 137, planificacion_id: planificacion_anual_id, periodo_id: periodo_id}, 
+                function(data){
                     $scope.planificacion_detalles = data.datos; 
-                });  
+            });  
         });
     }
 }]);
@@ -253,7 +287,9 @@ planificacionController.controller('planificacionBimestralController', ['$scope'
                         $scope.objetivo_holistico_anual = $scope.encabezado.objetivo_holistico_anual;                        
         });
     // Campos
-    ClasificadorFactory.query({query_id:103}, function(data){ $scope.areas = data.datos; });    
+    ClasificadorFactory.query({query_id:1}, function(data){ $scope.campos = data.datos; });
+    // Areas
+    ClasificadorFactory.query({query_id:0}, function(data){ $scope.areas = data.datos; });    
     // Periodos
     ClasificadorFactory.query({query_id:2}, function(data){ $scope.periodos = data.datos; });
     // Orientaciones Metologicas
@@ -286,6 +322,10 @@ planificacionController.controller('planificacionBimestralController', ['$scope'
         })
         
     }
+
+    $scope.mtdSelectAreas = function(campo_id){
+        ClasificadorAreasFactory.query({query_id:4, campo_id: campo_id}, function(data){ $scope.areas = data.datos; });
+    };
 
     $scope.mtdSelectedAreas = function(area_id, periodo_id, planificacion_id){
         ContenidoPlanificacionAnualFactory.query({query_id: 104, area_id: area_id, periodo_id: periodo_id, planificacion_id: planificacion_id}, 
@@ -324,6 +364,8 @@ planificacionController.controller('planificacionBimestralController', ['$scope'
         $scope.planificacion_bimestral_detalle.orientacion_metodologica_id = orientacion_metodologica_id;
         $scope.planificacion_bimestral_detalle.planificacion_bimestral_id = planificacion_bimestral_id;
         $scope.planificacion_bimestral_detalle.contenido = $scope.orientacion_metodologica;
+        $scope.planificacion_bimestral_detalle.evaluacion = $scope.evaluacion;
+        $scope.planificacion_bimestral_detalle.producto = $scope.producto;
         PlanificacionBimestralDetalleFactory.create($scope.planificacion_bimestral_detalle, function(data){
             ClasificadorPlanificacionBimestralFactory.query({query_id: 105, periodo_id: periodo_id, planificacion_id: planificacion_anual_id}, function(data){
                 $scope.planificacion_detalles = data.datos;
@@ -434,7 +476,7 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
     {
         $scope.planificacion_clases.id = null;
         $scope.planificacion_clases.nro_clase = null;
-        $scope.planificacion_clases.tematica_orientadora = null;
+        
         $scope.planificacion_clases.objetivo_holistico = null;
         $scope.planificacion_clases.contenido = null;
         $scope.planificacion_clases.producto = null;
@@ -445,7 +487,6 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
         /*$scope.planificacion_clases.planificacion_bimestral_id = planificacion_bimestral_id;*/        
         $scope.fecha_inicial = new Date();
         $scope.fecha_final = new Date();
-        $scope.tematica_orientadora = null;
         $scope.objetivo_holistico = null;
         $scope.contenido = null;
         $scope.producto = null;
@@ -459,6 +500,7 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
                 $scope.planificacion_bimestral.id = null;
                 $scope.planificacion_bimestral.periodo_id = periodo_id;
                 $scope.planificacion_bimestral.tematica_orientadora = '';
+                $scope.planificacion_bimestral.tematica_orientadora = '';
                 $scope.planificacion_bimestral.objetivo_holistico = '';
                 $scope.planificacion_bimestral.planificacion_anual_id = planificacion_id;
                 $scope.nro_clase = null;
@@ -467,8 +509,13 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
                 $scope.planificacion_bimestral.id = data.datos[0].planificacion_bimestral_id;
                 $scope.planificacion_bimestral.periodo_id = data.datos[0].periodo_id;
                 $scope.planificacion_bimestral.tematica_orientadora = data.datos[0].tematica_orientadora;
+                $scope.planificacion_bimestral.proyecto_socio_productivo = data.datos[0].proyecto_socio_productivo;
                 $scope.planificacion_bimestral.objetivo_holistico = data.datos[0].objetivo_holistico;
-                $scope.planificacion_bimestral.planificacion_anual_id = data.datos[0].planificacion_anual_id;                
+                $scope.planificacion_bimestral.planificacion_anual_id = data.datos[0].planificacion_anual_id;
+                $scope.tematica_orientadora = data.datos[0].tematica_orientadora;
+                $scope.proyecto_socio_productivo = data.datos[0].proyecto_socio_productivo;
+                //$scope.tematica_orientadora = data.datos[0].tematica_orientadora;
+
                 if($scope.nro_clase != null){                    
                     ClasificadorPlanificacionNroClaseFactory.query({query_id: 109,nro_clase: $scope.nro_clase, periodo_id: periodo_id, asignado_id: asignado_id}, function(data){
                         if(data.datos.length == 0){
@@ -476,19 +523,18 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
                         }else{
                             $scope.planificacion_clases.id = data.datos[0].id;
                             $scope.planificacion_clases.nro_clase = data.datos[0].nro_clase;
-                            $scope.planificacion_clases.tematica_orientadora = data.datos[0].nro_clase;
-                            $scope.planificacion_clases.objetivo_holistico = data.datos[0].nro_clase;
-                            $scope.planificacion_clases.contenido = data.datos[0].nro_clase;
-                            $scope.planificacion_clases.producto = data.datos[0].nro_clase;
-                            $scope.planificacion_clases.fuente_verificacion = data.datos[0].nro_clase;
-                            $scope.planificacion_clases.calendario_de_id = data.datos[0].nro_clase;
-                            $scope.planificacion_clases.calendario_a_id = data.datos[0].nro_clase;
+                            $scope.planificacion_clases.objetivo_holistico = data.datos[0].objetivo_holistico;
+                            $scope.planificacion_clases.contenido = data.datos[0].contenido;
+                            $scope.planificacion_clases.producto = data.datos[0].producto;
+                            $scope.planificacion_clases.fuente_verificacion = data.datos[0].fuente_verificacion;
+                            $scope.planificacion_clases.calendario_de_id = data.datos[0].calendario_de_id;
+                            $scope.planificacion_clases.calendario_a_id = data.datos[0].calendario_a_id;
                             /*$scope.planificacion_clases.asignado_id = asignado_id;*/
                             /*$scope.planificacion_clases.planificacion_bimestral_id = planificacion_bimestral_id;*/                            
                             //cope.nro_clase = data.datos[0].nro_clases;
                             $scope.fecha_inicial = data.datos[0].fecha_de;
                             $scope.fecha_final = data.datos[0].fecha_a;
-                            $scope.tematica_orientadora = data.datos[0].tematica_orientadora;
+                            
                             $scope.objetivo_holistico = data.datos[0].objetivo_holistico;
                             $scope.contenido = data.datos[0].contenido;
                             $scope.producto = data.datos[0].producto;
@@ -511,7 +557,6 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
                 }else{
                     $scope.planificacion_clases.id = data.datos[0].id;
                     $scope.planificacion_clases.nro_clase = data.datos[0].nro_clases;
-                    $scope.planificacion_clases.tematica_orientadora = data.datos[0].tematica_orientadora;
                     $scope.planificacion_clases.objetivo_holistico = data.datos[0].objetivo_holistico;
                     $scope.planificacion_clases.contenido = data.datos[0].contenido;
                     $scope.planificacion_clases.producto = data.datos[0].producto;
@@ -537,7 +582,6 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
 
     $scope.mtdGuardarPlanificacion = function(asignado_id, planificacion_bimestral_id){
         $scope.planificacion_clases.nro_clase = $scope.nro_clase;
-        $scope.planificacion_clases.tematica_orientadora = $scope.tematica_orientadora;
         $scope.planificacion_clases.objetivo_holistico = $scope.objetivo_holistico;
         $scope.planificacion_clases.contenido = $scope.contenido;
         $scope.planificacion_clases.producto = $scope.producto;
@@ -547,7 +591,7 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
         $scope.planificacion_clases.asignado_id = asignado_id;
         $scope.planificacion_clases.planificacion_bimestral_id = planificacion_bimestral_id;
         PlanificacionClaseFactory.create($scope.planificacion_clases, function(data){
-            console.log(data);
+            //Aqui visualizar
         });        
     };
 
@@ -556,8 +600,9 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
     }    
 
     $scope.mtdAddPlanificacion = function(orientacion_id, dimension_id, planificacion_clase_id){
+        console.log(orientacion_id);
         $scope.planificacion_detalle.planificacion_clase_id = planificacion_clase_id;
-        $scope.planificacion_detalle.orientacion__metodologica_id = orientacion_id;
+        $scope.planificacion_detalle.orientacion_metodologica_id = orientacion_id;
         $scope.planificacion_detalle.materiales = $scope.materiales;
         $scope.planificacion_detalle.dimension_id = dimension_id;
         $scope.planificacion_detalle.criterio = $scope.criterio_evaluacion;

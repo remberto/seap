@@ -7,7 +7,7 @@ class PlanificacionClasesDetalleController extends AppController{
 
 	var $name = 'PlanificacionClasesDetalle';//inicializacion de variables
     public $components = array('RequestHandler');
-    public $uses = array('PlanificacionClase','PlanificacionClaseDetalle','CriterioEvaluacion','Calendario');
+    public $uses = array('PlanificacionClase','PlanificacionClaseDetalle','CriterioEvaluacionPlanificacion','Calendario');
 
     public function beforeFilter(){
         parent::beforeFilter();        
@@ -47,10 +47,11 @@ class PlanificacionClasesDetalleController extends AppController{
                 $_planificacion_clase_detalle['materiales'] = $this->request->data['materiales'];
                 $this->PlanificacionClaseDetalle->save($_planificacion_clase_detalle);
 
+                $_criterio_evaluacion = array();
                 $_criterio_evaluacion['dimension_id'] = $this->request->data['dimension_id'];
                 $_criterio_evaluacion['criterio'] = $this->request->data['criterio'];
                 $_criterio_evaluacion['planificacion_clase_detalle_id'] =  $this->PlanificacionClaseDetalle->getLastInsertID();                
-			    $this->CriterioEvaluacion->save($_criterio_evaluacion);
+			    $this->CriterioEvaluacionPlanificacion->save($_criterio_evaluacion);
             }
 
             $datasource->commit();
