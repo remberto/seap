@@ -97,6 +97,7 @@ planificacionController.controller('planificacionAnualController', ['$scope','$r
         $scope.planificacion_anual_detalle.contenido = $scope.contenido;
         $scope.planificacion_anual_detalle.planificacion_anual_id = planificacion_anual_id;
         PlanificacionAnualDetalleFactory.create($scope.planificacion_anual_detalle, function(data){
+            $scope.contenido = '';                    
             ClasificadorPlanificacionFactory.query({query_id: 100, planificacion_id: $scope.planificacion_anual.id}, 
                 function(data){ 
                     $scope.planificacion_detalles = data.datos; 
@@ -240,18 +241,19 @@ planificacionController.controller('planificacionAnualBimestralController', ['$s
         $scope.planificacion_anual_bimestre_detalle.area_id = area_id;
         $scope.planificacion_anual_bimestre_detalle.periodo_id = periodo_id;
         $scope.planificacion_anual_bimestre_detalle.contenido = contenido;
-        $scope.planificacion_anual_bimestre_detalle.planificacion_anual_id = planificacion_anual_id;
-        
+        $scope.planificacion_anual_bimestre_detalle.planificacion_anual_id = planificacion_anual_id;        
         $scope.planificacion_anual_bimestre_detalle.planificacion_bimestral_id = planificacion_bimestral_id;
-
         $scope.planificacion_anual_bimestre_detalle.orientacion_metodologica_id = Orientacion.id; 
         $scope.planificacion_anual_bimestre_detalle.orientacion_metodologica = orientacion_metodologica; 
         $scope.planificacion_anual_bimestre_detalle.evaluacion = evaluacion; 
         $scope.planificacion_anual_bimestre_detalle.producto = producto;
-        PlanificacionAnualBimestreDetalleFactory.create($scope.planificacion_anual_bimestre_detalle, function(data){
-            
+        PlanificacionAnualBimestreDetalleFactory.create($scope.planificacion_anual_bimestre_detalle, function(data){            
+            $scope.contenido = '';
+            $scope.orientacion_metodologica = ''; 
+            $scope.evaluacion = '';
+            $scope.producto = '';            
             ClasificadorFactory.query({query_id: 137, planificacion_id: planificacion_anual_id, periodo_id: periodo_id}, 
-                function(data){ 
+                function(data){                   
                     $scope.planificacion_detalles = data.datos; 
             });  
         })
@@ -366,7 +368,10 @@ planificacionController.controller('planificacionBimestralController', ['$scope'
         $scope.planificacion_bimestral_detalle.contenido = $scope.orientacion_metodologica;
         $scope.planificacion_bimestral_detalle.evaluacion = $scope.evaluacion;
         $scope.planificacion_bimestral_detalle.producto = $scope.producto;
-        PlanificacionBimestralDetalleFactory.create($scope.planificacion_bimestral_detalle, function(data){
+        PlanificacionBimestralDetalleFactory.create($scope.planificacion_bimestral_detalle, function(data){            
+            $scope.orientacion_metodologica = ''; 
+            $scope.evaluacion = '';
+            $scope.producto = '';
             ClasificadorPlanificacionBimestralFactory.query({query_id: 105, periodo_id: periodo_id, planificacion_id: planificacion_anual_id}, function(data){
                 $scope.planificacion_detalles = data.datos;
             });
@@ -567,8 +572,7 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
                     /*$scope.planificacion_clases.planificacion_bimestral_id = planificacion_bimestral_id;*/                    
                     //cope.nro_clase = data.datos[0].nro_clases;
                     $scope.fecha_inicial = data.datos[0].fecha_de;
-                    $scope.fecha_final = data.datos[0].fecha_a;
-                    $scope.tematica_orientadora = data.datos[0].tematica_orientadora;
+                    $scope.fecha_final = data.datos[0].fecha_a;                    
                     $scope.objetivo_holistico = data.datos[0].objetivo_holistico;
                     $scope.contenido = data.datos[0].contenido;
                     $scope.producto = data.datos[0].producto;
@@ -599,18 +603,26 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
         
     }    
 
-    $scope.mtdAddPlanificacion = function(orientacion_id, dimension_id, planificacion_clase_id){
+    $scope.mtdAddPlanificacion = function(orientacion_id, orientacion_metodologica, dimension_id, planificacion_clase_id){
         console.log(orientacion_id);
         $scope.planificacion_detalle.planificacion_clase_id = planificacion_clase_id;
         $scope.planificacion_detalle.orientacion_metodologica_id = orientacion_id;
+        $scope.planificacion_detalle.orientacion_metodologica = orientacion_metodologica;
         $scope.planificacion_detalle.materiales = $scope.materiales;
         $scope.planificacion_detalle.dimension_id = dimension_id;
         $scope.planificacion_detalle.criterio = $scope.criterio_evaluacion;
         PlanificacionClaseDetalleFactory.create($scope.planificacion_detalle, function(data){
             console.log(data);
+            $scope.planificacion_clase_id = 0;
+            $scope.orientacion_id = 0;
+            $scope.orientacion_metodologica = '';
+            $scope.materiales = '';
+            $scope.dimension_id = 0;
+            $scope.criterio_evaluacion = '';
         });
 
         console.log(planificacion_clase_id);
+
   /*      console.log(orientacion_id);
         console.log(dimension_id);
         console.log($scope.orientacion_metodologica);

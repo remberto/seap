@@ -1022,8 +1022,8 @@ loginController.controller('logoutController',['$rootScope', '$scope','sesionesC
     sesionesControl.unset("username");
     sesionesControl.unset("user_id");
     //$window.location.href = 'http://104.236.71.163';      
-    $window.location.href = 'http://bienaventuranza.example.com/';
-    //$window.location.href = 'http://127.0.0.1:54007/';      
+    //$window.location.href = 'http://bienaventuranza.example.com/';
+    $window.location.href = 'http://127.0.0.1:54007/';      
 }]);
 
 var menuController = angular.module('menuControllers',[]);

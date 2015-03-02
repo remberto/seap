@@ -63,7 +63,7 @@
     <div class="row ml">        
         <div class="col-xs-12 col-md-2">Tematica Orientadora</div>
         <div class="col-xs-12 col-md-9">
-        	<textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="tematica_orientadora" html-text>
+        	<textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="tematica_orientadora" html-text disabled="true">
         	</textarea>
         </div>
         <div class="col-xs-12 col-md-1" style="text-align: center;" >          
@@ -72,7 +72,7 @@
     <div class="row ml">        
         <div class="col-xs-12 col-md-2">Proyecto Socio-Productivo</div>
         <div class="col-xs-12 col-md-9">
-          <textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="proyecto_socio_productivo" html-text>
+          <textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="proyecto_socio_productivo" html-text disabled="true">
           </textarea>
         </div>
         <div class="col-xs-12 col-md-1">
@@ -134,7 +134,7 @@
           <textarea class="col-xs-12 col-md-12" ng-model="criterio_evaluacion" rows="4" cols="6"></textarea>
         </div>
         <div class="col-xs-12 col-md-2" style="text-align: center;">
-          <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(orientacion.id, dimension.id, planificacion_clases.id)">Adicionar</button>
+          <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(orientacion.id, orientacion_metodologica, dimension.id, planificacion_clases.id)">Adicionar</button>
         </div>
     </div>
     <div ng-repeat="planificacion_detalle in planificacion_detalles">

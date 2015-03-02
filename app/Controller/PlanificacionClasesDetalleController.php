@@ -43,7 +43,8 @@ class PlanificacionClasesDetalleController extends AppController{
                              
                 $_planificacion_clase_detalle = array();                
                 $_planificacion_clase_detalle['planificacion_clase_id'] = $this->request->data['planificacion_clase_id'];
-                $_planificacion_clase_detalle['orientacion_metodologica_id'] = $this->request->data['orientacion_metodologica_id'];                
+                $_planificacion_clase_detalle['orientacion_metodologica_id'] = $this->request->data['orientacion_metodologica_id'];
+                $_planificacion_clase_detalle['orientacion_metodologica'] = $this->request->data['orientacion_metodologica'];                
                 $_planificacion_clase_detalle['materiales'] = $this->request->data['materiales'];
                 $this->PlanificacionClaseDetalle->save($_planificacion_clase_detalle);
 
