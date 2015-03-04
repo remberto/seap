@@ -17,9 +17,7 @@ class EvaluacioncualitativaController extends AppController{
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('index');
-        $this->Auth->allow('add');
-        $this->Auth->allow('accion');
-        $this->Auth->allow('reforzamiento');
+        $this->Auth->allow('add');        
     }
 
     public function index(){
@@ -30,7 +28,7 @@ class EvaluacioncualitativaController extends AppController{
         $inscrito_id = $this->request->query('estudiante_id');
         
 
-        $_areas = $this->Area->query('SELECT DISTINCT areas.id as id, areas.descripcion as descripcion FROM areas
+        $_areas = $this->Area->query('SELECT DISTINCT areas.id as id, areas.descripcion as descripcion, niveles.id as nivel_id FROM areas
                                         INNER JOIN asignaturas ON asignaturas.area_id = areas.id
                                         INNER JOIN niveles ON asignaturas.nivel_id = niveles.id
                                         INNER JOIN grados ON niveles.id = grados.nivel_id
@@ -72,6 +70,42 @@ class EvaluacioncualitativaController extends AppController{
             $centralizador[$value['area_id']][2]['nota'] = round($value['saber']);
             $centralizador[$value['area_id']][3]['nota'] = round($value['hacer']);
             $centralizador[$value['area_id']][4]['nota'] = round($value['decidir']);
+            if(round($value['ser']) == 1):
+                $centralizador[$value['area_id']][1]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['ser']) == 2):
+                $centralizador[$value['area_id']][1]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['ser']) == 3):
+                $centralizador[$value['area_id']][1]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['ser']) == 4):
+                $centralizador[$value['area_id']][1]['promedio_cualitativo'] = 'DP';
+            endif;
+            if(round($value['saber']) == 1):
+                $centralizador[$value['area_id']][2]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['saber']) == 2):
+                $centralizador[$value['area_id']][2]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['saber']) == 3):
+                $centralizador[$value['area_id']][2]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['saber']) == 4):
+                $centralizador[$value['area_id']][2]['promedio_cualitativo'] = 'DP';
+            endif;
+            if(round($value['hacer']) == 1):
+                $centralizador[$value['area_id']][3]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['hacer']) == 2):
+                $centralizador[$value['area_id']][3]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['hacer']) == 3):
+                $centralizador[$value['area_id']][3]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['hacer']) == 4):
+                $centralizador[$value['area_id']][3]['promedio_cualitativo'] = 'DP';
+            endif;
+            if(round($value['decidir']) == 1):
+                $centralizador[$value['area_id']][4]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['decidir']) == 2):
+                $centralizador[$value['area_id']][4]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['decidir']) == 3):
+                $centralizador[$value['area_id']][4]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['decidir']) == 4):
+                $centralizador[$value['area_id']][4]['promedio_cualitativo'] = 'DP';
+            endif;                        
         }
 
         $_promedios = $this->Centralizador->query('SELECT                                                         
@@ -94,6 +128,43 @@ class EvaluacioncualitativaController extends AppController{
             $promedios[2]['nota'] = round($value['saber']);
             $promedios[3]['nota'] = round($value['hacer']);
             $promedios[4]['nota'] = round($value['decidir']);
+            if(round($value['ser']) == 1):
+                $promedios[1]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['ser']) == 2):
+                $promedios[1]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['ser']) == 3):
+                $promedios[1]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['ser']) == 4):
+                $promedios[1]['promedio_cualitativo'] = 'DP';
+            endif;
+            if(round($value['saber']) == 1):
+                $promedios[2]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['saber']) == 2):
+                $promedios[2]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['saber']) == 3):
+                $promedios[2]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['saber']) == 4):
+                $promedios[2]['promedio_cualitativo'] = 'DP';
+            endif;
+            if(round($value['hacer']) == 1):
+                $promedios[3]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['hacer']) == 2):
+                $promedios[3]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['hacer']) == 3):
+                $promedios[3]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['hacer']) == 4):
+                $promedios[3]['promedio_cualitativo'] = 'DP';
+            endif;
+            if(round($value['decidir']) == 1):
+                $promedios[4]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['decidir']) == 2):
+                $promedios[4]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['decidir']) == 3):
+                $promedios[4]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['decidir']) == 4):
+                $promedios[4]['promedio_cualitativo'] = 'DP';
+            endif;   
+
         }
 
         $_valoracion_cualitativa = $this->EvaluacionCualitativa->find('first',array('conditions'=>array('EvaluacionCualitativa.inscrito_id'=>$inscrito_id,

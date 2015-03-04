@@ -113,6 +113,38 @@ planificacionController.controller('planificacionAnualController', ['$scope','$r
                 });  
         });
     }
+
+    $scope.mtdPrint = function(divName){
+      var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWin.window.focus();
+            popupWin.document.write('<!DOCTYPE html><html><head>' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" />' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" />' +
+                '<link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />' +
+                '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div>'+
+                '</html>');
+            popupWin.onbeforeunload = function (event) {              
+                popupWin.close();
+                //return '.\n';
+            };
+            popupWin.onabort = function (event) {
+                popupWin.document.close();
+                popupWin.close();
+            }
+        } else {
+            var popupWin = window.open('', '_blank', 'width=800,height=600');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" /><link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" /></head><body onload="window.print()">' + printContents + 
+                '</html>');
+            popupWin.document.close();
+        }
+        popupWin.document.close();
+    }
+
 }]);
 
 
@@ -268,6 +300,37 @@ planificacionController.controller('planificacionAnualBimestralController', ['$s
             });  
         });
     }
+
+    $scope.mtdPrint = function(divName){
+      var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWin.window.focus();
+            popupWin.document.write('<!DOCTYPE html><html><head>' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" />' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" />' +
+                '<link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />' +
+                '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div>'+
+                '</html>');
+            popupWin.onbeforeunload = function (event) {              
+                popupWin.close();
+                //return '.\n';
+            };
+            popupWin.onabort = function (event) {
+                popupWin.document.close();
+                popupWin.close();
+            }
+        } else {
+            var popupWin = window.open('', '_blank', 'width=800,height=600');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" /><link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" /></head><body onload="window.print()">' + printContents + 
+                '</html>');
+            popupWin.document.close();
+        }
+        popupWin.document.close();
+    }
 }]);
 
 
@@ -385,6 +448,37 @@ planificacionController.controller('planificacionBimestralController', ['$scope'
             })  
         });
     }
+
+    $scope.mtdPrint = function(divName){
+      var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWin.window.focus();
+            popupWin.document.write('<!DOCTYPE html><html><head>' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" />' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" />' +
+                '<link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />' +
+                '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div>'+
+                '</html>');
+            popupWin.onbeforeunload = function (event) {              
+                popupWin.close();
+                //return '.\n';
+            };
+            popupWin.onabort = function (event) {
+                popupWin.document.close();
+                popupWin.close();
+            }
+        } else {
+            var popupWin = window.open('', '_blank', 'width=800,height=600');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" /><link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" /></head><body onload="window.print()">' + printContents + 
+                '</html>');
+            popupWin.document.close();
+        }
+        popupWin.document.close();
+    }
 }]);
 
 // Pnificacion de Clases
@@ -403,7 +497,7 @@ planificacionController.controller('planificacionClasesController', ['$scope','$
 }]);
 
 
-planificacionController.controller('addplanificacionClasesController', ['$scope','$routeParams','sesionesControl','ClasificadorFactory', 'EncabezadoClasesFactory', 'PlanificacionAnualFactory', 'PlanificacionAnualDetalleFactory', 'PlanificacionAnualDetallesFactory', 'PlanificacionBimestralFactory', 'PlanificacionBimestralDetalleFactory', 'PlanificacionBimestralDetallesFactory' ,'ClasificadorPlanificacionBimestralFactory', 'ContenidoPlanificacionAnualFactory', 'ClasificadorPlanificacionFactory', 'ClasificadorAreasFactory', 'PlanificacionClaseFactory', 'PlanificacionClaseDetalleFactory', 'ClasificadorPlanificacionNroClaseFactory', '$location', function($scope, $routeParams, sesionesControl, ClasificadorFactory, EncabezadoClasesFactory, PlanificacionAnualFactory, PlanificacionAnualDetalleFactory, PlanificacionAnualDetallesFactory, PlanificacionBimestralFactory, PlanificacionBimestralDetalleFactory, PlanificacionBimestralDetallesFactory, ClasificadorPlanificacionBimestralFactory, ContenidoPlanificacionAnualFactory, ClasificadorPlanificacionFactory, ClasificadorAreasFactory, PlanificacionClaseFactory, PlanificacionClaseDetalleFactory, ClasificadorPlanificacionNroClaseFactory, $location) {
+planificacionController.controller('addplanificacionClasesController', ['$scope','$routeParams','sesionesControl','ClasificadorFactory', 'EncabezadoClasesFactory', 'PlanificacionAnualFactory', 'PlanificacionAnualDetalleFactory', 'PlanificacionAnualDetallesFactory', 'PlanificacionBimestralFactory', 'PlanificacionBimestralDetalleFactory', 'PlanificacionBimestralDetallesFactory' ,'ClasificadorPlanificacionBimestralFactory', 'ContenidoPlanificacionAnualFactory', 'ClasificadorPlanificacionFactory', 'ClasificadorAreasFactory', 'PlanificacionClaseFactory', 'PlanificacionClaseDetalleFactory', 'PlanificacionClaseDetallesFactory', 'ClasificadorPlanificacionNroClaseFactory', 'usSpinnerService', '$location', function($scope, $routeParams, sesionesControl, ClasificadorFactory, EncabezadoClasesFactory, PlanificacionAnualFactory, PlanificacionAnualDetalleFactory, PlanificacionAnualDetallesFactory, PlanificacionBimestralFactory, PlanificacionBimestralDetalleFactory, PlanificacionBimestralDetallesFactory, ClasificadorPlanificacionBimestralFactory, ContenidoPlanificacionAnualFactory, ClasificadorPlanificacionFactory, ClasificadorAreasFactory, PlanificacionClaseFactory, PlanificacionClaseDetalleFactory, PlanificacionClaseDetallesFactory, ClasificadorPlanificacionNroClaseFactory, usSpinnerService, $location) {
 
     $scope.curso_id = $routeParams.curso_id;
     $scope.asignado_id = $routeParams.asignado_id;
@@ -461,8 +555,7 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
 
     // Encabezado
     EncabezadoClasesFactory.query({query_id:106, curso_id: $scope.curso_id, asignado_id: $scope.asignado_id},
-        function(data){ 
-                        console.log(data.datos);
+        function(data){                         
                         $scope.encabezado = data.datos[0];
                         $scope.planificacion_anual.id = $scope.encabezado.planificacion_id;
                         $scope.planificacion_anual.curso_id = $scope.encabezado.curso_id;
@@ -577,6 +670,10 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
                     $scope.contenido = data.datos[0].contenido;
                     $scope.producto = data.datos[0].producto;
                     $scope.fuente_verificacion = data.datos[0].fuente_verificacion;
+
+                    ClasificadorFactory.query({query_id:138, planificacion_id: data.datos[0].id}, function(data){ 
+                        $scope.planificacion_detalles = data.datos;                         
+                    });
                 }
             })
         }else{
@@ -594,40 +691,88 @@ planificacionController.controller('addplanificacionClasesController', ['$scope'
         $scope.planificacion_clases.calendario_a_id = $scope.fecha_final;
         $scope.planificacion_clases.asignado_id = asignado_id;
         $scope.planificacion_clases.planificacion_bimestral_id = planificacion_bimestral_id;
+        usSpinnerService.spin('spinner-1');
         PlanificacionClaseFactory.create($scope.planificacion_clases, function(data){
+            usSpinnerService.stop('spinner-1');
             //Aqui visualizar
-        });        
-    };
+        });              
+    }
 
-    $scope.mtdHelpProyecto = function(){
-        
-    }    
-
-    $scope.mtdAddPlanificacion = function(orientacion_id, orientacion_metodologica, dimension_id, planificacion_clase_id){
-        console.log(orientacion_id);
+    $scope.mtdAddPlanificacion = function(planificacion_clase_detalle_id,  orientacion_id, orientacion_metodologica, materiales, dimension_id, criterio_evaluacion, planificacion_clase_id){        
+        $scope.planificacion_detalle.id = planificacion_clase_detalle_id;
         $scope.planificacion_detalle.planificacion_clase_id = planificacion_clase_id;
         $scope.planificacion_detalle.orientacion_metodologica_id = orientacion_id;
         $scope.planificacion_detalle.orientacion_metodologica = orientacion_metodologica;
-        $scope.planificacion_detalle.materiales = $scope.materiales;
+        $scope.planificacion_detalle.materiales = materiales;
         $scope.planificacion_detalle.dimension_id = dimension_id;
-        $scope.planificacion_detalle.criterio = $scope.criterio_evaluacion;
+        $scope.planificacion_detalle.criterio = criterio_evaluacion;
         PlanificacionClaseDetalleFactory.create($scope.planificacion_detalle, function(data){
             console.log(data);
+            $scope.planificacion_clase_detalle_id = '';
             $scope.planificacion_clase_id = 0;
             $scope.orientacion_id = 0;
             $scope.orientacion_metodologica = '';
             $scope.materiales = '';
             $scope.dimension_id = 0;
             $scope.criterio_evaluacion = '';
+            ClasificadorFactory.query({query_id:138, planificacion_id: planificacion_clase_id}, function(data){ 
+                        $scope.planificacion_detalles = data.datos;                         
+                    });
         });
 
-        console.log(planificacion_clase_id);
+    }
 
-  /*      console.log(orientacion_id);
-        console.log(dimension_id);
-        console.log($scope.orientacion_metodologica);
-        console.log($scope.materiales);
-        console.log($scope.criterio_evaluacion);*/
+    $scope.mtdDeletePlanificacion = function(planificacion_clase_detalle_id, planificacion_clase_id){        
+        PlanificacionClaseDetallesFactory.delete({id: planificacion_clase_detalle_id}, function(data){
+            ClasificadorFactory.query({query_id:138, planificacion_id: planificacion_clase_id}, function(data){ 
+                        $scope.planificacion_detalles = data.datos;                         
+                    });
+        });
+    }
+
+    $scope.mtdSelectOrientacion = function(planificacion_clase_id, orientacion_id){
+        ClasificadorFactory.query({query_id:139, planificacion_id: planificacion_clase_id, orientacion_metodologica_id: orientacion_id}, function(data){ 
+            if(data.datos.length > 0){
+                $scope.planificacion_clase_detalle_id = data.datos[0].id;
+                $scope.orientacion_metodologica = data.datos[0].orientacion_metodologica;
+                $scope.materiales = data.datos[0].materiales;                         
+            }else{
+                $scope.planificacion_clase_detalle_id = '';
+                $scope.orientacion_metodologica = '';
+                $scope.materiales = '';
+            }
+        });
+    }
+    
+    $scope.mtdPrint = function(divName){
+      var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWin.window.focus();
+            popupWin.document.write('<!DOCTYPE html><html><head>' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" />' +
+                '<link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" />' +
+                '<link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />' +
+                '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div>'+
+                '</html>');
+            popupWin.onbeforeunload = function (event) {              
+                popupWin.close();
+                //return '.\n';
+            };
+            popupWin.onabort = function (event) {
+                popupWin.document.close();
+                popupWin.close();
+            }
+        } else {
+            var popupWin = window.open('', '_blank', 'width=800,height=600');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="/app/webroot/css/bootstrap/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="/app/webroot/assets/css/style.css" /><link href="/app/webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet" /></head><body onload="window.print()">' + printContents + 
+                '</html>');
+            popupWin.document.close();
+        }
+        popupWin.document.close();
     }
     
 }]);

@@ -1,156 +1,287 @@
 <h3><i class="fa fa-angle-right"></i>Planificaci&oacute;n de Desarrollo de Clases</h3>
-<div>
-  <div class="form-group">      
-    <div class="row ml">
-        <div class="col-xs-6 col-md-2">Gestion: </div>        
-        <div class="col-xs-6 col-md-4"><b>{{ encabezado.gestion_id }}</b></div>
-        <div class="col-xs-6 col-md-2">Bimestre</div>
-        <div class="col-xs-6 col-md-4">
-        	<select id="periodo" class="form-control" ng-model="periodo" ng-change="mtdSelectedBimestre(periodo.id, encabezado.planificacion_id, asignado_id)"ng-options="value as value.descripcion for (key, value) in periodos"></select>
-        </div>
-    </div>
-    <div class="row ml">
-        <div class="col-xs-6 col-md-2">Distrito Educativo: </div>        
-        <div class="col-xs-6 col-md-4"><b>{{ encabezado.distrito }}</b></div>
-        <div class="col-xs-6 col-md-2">Unidad Educativa: </div>
-        <div class="col-xs-6 col-md-4"><b>{{ encabezado.unidad_educativa }}</b></div>
-    </div>
-    <div class="row ml">
-        <div class="col-xs-12 col-md-2">Nivel: </div>
-        <div class="col-xs-12 col-md-4">{{ encabezado.nivel }}</div>
-        <div class="col-xs-12 col-md-2">A&ntilde;o de Escolaridad: </div>
-        <div class="col-xs-12 col-md-4">{{ encabezado.grado}}</div>        
-    </div>
-    <div class="row ml">
-        <div class="col-xs-12 col-md-2">Profesor: </div>
-        <div class="col-xs-12 col-md-4">{{ encabezado.docente }}</div>
-        <div class="col-xs-12 col-md-2">Area: </div>
-        <div class="col-xs-12 col-md-4">{{ encabezado.area}}</div>        
-    </div>
-    <div class="row ml">        
-        <div class="col-xs-12 col-md-2">Nro. de Clase</div>
-        <div class="col-xs-12 col-md-2">
-          <input type="number" class="form-control" ng-model="nro_clase" ng-change="mtdChangeClases(periodo.id, asignado_id)"/>
-        </div>
-    </div>
+<div class="btn-group">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default" ng-click="mtdPrint('imprimir')"><i class="fa fa-print"></i> </button>      
+  </div>  
+</div> 
+<div class="row mt">
+  <div class="col-lg-12">
+    <div id = "imprimir" class="content-panel">
+      <h4><i class="fa fa-angle-right"></i>Planificaci&oacute;n de Clase</h4>
 
-    <div class="row ml">
-        <label class="col-xs-12 col-md-2 control-label" for="inputFechaIncial">Fecha Inicial</label>
-        <div class="col-xs-12 col-md-3">
-          <p class="input-group">
-            <input id="inputFechaInicial" type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened1" min-date="1999-01-01" max-date="'2025-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="fecha_inicial"/>
-
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="openFechaInicial($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </p>
-        </div>
-
-        <label class="col-xs-12 col-md-2 control-label" for="inputFechaFinal">Fecha Final</label>
-        <div class="col-xs-12 col-md-3">          
-          <p class="input-group">
-            <input id="inputFechaFinal" type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened2" min-date="1999-01-01" max-date="'2025-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="fecha_final"/>
-
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="openFechaFinal($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </p>
-        </div>
-        <div class="col-xs-12 col-md-1" style="text-align: center;" ></div>
-        <div class="col-xs-12 col-md-1" style="text-align: center;" ></div>
-    </div>
-
-    <div class="row ml">        
-        <div class="col-xs-12 col-md-2">Tematica Orientadora</div>
-        <div class="col-xs-12 col-md-9">
-        	<textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="tematica_orientadora" html-text disabled="true">
-        	</textarea>
-        </div>
-        <div class="col-xs-12 col-md-1" style="text-align: center;" >          
-        </div>
-    </div>
-    <div class="row ml">        
-        <div class="col-xs-12 col-md-2">Proyecto Socio-Productivo</div>
-        <div class="col-xs-12 col-md-9">
-          <textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="proyecto_socio_productivo" html-text disabled="true">
-          </textarea>
-        </div>
-        <div class="col-xs-12 col-md-1">
-          <i class="fa fa-info-circle" ng-mouseover="mtdHelpProyecto();"></i>       
-        </div>
-    </div>
-    <div class="row ml">        
-        <div class="col-xs-12 col-md-2">Objetivo Holistico</div>
-        <div class="col-xs-12 col-md-9">
-          <textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="objetivo_holistico" html-text>
-          </textarea>
-        </div>
-        <div class="col-xs-12 col-md-1" style="text-align: center;" >          
-        </div>
-    </div>
-    <div class="row ml">        
-        <div class="col-xs-12 col-md-2">Contenido</div>
-        <div class="col-xs-12 col-md-9">
-          <textarea class="col-xs-12 col-md-12" rows="2" cols="3" style="color:#000000;" ng-model="contenido" html-text>
-          </textarea>
-        </div>
-        <div class="col-xs-12 col-md-1" style="text-align: center;" >          
-        </div>
-    </div>
-    <div class="row ml">        
-        <div class="col-xs-12 col-md-2">Producto</div>
-        <div class="col-xs-12 col-md-9">
-          <textarea class="col-xs-12 col-md-12" rows="3" cols="3" style="color:#000000;" ng-model="producto" html-text>
-          </textarea>
-        </div>
-        <div class="col-xs-12 col-md-1" style="text-align: center;" >          
-        </div>
-    </div>
-    <div class="row ml">        
-        <div class="col-xs-12 col-md-2">Fuente de Vericaci&oacute;n</div>
-        <div class="col-xs-12 col-md-9">
-          <textarea class="col-xs-12 col-md-12" rows="2" cols="2" style="color:#000000;" ng-model="fuente_verificacion" html-text></textarea>
-        </div>        
-        <div class="col-xs-12 col-md-1" style="text-align: center;" >          
-          <button type="button" class="btn btn-xs btn-theme" ng-click="mtdGuardarPlanificacion(asignado_id, planificacion_bimestral.id)"><i class="fa fa-check"></i></button>
-        </div>
-    </div>    
-    <div class="row mt">
-        <div class="col-xs-12 col-md-4 header_table">Orientaciones Metodol&oacute;gicas</div>
-        <div class="col-xs-12 col-md-2 header_table">Materiales</div>
-        <div class="col-xs-12 col-md-4 header_table">Criterios de Evaluaci&oacute;n</div>
-        <div class="col-xs-12 col-md-2 header_table">Acci&oacute;n</div>
-    </div>
-    <div class="row mt">
-        <div class="col-xs-12 col-md-4">
-            <select id="orientacion" class="form-control" ng-model="orientacion" ng-options="value as value.descripcion for (key, value) in orientaciones"></select>
-            <textarea class="col-xs-12 col-md-12" ng-model="orientacion_metodologica" rows="4" cols="6"></textarea>
-        </div>
-        <div class="col-xs-12 col-md-2">
-          	<textarea class="col-xs-12 col-md-12" ng-model="materiales" rows="6" cols="6"></textarea>  
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <select id="dimension" class="form-control" ng-model="dimension" ng-options="value as value.descripcion for (key, value) in dimensiones"></select>
-          <textarea class="col-xs-12 col-md-12" ng-model="criterio_evaluacion" rows="4" cols="6"></textarea>
-        </div>
-        <div class="col-xs-12 col-md-2" style="text-align: center;">
-          <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(orientacion.id, orientacion_metodologica, dimension.id, planificacion_clases.id)">Adicionar</button>
-        </div>
-    </div>
-    <div ng-repeat="planificacion_detalle in planificacion_detalles">
       <div class="row">
-          <div class="col-xs-12 col-md-4 body_table">{{ planificacion_detalle.descripcion }}</div>
-          <div class="col-xs-12 col-md-2 body_table">{{ planificacion_detalle.contenido }}</div>
-          <div class="col-xs-12 col-md-4 body_table"><b>{{ planificacion_detalle.orientacion }}</b> <br/> {{ planificacion_detalle.orientacion_metodologica }}</div>
-          <div class="col-xs-12 col-md-2 body_table" style="text-align:center;">
-            <button type="button" class="btn btn-danger btn-xs" ng-click="mtdDeletePlanificacion()">
-              <i class="fa fa-trash-o"></i>
-            </button>
+
+        <div class="col-lg-12">      
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gestion"><b>Gestion :</b></label>
+                  <div class="col-md-8">
+                      <div class="input-group">                                            
+                        {{ encabezado.gestion_id }}
+                      </div>
+                  </div>
+                </div>
+            </div>         
+            <div class="col-sm-6 col-lg-6">   
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="distrito"><b>Bimestre :</b></label>
+                  <div class="col-md-8">
+                    <div class="input-group">                                            
+                      <select id="periodo" class="form-control" ng-model="periodo" ng-change="mtdSelectedBimestre(periodo.id, encabezado.planificacion_id, asignado_id)"ng-options="value as value.descripcion for (key, value) in periodos"></select>
+                    </div>
+                  </div>
+                </div>
+            </div>
           </div>
-      </div>
-    </div>    
-    <div class="row">
-          <div class="col-xs-12 col-md-12 footer_table"></div>          
-    </div>    
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gestion"><b>Distrito Educativo : </b></label>
+                  <div class="col-md-8">
+                      <div class="input-group">                                            
+                        {{ encabezado.distrito }}
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="distrito"><b>Unidad Educativa : </b></label>
+                  <div class="col-md-8">
+                    <div class="input-group">                                            
+                      {{ encabezado.unidad_educativa }}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gestion"><b>Nivel : </b></label>
+                  <div class="col-md-8">
+                      <div class="input-group">                                            
+                        {{ encabezado.nivel }}
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="distrito"><b>A&ntilde;o de Escolaridad : </b></label>
+                  <div class="col-md-8">
+                    <div class="input-group">                                            
+                      {{ encabezado.grado}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gestion"><b>Profesor : </b></label>
+                  <div class="col-md-8">
+                      <div class="input-group">                                            
+                        {{ encabezado.docente }}
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="distrito"><b>Area : </b></label>
+                <div class="col-md-8">
+                  <div class="input-group">                                            
+                    {{ encabezado.area}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gestion"><b>Nro. de Clase :</b></label>
+                  <div class="col-md-8">
+                      <div class="input-group">                                            
+                        <input type="number" class="form-control" ng-model="nro_clase" ng-change="mtdChangeClases(periodo.id, asignado_id)"/>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">              
+              <div class="col-md-12">
+                
+              </div>            
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gestion"><b>Fecha Inicial : </b></label>
+                  <div class="col-md-8">
+                      <div class="input-group">                                            
+                        <input id="inputFechaInicial" type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened1" min-date="1999-01-01" max-date="'2025-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="fecha_inicial"/>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="openFechaInicial($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">              
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="gestion"><b>Fecha Final : </b></label>
+                <div class="col-md-8">
+                    <div class="input-group">                                            
+                      <input id="inputFechaFinal" type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened2" min-date="1999-01-01" max-date="'2025-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-model="fecha_final"/>
+
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openFechaFinal($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </div>
+                </div>            
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="form-group">
+                  <label class="col-md-2 control-label" for="tematica_orientadora"><b>Tematica Orientadora : </b></label>
+                  <div class="col-md-10">
+                      <div class="input-group">                        
+                        <textarea rows="2" class="form-control col-md-12" style="width: 600px;" ng-model="tematica_orientadora" html-text disabled="true"></textarea>
+                      </div>
+                  </div>
+                </div>
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="form-group">
+                  <label class="col-md-2 control-label" for="gestion"><b>Proyecto Socio-Productivo : </b></label>
+                  <div class="col-md-10">
+                      <div class="input-group">                                            
+                        <textarea rows="2" class="form-control col-md-12" style="width: 600px;" ng-model="proyecto_socio_productivo" html-text disabled="true">
+                        </textarea>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="form-group">
+                  <label class="col-md-2 control-label" for="gestion"><b>Objetivo Holistico : </b></label>
+                  <div class="col-md-10">
+                      <div class="input-group">                                            
+                        <textarea rows="2" class="form-control col-md-12" style="width: 600px;" ng-model="objetivo_holistico" html-text ng-blur="mtdGuardarPlanificacion(asignado_id, planificacion_bimestral.id)">
+                        </textarea>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="form-group">
+                  <label class="col-md-2 control-label" for="gestion"><b>Contenido : </b></label>
+                  <div class="col-md-10">
+                      <div class="input-group">                                            
+                        <textarea rows="2" class="form-control col-md-12" style="width: 600px;" ng-model="contenido" html-text ng-blur="mtdGuardarPlanificacion(asignado_id, planificacion_bimestral.id)">
+                        </textarea>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="form-group">
+                  <label class="col-md-2 control-label" for="gestion"><b>Producto : </b></label>
+                  <div class="col-md-10">
+                      <div class="input-group">                                            
+                        <textarea rows="2" class="form-control col-md-12" style="width: 600px;" ng-model="producto" html-text ng-blur="mtdGuardarPlanificacion(asignado_id, planificacion_bimestral.id)">
+                        </textarea>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="form-group">
+                  <label class="col-md-2 control-label" for="gestion"><b>Fuente de Vericaci&oacute;n : </b></label>
+                  <div class="col-md-10">
+                      <div class="input-group">                                            
+                        <textarea rows="2" class="form-control col-md-12" style="width: 600px;" ng-model="fuente_verificacion" html-text ng-blur="mtdGuardarPlanificacion(asignado_id, planificacion_bimestral.id)"></textarea>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <section class="unseen">
+            <table class="table table-bordered table-striped table-condensed">
+              <thead >                        
+                <tr style="background-color:#7a31aa; color:white;">
+                  <th style="width:35%">Orientaciones Metodol&oacute;gicas</th>
+                  <th style="width:30%">Materiales</th>
+                  <th style="width:30%">Criterios de Evaluaci&oacute;n</th>                  
+                  <th style="width:5%"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="hidden" ng-model="planificacion_clase_detalle_id"/>                    
+                    <div class="col-sm-12 col-lg-12">
+                      <div class="form-group">                        
+                        <div class="col-md-10">
+                          <div class="input-group">
+                            <select id="orientacion" class="form-control" ng-model="orientacion" ng-change="mtdSelectOrientacion(planificacion_clases.id, orientacion.id)" ng-options="value as value.descripcion for (key, value) in orientaciones"></select>       
+                          </div>
+                        </div>
+                      </div>
+                    </div>                    
+                    <div class="col-sm-12 col-lg-12">
+                      <div class="form-group">
+                        <div class="col-lg-12">
+                          <textarea class="col-xs-12 col-md-12" ng-model="orientacion_metodologica" rows="4" cols="6"></textarea>    
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <textarea class="col-xs-12 col-md-12" ng-model="materiales" rows="6" cols="6"></textarea>  
+                  </td>
+                  <td>
+                    <select id="dimension" class="form-control" ng-model="dimension" ng-options="value as value.descripcion for (key, value) in dimensiones"></select>
+                    <textarea class="col-xs-12 col-md-12" ng-model="criterio_evaluacion" rows="4" cols="6"></textarea>
+                  </td>                  
+                  <td>
+                    <center>
+                      <button type="button" class="btn btn-theme" ng-click="mtdAddPlanificacion(planificacion_clase_detalle_id, orientacion.id, orientacion_metodologica, materiales, dimension.id, criterio_evaluacion, planificacion_clases.id)"><i class="glyphicon glyphicon-download-alt"></i></button>                    
+                    </center>
+                  </td>
+                </tr>
+                <tr ng-repeat="planificacion_detalle in planificacion_detalles">
+                  <td><b>{{ planificacion_detalle.orientacion_metodologica }} </b>.- {{ planificacion_detalle.orientacion_metodologica_contenido }}</td>
+                  <td>{{ planificacion_detalle.materiales }}</td>
+                  <td><b>{{ planificacion_detalle.dimension }}</b><br/> {{ planificacion_detalle.criterio }}</td>                  
+                  <td>            
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="mtdDeletePlanificacion(planificacion_detalle.id, planificacion_clases.id)">
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>            
+        </div>
+      
+      </div>    
+    </div>
   </div>
 </div>

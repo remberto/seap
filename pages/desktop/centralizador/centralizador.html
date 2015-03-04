@@ -45,12 +45,24 @@
                     <td>{{ estudiante.paterno }} {{ estudiante.materno }}, {{ estudiante.nombres }}</td>                    
                     <td ng-repeat="periodo in periodos" align="right">
                       <span ng-if="periodo.descripcion == 'Promedio'">
-                        <span ng-if="promedios[estudiante.id][periodo.id]['nota'] >= 51" style="font-size:10px; font-weight: bold; color: black;">{{ promedios[estudiante.id][periodo.id]['nota'] }}</span>
-                        <span ng-if="promedios[estudiante.id][periodo.id]['nota'] < 51" style="font-size:10px; font-weight: bold; color: red;">{{ promedios[estudiante.id][periodo.id]['nota'] }}</span>
+                        <span ng-if="curso.nivel_id == 11">         
+                          <span ng-if="promedios[estudiante.id][periodo.id]['promedio'] > 1" style="font-size:10px; font-weight: bold; color: black;">{{ promedios[estudiante.id][periodo.id]['promedio_cualitativo'] }}</span>
+                          <span ng-if="promedios[estudiante.id][periodo.id]['promedio'] <= 1" style="font-size:10px; font-weight: bold; color: red;">{{ promedios[estudiante.id][periodo.id]['promedio_cualitativo'] }}</span>
+                        </span>
+                        <span ng-if="curso.nivel_id == 12 || curso.nivel_id == 13">         
+                          <span ng-if="promedios[estudiante.id][periodo.id]['nota'] >= 51" style="font-size:10px; font-weight: bold; color: black;">{{ promedios[estudiante.id][periodo.id]['nota'] }}</span>
+                          <span ng-if="promedios[estudiante.id][periodo.id]['nota'] < 51" style="font-size:10px; font-weight: bold; color: red;">{{ promedios[estudiante.id][periodo.id]['nota'] }}</span>
+                        </span>
                       </span>
-                      <span ng-if="periodo.descripcion != 'Promedio'">                                                                    
-                        <span ng-if="centralizador[estudiante.id][periodo.id]['nota'] >= 51" style="font-size:10px; font-weight: bold; color: black;">{{ centralizador[estudiante.id][periodo.id]['nota'] }}</span>
-                        <span ng-if="centralizador[estudiante.id][periodo.id]['nota'] < 51" style="font-size:10px; font-weight: bold; color: red;">{{ centralizador[estudiante.id][periodo.id]['nota'] }}</span>
+                      <span ng-if="periodo.descripcion != 'Promedio'">
+                        <span ng-if="curso.nivel_id == 11">         
+                          <span ng-if="centralizador[estudiante.id][periodo.id]['promedio'] > 1" style="font-size:10px; font-weight: bold; color: black;">{{ centralizador[estudiante.id][periodo.id]['promedio_cualitativo'] }}</span>
+                          <span ng-if="centralizador[estudiante.id][periodo.id]['promedio'] <= 1" style="font-size:10px; font-weight: bold; color: red;">{{ centralizador[estudiante.id][periodo.id]['promedio_cualitativo'] }}</span>
+                        </span>
+                        <span ng-if="curso.nivel_id == 12 || curso.nivel_id == 13">         
+                          <span ng-if="centralizador[estudiante.id][periodo.id]['nota'] >= 51" style="font-size:10px; font-weight: bold; color: black;">{{ centralizador[estudiante.id][periodo.id]['nota'] }}</span>
+                          <span ng-if="centralizador[estudiante.id][periodo.id]['nota'] < 51" style="font-size:10px; font-weight: bold; color: red;">{{ centralizador[estudiante.id][periodo.id]['nota'] }}</span>
+                        </span>
                       </span>
                     </td>                    
                   </tr>

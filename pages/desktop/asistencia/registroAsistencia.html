@@ -2,6 +2,11 @@
   <i class=""></i>
   Registro de Asistencia
 </h3>
+<div class="btn-group">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default" ng-click="mtdPrint('print')"><i class="fa fa-print"></i> </button>      
+  </div>  
+</div>
 <div class="row mt">
   <div class="col-lg-12">
     <div class="content-panel">
@@ -41,7 +46,7 @@
         <br />
         <div ng-if="habilitado">       
         <tabset>            
-          <tab ng-repeat="mes in meses" select="mtdVer(mes.id, curso, asignado)">
+          <tab ng-repeat="mes in meses" select="mtdVer(mes, curso, asignado)">
             <tab-heading>{{mes.title}}</tab-heading>
             <section class="unseen">
               <div id="print">
@@ -76,8 +81,7 @@
                     </tr>
                   </tbody>
                 </table>
-                </div>
-                <button class="btn btn-primary" ng-click="mtdPrint('print', curso, asignado, mes)">Imprimir</button>
+                </div>                
           </section>
           </tab>
           <tab select="mtdResumen(curso, asignado)">

@@ -65,6 +65,7 @@ centralizadorController.controller('evaluacioncualitativaController', ['$scope',
 			$scope.areas = data.datos.areas;
 			$scope.centralizador = data.datos.centralizador;
 			$scope.promedios = data.datos.promedios;
+			$scope.nivel_id = $scope.areas[0].nivel_id;
 			if(data.datos.valoracion_cualitativa != null){
 				$scope.valoracion_cualitativa = data.datos.valoracion_cualitativa;
 			}

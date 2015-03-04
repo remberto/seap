@@ -12,6 +12,8 @@ class PlanificacionClasesDetalleController extends AppController{
     public function beforeFilter(){
         parent::beforeFilter();        
         $this->Auth->allow('add');
+        $this->Auth->allow('accion');
+        $this->Auth->allow('delete');
 
     }
 
@@ -32,10 +34,16 @@ class PlanificacionClasesDetalleController extends AppController{
 
             if(!empty($data))
             {
-                // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado
-                $data['PlanificacionClaseDetalle']['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
-                $data['PlanificacionClaseDetalle']['objetivo_holistico'] = $this->request->data['objetivo_holistico'];
+                // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado                
+                $data['PlanificacionClaseDetalle']['orientacion_metodologica'] = $this->request->data['orientacion_metodologica'];                
+                $data['PlanificacionClaseDetalle']['materiales'] = $this->request->data['materiales'];
                 $this->PlanificacionClaseDetalle->save($data);
+
+                $_criterio_evaluacion = array();
+                $_criterio_evaluacion['dimension_id'] = $this->request->data['dimension_id'];
+                $_criterio_evaluacion['criterio'] = $this->request->data['criterio'];
+                $_criterio_evaluacion['planificacion_clase_detalle_id'] =  $data['PlanificacionClaseDetalle']['id'];                
+                $this->CriterioEvaluacionPlanificacion->save($_criterio_evaluacion);
             }
             else
             {
@@ -67,6 +75,38 @@ class PlanificacionClasesDetalleController extends AppController{
             'message' => $message,
             '_serialize' => array('message')
         ));
+    }
+
+    public function accion($id){
+        if($this->request->query['accion']=='view'):
+            $this->view($id);
+        elseif($this->request->query['accion']=='delete'):
+            $this->delete($id);
+        endif;
+    }
+
+    public function delete($id){
+        $datasource = $this->PlanificacionClaseDetalle->getDataSource();
+        $datasource->useNestedTransactions = TRUE;
+        $datasource->begin();
+        try{
+            $_criterio_evaluacion = $this->CriterioEvaluacionPlanificacion->find('all', array('conditions' => array('CriterioEvaluacionPlanificacion.planificacion_clase_detalle_id'=>$id)));
+            foreach ($_criterio_evaluacion as $key => $value) {                
+                $this->CriterioEvaluacionPlanificacion->delete($value['CriterioEvaluacionPlanificacion']['id']);
+            }
+            $this->PlanificacionClaseDetalle->delete($id);
+            $message['eliminado'] = true;
+            $message['mensaje'] = 'Fue dado de baja correctamente el curso';            
+            $datasource->commit();
+        }catch(Exception $e) {
+            $datasource->rollback();            
+            $message['mensaje'] = 'Error al Eliminar los datos'.$e->getMessage();            
+            $message['guardado'] = false;            
+        }       
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+           ));
     }
 }
 ?>

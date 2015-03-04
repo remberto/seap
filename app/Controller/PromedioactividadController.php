@@ -44,6 +44,8 @@ class PromedioactividadController extends AppController{
             array_push($inscritos, $value[0]);                        
             $promedios[$value[0]['id']] = array();
             $notas[$value[0]['id']]['nota'] = 0;
+            $notas[$value[0]['id']]['promedio'] = 0;
+            $notas[$value[0]['id']]['promedio_cualitativo'] = '';
         }
 
         $periodo = $this->request->query('periodo');
@@ -65,7 +67,15 @@ class PromedioactividadController extends AppController{
             foreach ($promedios as $_key => $_value) {
                 $promedios[$_key][$value[0]['id']]['evaluacion_promedio'] = 0;
                 $promedios[$_key][$value[0]['id']]['reforzamiento_promedio'] = 0;
-                $promedios[$_key][$value[0]['id']]['nota'] = 0;               
+                $promedios[$_key][$value[0]['id']]['nota'] = 0; 
+
+                $promedios[$_key][$value[0]['id']]['promedio_evaluacion'] = 0;
+                $promedios[$_key][$value[0]['id']]['promedio_reforzamiento'] = 0;
+                $promedios[$_key][$value[0]['id']]['promedio_nota'] = 0; 
+                
+                $promedios[$_key][$value[0]['id']]['promedio_cualitativo_evaluacion'] = '';
+                $promedios[$_key][$value[0]['id']]['promedio_cualitativo_reforzamiento'] = '';
+                $promedios[$_key][$value[0]['id']]['promedio_cualitativo_nota'] = ''; 
             }
             array_push($_actividad_evaluacion,array('id'=>$value[0]['id'],'descripcion'=>'Nota'));
             array_push($_actividad_evaluacion,array('id'=>$value[0]['id'],'descripcion'=>'Reforzamiento'));
@@ -77,7 +87,10 @@ class PromedioactividadController extends AppController{
                                                 actividad_evaluacion_asignado_id as actividad_id,
                                                 sum(evaluacion_promedio) AS evaluacion_promedio,
                                                 sum(reforzamiento_promedio) AS reforzamiento_promedio,
-                                                sum(promedio) AS nota
+                                                sum(promedio) AS nota,
+                                                round(avg(evaluacion_promedio)) AS promedio_evaluacion,
+                                                round(avg(reforzamiento_promedio)) AS promedio_reforzamiento,
+                                                round(avg(promedio)) AS promedio_nota
                                                 FROM promedios
                                                 WHERE promedios.periodo_id = '.$periodo.'
                                                 AND promedios.asignado_id = \''.$asignado.'\'
@@ -98,12 +111,59 @@ class PromedioactividadController extends AppController{
             endif;            
             if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['reforzamiento_promedio'])):
                 $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['reforzamiento_promedio'] = round($Rpromedios[$key]['reforzamiento_promedio']);
+            endif; 
+
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_nota'])):
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_nota'] = round($Rpromedios[$key]['promedio_nota']);
             endif;            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_evaluacion'])):
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_evaluacion'] = round($Rpromedios[$key]['promedio_evaluacion']);
+            endif;            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_reforzamiento'])):
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_reforzamiento'] = round($Rpromedios[$key]['promedio_reforzamiento']);
+            endif;
+            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_nota'])):
+                if(round($Rpromedios[$key]['promedio_nota']) == 1):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_nota'] = 'ED';
+                elseif(round($Rpromedios[$key]['promedio_nota']) == 2):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_nota'] = 'DA';
+                elseif(round($Rpromedios[$key]['promedio_nota']) == 3):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_nota'] = 'D0';
+                elseif(round($Rpromedios[$key]['promedio_nota']) == 4):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_nota'] = 'DP';
+                endif;
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_nota'] = round($Rpromedios[$key]['promedio_nota']);
+            endif;            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_evaluacion'])):
+                if(round($Rpromedios[$key]['promedio_evaluacion']) == 1):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_evaluacion'] = 'ED';
+                elseif(round($Rpromedios[$key]['promedio_evaluacion']) == 2):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_evaluacion'] = 'DA';
+                elseif(round($Rpromedios[$key]['promedio_evaluacion']) == 3):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_evaluacion'] = 'D0';
+                elseif(round($Rpromedios[$key]['promedio_evaluacion']) == 4):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_evaluacion'] = 'DP';
+                endif;
+                $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_evaluacion'] = round($Rpromedios[$key]['promedio_evaluacion']);
+            endif;            
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_reforzamiento'])):
+                if(round($Rpromedios[$key]['promedio_evaluacion']) == 1):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_reforzamiento'] = 'ED';
+                elseif(round($Rpromedios[$key]['promedio_evaluacion']) == 2):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_reforzamiento'] = 'DA';
+                elseif(round($Rpromedios[$key]['promedio_evaluacion']) == 3):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_reforzamiento'] = 'D0';
+                elseif(round($Rpromedios[$key]['promedio_evaluacion']) == 4):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['actividad_id']]['promedio_cualitativo_reforzamiento'] = 'DP';
+                endif;                
+            endif;
         }
 
         $_notas = $this->Evaluacion->query('SELECT 
                                     promedios_finales_actividad.inscrito_id as inscrito_id,
-                                    avg(promedios_finales_actividad.promedio) as nota
+                                    avg(promedios_finales_actividad.nota) as nota,
+                                    avg(promedios_finales_actividad.promedio) as promedio
                                     FROM promedios_finales_actividad
                                     WHERE periodo_id = '.$periodo.'                                      
                                     AND asignado_id = \''.$asignado.'\'
@@ -117,6 +177,20 @@ class PromedioactividadController extends AppController{
         foreach ($Rnotas as $key => $value) {            
             if(isset($notas[$Rnotas[$key]['inscrito_id']]['nota'])):
                 $notas[$Rnotas[$key]['inscrito_id']]['nota'] = round($Rnotas[$key]['nota']);
+            endif;
+            if(isset($notas[$Rnotas[$key]['inscrito_id']]['promedio'])):
+                $notas[$Rnotas[$key]['inscrito_id']]['promedio'] = round($Rnotas[$key]['promedio']);
+            endif;
+            if(isset($notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'])):
+                if(round($Rnotas[$key]['promedio']) == 1):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'ED';
+                elseif(round($Rnotas[$key]['promedio']) == 2):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'DA';
+                elseif(round($Rnotas[$key]['promedio']) == 3):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'D0';
+                elseif(round($Rnotas[$key]['promedio']) == 4):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'DP';
+                endif;                 
             endif;
         }
 

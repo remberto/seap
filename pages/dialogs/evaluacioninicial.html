@@ -1,0 +1,56 @@
+<div class="modal-header">
+	<h4 class="modal-title">
+		<span class="glyphicon glyphicon-pencil"></span> Evaluar al Estudiante
+	</h4>
+</div>
+<div class="modal-body">
+	<ng-form name="nameDialog" novalidate role="form">
+		<div class="form-group input-group-lg" ng-class="{true: 'has-error'}[nameDialog.cuantitativo.$dirty && nameDialog.cuantitativo.$invalid] ">
+			<div class="row">
+		              <div class="col-sm-12 col-lg-12">
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="nombre">Nombres y Apellidos:</label>
+		                  <div class="col-md-8">
+		                    	<p class="form-control-static">{{ estudiante.nombres}}, {{ estudiante.paterno}} {{ estudiante.materno}}</p>                
+		                  </div>
+		                </div>
+		              </div>
+		        </div>		        
+		        
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">                
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="cualitativo">Evaluaci&oacute;n Cualitativa:</label>
+		                  <div class="col-md-8">
+		                    <div class="input-group">
+		                    	<select id="cualitativo" name="cualitativo" ng-model="cualitativo" ng-options="value as value.evaluacion for (key, value) in evaluacion_cualitativa" class="form-control" required>
+			                    <option value="">-- Evaluar --</option>
+			                </select>		                      		                     	
+		                        <span ng-if="nameDialog.cualitativo.$invalid && nameDialog.cualitativo.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		                	<span ng-if="nameDialog.cualitativo.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+			                </div>
+			                <span ng-if="nameDialog.cualitativo.$invalid && nameDialog.cualitativo.$dirty" class="help-block">Evaluaci&oacute;n Cualitativa es requerida</span>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>             
+		        </div>
+		        <div class="row">
+		              <div class="col-sm-12 col-lg-12">                
+		                <div class="form-group">
+		                  <label class="col-md-4 control-label" for="observaciones">Obervaciones:</label>
+		                  <div class="col-md-8">
+		                    <div class="input-group">		                      
+		                      <textarea type="text" id="observaciones" class="form-control" ng-model="evaluacion.observaciones"></textarea>		
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>             
+		        </div>
+		</div>
+	</ng-form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+	<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Guardar</button>
+</div>

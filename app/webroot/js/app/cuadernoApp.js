@@ -430,6 +430,16 @@ cuadernoAppServices.factory('PlanificacionBimestralDetalleFactory', function ($r
     })
 }); 
 
+// Planificacion Bimiestral Detalle Vista y eliminar
+cuadernoAppServices.factory('PlanificacionBimestralDetallesFactory', function ($resource) {
+    return $resource('/index.php/planificacion_bimestral_detalle/:id.json?accion=:action', {}, {
+        //show: { method: 'GET' },
+        view: { method: 'GET', params: {id: '@id', action: 'view'} },
+        delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
+    })
+}); 
+
+
 // Planificacion Clase
 cuadernoAppServices.factory('PlanificacionClaseFactory', function ($resource) {
     return $resource('/index.php/planificacion_clases.json', {}, {
@@ -444,14 +454,12 @@ cuadernoAppServices.factory('PlanificacionClaseDetalleFactory', function ($resou
     })
 });
 
-// Planificacion Bimiestral Detalle Vista y eliminar
-cuadernoAppServices.factory('PlanificacionBimestralDetallesFactory', function ($resource) {
-    return $resource('/index.php/planificacion_bimestral_detalle/:id.json?accion=:action', {}, {
-        //show: { method: 'GET' },
+cuadernoAppServices.factory('PlanificacionClaseDetallesFactory', function ($resource) {
+    return $resource('/index.php/planificacion_clases_detalle/:id.json?accion=:action', {}, {
         view: { method: 'GET', params: {id: '@id', action: 'view'} },
         delete: { method: 'GET', params: {id: '@id', action: 'delete'} }
     })
-}); 
+});
 
 // Estudiantes
 cuadernoAppServices.factory('EstudiantesFactory', function ($resource) {

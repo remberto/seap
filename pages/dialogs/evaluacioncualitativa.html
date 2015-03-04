@@ -25,16 +25,25 @@
 			                  <tr>
 			                    <th>Nro.</th>
 			                    <th>Area</th>
-			                    <th ng-repeat="dimension in dimensiones"><div><span>{{ dimension.descripcion}} ({{ dimension.valor }} Pts.)</span></div></th>                    			                    
+			                    <th ng-repeat="dimension in dimensiones">
+			                    	<div ng-if="nivel_id == 11"><span>{{ dimension.descripcion}}</span></div>
+			                    	<div ng-if="nivel_id == 12 || nivel_id == 13"><span>{{ dimension.descripcion}}  ({{ dimension.valor * 2 }} Pts.)</span></div>
+			                    </th>                    			                    
 			                  </tr>			                  			                 	   
 			                </thead>
 			                <tbody>
 			                  <tr ng-repeat="area in areas">
 			                    <td>{{ $index + 1 }}</td>                    
 			                    <td>{{ area.descripcion }}</td>                    
-			                    <td ng-repeat="dimension in dimensiones" align="right">			                      
-			                        <span ng-if="centralizador[area.id][dimension.id]['nota'] >= dimension['valor']" style="font-size:10px; font-weight: bold; color: black;">{{ centralizador[area.id][dimension.id]['nota'] }}</span>
-			                        <span ng-if="centralizador[area.id][dimension.id]['nota'] < dimension['valor']" style="font-size:10px; font-weight: bold; color: red;">{{ centralizador[area.id][dimension.id]['nota'] }}</span>	
+			                    <td ng-repeat="dimension in dimensiones" align="right">
+			                    	<div ng-if="area.nivel_id == 11">			                      
+				                        <span ng-if="centralizador[area.id][dimension.id]['nota'] > 1" style="font-size:10px; font-weight: bold; color: black;">{{ centralizador[area.id][dimension.id]['promedio_cualitativo'] }}</span>
+				                        <span ng-if="centralizador[area.id][dimension.id]['nota'] <= 1" style="font-size:10px; font-weight: bold; color: red;">{{ centralizador[area.id][dimension.id]['promedio_cualitativo'] }}</span>
+				                </div>
+				                <div ng-if="area.nivel_id == 12 || area.nivel_id == 13">			
+				                        <span ng-if="centralizador[area.id][dimension.id]['nota'] >= dimension['valor']" style="font-size:10px; font-weight: bold; color: black;">{{ centralizador[area.id][dimension.id]['nota'] }}</span>
+				                        <span ng-if="centralizador[area.id][dimension.id]['nota'] < dimension['valor']" style="font-size:10px; font-weight: bold; color: red;">{{ centralizador[area.id][dimension.id]['nota'] }}</span>
+				                </div>	
 			                    </td>                    
 			                  </tr>
 			                </tbody>
@@ -42,8 +51,14 @@
 			                  <tr>
 			                	<td colspan="2"> PROMEDIO: </td>
 			                	<td ng-repeat="dimension in dimensiones" align="right">
-				                	<span ng-if="promedios[dimension.id]['nota'] >= dimension['valor']" style="font-size:10px; font-weight: bold; color: black;">{{ promedios[dimension.id]['nota'] }}</span>
-				                        <span ng-if="promedios[dimension.id]['nota'] < dimension['valor']" style="font-size:10px; font-weight: bold; color: red;">{{ promedios[dimension.id]['nota'] }}</span>	
+			                		<div ng-if="nivel_id == 11">
+					                	<span ng-if="promedios[dimension.id]['nota'] > 1" style="font-size:10px; font-weight: bold; color: black;">{{ promedios[dimension.id]['promedio_cualitativo'] }}</span>
+					                        <span ng-if="promedios[dimension.id]['nota'] <= 1" style="font-size:10px; font-weight: bold; color: red;">{{ promedios[dimension.id]['promedio_cualitativo'] }}</span>
+					                </div>	
+					                <div ng-if="nivel_id == 12 || nivel_id == 13">
+					                	<span ng-if="promedios[dimension.id]['nota'] >= dimension['valor']" style="font-size:10px; font-weight: bold; color: black;">{{ promedios[dimension.id]['nota'] }}</span>
+					                        <span ng-if="promedios[dimension.id]['nota'] < dimension['valor']" style="font-size:10px; font-weight: bold; color: red;">{{ promedios[dimension.id]['nota'] }}</span>
+					                </div>
 			                	</td>
 			                  </tr>
 			                </tfoot>

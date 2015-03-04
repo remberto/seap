@@ -34,7 +34,18 @@ class PlanificacionClasesController extends AppController{
             {
                 // Actualiza estado_asistencia_id si ya ha sido anteriomente registrado
                 //$data['PlanificacionClase']['tematica_orientadora'] = $this->request->data['tematica_orientadora'];
+                $calendario_de = $this->Calendario->find('first', array('conditions'=>array('Calendario.fecha'=>substr($this->request->data['calendario_de_id'],0,10))));
+                $calendario_a = $this->Calendario->find('first', array('conditions'=>array('Calendario.fecha'=>substr($this->request->data['calendario_a_id'],0,10))));
+                 
+                
                 $data['PlanificacionClase']['objetivo_holistico'] = $this->request->data['objetivo_holistico'];
+                $data['PlanificacionClase']['contenido'] = $this->request->data['contenido'];
+                $data['PlanificacionClase']['producto'] = $this->request->data['producto'];
+                $data['PlanificacionClase']['fuente_verificacion'] = $this->request->data['fuente_verificacion'];
+                $data['PlanificacionClase']['calendario_de_id'] = $calendario_de['Calendario']['id'];
+                $data['PlanificacionClase']['calendario_a_id'] = $calendario_a['Calendario']['id'];
+                $data['PlanificacionClase']['asignado_id'] = $this->request->data['asignado_id'];
+                $data['PlanificacionClase']['planificacion_bimestral_id'] = $this->request->data['planificacion_bimestral_id'];
                 $this->PlanificacionClase->save($data);
             }
             else

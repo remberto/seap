@@ -322,10 +322,10 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 	        })  
 	}
 
-	$scope.mtdEvaluar = function(Evaluaciones, Estudiante, Criterio, asignado_id){		
+	$scope.mtdEvaluar = function(Evaluaciones, Estudiante, Criterio, Curso, asignado_id){		
 		if(Criterio.idcriterio !== Criterio.iddimension){		    
 		    	if(Evaluaciones.id == 0){
-				$scope.mtdSaveevaluacion(Evaluaciones, Estudiante, Criterio, asignado_id);
+				$scope.mtdSaveevaluacion(Evaluaciones, Estudiante, Criterio, Curso, asignado_id);
 	            	}else {
 	            		// Ver evaluaciones            		            		
             			var dlg = dialogs.create('/pages/dialogs/verevaluaciones.html','verevaluacionesController', {estudiante: Estudiante, criterio: Criterio, asignado_id: asignado_id, evaluaciones: Evaluaciones}, {size:'md'});
@@ -344,18 +344,32 @@ evaluacionController.controller('evaluacionController', ['$scope','$routeParams'
 	       	}
 	}
 
-	$scope.mtdSaveevaluacion = function(Evaluaciones, Estudiante, Criterio, asignado_id){
-		var dlg = dialogs.create('/pages/dialogs/evaluacion.html','evaluarController', {estudiante: Estudiante, criterio: Criterio, asignado_id: asignado_id, evaluaciones: Evaluaciones}, {size:'md'});
-            	dlg.result.then(function(data){            		
-			EvaluacionFactory.query($scope.evaluacion, function(data){			
-				$scope.estudiantes = data.datos.inscritos;
-				$scope.criterios = data.datos.criterios;
-				$scope.dimensiones = data.datos.dimensiones;
-				$scope.evaluaciones = data.datos.evaluaciones;
-				$scope.promedios = data.datos.promedios;
-				$scope.notas = data.datos.notas;
-			});                                                       		            
-       		});	
+	$scope.mtdSaveevaluacion = function(Evaluaciones, Estudiante, Criterio, Curso, asignado_id){
+		if(Curso.nivel_id == 11){
+			var dlg = dialogs.create('/pages/dialogs/evaluacioninicial.html','evaluarinicialController', {estudiante: Estudiante, criterio: Criterio, asignado_id: asignado_id, evaluaciones: Evaluaciones}, {size:'md'});
+	            	dlg.result.then(function(data){            		
+				EvaluacionFactory.query($scope.evaluacion, function(data){			
+					$scope.estudiantes = data.datos.inscritos;
+					$scope.criterios = data.datos.criterios;
+					$scope.dimensiones = data.datos.dimensiones;
+					$scope.evaluaciones = data.datos.evaluaciones;
+					$scope.promedios = data.datos.promedios;
+					$scope.notas = data.datos.notas;
+				});                                                       		            
+	       		});				
+		}else{
+			var dlg = dialogs.create('/pages/dialogs/evaluacion.html','evaluarController', {estudiante: Estudiante, criterio: Criterio, asignado_id: asignado_id, evaluaciones: Evaluaciones}, {size:'md'});
+	            	dlg.result.then(function(data){            		
+				EvaluacionFactory.query($scope.evaluacion, function(data){			
+					$scope.estudiantes = data.datos.inscritos;
+					$scope.criterios = data.datos.criterios;
+					$scope.dimensiones = data.datos.dimensiones;
+					$scope.evaluaciones = data.datos.evaluaciones;
+					$scope.promedios = data.datos.promedios;
+					$scope.notas = data.datos.notas;
+				});                                                       		            
+	       		});	
+	       	}
 	}
 
 	$scope.mtdSaveReforzamiento = function(Evaluaciones, Estudiante, Criterio, asignado_id){
@@ -518,6 +532,108 @@ evaluacionController.controller('evaluarController', ['$scope','$routeParams','$
     		$scope.evaluacion.inscrito_id = $scope.estudiante.id;
     		$scope.evaluacion.asignado_id = $scope.asignado_id;
     		$scope.evaluacion.criterio_id = $scope.criterio.idcriterio;
+    		usSpinnerService.spin('spinner-1');                     
+    		EvaluacionFactory.create($scope.evaluacion, function(data){
+    			usSpinnerService.stop('spinner-1');
+    			if(data.message.guardado){
+		                $.fn.jAlert({
+		                      'title':'¡Satisfactorio!',
+		                      'message': data.message.mensaje,
+		                      'theme': 'success',
+		                      'closeBtn': false,
+		                      'btn': [{'label':'Cerrar', 
+		                               'closeOnClick': true, 
+		                               'cssClass': 'green',                                
+		                             }],
+		                      'size': 'small',                      
+		                      'onClose': $modalInstance.close()
+		                    });
+
+		        }else{
+		                $.fn.jAlert({
+		                      'title':'Error!',
+		                      'message': data.message.mensaje,
+		                      'theme': 'error'
+		                    });
+		        }
+    			
+    		});        	
+    	};
+	
+}]);
+
+
+evaluacionController.controller('evaluarinicialController', ['$scope','$routeParams','$modalInstance', 'ClasificadorFactory','EvaluacionFactory', 'usSpinnerService', '$location', 'data',  function($scope, $routeParams, $modalInstance, ClasificadorFactory, EvaluacionFactory, usSpinnerService, $location, data) {
+	//$scope.evaluacion = {criterios: null}			
+	$scope.estudiante = data.estudiante;
+	$scope.criterio = data.criterio;
+	$scope.asignado_id = data.asignado_id;
+	$scope.evaluaciones = data.evaluaciones;
+
+	$scope.evaluacion_cualitativa = [{id: 1, evaluacion: 'En Desarrollo'},
+					{id: 2, evaluacion: 'Desarrollo Aceptable'},
+					{id: 3, evaluacion: 'Desarrollo Optimo'},
+					{id: 4, evaluacion: 'Desarrollo Pleno'}];	
+
+	if($scope.evaluaciones.id == 0){
+		$scope.evaluacion = {inscripcion_id:0, asignado_id:0, criterio_id:0, cualitativo:0}
+	}else{
+		$scope.evaluacion = {id: $scope.evaluaciones.id,
+				     inscripcion_id: $scope.estudiante.id, 
+			             asignado_id: $scope.asignado_id, 
+			             criterio_id: $scope.criterio.id, 
+			             cuantitativo: $scope.evaluaciones.cuantitativo,
+			             convertida: $scope.evaluaciones.valor,			             			             
+			     	     observaciones: $scope.evaluaciones.observaciones,
+			     	     reforzamiento_cuantitativo: $scope.evaluaciones.reforzamiento_cuantitativo,
+			     	     reforzamiento_cualitativo: $scope.evaluaciones.reforzamiento_cualitativo,
+			     	     reforzamiento_convertida: $scope.evaluaciones.reforzamiento_valor,
+			     	     reforzamiento_observaciones: $scope.evaluaciones.reforzamiento_observaciones,
+			     	};
+		/*if($scope.evaluacion.cuantitativo < 51){
+			$scope.evaluacion.cualitativo = 1;
+			$scope._cualitativo = 'En Desarrollo';
+		}else if($scope.evaluacion.cuantitativo >= 51 && $scope.evaluacion.cuantitativo <= 68){
+			$scope.evaluacion.cualitativo = 2;
+			$scope._cualitativo = 'Desarrollo Aceptable';
+		}else if($scope.evaluacion.cuantitativo > 68 && $scope.evaluacion.cuantitativo <= 84){
+			$scope.evaluacion.cualitativo = 3;
+			$scope._cualitativo = 'Desarrollo Optimo';
+		}else if($scope.evaluacion.cuantitativo > 84 && $scope.evaluacion.cuantitativo <= 100){
+			$scope.evaluacion.cualitativo = 4;
+			$scope._cualitativo = 'Desarrollo Pleno';		
+		}*/
+	}
+
+	$scope.mtdChange = function(){
+		if($scope.evaluacion.cuantitativo > 0 && $scope.evaluacion.cuantitativo < 51){
+			$scope.evaluacion.cualitativo = 1;
+			$scope._cualitativo = 'En Desarrollo';
+		}else if($scope.evaluacion.cuantitativo >= 51 && $scope.evaluacion.cuantitativo <= 68){
+			$scope.evaluacion.cualitativo = 2;
+			$scope._cualitativo = 'Desarrollo Aceptable';
+		}else if($scope.evaluacion.cuantitativo > 68 && $scope.evaluacion.cuantitativo <= 84){
+			$scope.evaluacion.cualitativo = 3;
+			$scope._cualitativo = 'Desarrollo Optimo';
+		}else if($scope.evaluacion.cuantitativo > 84 && $scope.evaluacion.cuantitativo <= 100){
+			$scope.evaluacion.cualitativo = 4;
+			$scope._cualitativo = 'Desarrollo Pleno';		
+		}
+		$scope.evaluacion.convertida = ($scope.evaluacion.cuantitativo * $scope.criterio.valor) / 100;
+	}
+
+	$scope.cancel = function(){
+		$modalInstance.dismiss('Canceled');
+    	}; // end cancel
+    
+    	$scope.save = function(){
+    		$scope.evaluacion.inscrito_id = $scope.estudiante.id;
+    		$scope.evaluacion.asignado_id = $scope.asignado_id;
+    		$scope.evaluacion.criterio_id = $scope.criterio.idcriterio;
+    		$scope.evaluacion.cuantitativo = $scope.cualitativo.id;
+    		$scope.evaluacion.cualitativo = $scope.cualitativo.id;
+    		$scope.evaluacion.convertida = $scope.cualitativo.id;
+
     		usSpinnerService.spin('spinner-1');                     
     		EvaluacionFactory.create($scope.evaluacion, function(data){
     			usSpinnerService.stop('spinner-1');

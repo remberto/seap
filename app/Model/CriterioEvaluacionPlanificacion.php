@@ -26,11 +26,6 @@ class CriterioEvaluacionPlanificacion extends AppModel {
             'type'=>'INNER',
             'foreignKey' => 'dimension_id',
         ),
-        'Periodo' => array(
-            'className'=>'Periodo',
-            'type'=>'INNER',
-            'foreignKey' => 'periodo_id',
-        ),
         'PlanificacionClaseDetalle' => array(
             'className'=>'PlanificacionClaseDetalle',
             'type'=>'INNER',

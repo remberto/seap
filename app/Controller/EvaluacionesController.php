@@ -48,6 +48,8 @@ class EvaluacionesController extends AppController{
             $evaluaciones[$value[0]['id']] = array();
             $promedios[$value[0]['id']] = array();
             $notas[$value[0]['id']]['nota'] = 0;
+            $notas[$value[0]['id']]['promedio'] = 0;
+            $notas[$value[0]['id']]['promedio_cualitativo'] = '';
         }
 
         // actividades de evaluacion
@@ -119,6 +121,7 @@ class EvaluacionesController extends AppController{
                     $evaluaciones[$_key][$value[0]['idcriterio']]['nota_cualitativo'] = 0;
                     $evaluaciones[$_key][$value[0]['idcriterio']]['nota_valor'] = 0;
                     $promedios[$_key][$value[0]['iddimension']]['promedio'] = 0;
+                    $promedios[$_key][$value[0]['iddimension']]['promedio_cualitativo'] = 0;
                     $promedios[$_key][$value[0]['iddimension']]['valor'] = 0;
                 }
             }
@@ -224,13 +227,26 @@ class EvaluacionesController extends AppController{
             if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio'])):
                 $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio'] = round($Rpromedios[$key]['promedio']);
             endif;
+            if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio_cualitativo'])):
+                if(round($Rpromedios[$key]['promedio']) == 1):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio_cualitativo'] = 'ED';
+                elseif (round($Rpromedios[$key]['promedio']) == 2):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio_cualitativo'] = 'DA';
+                elseif (round($Rpromedios[$key]['promedio']) == 3):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio_cualitativo'] = 'D0';
+                elseif (round($Rpromedios[$key]['promedio']) == 4):
+                    $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['promedio_cualitativo'] = 'DP';
+                endif;
+                
+            endif;
             if(isset($promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['valor'])):
                 $promedios[$Rpromedios[$key]['inscrito_id']][$Rpromedios[$key]['dimension_id']]['valor'] = round($Rpromedios[$key]['valor']);
             endif;
         }
 
         $_notas = $this->Evaluacion->query('SELECT inscrito_id as inscrito_id,
-                                    sum(promedio) AS nota
+                                    sum(promedio) AS nota,
+                                    avg(promedio) AS promedio
                                     FROM promedios
                                     WHERE periodo_id = '.$periodo.'
                                     AND actividad_evaluacion_asignado_id = \''.$actividad.'\'  
@@ -245,6 +261,20 @@ class EvaluacionesController extends AppController{
         foreach ($Rnotas as $key => $value) {            
             if(isset($notas[$Rnotas[$key]['inscrito_id']]['nota'])):
                 $notas[$Rnotas[$key]['inscrito_id']]['nota'] = round($Rnotas[$key]['nota']);
+            endif;
+            if(isset($notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'])):
+                $notas[$Rnotas[$key]['inscrito_id']]['promedio'] = round($Rnotas[$key]['promedio']);
+            endif;
+            if(isset($notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'])):
+                if(round($Rnotas[$key]['promedio']) == 1):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'ED';
+                elseif(round($Rnotas[$key]['promedio']) == 2):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'DA';
+                elseif(round($Rnotas[$key]['promedio']) == 3):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'D0';
+                elseif(round($Rnotas[$key]['promedio']) == 4):
+                    $notas[$Rnotas[$key]['inscrito_id']]['promedio_cualitativo'] = 'DP';
+                endif;
             endif;
         }
 
@@ -271,9 +301,13 @@ class EvaluacionesController extends AppController{
             $_evaluacion['asignado_id'] = $this->request->data['asignado_id'];
             $_evaluacion['inscrito_id'] = $this->request->data['inscrito_id'];
             $_evaluacion['criterio_de_evaluacion_id'] = $this->request->data['criterio_id'];
-            $_evaluacion['cuantitativo'] = $this->request->data['cuantitativo'];
+            if(isset($this->request->data['cuantitativo'])):
+                $_evaluacion['cuantitativo'] = $this->request->data['cuantitativo'];
+            endif;
             $_evaluacion['cualitativo'] = $this->request->data['cualitativo'];
-            $_evaluacion['valor'] = $this->request->data['convertida'];
+            if(isset($this->request->data['convertida'])):
+                $_evaluacion['valor'] = $this->request->data['convertida'];
+            endif;
             if(isset($this->request->data['observaciones'])):
                 $_evaluacion['observaciones'] = $this->request->data['observaciones'];
             endif;
@@ -283,9 +317,13 @@ class EvaluacionesController extends AppController{
                 $_evaluacion['reforzamiento_cualitativo'] = 0;
                 $_evaluacion['reforzamiento_valor'] = 0;
                 $_evaluacion['reforzamiento_observaciones'] = '';
-                $_evaluacion['nota_cuantitativo'] = $_evaluacion['cuantitativo'];
+                if(isset($_evaluacion['cuantitativo'])):
+                    $_evaluacion['nota_cuantitativo'] = $_evaluacion['cuantitativo'];
+                endif;
                 $_evaluacion['nota_cualitativo'] = $_evaluacion['cualitativo'];
-                $_evaluacion['nota_valor'] = $_evaluacion['valor'];                
+                if(isset($_evaluacion['valor'])):
+                    $_evaluacion['nota_valor'] = $_evaluacion['valor'];                
+                endif;
             else:
                 $_evaluacion['id'] = $this->request->data['id'];                
                 if($this->request->data['reforzamiento_cuantitativo'] >= $this->request->data['cuantitativo']):

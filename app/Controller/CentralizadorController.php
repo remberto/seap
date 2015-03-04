@@ -84,7 +84,8 @@ class CentralizadorController extends AppController{
                                                     SUM(prev_centralizador.hacer) as hacer,
                                                     SUM(prev_centralizador.saber) as saber,
                                                     SUM(prev_centralizador.decidir) as decidir,
-                                                    SUM(prev_centralizador.ser) + SUM(prev_centralizador.hacer) + SUM(prev_centralizador.saber) + SUM(prev_centralizador.decidir) as nota
+                                                    SUM(prev_centralizador.ser) + SUM(prev_centralizador.hacer) + SUM(prev_centralizador.saber) + SUM(prev_centralizador.decidir) as nota,
+                                                    (SUM(prev_centralizador.ser) + SUM(prev_centralizador.hacer) + SUM(prev_centralizador.saber) + SUM(prev_centralizador.decidir)) / 4 as promedio
                                                     FROM prev_centralizador
                                                     WHERE prev_centralizador.curso_id = \''.$curso_id.'\'
                                                     GROUP BY prev_centralizador.curso_id, prev_centralizador.gestion_id, prev_centralizador.unidad_educativa_id, prev_centralizador.nivel_id, prev_centralizador.grado_id, prev_centralizador.paralelo, prev_centralizador.turno_id, prev_centralizador.inscrito_id,
@@ -102,7 +103,8 @@ class CentralizadorController extends AppController{
                                                         centralizador.inscrito_id as inscrito_id,
                                                         centralizador.area_id as area_id,
                                                         centralizador.periodo_id as periodo_id,
-                                                        avg(centralizador.nota) as nota
+                                                        avg(centralizador.nota) as nota,
+                                                        avg(centralizador.promedio) as promedio
                                                         FROM centralizador
                                                         WHERE centralizador.curso_id = \''.$curso_id.'\'
                                                         GROUP BY centralizador.inscrito_id, centralizador.area_id, centralizador.periodo_id;');
@@ -116,12 +118,23 @@ class CentralizadorController extends AppController{
         $centralizador = array();
         foreach ($Rcentralizador as $key => $value) {
             $centralizador[$value['inscrito_id']][$value['area_id'].$value['periodo_id']]['nota'] = round($value['nota']);
+            $centralizador[$value['inscrito_id']][$value['area_id'].$value['periodo_id']]['promedio'] = round($value['promedio']);
+            if(round($value['promedio']) == 1):
+                $centralizador[$value['inscrito_id']][$value['area_id'].$value['periodo_id']]['promedio_cualitativo'] = 'ED';
+            elseif(round($value['promedio']) == 2):
+                $centralizador[$value['inscrito_id']][$value['area_id'].$value['periodo_id']]['promedio_cualitativo'] = 'DA';
+            elseif(round($value['promedio']) == 3):
+                $centralizador[$value['inscrito_id']][$value['area_id'].$value['periodo_id']]['promedio_cualitativo'] = 'D0';
+            elseif(round($value['promedio']) == 4):
+                $centralizador[$value['inscrito_id']][$value['area_id'].$value['periodo_id']]['promedio_cualitativo'] = 'DP';
+            endif;
         }        
 
         $_promedios = $this->Centralizador->query('SELECT 
                                                     centralizador.inscrito_id as inscrito_id,
                                                     centralizador.area_id as area_id,                                                    
-                                                    avg(centralizador.nota) as nota
+                                                    avg(centralizador.nota) as nota,
+                                                    avg(centralizador.promedio) as promedio
                                                     FROM centralizador
                                                     WHERE centralizador.curso_id = \''.$curso_id.'\'
                                                     GROUP BY centralizador.inscrito_id, centralizador.area_id;');
@@ -131,7 +144,17 @@ class CentralizadorController extends AppController{
         }
         $promedios = array();
         foreach ($Rpromedios as $key => $value) {
-            $promedios[$value['inscrito_id']][$value['area_id'].'5']['nota'] = round($value['nota']);
+            $promedios[$value['inscrito_id']][$value['area_id'].'5']['nota'] = round($value['nota']);            
+            $promedios[$value['inscrito_id']][$value['area_id'].'5']['promedio'] = round($value['promedio']);
+            if(round($value['promedio']) == 1):
+                $promedios[$value['inscrito_id']][$value['area_id'].'5']['promedio_cualitativo'] = 'ED';
+            elseif(round($value['promedio']) == 2):
+                $promedios[$value['inscrito_id']][$value['area_id'].'5']['promedio_cualitativo'] = 'DA';
+            elseif(round($value['promedio']) == 3):
+                $promedios[$value['inscrito_id']][$value['area_id'].'5']['promedio_cualitativo'] = 'D0';
+            elseif(round($value['promedio']) == 4):
+                $promedios[$value['inscrito_id']][$value['area_id'].'5']['promedio_cualitativo'] = 'DP';
+            endif;
         }        
 
         $datos = array();        

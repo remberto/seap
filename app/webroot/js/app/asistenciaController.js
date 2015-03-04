@@ -41,8 +41,7 @@ asistenciaController.controller('asistenciaController', ['$scope','$routeParams'
       $scope.mtdResumen(Curso, Asignado);
     }
 
-    $scope.mtdAddAsistencia = function(Estudiante, Mes, Dia, Curso, Asignado, estado){
-        console.log(Dia);
+    $scope.mtdAddAsistencia = function(Estudiante, Mes, Dia, Curso, Asignado, estado){        
         $scope.registro = {asignado_id:'', inscripcion_id:'',calendario_fecha:''};
         $scope.registro.asignado_id = Asignado.id;
         $scope.registro.inscripcion_id = Estudiante.id;
@@ -74,12 +73,13 @@ asistenciaController.controller('asistenciaController', ['$scope','$routeParams'
         });
     }
 
-    $scope.mtdVer = function(id, Curso, Asignado){
+    $scope.mtdVer = function(Mes, Curso, Asignado){
         if($scope.habilitado == true){
           //$scope.asistencia = null;
-          $scope.asistencia.mes = id;
+          $scope.asistencia.mes = Mes.id;
           $scope.asistencia.curso = Curso.id;
-          $scope.asistencia.asignado = Asignado.id;          
+          $scope.asistencia.asignado = Asignado.id;
+          $scope.mes = Mes;          
           AsistenciaFactory.query($scope.asistencia, function(data){
              // console.log(data.datos);            //
              $scope.asistencia = data.datos.asistencia;
@@ -110,7 +110,11 @@ asistenciaController.controller('asistenciaController', ['$scope','$routeParams'
       });
     }
 
-    $scope.mtdPrint = function(divName, Curso, Asignado, Mes){
+    $scope.mtdPrint = function(divName){
+      var Curso = $scope.curso;
+      var Asignado  = $scope.asignado;
+      var Mes  = $scope.mes;      
+
       var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
         
@@ -157,8 +161,7 @@ asistenciaController.controller('asistenciareporteController', ['$scope','Report
     
   ReportesFactory.query($scope.datreporte,
        function(data){
-          usSpinnerService.stop('spinner-1');
-          console.log(data.datos);
+          usSpinnerService.stop('spinner-1');          
           $scope.reporte = data.datos.title.text;
           $scope.chart = data.datos;         
           $scope.chart.series[0].color = "#08298A";
