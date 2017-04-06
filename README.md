@@ -1,4 +1,4 @@
-#Sistema Educativo 
+#Sistema de Gestión Academica para Unidades Academicas#
 
 Desarrollado por 
 	     Remberto Quispe Gutierrez rembertoy2k3@gmail.com
